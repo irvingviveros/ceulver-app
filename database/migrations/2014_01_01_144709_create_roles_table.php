@@ -17,10 +17,10 @@ class CreateRolesTable extends Migration
             $table->id();
             $table->string('slug', 50);
             $table->string('name', 50);
-            $table->string('note', 255) -> nullable(true);
-            $table->tinyInteger('is_default') ->default('1');
-            $table->tinyInteger('is_super_admin') ->default('0');
-            $table->tinyInteger('status') ->default('1');
+            $table->string('note', 255)->nullable(true);
+            $table->tinyInteger('is_default')->default('1');
+            $table->tinyInteger('is_super_admin')->default('0');
+            $table->tinyInteger('status')->default('1');
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();
