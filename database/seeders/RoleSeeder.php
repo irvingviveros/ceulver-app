@@ -15,6 +15,8 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
+        $date = Carbon::now()->format('Y-m-d H:i:s');   //Get current date
+
         DB::table('roles')->insert([
             [
                 'slug' => 'super-admin',
@@ -25,8 +27,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'admin',
@@ -37,8 +39,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'tutor',
@@ -49,8 +51,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'estudiante',
@@ -61,8 +63,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'profesor',
@@ -73,8 +75,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'financiero',
@@ -85,8 +87,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'bibliotecario',
@@ -97,8 +99,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'recepcionista',
@@ -109,8 +111,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ],
             [
                 'slug' => 'staff',
@@ -121,8 +123,8 @@ class RoleSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => $date,
+                'updated_at' => $date
             ]
         ]);
     }

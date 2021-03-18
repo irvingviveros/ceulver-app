@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcademicYearsTable extends Migration
+class CreateActivityLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateAcademicYearsTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_years', function (Blueprint $table) {
+        Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('session_year', 50);
-            $table->integer('start_year');
-            $table->integer('end_year');
-            $table->text('note')->nullable(true);
-            $table->tinyInteger('is_running');
+            $table->string('name', 100);
+            $table->string('phone', 10);
+            $table->string('email',50);
+            $table->string('ip_address', 20);
+            $table->string('user_agent',255);
+            $table->text('activity');
             $table->tinyInteger('status');
             $table->integer('created_by');
             $table->integer('modified_by');
@@ -27,6 +28,8 @@ class CreateAcademicYearsTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->references('id')->on('schools');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('role_id')->references('id')->on('roles');
         });
     }
 
@@ -37,6 +40,6 @@ class CreateAcademicYearsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_years');
+        Schema::dropIfExists('activity_logs');
     }
 }

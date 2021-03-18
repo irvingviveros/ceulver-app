@@ -33,14 +33,14 @@
           <p class="card-text mb-2">Plataforma de Administración General</p>
           <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
             @csrf
-            <div class="form-group">
-              <label class="form-label" for="basicSelect">Instutición</label>
-              <select class="form-control" id="basicSelect">
-                <option>Universidad Veracruz</option>
-                <option>Universidad Tlaxcala</option>
-                <option>Secundaria Veracruz</option>
-              </select>
-            </div>
+{{--            <div class="form-group">--}}
+{{--              <label class="form-label" for="basicSelect">Instutición</label>--}}
+{{--              <select class="form-control" id="basicSelect">--}}
+{{--                <option>Universidad Veracruz</option>--}}
+{{--                <option>Universidad Tlaxcala</option>--}}
+{{--                <option>Secundaria Veracruz</option>--}}
+{{--              </select>--}}
+{{--            </div>--}}
             <div class="form-group">
               <label for="login-email" class="form-label">Usuario</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="IMA2000000" aria-describedby="login-email" tabindex="1" autofocus value="{{ old('email') }}" />
