@@ -42,7 +42,7 @@
 {{--              </select>--}}
 {{--            </div>--}}
             <div class="form-group">
-              <label for="login-email" class="form-label">Usuario</label>
+              <label for="login-email" class="form-label">Correo o usuario</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="IMA2000000" aria-describedby="login-email" tabindex="1" autofocus value="{{ old('email') }}" />
               @error('email')
               <span class="invalid-feedback" role="alert">

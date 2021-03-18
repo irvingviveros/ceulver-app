@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 Auth::routes();
 
-Route::get('/', [StaterkitController::class, 'home'])->name('home');
-Route::get('home', [StaterkitController::class, 'home'])->name('home');
+Route::get('/', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
+Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
 // Route Components
 Route::get('layouts/collapsed-menu', [StaterkitController::class, 'collapsed_menu'])->name('collapsed-menu');
 Route::get('layouts/boxed', [StaterkitController::class, 'layout_boxed'])->name('layout-boxed');
