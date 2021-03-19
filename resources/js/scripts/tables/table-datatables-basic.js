@@ -175,17 +175,17 @@ $(function () {
         {
           extend: 'collection',
           className: 'btn btn-outline-secondary dropdown-toggle mr-2',
-          text: feather.icons['share'].toSvg({ class: 'font-small-4 mr-50' }) + 'Export',
+          text: feather.icons['share'].toSvg({ class: 'font-small-4 mr-50' }) + 'Exportar',
           buttons: [
             {
               extend: 'print',
-              text: feather.icons['printer'].toSvg({ class: 'font-small-4 mr-50' }) + 'Print',
+              text: feather.icons['printer'].toSvg({ class: 'font-small-4 mr-50' }) + 'Imprimir',
               className: 'dropdown-item',
               exportOptions: { columns: [3, 4, 5, 6, 7] }
             },
             {
               extend: 'csv',
-              text: feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) + 'Csv',
+              text: feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) + 'CSV',
               className: 'dropdown-item',
               exportOptions: { columns: [3, 4, 5, 6, 7] }
             },
@@ -197,13 +197,13 @@ $(function () {
             },
             {
               extend: 'pdf',
-              text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 mr-50' }) + 'Pdf',
+              text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 mr-50' }) + 'PDF',
               className: 'dropdown-item',
               exportOptions: { columns: [3, 4, 5, 6, 7] }
             },
             {
               extend: 'copy',
-              text: feather.icons['copy'].toSvg({ class: 'font-small-4 mr-50' }) + 'Copy',
+              text: feather.icons['copy'].toSvg({ class: 'font-small-4 mr-50' }) + 'Copiar',
               className: 'dropdown-item',
               exportOptions: { columns: [3, 4, 5, 6, 7] }
             }
@@ -217,7 +217,7 @@ $(function () {
           }
         },
         {
-          text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Add New Record',
+          text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Crear nuevo registro',
           className: 'create-new btn btn-primary',
           attr: {
             'data-toggle': 'modal',
@@ -262,14 +262,10 @@ $(function () {
         }
       },
       language: {
-        paginate: {
-          // remove previous & next text from pagination
-          previous: '&nbsp;',
-          next: '&nbsp;'
-        }
+        url: '//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
       }
     });
-    $('div.head-label').html('<h6 class="mb-0">DataTable with Buttons</h6>');
+    $('div.head-label').html('<h6 class="mb-0">Administrar escuelas</h6>');
   }
 
   // Flat Date picker
