@@ -12,7 +12,7 @@
       "slug": "admin",
       "submenu": [
         {
-          "url": "administrator/manage-schools",
+          "url": "admin/manage-schools",
           "name": "Manage Schools",
           "icon": "circle",
           "slug": "manage-schools"

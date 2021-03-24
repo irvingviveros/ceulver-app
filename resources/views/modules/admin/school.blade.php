@@ -48,8 +48,9 @@
                             <label class="form-label" for="basic-icon-default-fullname">Nombre de la Institución</label>
                             <input
                                     type="text"
-                                    class="form-control dt-full-name"
+                                    class="form-control dt-school-name"
                                     id="basic-icon-default-fullname"
+                                    name="school_name"
                                     placeholder="John Doe"
                                     aria-label="John Doe"
                                     required
@@ -60,7 +61,8 @@
                             <input
                                     type="text"
                                     id="basic-icon-default-post"
-                                    class="form-control dt-post"
+                                    class="form-control dt-address"
+                                    name="school_address"
                                     placeholder="Web Developer"
                                     aria-label="Web Developer"
                                     required
@@ -72,6 +74,7 @@
                                     type="text"
                                     id="basic-icon-default-email"
                                     class="form-control dt-email"
+                                    name="school_email"
                                     placeholder="john.doe@example.com"
                                     aria-label="john.doe@example.com"
                                     required
@@ -79,10 +82,10 @@
                             <small class="form-text text-muted"> Correo principal de la institución </small>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="basicSelect">Admisiones en línea</label>
-                            <select class="form-control" id="basicSelect">
-                                <option>NO</option>
-                                <option>SI</option>
+                            <label for="selectOnlineAdmission">Admisiones en línea</label>
+                            <select class="form-control dt-admission" name="school_admission" id="selectOnlineAdmission">
+                                <option selected value="0">NO</option>
+                                <option value="1">SI</option>
                             </select>
                         </div>
                         <button type="button" class="btn btn-primary data-submit mr-1">Crear</button>

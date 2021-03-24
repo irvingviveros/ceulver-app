@@ -5,6 +5,8 @@
 $(function () {
   'use strict';
 
+  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
   var dt_basic_table = $('.datatables-basic'),
     dt_date_table = $('.dt-date'),
     assetPath = '../../../app-assets/';
@@ -232,29 +234,49 @@ $(function () {
 
   // Add New record
   // ? Remove/Update this code as per your requirements ?
-  var count = 101;
+  let count = 101;
   $('.data-submit').on('click', function () {
-    var $new_name = $('.add-new-record .dt-full-name').val(),
-      $new_post = $('.add-new-record .dt-post').val(),
-      $new_email = $('.add-new-record .dt-email').val(),
-      $new_date = $('.add-new-record .dt-date').val(),
-      $new_salary = $('.add-new-record .dt-salary').val();
+    const $school_name = $('.add-new-record .dt-school-name').val(),
+        $school_address = $('.add-new-record .dt-address').val(),
+        $school_email = $('.add-new-record .dt-email').val(),
+        $school_admission = $('.add-new-record .dt-admission').val(),
+        $school_status = 1;
 
-    if ($new_name != '') {
-      dt_basic.row
-        .add({
-          responsive_id: null,
-          id: count,
-          full_name: $new_name,
-          post: $new_post,
-          email: $new_email,
-          start_date: $new_date,
-          salary: '$' + $new_salary,
-          status: 5
-        })
-        .draw();
-      count++;
-      $('.modal').modal('hide');
+    if ($school_name !== '' && $school_address !== '' && $school_email !== '' && $school_admission !== '') {
+      $.ajax({
+        url: 'manage-schools/create',
+        type: 'post',
+        data: {_token: CSRF_TOKEN, school_name: $school_name, school_address: $school_address, school_email: $school_email, school_admission: $school_admission},
+        success: function (response) {
+          if (response > 0){
+            dt_basic.row
+                .add({
+                  responsive_id: null,
+                  id: count,
+                  full_name: $school_name,
+                  post: $school_address,
+                  email: $school_email,
+                  start_date: $school_admission,
+                  salary: '$' + $school_status,
+                  status: 5
+                })
+                .draw();
+            count++;
+            $('.modal').modal('hide');
+
+          } else if(response == 0){
+            alert('School already in DB.');
+          }else{
+            alert(response);
+          }
+          // Empty the input fields
+          $('#basic-icon-default-fullname').val('');
+          $('#basic-icon-default-post').val('');
+          $('#basic-icon-default-email').val('');
+          $('#selectOnlineAdmission').val('0');
+        }
+      });
+
     }
   });
 
