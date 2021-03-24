@@ -244,7 +244,7 @@ $(function () {
 
     if ($school_name !== '' && $school_address !== '' && $school_email !== '' && $school_admission !== '') {
       $.ajax({
-        url: 'manage-schools/create',
+        url: 'manage-schools',
         type: 'post',
         data: {_token: CSRF_TOKEN, school_name: $school_name, school_address: $school_address, school_email: $school_email, school_admission: $school_admission},
         success: function (response) {

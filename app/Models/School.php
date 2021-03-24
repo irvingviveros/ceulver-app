@@ -15,6 +15,12 @@ class School extends Model
         return DB::table('schools')->orderBy('id', 'asc')->get();
     }
 
+    /**
+     * Validation
+     *  Check if school name already exists in schools table or not.
+     * If not then insert the record and return the insertid otherwise return 0.
+     *
+     */
     public static function insertData($data){
 
         $value=DB::table('schools')->where('school_name', $data['school_name'])->get();

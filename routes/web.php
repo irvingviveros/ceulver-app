@@ -26,7 +26,6 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 
 // Schools
 Route::get('admin/manage-schools', [SchoolController::class, 'index'])->name('manage-schools');
-Route::post('admin/manage-schools/create', [SchoolController::class, 'addSchool']);
 Route::post('admin/manage-schools', [SchoolController::class, 'store']);
 
 // locale Route

@@ -19,22 +19,24 @@ class SchoolController extends Controller
         return view('modules.admin.school', ['breadcrumbs' => $breadcrumbs]);
     }
 
-    // Insert record
-    public function addSchool(Request $request){
-
+    public function store(Request $request)
+    {
+        // Request school data
         $schoolName = $request->input('school_name');
         $schoolAddress = $request->input('school_address');
         $schoolEmail = $request->input('school_email');
         $schoolAdmission = $request->input('school_admission');
 
-        $createdBy = 1;
-        $modifiedBy = 1;
+        // Request current user data
+        $user = auth()->user();
+        $createdBy = $user->id;
+        $modifiedBy = $user->id;
 
         // Save date into $data var
         if($schoolName !='' && $schoolAddress !='' && $schoolEmail != '' && $schoolAdmission != ''){
             $data = array('school_name'=>$schoolName,"address"=>$schoolAddress,"email"=>$schoolEmail, "enable_online_admission"=>$schoolAdmission, "created_by"=>$createdBy, "modified_by"=>$modifiedBy);
 
-            // Call insertData() method of Page Model
+            // Call insertData() method of School Model
             $value = School::insertData($data);
             if($value){
                 echo $value;
@@ -45,17 +47,5 @@ class SchoolController extends Controller
         }else{
             echo 'Fill all fields.';
         }
-
-        exit;
-    }
-
-    public function create()
-    {
-
-    }
-
-    public function store()
-    {
-
     }
 }
