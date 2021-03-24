@@ -5,8 +5,9 @@
 $(function () {
   'use strict';
 
+  // CSRF Security Token for POST form
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
+  // DataTable data
   var dt_basic_table = $('.datatables-basic'),
     dt_date_table = $('.dt-date'),
     assetPath = '../../../app-assets/';
