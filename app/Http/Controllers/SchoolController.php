@@ -14,6 +14,16 @@ class SchoolController extends Controller
         $breadcrumbs = [
             ['link' => "administrator/manage-schools", 'name' => "Inicio"], ['link' => "javascript:void(0)", 'name' => "Administrador"], ['name' => "Administrar escuelas"]
         ];
-        return view('modules.school', ['breadcrumbs' => $breadcrumbs]);
+        return view('modules.admin.school', ['breadcrumbs' => $breadcrumbs]);
+    }
+
+    public function create()
+    {
+
+    }
+
+    public function store()
+    {
+
     }
 }
