@@ -18,6 +18,7 @@ $(function () {
 
   if (dt_basic_table.length) {
     var dt_basic = dt_basic_table.DataTable({
+      // Data
       ajax: assetPath + 'data/table-datatable.json',
       columns: [
         { data: 'responsive_id' },

@@ -23,12 +23,12 @@
                             <th></th>
                             <th></th>
                             <th>id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Date</th>
-                            <th>Salary</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>E-mail</th>
+                            <th>Admisiones en línea</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
                         </tr>
                         </thead>
                     </table>
@@ -41,62 +41,52 @@
                 <form class="add-new-record modal-content pt-0">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
                     <div class="modal-header mb-1">
-                        <h5 class="modal-title" id="exampleModalLabel">Nueva escuela</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Registro de escuela</h5>
                     </div>
                     <div class="modal-body flex-grow-1">
                         <div class="form-group">
-                            <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
+                            <label class="form-label" for="basic-icon-default-fullname">Nombre de la Institución</label>
                             <input
                                     type="text"
                                     class="form-control dt-full-name"
                                     id="basic-icon-default-fullname"
                                     placeholder="John Doe"
                                     aria-label="John Doe"
+                                    required
                             />
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="basic-icon-default-post">Post</label>
+                            <label class="form-label" for="basic-icon-default-post">Dirección</label>
                             <input
                                     type="text"
                                     id="basic-icon-default-post"
                                     class="form-control dt-post"
                                     placeholder="Web Developer"
                                     aria-label="Web Developer"
+                                    required
                             />
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="basic-icon-default-email">Email</label>
+                            <label class="form-label" for="basic-icon-default-email">Correo electrónico</label>
                             <input
                                     type="text"
                                     id="basic-icon-default-email"
                                     class="form-control dt-email"
                                     placeholder="john.doe@example.com"
                                     aria-label="john.doe@example.com"
+                                    required
                             />
-                            <small class="form-text text-muted"> You can use letters, numbers & periods </small>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                            <input
-                                    type="text"
-                                    class="form-control dt-date"
-                                    id="basic-icon-default-date"
-                                    placeholder="MM/DD/YYYY"
-                                    aria-label="MM/DD/YYYY"
-                            />
+                            <small class="form-text text-muted"> Correo principal de la institución </small>
                         </div>
                         <div class="form-group mb-4">
-                            <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                            <input
-                                    type="text"
-                                    id="basic-icon-default-salary"
-                                    class="form-control dt-salary"
-                                    placeholder="$12000"
-                                    aria-label="$12000"
-                            />
+                            <label for="basicSelect">Admisiones en línea</label>
+                            <select class="form-control" id="basicSelect">
+                                <option>NO</option>
+                                <option>SI</option>
+                            </select>
                         </div>
-                        <button type="button" class="btn btn-primary data-submit mr-1">Submit</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary data-submit mr-1">Crear</button>
+                        <button type="reset" class="btn btn-outline-secondary" data-dismiss="modal">Cancelar</button>
                     </div>
                 </form>
             </div>
