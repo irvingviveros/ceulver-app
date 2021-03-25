@@ -79,7 +79,7 @@ $(function () {
           render: function (data, type, full, meta) {
             var $status_number = full['enable_online_admission'];
             var $status = {
-              0: { title: 'Inactivo', class: ' badge-light-secondary ' },
+              0: { title: 'Inactivo', class: ' badge-light-warning ' },
               1: { title: 'Activo', class: ' badge-light-success' },
             };
             if (typeof $status[$status_number] === 'undefined') {
@@ -100,7 +100,7 @@ $(function () {
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
-              0: { title: 'Inactivo', class: ' badge-light-secondary' },
+              0: { title: 'Inactivo', class: ' badge-light-warning' },
               1: { title: 'Activo', class: ' badge-light-success' },
             };
             if (typeof $status[$status_number] === 'undefined') {
@@ -130,13 +130,13 @@ $(function () {
               '<div class="dropdown-menu dropdown-menu-right">' +
               '<a href="javascript:;" class="dropdown-item">' +
               feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Details</a>' +
+              'Detalles</a>' +
               '<a href="javascript:;" class="dropdown-item">' +
               feather.icons['archive'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Archive</a>' +
+              'Archivar</a>' +
               '<a href="javascript:;" class="dropdown-item delete-record">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 mr-50' }) +
-              'Delete</a>' +
+              'Eliminar</a>' +
               '</div>' +
               '</div>' +
               '<a href="javascript:;" class="item-edit">' +
