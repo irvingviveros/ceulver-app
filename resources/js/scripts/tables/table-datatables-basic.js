@@ -7,7 +7,7 @@ $(function () {
 
   // CSRF Security Token for POST form
   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-  // DataTable data
+
   var dt_basic_table = $('.datatables-basic'),
     dt_date_table = $('.dt-date'),
     assetPath = '../../../app-assets/';
@@ -22,17 +22,20 @@ $(function () {
   if (dt_basic_table.length) {
     var dt_basic = dt_basic_table.DataTable({
       // Data
-      ajax: assetPath + 'data/table-datatable.json',
+      serverSide: true,
+      ajax: ({
+        url: window.location.origin + '/api/schools',
+        type: 'GET',
+      }),
       columns: [
-        { data: 'responsive_id' },
         { data: 'id' },
-        { data: 'id' }, // used for sorting so will hide this column
-        { data: 'full_name' },
+        { data: 'id' },
+        { data: 'school_name' },
+        { data: 'address' },
         { data: 'email' },
-        { data: 'start_date' },
-        { data: 'salary' },
+        { data: 'enable_online_admission' },
+        { data: 'status' },
         { data: '' },
-        { data: '' }
       ],
       columnDefs: [
         {
@@ -40,7 +43,8 @@ $(function () {
           className: 'control',
           orderable: false,
           responsivePriority: 2,
-          targets: 0
+          targets: 0,
+          visible: false
         },
         {
           // For Checkboxes
@@ -63,23 +67,41 @@ $(function () {
         },
         {
           targets: 2,
-          visible: false
         },
         {
+          // Label for email
           responsivePriority: 1,
-          targets: 4
+          targets: 4,
         },
         {
-          // Label
+          // Label for online admissions
+          targets: -3,
+          render: function (data, type, full, meta) {
+            var $status_number = full['enable_online_admission'];
+            var $status = {
+              0: { title: 'Inactivo', class: ' badge-light-secondary ' },
+              1: { title: 'Activo', class: ' badge-light-success' },
+            };
+            if (typeof $status[$status_number] === 'undefined') {
+              return data;
+            }
+            return (
+                '<span class="badge badge-pill ' +
+                $status[$status_number].class +
+                '">' +
+                $status[$status_number].title +
+                '</span>'
+            );
+          }
+        },
+        {
+          // Label for estatus
           targets: -2,
           render: function (data, type, full, meta) {
             var $status_number = full['status'];
             var $status = {
-              1: { title: 'Current', class: 'badge-light-primary' },
-              2: { title: 'Professional', class: ' badge-light-success' },
-              3: { title: 'Rejected', class: ' badge-light-danger' },
-              4: { title: 'Resigned', class: ' badge-light-warning' },
-              5: { title: 'Applied', class: ' badge-light-info' }
+              0: { title: 'Inactivo', class: ' badge-light-secondary' },
+              1: { title: 'Activo', class: ' badge-light-success' },
             };
             if (typeof $status[$status_number] === 'undefined') {
               return data;
@@ -96,8 +118,9 @@ $(function () {
         {
           // Actions
           targets: -1,
-          title: 'Actions',
+          title: 'Acciones',
           orderable: false,
+          searchable: false,
           render: function (data, type, full, meta) {
             return (
               '<div class="d-inline-flex">' +
@@ -190,7 +213,7 @@ $(function () {
           display: $.fn.dataTable.Responsive.display.modal({
             header: function (row) {
               var data = row.data();
-              return 'Detalles de ' + data['full_name'];
+              return 'Detalles de ' + data['school_name'];
             }
           }),
           type: 'column',
@@ -235,7 +258,6 @@ $(function () {
 
   // Add New record
   // ? Remove/Update this code as per your requirements ?
-  let count = 101;
   $('.data-submit').on('click', function () {
     const $school_name = $('.add-new-record .dt-school-name').val(),
         $school_address = $('.add-new-record .dt-address').val(),
@@ -250,19 +272,6 @@ $(function () {
         data: {_token: CSRF_TOKEN, school_name: $school_name, school_address: $school_address, school_email: $school_email, school_admission: $school_admission},
         success: function (response) {
           if (response > 0){
-            dt_basic.row
-                .add({
-                  responsive_id: null,
-                  id: count,
-                  full_name: $school_name,
-                  post: $school_address,
-                  email: $school_email,
-                  start_date: $school_admission,
-                  salary: '$' + $school_status,
-                  status: 5
-                })
-                .draw();
-            count++;
             $('.modal').modal('hide');
 
           } else if(response == 0){

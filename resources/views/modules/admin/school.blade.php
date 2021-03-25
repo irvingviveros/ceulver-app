@@ -21,7 +21,6 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th></th>
                             <th>id</th>
                             <th>Nombre</th>
                             <th>Dirección</th>
