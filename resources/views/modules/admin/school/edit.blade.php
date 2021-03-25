@@ -2,12 +2,24 @@
 
 @section('title', 'Editar escuela')
 
+@section('vendor-style')
+    <!-- vendor css files -->
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/file-uploaders/dropzone.min.css')) }}">
+@endsection
+
+@section('page-style')
+    <!-- Page css files -->
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
+@endsection
+
 @section('content')
     <!-- Basic multiple Column Form section start -->
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
-                <form class="form">
+                <form class="form" autocomplete="new-text">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Información básica</h4>
@@ -16,68 +28,94 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="first-name-column">First Name</label>
+                                        <label for="school-code-column">Código de la escuela</label>
                                         <input
                                                 type="text"
-                                                id="first-name-column"
+                                                id="school-code-column"
                                                 class="form-control"
-                                                placeholder="First Name"
-                                                name="fname-column"
+                                                name="school-code"
+                                                placeholder="Código de la escuela"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Last Name</label>
+                                        <label for="school-name-column">Nombre de la escuela</label>
                                         <input
                                                 type="text"
-                                                id="last-name-column"
+                                                id="school-name-column"
                                                 class="form-control"
-                                                placeholder="Last Name"
-                                                name="lname-column"
+                                                name="school-name"
+                                                placeholder="Nombre de la escuela"
+                                                required
+                                                aria-required="true"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="city-column">City</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column" />
+                                        <label for="address-column">Dirección</label>
+                                        <input
+                                                type="text"
+                                                id="address-column"
+                                                class="form-control"
+                                                name="school-address"
+                                                placeholder="Dirección"
+                                                required
+                                                aria-required="true"
+                                        />
+
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="country-floating">Country</label>
+                                        <label for="school-phone">Teléfono</label>
                                         <input
                                                 type="text"
-                                                id="country-floating"
+                                                id="school-phone"
                                                 class="form-control"
-                                                name="country-floating"
-                                                placeholder="Country"
+                                                name="school-phone"
+                                                placeholder="Teléfono"
+                                        />
+                                        <p><small class="text-muted">Solo números</small></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-12">
+                                    <div class="form-group">
+                                        <label for="school-registration">Fecha de registro</label>
+                                        <input
+                                                type="text"
+                                                id="school-registration"
+                                                class="form-control flatpickr-human-friendly"
+                                                placeholder="Octubre 14, 2020"
+                                                name="school-registration"
+                                                required
+                                                aria-required="true"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="company-column">Company</label>
-                                        <input
-                                                type="text"
-                                                id="company-column"
-                                                class="form-control"
-                                                name="company-column"
-                                                placeholder="Company"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Email</label>
+                                        <label for="email-id-column">Correo electrónico</label>
                                         <input
                                                 type="email"
                                                 id="email-id-column"
                                                 class="form-control"
-                                                name="email-id-column"
-                                                placeholder="Email"
+                                                name="school-email"
+                                                placeholder="Correo electrónico"
+                                                required
+                                                aria-required="true"
                                         />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-12">
+                                    <div class="form-group">
+                                        <label for="footer-column">Pie de página (footer)</label>
+                                        <input
+                                                type="text"
+                                                id="footer-column"
+                                                class="form-control"
+                                                name="school-footer" />
                                     </div>
                                 </div>
                             </div>
@@ -90,67 +128,83 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="first-name-column">First Name</label>
+                                        <label for="school-frotend">Habilitar sitio web</label>
+                                        <select class="form-control" id="school-frotend" name="school-frontend">
+                                            <option value="0" selected>No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-12">
+                                    <div class="form-group">
+                                        <label for="school-admissions">Habilitar admisiones en línea</label>
+                                        <select class="form-control" id="school-admissions" name="school-admissions">
+                                            <option value="0">No</option>
+                                            <option value="1">Si</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-3 col-12">
+                                    <div class="form-group">
+                                        <label for="latitude-column">Latitud</label>
                                         <input
                                                 type="text"
-                                                id="first-name-column"
+                                                id="latitude-column"
                                                 class="form-control"
-                                                placeholder="First Name"
-                                                name="fname-column"
+                                                placeholder="Latitud"
+                                                name="school-latitude"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Last Name</label>
+                                        <label for="longitude-column">Longitud</label>
                                         <input
                                                 type="text"
-                                                id="last-name-column"
+                                                id="longitude-column"
                                                 class="form-control"
-                                                placeholder="Last Name"
-                                                name="lname-column"
+                                                placeholder="Longitud"
+                                                name="school-longitude"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="city-column">City</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
+                                        <label for="country-floating">Maps API Key
+                                            <a href="https://developers.google.com/maps/documentation/embed/get-api-key">[Obtener API Key]</a>
+                                        </label>
                                         <input
                                                 type="text"
                                                 id="country-floating"
                                                 class="form-control"
-                                                name="country-floating"
-                                                placeholder="Country"
+                                                name="school-maps-api"
+                                                placeholder="API Key"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="company-column">Company</label>
+                                        <label for="country-floating">Zoom API Key
+                                            <a href="https://devforum.zoom.us/t/finding-your-api-key-secret-credentials-in-marketplace/3471">[Obtener API Key]</a>
+                                        </label>
                                         <input
                                                 type="text"
-                                                id="company-column"
+                                                id="country-floating"
                                                 class="form-control"
-                                                name="company-column"
-                                                placeholder="Company"
+                                                name="school-zoom-api"
+                                                placeholder="Zoom API Key"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="email-id-column">Email</label>
+                                        <label for="country-floating">Zoom Secret</label>
                                         <input
-                                                type="email"
-                                                id="email-id-column"
+                                                type="text"
+                                                id="country-floating"
                                                 class="form-control"
-                                                name="email-id-column"
-                                                placeholder="Email"
+                                                name="school-zoom-secret"
+                                                placeholder="Zoom Secret"
                                         />
                                     </div>
                                 </div>
@@ -164,74 +218,50 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="first-name-column">First Name</label>
+                                        <label for="facebook-column">Facebook</label>
                                         <input
                                                 type="text"
-                                                id="first-name-column"
+                                                id="facebook-column"
                                                 class="form-control"
-                                                placeholder="First Name"
-                                                name="fname-column"
+                                                placeholder="Facebook"
+                                                name="school-facebook"
                                         />
+                                        <p><small class="text-muted">URL Facebook</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="card-header">
+                            <h4 class="card-title">Otra información</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-3 col-12">
+                                    <div class="form-group">
+                                        <label for="customFile">Logo frontal</label>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Last Name</label>
-                                        <input
-                                                type="text"
-                                                id="last-name-column"
-                                                class="form-control"
-                                                placeholder="Last Name"
-                                                name="lname-column"
-                                        />
+                                        <label for="school-enabled">Habilitar escuela</label>
+                                        <select class="form-control" id="school-enabled" name="school-frontend">
+                                            <option value="0" selected>No</option>
+                                            <option value="1">Si</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">City</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City" name="city-column" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input
-                                                type="text"
-                                                id="country-floating"
-                                                class="form-control"
-                                                name="country-floating"
-                                                placeholder="Country"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Company</label>
-                                        <input
-                                                type="text"
-                                                id="company-column"
-                                                class="form-control"
-                                                name="company-column"
-                                                placeholder="Company"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-3 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Email</label>
-                                        <input
-                                                type="email"
-                                                id="email-id-column"
-                                                class="form-control"
-                                                name="email-id-column"
-                                                placeholder="Email"
-                                        />
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="reset" class="btn btn-primary mr-1">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="card-body">
+                            <div class="col-12 text-right">
+                                <button type="reset" class="btn btn-primary mr-1">Actualizar</button>
+                                <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>
                     </div>
@@ -239,4 +269,19 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('vendor-script')
+    <!-- vendor files -->
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.date.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/picker.time.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/extensions/dropzone.min.js')) }}"></script>
+@endsection
+@section('page-script')
+    <!-- Page js files -->
+    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/form-file-uploader.js')) }}"></script>
 @endsection

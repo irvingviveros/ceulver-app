@@ -33,7 +33,7 @@ class CreateSchoolsTable extends Migration
             $table->string('zoom_secret', 150)->nullable(true);
             $table->tinyInteger('enable_frontend')->default(1);
             $table->tinyInteger('enable_online_admission')->default(0);
-            $table->tinyInteger('final_result_type')->default(0);
+//            $table->tinyInteger('final_result_type')->default(0);
             $table->text('about_text')->nullable(true);
             $table->string('about_image', 100)->nullable(true);
             $table->string('facebook_url', 255)->nullable(true);
