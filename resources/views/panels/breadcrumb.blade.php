@@ -31,7 +31,7 @@
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item" href="javascript:void(0)">
             <i class="mr-1" data-feather="check-square"></i>
-            <span class="align-middle">Todo</span>
+            <span class="align-middle">Tareas</span>
           </a>
           <a class="dropdown-item" href="javascript:void(0)">
             <i class="mr-1" data-feather="message-square"></i>
@@ -39,11 +39,11 @@
           </a>
           <a class="dropdown-item" href="javascript:void(0)">
             <i class="mr-1" data-feather="mail"></i>
-            <span class="align-middle">Email</span>
+            <span class="align-middle">Correo</span>
           </a>
           <a class="dropdown-item" href="javascript:void(0)">
             <i class="mr-1" data-feather="calendar"></i>
-            <span class="align-middle">Calendar</span>
+            <span class="align-middle">Calendario</span>
           </a>
         </div>
       </div>

@@ -48,4 +48,12 @@ class SchoolController extends Controller
             echo 'Fill all fields.';
         }
     }
+
+    public function edit(){
+        return view('modules.admin.school.edit');
+    }
+
+    public function update($id){
+
+    }
 }

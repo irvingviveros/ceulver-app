@@ -122,6 +122,7 @@ $(function () {
           orderable: false,
           searchable: false,
           render: function (data, type, full, meta) {
+            var $school_id = full['id'];
             return (
               '<div class="d-inline-flex">' +
               '<a class="pr-1 dropdown-toggle hide-arrow text-primary" data-toggle="dropdown">' +
@@ -139,7 +140,7 @@ $(function () {
               'Eliminar</a>' +
               '</div>' +
               '</div>' +
-              '<a href="javascript:;" class="item-edit">' +
+              '<a href="/admin/manage-schools/' + $school_id + '/edit"' + ' class="item-edit">' +
               feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
               '</a>'
             );
