@@ -68,6 +68,13 @@ class SchoolController extends Controller
         return view('modules.admin.school.edit', compact('school'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id){
         $school = School::findOrFail($id);
 
@@ -97,6 +104,19 @@ class SchoolController extends Controller
 
             $school->save();
 
-            return redirect('admin/manage-schools')->with('status', 'La promoción se ha creado correctamente 😉');
+            return redirect('admin/manage-schools')->with('status', 'La escuela se ha actualizado correctamente');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $school = School::findOrFail($id);
+        $school -> delete();
+        return redirect('admin/manage-schools')->with('status', 'La escuela se ha eliminado correctamente');
     }
 }

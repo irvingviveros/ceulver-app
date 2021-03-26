@@ -27,6 +27,8 @@ $(function () {
         url: window.location.origin + '/api/schools',
         type: 'GET',
       }),
+      // Order by ID, first column
+      order: [[0, 'desc']],
       columns: [
         { data: 'id' },
         { data: 'id' },
@@ -41,7 +43,6 @@ $(function () {
         {
           // For Responsive
           className: 'control',
-          orderable: false,
           responsivePriority: 2,
           targets: 0,
           visible: false
@@ -132,7 +133,7 @@ $(function () {
               '<a href="javascript:;" class="dropdown-item">' +
               feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) +
               'Detalles</a>' +
-              '<a href="javascript:;" class="dropdown-item delete-record">' +
+              '<a href="javascript:void(0)"' + ' data-id="' + $school_id + '"' + ' class="dropdown-item delete-record">' +
               feather.icons['trash-2'].toSvg({ class: 'font-small-4 mr-50' }) +
               'Eliminar</a>' +
               '</div>' +
@@ -144,7 +145,6 @@ $(function () {
           }
         }
       ],
-      order: [[2, 'desc']],
       dom:
         '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       displayLength: 7,
@@ -260,8 +260,7 @@ $(function () {
     const $school_name = $('.add-new-record .dt-school-name').val(),
         $school_address = $('.add-new-record .dt-address').val(),
         $school_email = $('.add-new-record .dt-email').val(),
-        $school_admission = $('.add-new-record .dt-admission').val(),
-        $school_status = 1;
+        $school_admission = $('.add-new-record .dt-admission').val();
 
     if ($school_name !== '' && $school_address !== '' && $school_email !== '' && $school_admission !== '') {
       $.ajax({
@@ -282,6 +281,8 @@ $(function () {
           $('#basic-icon-default-post').val('');
           $('#basic-icon-default-email').val('');
           $('#selectOnlineAdmission').val('0');
+
+          dt_basic.draw();
         }
       });
 
@@ -289,8 +290,18 @@ $(function () {
   });
 
   // Delete Record
-  $('.datatables-basic tbody').on('click', '.delete-record', function () {
-    dt_basic.row($(this).parents('tr')).remove().draw();
+  $('.datatables-basic tbody').on('click', '.delete-record', function (event) {
+    let id  = $(event.currentTarget).attr('data-id');
+    let _url = window.location.origin + `/admin/manage-schools/${id}`;
+
+    $.ajax({
+      url: _url,
+      type: 'post',
+      data: {_method: 'delete', _token: CSRF_TOKEN},
+      success: function (response) {
+        dt_basic.row($(this).parents('tr')).remove().draw();
+      }
+    });
   });
 
 });

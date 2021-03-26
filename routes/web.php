@@ -29,6 +29,7 @@ Route::get('admin/manage-schools', [SchoolController::class, 'index'])->name('ma
 Route::post('admin/manage-schools', [SchoolController::class, 'store']);
 Route::get('admin/manage-schools/{id}/edit', [SchoolController::class, 'edit']);
 Route::post('admin/manage-schools/{id}/edit', [SchoolController::class, 'update']);
+Route::delete('admin/manage-schools/{id}', [SchoolController::class, 'destroy']);
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
