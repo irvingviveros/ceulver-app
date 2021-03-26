@@ -19,6 +19,12 @@ class SchoolController extends Controller
         return view('modules.admin.school.principal', ['breadcrumbs' => $breadcrumbs]);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         // Request school data
@@ -44,16 +50,53 @@ class SchoolController extends Controller
                 echo 0;
             }
 
-        }else{
+        } else {
             echo 'Fill all fields.';
         }
     }
 
-    public function edit(){
-        return view('modules.admin.school.edit');
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // Find school by id
+        $school = School::findOrFail($id);
+        return view('modules.admin.school.edit', compact('school'));
     }
 
-    public function update($id){
+    public function update(Request $request, $id){
+        $school = School::findOrFail($id);
 
+        if ($request->hasFile('school-logo')) {
+            $file = $request->file('school-logo');
+            $extension = $file -> getClientOriginalExtension(); //get original file extension
+            $name = uniqid().'.'.$extension; //assign new file name
+            $file->move(public_path() . '/images/uploads/schools/logo', $name);
+        }
+
+            $school->school_name = $request->input('school-name');
+            $school->school_code = $request->input('school-code');
+            $school->address = $request->input('school-address');
+            $school->phone = $request->input('school-phone');
+            $school->created_at = $request->input('school-registration');
+            $school->email = $request->input('school-email');
+            $school->footer = $request->input('school-footer');
+            $school->enable_frontend = $request->input('school-frontend');
+            $school->enable_online_admission = $request->input('school-admissions');
+            $school->school_lat = $request->input('school-latitude');
+            $school->school_lng = $request->input('school-longitude');
+            $school->map_api_key = $request->input('school-maps-api');
+            $school->zoom_api_key = $request->input('school-zoom-api');
+            $school->zoom_secret = $request->input('school-zoom-secret');
+            $school->facebook_url = $request->input('school-facebook');
+            $school->status = $request->input('school-status');
+
+            $school->save();
+
+            return redirect('admin/manage-schools')->with('status', 'La promoción se ha creado correctamente 😉');
     }
 }
