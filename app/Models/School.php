@@ -10,6 +10,11 @@ class School extends Model
 {
     use HasFactory;
 
+    public function careers(){
+        return $this->belongsToMany(Career::class, 'career_school') ->using(CareerSchool::class)
+            ->withTimestamps();
+    }
+
     public static function getSchoolsData($id=null){
 
         return DB::table('schools')->orderBy('id', 'asc')->get();

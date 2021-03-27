@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class SchoolSeeder extends Seeder
@@ -15,12 +14,12 @@ class SchoolSeeder extends Seeder
      */
     public function run()
     {
-        $date = Carbon::now()->format('Y-m-d H:i:s');   //Get current date
+        $date = now();   //Get current date
 
         DB::table('schools')->insert([
-            'school_name' => 'Testing Only',
-            'address' => 'Testing Only',
-            'email' => 'testing@email.com',
+            'school_name' => 'Centro Universitario Latino Veracruz',
+            'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
+            'email' => 'ceulver_excelenciaeducativa@live.com.mx',
             'created_by' => 0,
             'modified_by' => 1,
             'created_at' => $date,

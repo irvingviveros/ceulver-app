@@ -51,6 +51,8 @@ class CreateSchoolsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('career_school');
+        Schema::dropIfExists('academic_years');
         Schema::dropIfExists('schools');
     }
 }

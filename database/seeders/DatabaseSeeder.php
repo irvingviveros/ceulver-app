@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             ModuleSeeder::class,
             SchoolSeeder::class,
             UserSeeder::class,
-            SystemAdminSeeder::class
+            SystemAdminSeeder::class,
+            CareerSeeder::class,
         ]);
     }
 }

@@ -23,8 +23,8 @@ class CreateCareersTable extends Migration
             $table->integer('modified_by');
             $table->timestamps();
 
-            // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
+//             Foreign key
+//            $table->foreignId('school_id')->references('id')->on('schools');
         });
     }
 
@@ -35,6 +35,7 @@ class CreateCareersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('career_school');
         Schema::dropIfExists('careers');
     }
 }

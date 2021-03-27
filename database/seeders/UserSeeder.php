@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
@@ -15,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $date = Carbon::now()->format('Y-m-d H:i:s');   //Get current date
+        $date = now();   //Get current date
 
         DB::table('users')->insert([
             'role_id' => 1,
