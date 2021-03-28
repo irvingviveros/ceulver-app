@@ -115,5 +115,5 @@
 @endsection
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/tables/table-datatables-basic.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/tables/admin-schools-datatables.js')) }}"></script>
 @endsection
