@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Administraciónd de configuración de correos')
+@section('title', 'Configuración de correos')
 
 @section('content')
     <div>

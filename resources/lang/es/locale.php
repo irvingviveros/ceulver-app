@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Email Settings"=>"Configuración de correo",
     "Manage Schools"=>"Administrar escuelas",
     "Administrator"=>"Administrador",
     "Home"=>"Inicio",

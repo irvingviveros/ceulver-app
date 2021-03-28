@@ -16,6 +16,12 @@
           "name": "Manage Schools",
           "icon": "circle",
           "slug": "manage-schools"
+        },
+        {
+          "url": "admin/email-settings",
+          "name": "Email Settings",
+          "icon": "circle",
+          "slug": "email-settings"
         }
       ]
     }

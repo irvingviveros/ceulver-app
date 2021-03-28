@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaterkitController;
@@ -24,12 +25,16 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 
 // Route Components
 
+// Admin
 // Schools
 Route::get('admin/manage-schools', [SchoolController::class, 'index'])->name('manage-schools');
 Route::post('admin/manage-schools', [SchoolController::class, 'store']);
 Route::get('admin/manage-schools/{id}/edit', [SchoolController::class, 'edit']);
 Route::post('admin/manage-schools/{id}/edit', [SchoolController::class, 'update']);
 Route::delete('admin/manage-schools/{id}', [SchoolController::class, 'destroy']);
+
+// Email config
+Route::get('admin/email-settings', [EmailSettingController::class, 'index'])->name('email-settings');
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
