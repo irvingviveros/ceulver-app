@@ -10,6 +10,15 @@ class School extends Model
 {
     use HasFactory;
 
+    /**
+     * Get the email settings associated with the School.
+     *  $school -> emailSettings
+     */
+    public function emailSettings()
+    {
+        return $this->hasOne(EmailSetting::class);
+    }
+
     public function careers(){
         return $this->belongsToMany(Career::class, 'career_school') ->using(CareerSchool::class)
             ->withTimestamps();

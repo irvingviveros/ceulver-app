@@ -18,7 +18,7 @@ class CreateEmailSettingsTable extends Migration
             $table->string('mail_protocol', 10)->default('smtp');
             $table->string('smtp_host', 100);
             $table->string('smtp_port', 20);
-            $table->tinyInteger('smtp_timeout');
+            $table->string('smtp_timeout', 4);
             $table->string('smtp_user', 100);
             $table->string('smtp_pass', 100);
             $table->string('smtp_crypto', 50);
@@ -27,7 +27,7 @@ class CreateEmailSettingsTable extends Migration
             $table->tinyInteger('priority');
             $table->string('from_name', 100);
             $table->string('from_address',100);
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();

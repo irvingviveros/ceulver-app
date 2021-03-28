@@ -35,6 +35,8 @@ Route::delete('admin/manage-schools/{id}', [SchoolController::class, 'destroy'])
 
 // Email config
 Route::get('admin/email-settings', [EmailSettingController::class, 'index'])->name('email-settings');
+Route::post('admin/mail-settings', [EmailSettingController::class, 'store']);
+
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

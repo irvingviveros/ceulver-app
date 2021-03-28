@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Yajra\DataTables\DataTables;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +25,10 @@ Route::get('schools', function(){
     return datatables()
         ->eloquent(\App\Models\School::query())
         ->toJson();
+});
+
+// Return Email Settings data
+Route::get('email_settings', function(){
+    $formattedData = EmailSetting::getDataTable();
+    return DataTables::of($formattedData)->toJson();
 });
