@@ -19,6 +19,15 @@ class School extends Model
         return $this->hasOne(EmailSetting::class);
     }
 
+    /**
+     * Get the student type associated with the School.
+     *  $school -> studentType
+     */
+    public function studentType()
+    {
+        return $this->hasMany(StudentType::class);
+    }
+
     public function careers(){
         return $this->belongsToMany(Career::class, 'career_school') ->using(CareerSchool::class)
             ->withTimestamps();

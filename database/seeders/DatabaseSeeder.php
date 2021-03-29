@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SystemAdminSeeder::class,
             CareerSeeder::class,
+            StudentType::class,
         ]);
     }
 }

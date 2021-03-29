@@ -1,6 +1,9 @@
 <?php
 
 return [
+    "Manage Students"=>"Administrar alumnos",
+    "Students Type"=>"Tipo de alumnos",
+    "Students"=>"Alumnos",
     "Email Settings"=>"Configuración de correo",
     "Manage Schools"=>"Administrar escuelas",
     "Administrator"=>"Administrador",

@@ -4,6 +4,7 @@ use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaterkitController;
+use App\Http\Controllers\StudentTypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +27,7 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 // Route Components
 
 // Admin
-// Schools
+// Schools management
 Route::get('admin/manage-schools', [SchoolController::class, 'index'])->name('manage-schools');
 Route::post('admin/manage-schools', [SchoolController::class, 'store']);
 Route::get('admin/manage-schools/{id}/edit', [SchoolController::class, 'edit']);
@@ -40,6 +41,12 @@ Route::get('admin/email-settings/{id}/edit', [EmailSettingController::class, 'ed
 Route::post('admin/email-settings/{id}/edit', [EmailSettingController::class, 'update']);
 Route::delete('admin/email-settings/{id}', [SchoolController::class, 'destroy']);
 
-
+// Students type
+Route::get('admin/manage-students/type', [StudentTypeController::class, 'index'])->name('student-type');
+Route::get('admin/manage-students/type/create', [StudentTypeController::class, 'create'])->name('create-student-type');
+Route::post('admin/manage-students/type/create', [StudentTypeController::class, 'store'])->name('store-student-type');
+Route::get('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'edit']);
+Route::post('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'update']);
+Route::delete('admin/manage-students/type/{id}', [StudentTypeController::class, 'destroy']);
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

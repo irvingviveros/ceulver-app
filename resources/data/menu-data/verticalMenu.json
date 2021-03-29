@@ -24,6 +24,19 @@
           "slug": "email-settings"
         }
       ]
+    },
+    {
+      "name": "Students",
+      "icon": "users",
+      "slug": "students",
+      "submenu": [
+        {
+          "url": "admin/manage-students/type",
+          "name": "Students Type",
+          "icon": "circle",
+          "slug": "students-type"
+        }
+      ]
     }
   ]
 }

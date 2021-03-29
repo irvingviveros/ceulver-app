@@ -17,7 +17,7 @@ class CreateStudentTypesTable extends Migration
             $table->id();
             $table->string('type',100);
             $table->text('note')->nullable(true);
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();
