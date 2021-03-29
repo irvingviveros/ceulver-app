@@ -118,7 +118,7 @@ $(function () {
                             'Eliminar</a>' +
                             '</div>' +
                             '</div>' +
-                            '<a href="/admin/manage-schools/' + $school_id + '/edit"' + ' class="item-edit">' +
+                            '<a href="/admin/email-settings/' + $school_id + '/edit"' + ' class="item-edit">' +
                             feather.icons['edit'].toSvg({ class: 'font-small-4' }) +
                             '</a>'
                         );
@@ -295,7 +295,7 @@ $(function () {
     // Delete Record
     $('.datatables-basic tbody').on('click', '.delete-record', function (event) {
         let id  = $(event.currentTarget).attr('data-id');
-        let _url = window.location.origin + `/admin/manage-schools/${id}`;
+        let _url = window.location.origin + `/admin/email-settings/${id}`;
 
         $.ajax({
             url: _url,

@@ -90,17 +90,6 @@ class EmailSettingController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -108,7 +97,9 @@ class EmailSettingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // Find email settings by id
+        $emailSetting = EmailSetting::findOrFail($id);
+        return view('modules.admin.email_settings.edit', compact('emailSetting'));
     }
 
     /**
@@ -120,7 +111,25 @@ class EmailSettingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $emailSettings = EmailSetting::findOrFail($id);
+
+        //$emailSettings->mail_protocol = $request->input('smtp-protocol'); // There is not another protocol.
+        $emailSettings->smtp_host = $request->input('smtp-host');
+        $emailSettings->smtp_port = $request->input('smtp-port');
+        $emailSettings->smtp_timeout = $request->input('smtp-timeout');
+        $emailSettings->smtp_user = $request->input('smtp-user');
+        $emailSettings->smtp_pass = $request->input('smtp-password');
+        $emailSettings->smtp_crypto = $request->input('smtp-security');
+        $emailSettings->mail_type = $request->input('smtp-type');
+        $emailSettings->char_set = $request->input('smtp-charset');
+        $emailSettings->priority = $request->input('smtp-priority');
+        $emailSettings->from_name = $request->input('email-from-name');
+        $emailSettings->from_address = $request->input('email-address');
+        $emailSettings->status = $request->input('email-status');
+
+        $emailSettings->save();
+
+        return redirect('admin/email-settings')->with('status', 'La configuración se ha actualizado correctamente');
     }
 
     /**
@@ -131,6 +140,8 @@ class EmailSettingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $emailSettings = EmailSetting::findOrFail($id);
+        $emailSettings -> delete();
+        return redirect('admin/email-settings')->with('status', 'La configuración se ha eliminado correctamente');
     }
 }
