@@ -18,7 +18,7 @@ class CreateCareersTable extends Migration
             $table->string('name', 100);
             $table->string('enrollment', 10);
             $table->date('opening_date');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();

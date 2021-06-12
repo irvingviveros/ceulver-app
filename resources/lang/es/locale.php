@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Careers"=>"Carreras",
     "Manage Students"=>"Administrar alumnos",
     "Students Type"=>"Tipo de alumnos",
     "Students"=>"Alumnos",

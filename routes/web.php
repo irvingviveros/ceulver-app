@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\SchoolController;
@@ -48,5 +49,12 @@ Route::post('admin/manage-students/type/create', [StudentTypeController::class, 
 Route::get('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'edit']);
 Route::post('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'update']);
 Route::delete('admin/manage-students/type/{id}', [StudentTypeController::class, 'destroy']);
+
+// Careers management
+Route::get('admin/manage-careers', [CareerController::class, 'index'])->name('manage-careers');
+Route::post('admin/manage-careers', [CareerController::class, 'store']);
+Route::get('admin/manage-careers/{id}/edit', [CareerController::class, 'edit']);
+Route::post('admin/manage-careers/{id}/edit', [CareerController::class, 'update']);
+
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);

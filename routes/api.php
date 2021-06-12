@@ -32,3 +32,10 @@ Route::get('email_settings', function(){
     $formattedData = EmailSetting::getDataTable();
     return DataTables::of($formattedData)->toJson();
 });
+
+// Return School data
+Route::get('careers', function(){
+    return datatables()
+        ->eloquent(\App\Models\Career::query())
+        ->toJson();
+});

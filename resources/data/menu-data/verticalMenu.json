@@ -7,6 +7,10 @@
       "slug": "home"
     },
     {
+      "navheader": "Apps & Pages",
+      "slug": ""
+    },
+    {
       "name": "Administrator",
       "icon": "user",
       "slug": "admin",
@@ -37,6 +41,12 @@
           "slug": "students-type"
         }
       ]
+    },
+    {
+      "url": "admin/manage-careers",
+      "name": "Careers",
+      "icon": "book",
+      "slug": "careers"
     }
   ]
 }
