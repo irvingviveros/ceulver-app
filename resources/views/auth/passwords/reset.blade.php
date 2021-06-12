@@ -30,13 +30,13 @@
       <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
           <h2 class="card-title font-weight-bold mb-1">Restablecer el NIP</h2>
-          <p class="card-text mb-2">Su nuevo NIP debe ser diferente de los demás NIP utilizados anteriormente</p>
+          <p class="card-text mb-2">Su nuevo NIP debe ser diferente de los utilizados anteriormente.</p>
           <form class="auth-reset-password-form mt-2" method="POST" action="{{ route('password.update') }}">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="form-group">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label">Correo electrónico</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" aria-describedby="email" tabindex="1" autofocus value="{{ $email ?? old('email') }}" />
               @error('email')
               <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
 
             <div class="form-group">
               <div class="d-flex justify-content-between">
-                <label for="reset-password-new">New Password</label>
+                <label for="reset-password-new">Nueva contraseña</label>
               </div>
               <div class="input-group input-group-merge form-password-toggle @error('password') is-invalid @enderror">
                 <input type="password" class="form-control form-control-merge @error('password') is-invalid @enderror" id="reset-password-new" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-new" tabindex="2" autofocus />
@@ -63,7 +63,7 @@
             </div>
             <div class="form-group">
               <div class="d-flex justify-content-between">
-                <label for="reset-password-confirm">Confirm Password</label>
+                <label for="reset-password-confirm">Confirmar contraseña</label>
               </div>
               <div class="input-group input-group-merge form-password-toggle">
                 <input type="password" class="form-control form-control-merge" id="reset-password-confirm" name="password_confirmation" autocomplete="new-password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-confirm" tabindex="3" />
@@ -72,13 +72,13 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block" tabindex="4">Set New Password</button>
+            <button type="submit" class="btn btn-primary btn-block" tabindex="4">Actualizar contraseña</button>
           </form>
 
           <p class="text-center mt-2">
             @if (Route::has('login'))
               <a href="{{ route('login') }}">
-                <i data-feather="chevron-left"></i> Back to login
+                <i data-feather="chevron-left"></i> Regresar a inicio de sesión
               </a>
             @endif
           </p>
