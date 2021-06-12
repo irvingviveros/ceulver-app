@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->integer('created_by')->default('0');
             $table->integer('modified_by')->default('0');
+            $table->rememberToken();
             $table->timestamps();
 
             // Foreign key
