@@ -8,11 +8,11 @@
 @section('page-style')
   {{-- Page Css files --}}
   <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-auth.css')) }}">
+  <link rel="stylesheet" href="{{ asset(mix('css/base/pages/authentication.css')) }}">
 @endsection
 
 @section('content')
-  <div class="auth-wrapper auth-v2">
+  <div class="auth-wrapper auth-cover">
     <div class="auth-inner row m-0">
       <!-- Brand logo-->
       <a class="brand-logo" href="javascript:void(0);">
@@ -29,20 +29,20 @@
       <!-- Login-->
       <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
         <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-          <h2 class="card-title font-weight-bold mb-1">CEULVER PAE</h2>
-          <p class="card-text mb-2">Plataforma de Administración General</p>
+          <h2 class="card-title fw-bold mb-1">CEULVER PAE</h2>
+          <p class="card-text mb-2">Por favor, inicia sesión con tu credencial de acceso</p>
           <form class="auth-login-form mt-2" method="POST" action="{{ route('login') }}">
             @csrf
-{{--            <div class="form-group">--}}
-{{--              <label class="form-label" for="basicSelect">Instutición</label>--}}
-{{--              <select class="form-control" id="basicSelect">--}}
+{{--            <div class="mb-1">--}}
+{{--              <label class="form-label" for="institutionSelect">Instutición</label>--}}
+{{--              <select class="form-control" id="institutionSelect">--}}
 {{--                <option>Universidad Veracruz</option>--}}
 {{--                <option>Universidad Tlaxcala</option>--}}
 {{--                <option>Secundaria Veracruz</option>--}}
 {{--              </select>--}}
 {{--            </div>--}}
-            <div class="form-group">
-              <label for="login-email" class="form-label">Correo o usuario</label>
+            <div class="mb-1">
+              <label class="form-label" for="login-email">Correo institucional o usuario</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="login-email" name="email" placeholder="IMA2000000" aria-describedby="login-email" tabindex="1" autofocus value="{{ old('email') }}" />
               @error('email')
               <span class="invalid-feedback" role="alert">
@@ -50,10 +50,9 @@
               </span>
               @enderror
             </div>
-
-            <div class="form-group">
+            <div class="mb-1">
               <div class="d-flex justify-content-between">
-                <label for="login-password">NIP</label>
+                <label class="form-label" for="login-password">NIP</label>
                 @if (Route::has('password.request'))
                   <a href="{{ route('password.request') }}">
                     <small>¿Olvidaste tu NIP?</small>
@@ -62,27 +61,18 @@
               </div>
               <div class="input-group input-group-merge form-password-toggle">
                 <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                <div class="input-group-append">
-                  <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                </div>
+                <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
               </div>
             </div>
-
-            <button class="btn btn-primary btn-block" tabindex="4">Ingresar</button>
+            <button class="btn btn-primary w-100" tabindex="4">Ingresar</button>
           </form>
           <div class="divider my-2">
             <div class="divider-text">o</div>
           </div>
-
-          <div class="auth-footer-btn d-flex justify-content-center">
-            <p class="text-center mt-2">
-              <span>¿Problemas de acceso?</span>
-                <a href="mailto:it@universidadceulver.edu.mx">
-                  <span>Contáctanos</span>
-                </a>
-            </p>
-          </div>
-
+          <p class="text-center mt-2">
+            <span>¿Problemas de acceso?</span>
+            <a href="mailto:it@universidadceulver.edu.mx"><span>&nbsp;Contáctanos</span></a>
+          </p>
         </div>
       </div>
       <!-- /Login-->
@@ -95,5 +85,5 @@
 @endsection
 
 @section('page-script')
-  <script src="{{asset(mix('js/scripts/pages/page-auth-login.js'))}}"></script>
+  <script src="{{asset(mix('js/scripts/pages/auth-login.js'))}}"></script>
 @endsection

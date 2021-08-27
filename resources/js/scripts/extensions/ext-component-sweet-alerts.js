@@ -7,41 +7,41 @@
 	Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 $(function () {
-  'use strict';
+  'use strict'
 
-  var basicAlert = $('#basic-alert');
-  var withTitle = $('#with-title');
-  var withFooter = $('#footer-alert');
-  var htmlAlert = $('#html-alert');
+  var basicAlert = $('#basic-alert')
+  var withTitle = $('#with-title')
+  var withFooter = $('#footer-alert')
+  var htmlAlert = $('#html-alert')
 
-  var positionTopStart = $('#position-top-start');
-  var positionTopEnd = $('#position-top-end');
-  var positionBottomStart = $('#position-bottom-start');
-  var positionBottomEnd = $('#position-bottom-end');
+  var positionTopStart = $('#position-top-start')
+  var positionTopEnd = $('#position-top-end')
+  var positionBottomStart = $('#position-bottom-start')
+  var positionBottomEnd = $('#position-bottom-end')
 
-  var bounceIn = $('#bounce-in-animation');
-  var fadeIn = $('#fade-in-animation');
-  var flipX = $('#flip-x-animation');
-  var tada = $('#tada-animation');
-  var shake = $('#shake-animation');
+  var bounceIn = $('#bounce-in-animation')
+  var fadeIn = $('#fade-in-animation')
+  var flipX = $('#flip-x-animation')
+  var tada = $('#tada-animation')
+  var shake = $('#shake-animation')
 
-  var success = $('#type-success');
-  var error = $('#type-error');
-  var warning = $('#type-warning');
-  var info = $('#type-info');
+  var success = $('#type-success')
+  var error = $('#type-error')
+  var warning = $('#type-warning')
+  var info = $('#type-info')
 
-  var customImage = $('#custom-image');
-  var autoClose = $('#auto-close');
-  var outsideClick = $('#outside-click');
-  var question = $('#prompt-function');
-  var ajax = $('#ajax-request');
+  var customImage = $('#custom-image')
+  var autoClose = $('#auto-close')
+  var outsideClick = $('#outside-click')
+  var question = $('#prompt-function')
+  var ajax = $('#ajax-request')
 
-  var confirmText = $('#confirm-text');
-  var confirmColor = $('#confirm-color');
+  var confirmText = $('#confirm-text')
+  var confirmColor = $('#confirm-color')
 
-  var assetPath = '../../../app-assets/';
+  var assetPath = '../../../app-assets/'
   if ($('body').attr('data-framework') === 'laravel') {
-    assetPath = $('body').attr('data-asset-path');
+    assetPath = $('body').attr('data-asset-path')
   }
 
   //--------------- Basic Examples ---------------
@@ -55,8 +55,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // With Title
@@ -69,8 +69,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // With Footer
@@ -85,8 +85,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // HTML Alert
@@ -102,17 +102,17 @@ $(function () {
         showCloseButton: true,
         showCancelButton: true,
         focusConfirm: false,
-        confirmButtonText: feather.icons['thumbs-up'].toSvg({ class: 'font-medium-1 mr-50' }) + 'Great!',
+        confirmButtonText: feather.icons['thumbs-up'].toSvg({ class: 'font-medium-1 me-50' }) + 'Great!',
         confirmButtonAriaLabel: 'Thumbs up, great!',
         cancelButtonText: feather.icons['thumbs-down'].toSvg({ class: 'font-medium-1' }),
         cancelButtonAriaLabel: 'Thumbs down',
         customClass: {
           confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-outline-danger ml-1'
+          cancelButton: 'btn btn-outline-danger ms-1'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   //--------------- Position ---------------
@@ -130,8 +130,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Top End
@@ -147,8 +147,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Bottom Start
@@ -164,8 +164,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Bottom End
@@ -181,8 +181,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   //--------------- Animations ---------------
@@ -199,8 +199,8 @@ $(function () {
           popup: 'animate__animated animate__bounceIn'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Fade In
@@ -215,8 +215,8 @@ $(function () {
           popup: 'animate__animated animate__fadeIn'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // FlipX
@@ -231,8 +231,8 @@ $(function () {
           popup: 'animate__animated animate__flipInX'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Tada
@@ -247,8 +247,8 @@ $(function () {
           popup: 'animate__animated animate__tada'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Shake
@@ -263,8 +263,8 @@ $(function () {
           popup: 'animate__animated animate__shakeX'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   //--------------- Types ---------------
@@ -280,8 +280,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Error
@@ -295,8 +295,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Warning
@@ -310,8 +310,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Info
@@ -325,8 +325,8 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   //--------------- Options ---------------
@@ -345,33 +345,41 @@ $(function () {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Auto Close
   if (autoClose.length) {
     autoClose.on('click', function () {
-      var timerInterval;
+      var timerInterval
       Swal.fire({
         title: 'Auto close alert!',
-        html: 'I will close in <strong></strong> seconds.',
+        html: 'I will close in <b></b> milliseconds.',
         timer: 2000,
-        customClass: {
-          confirmButton: 'btn btn-primary'
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getHtmlContainer()
+            if (content) {
+              const b = content.querySelector('b')
+              if (b) {
+                b.textContent = Swal.getTimerLeft()
+              }
+            }
+          }, 100)
         },
-        buttonsStyling: false,
-        onBeforeOpen: function () {
-          Swal.showLoading();
-          timerInterval = setInterval(function () {
-            Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();
-          }, 100);
-        },
-        onClose: function () {
-          clearInterval(timerInterval);
+        willClose: () => {
+          clearInterval(timerInterval)
         }
-      });
-    });
+      }).then(result => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+          console.log('I was closed by the timer')
+        }
+      })
+    })
   }
 
   // Click Outside
@@ -380,59 +388,66 @@ $(function () {
       Swal.fire({
         title: 'Click outside to close!',
         text: 'This is a cool message!',
-        allowOutsideClick: true,
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
-      });
-    });
+      })
+    })
   }
 
   // Question
   if (question.length) {
     question.on('click', function () {
-      Swal.mixin({
+      /* global Swal */
+
+      const steps = ['1', '2', '3']
+      const swalQueueStep = Swal.mixin({
+        confirmButtonText: 'Forward',
+        cancelButtonText: 'Back',
+        progressSteps: steps,
         input: 'text',
-        confirmButtonText: 'Next &rarr;',
-        showCancelButton: true,
-        progressSteps: ['1', '2', '3'],
-        customClass: {
-          confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-outline-danger ml-1'
+        inputAttributes: {
+          required: true
         },
-        buttonsStyling: false
+        validationMessage: 'This field is required'
       })
-        .queue([
-          {
-            title: 'Question 1',
-            text: 'Chaining swal2 modals is easy'
-          },
-          'Question 2',
-          'Question 3'
-        ])
-        .then(function (result) {
+
+      async function backAndForth() {
+        const values = []
+        let currentStep
+
+        for (currentStep = 0; currentStep < steps.length; ) {
+          const result = await new swalQueueStep({
+            title: 'Question ' + steps[currentStep],
+            showCancelButton: currentStep > 0,
+            currentProgressStep: currentStep
+          })
+
           if (result.value) {
-            Swal.fire({
-              title: 'All done!',
-              html: 'Your answers: <pre><code>' + JSON.stringify(result.value) + '</code></pre>',
-              confirmButtonText: 'Lovely!',
-              customClass: { confirmButton: 'btn btn-primary' }
-            });
+            values[currentStep] = result.value
+            currentStep++
+          } else if (result.dismiss === 'cancel') {
+            currentStep--
           }
-        });
-    });
+        }
+
+        Swal.fire(JSON.stringify(values))
+      }
+
+      backAndForth()
+    })
   }
 
   // Ajax
   if (ajax.length) {
     ajax.on('click', function () {
       Swal.fire({
-        title: 'Search for a user',
+        title: 'Search for a GitHub user',
         input: 'text',
         customClass: {
           confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-outline-danger ml-1'
+          cancelButton: 'btn btn-outline-danger ms-1'
         },
         buttonsStyling: false,
         inputAttributes: {
@@ -441,31 +456,28 @@ $(function () {
         showCancelButton: true,
         confirmButtonText: 'Look up',
         showLoaderOnConfirm: true,
-        preConfirm: function (login) {
-          return fetch('//api.github.com/users/' + login + '')
-            .then(function (response) {
+        preConfirm: login => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
               if (!response.ok) {
-                throw new Error(response.statusText);
+                throw new Error(response.statusText)
               }
-              return response.json();
+              return response.json()
             })
-            .catch(function (error) {
-              Swal.showValidationMessage('Request failed:  ' + error + '');
-            });
-        },
-        allowOutsideClick: function () {
-          !Swal.isLoading();
+            .catch(error => {
+              Swal.showValidationMessage(`Request failed: ${error}`)
+            })
         }
-      }).then(function (result) {
-        if (result.value) {
+      }).then(result => {
+        if (result.isConfirmed) {
           Swal.fire({
             title: '' + result.value.login + "'s avatar",
             imageUrl: result.value.avatar_url,
             customClass: { confirmButton: 'btn btn-primary' }
-          });
+          })
         }
-      });
-    });
+      })
+    })
   }
 
   //--------------- Confirm Options ---------------
@@ -481,7 +493,7 @@ $(function () {
         confirmButtonText: 'Yes, delete it!',
         customClass: {
           confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-outline-danger ml-1'
+          cancelButton: 'btn btn-outline-danger ms-1'
         },
         buttonsStyling: false
       }).then(function (result) {
@@ -493,10 +505,10 @@ $(function () {
             customClass: {
               confirmButton: 'btn btn-success'
             }
-          });
+          })
         }
-      });
-    });
+      })
+    })
   }
 
   // Confirm Color
@@ -510,7 +522,7 @@ $(function () {
         confirmButtonText: 'Yes, delete it!',
         customClass: {
           confirmButton: 'btn btn-primary',
-          cancelButton: 'btn btn-outline-danger ml-1'
+          cancelButton: 'btn btn-outline-danger ms-1'
         },
         buttonsStyling: false
       }).then(function (result) {
@@ -522,7 +534,7 @@ $(function () {
             customClass: {
               confirmButton: 'btn btn-success'
             }
-          });
+          })
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire({
             title: 'Cancelled',
@@ -531,9 +543,9 @@ $(function () {
             customClass: {
               confirmButton: 'btn btn-success'
             }
-          });
+          })
         }
-      });
-    });
+      })
+    })
   }
-});
+})

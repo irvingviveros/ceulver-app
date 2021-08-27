@@ -1,14 +1,11 @@
-<body class="horizontal-layout horizontal-menu {{$configData['horizontalMenuType']}} {{ $configData['blankPageClass'] }}
-{{ $configData['bodyClass'] }}
-{{ $configData['sidebarClass'] }} {{ $configData['verticalMenuNavbarType'] }} {{ $configData['footerType'] }}" data-menu="horizontal-menu" data-col="{{ $configData['showMenu'] === true ? '' : '1-column' }}" data-open="hover" data-layout="{{ ($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}" style="{{ $configData['bodyStyle'] }}" data-framework="laravel" data-asset-path="{{ asset('/')}}">
-
-  {{-- Include Sidebar --}}
-  @if((isset($configData['showMenu']) && $configData['showMenu'] === true))
-  @include('panels.sidebar')
-  @endif
+<body class="horizontal-layout horizontal-menu {{$configData['contentLayout']}} {{$configData['horizontalMenuType']}} {{ $configData['blankPageClass'] }} {{ $configData['bodyClass'] }} {{ $configData['footerType'] }}"
+data-open="hover"
+data-menu="horizontal-menu"
+data-col="{{$configData['showMenu'] ? $configData['contentLayout'] : '1-column' }}"
+data-framework="laravel"
+data-asset-path="{{ asset('/')}}">
 
   <!-- BEGIN: Header-->
-  {{-- Include Navbar --}}
   @include('panels.navbar')
 
   {{-- Include Sidebar --}}
@@ -20,7 +17,7 @@
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
 
-    <div class="content-wrapper">
+    <div class="content-wrapper {{ $configData['layoutWidth'] === 'boxed' ? 'container-xxl p-0' : '' }}">
       {{-- Include Breadcrumb --}}
       @if($configData['pageHeader'] == true && isset($configData['pageHeader']))
       @include('panels.breadcrumb')
@@ -54,12 +51,10 @@
     $(window).on('load', function() {
       if (feather) {
         feather.replace({
-          width: 14
-          , height: 14
+          width: 14, height: 14
         });
       }
     })
-
   </script>
 </body>
 

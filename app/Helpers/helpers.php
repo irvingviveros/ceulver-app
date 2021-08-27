@@ -17,7 +17,7 @@ class Helper
           'horizontalMenuType' => 'floating',
           'verticalMenuNavbarType' => 'floating',
           'footerType' => 'static', //footer
-          'layoutWidth' => 'full',
+          'layoutWidth' => 'boxed',
           'showMenu' => true,
           'bodyClass' => '',
           'bodyStyle' => '',
@@ -25,7 +25,7 @@ class Helper
           'pageHeader' => true,
           'contentLayout' => 'default',
           'blankPage' => false,
-          'defaultLanguage'=>'en',
+          'defaultLanguage' => 'es',
           'direction' => env('MIX_CONTENT_DIRECTION', 'ltr'),
         ];
 
@@ -94,9 +94,8 @@ class Helper
             'horizontalMenuType' => $allOptions['horizontalMenuType'][$data['horizontalMenuType']],
             'horizontalMenuClass' => $allOptions['horizontalMenuClass'][$data['horizontalMenuType']],
             'footerType' => $allOptions['footerType'][$data['footerType']],
-            'sidebarClass' => 'menu-expanded',
+            'sidebarClass' => '',
             'bodyClass' => $data['bodyClass'],
-            'bodyStyle' => $data['bodyStyle'],
             'pageClass' => $data['pageClass'],
             'pageHeader' => $data['pageHeader'],
             'blankPage' => $data['blankPage'],
@@ -109,7 +108,7 @@ class Helper
             'direction' => $data['direction'],
         ];
         // set default language if session hasn't locale value the set default language
-        if(!session()->has('locale')){
+        if (!session()->has('locale')) {
             app()->setLocale($layoutClasses['defaultLanguage']);
         }
 

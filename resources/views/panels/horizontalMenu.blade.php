@@ -3,10 +3,17 @@ $configData = Helper::applClasses();
 @endphp
 {{-- Horizontal Menu --}}
 <div class="horizontal-menu-wrapper">
-  <div class="header-navbar navbar-expand-sm navbar navbar-horizontal {{$configData['horizontalMenuClass']}} {{($configData['theme'] === 'dark') ? 'navbar-dark' : 'navbar-light' }} navbar-shadow menu-border" role="navigation" data-menu="menu-wrapper" data-menu-type="floating-nav">
+  <div class="header-navbar navbar-expand-sm navbar navbar-horizontal
+  {{$configData['horizontalMenuClass']}}
+  {{($configData['theme'] === 'dark') ? 'navbar-dark' : 'navbar-light' }}
+  navbar-shadow menu-border
+  {{ ($configData['layoutWidth'] === 'boxed' && $configData['horizontalMenuType']  === 'navbar-floating') ? 'container-xxl' : '' }}"
+  role="navigation"
+  data-menu="menu-wrapper"
+  data-menu-type="floating-nav">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row">
-        <li class="nav-item mr-auto">
+        <li class="nav-item me-auto">
           <a class="navbar-brand" href="{{url('/')}}">
             <span class="brand-logo">
               <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" height="24">
@@ -33,10 +40,14 @@ $configData = Helper::applClasses();
                 </g>
               </svg>
             </span>
-            <h2 class="brand-text mb-0">CEULVER</h2>
+            <h2 class="brand-text mb-0">Vuexy</h2>
           </a>
         </li>
-        <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i></a></li>
+        <li class="nav-item nav-toggle">
+          <a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse">
+            <i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="shadow-bottom"></div>
@@ -52,9 +63,9 @@ $configData = Helper::applClasses();
         $custom_classes = $menu->classlist;
         }
         @endphp
-        <li class="nav-item @if(isset($menu->submenu)){{'dropdown'}}@endif {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}"
+        <li class="nav-item @if(isset($menu->submenu)){{'dropdown'}}@endif {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : ''}}"
          @if(isset($menu->submenu)){{'data-menu=dropdown'}}@endif>
-          <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="nav-link d-flex align-items-center @if(isset($menu->submenu)){{'dropdown-toggle'}}@endif" target="{{isset($menu->newTab) ? '_blank':'_self'}}"  @if(isset($menu->submenu)){{'data-toggle=dropdown'}}@endif>
+          <a href="{{isset($menu->url)? url($menu->url):'javascript:void(0)'}}" class="nav-link d-flex align-items-center @if(isset($menu->submenu)){{'dropdown-toggle'}}@endif" target="{{isset($menu->newTab) ? '_blank':'_self'}}"  @if(isset($menu->submenu)){{'data-bs-toggle=dropdown'}}@endif>
             <i data-feather="{{ $menu->icon }}"></i>
             <span>{{ __('locale.'.$menu->name) }}</span>
           </a>

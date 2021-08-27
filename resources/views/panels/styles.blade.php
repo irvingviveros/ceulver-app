@@ -1,33 +1,38 @@
+<!-- BEGIN: Vendor CSS-->
+@if($configData['direction'] === 'rtl' && isset($configData['direction']))
+<link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors-rtl.min.css')) }}" />
+@else
 <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
-<link rel="stylesheet" href="{{ asset(mix('vendors/css/ui/prism.min.css')) }}" />
-{{-- Vendor Styles --}}
-@yield('vendor-style')
-{{-- Theme Styles --}}
+@endif
 
+@yield('vendor-style')
+<!-- END: Vendor CSS-->
+
+<!-- BEGIN: Theme CSS-->
 <link rel="stylesheet" href="{{ asset(mix('css/core.css')) }}" />
 
-{{-- {!! Helper::applClasses() !!} --}}
 @php $configData = Helper::applClasses(); @endphp
 
-{{-- Page Styles --}}
+<!-- BEGIN: Page CSS-->
 @if($configData['mainLayoutType'] === 'horizontal')
 <link rel="stylesheet" href="{{ asset(mix('css/base/core/menu/menu-types/horizontal-menu.css')) }}" />
-@endif
+@else
 <link rel="stylesheet" href="{{ asset(mix('css/base/core/menu/menu-types/vertical-menu.css')) }}" />
-<!-- <link rel="stylesheet" href="{{ asset(mix('css/base/core/colors/palette-gradient.css')) }}"> -->
+@endif
 
 {{-- Page Styles --}}
 @yield('page-style')
 
-{{-- Laravel Style --}}
+<!-- laravel style -->
 <link rel="stylesheet" href="{{ asset(mix('css/overrides.css')) }}" />
 
-{{-- Custom RTL Styles --}}
+<!-- BEGIN: Custom CSS-->
 
 @if($configData['direction'] === 'rtl' && isset($configData['direction']))
-<link rel="stylesheet" href="{{ asset(mix('css/custom-rtl.css')) }}" />
-@endif
+<link rel="stylesheet" href="{{ asset(mix('css-rtl/custom-rtl.css')) }}" />
+<link rel="stylesheet" href="{{ asset(mix('css-rtl/style-rtl.css')) }}" />
 
+@else
 {{-- user custom styles --}}
 <link rel="stylesheet" href="{{ asset(mix('css/style.css')) }}" />
-<link rel="stylesheet" href="{{ asset(mix('css/style-rtl.css')) }}" />
+@endif

@@ -12,7 +12,9 @@ function filterColumn(i, val) {
   if (i == 5) {
     var startDate = $('.start_date').val(),
       endDate = $('.end_date').val();
-    filterByDate(i, startDate, endDate); // We call our filter function
+    if (startDate !== '' && endDate !== '') {
+      filterByDate(i, startDate, endDate); // We call our filter function
+    }
 
     $('.dt-advanced-search').dataTable().fnDraw();
   } else {
@@ -107,8 +109,7 @@ $(function () {
   if (dt_ajax_table.length) {
     var dt_ajax = dt_ajax_table.dataTable({
       processing: true,
-      dom:
-        '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       ajax: assetPath + 'data/ajax.php',
       language: {
         paginate: {
@@ -147,8 +148,7 @@ $(function () {
         { data: 'start_date' },
         { data: 'salary' }
       ],
-      dom:
-        '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       orderCellsTop: true,
       language: {
         paginate: {
@@ -184,8 +184,7 @@ $(function () {
           targets: 0
         }
       ],
-      dom:
-        '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       orderCellsTop: true,
       responsive: {
         details: {
@@ -196,9 +195,27 @@ $(function () {
             }
           }),
           type: 'column',
-          renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-            tableClass: 'table'
-          })
+          renderer: function (api, rowIdx, columns) {
+            var data = $.map(columns, function (col, i) {
+              return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                ? '<tr data-dt-row="' +
+                    col.rowIndex +
+                    '" data-dt-column="' +
+                    col.columnIndex +
+                    '">' +
+                    '<td>' +
+                    col.title +
+                    ':' +
+                    '</td> ' +
+                    '<td>' +
+                    col.data +
+                    '</td>' +
+                    '</tr>'
+                : '';
+            }).join('');
+
+            return data ? $('<table class="table"/><tbody />').append(data) : false;
+          }
         }
       },
       language: {
@@ -256,7 +273,7 @@ $(function () {
               return data;
             }
             return (
-              '<span class="badge badge-pill ' +
+              '<span class="badge rounded-pill ' +
               $status[$status_number].class +
               '">' +
               $status[$status_number].title +
@@ -265,8 +282,7 @@ $(function () {
           }
         }
       ],
-      dom:
-        '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+      dom: '<"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
       responsive: {
         details: {
           display: $.fn.dataTable.Responsive.display.modal({
@@ -276,9 +292,27 @@ $(function () {
             }
           }),
           type: 'column',
-          renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-            tableClass: 'table'
-          })
+          renderer: function (api, rowIdx, columns) {
+            var data = $.map(columns, function (col, i) {
+              return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                ? '<tr data-dt-row="' +
+                    col.rowIdx +
+                    '" data-dt-column="' +
+                    col.columnIndex +
+                    '">' +
+                    '<td>' +
+                    col.title +
+                    ':' +
+                    '</td> ' +
+                    '<td>' +
+                    col.data +
+                    '</td>' +
+                    '</tr>'
+                : '';
+            }).join('');
+
+            return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
+          }
         }
       },
       language: {
@@ -291,7 +325,7 @@ $(function () {
     });
   }
 
-  // // Filter form control to default size for all tables
+  // Filter form control to default size for all tables
   $('.dataTables_filter .form-control').removeClass('form-control-sm');
-  $('.dataTables_length .custom-select').removeClass('custom-select-sm').removeClass('form-control-sm');
+  $('.dataTables_length .form-select').removeClass('form-select-sm').removeClass('form-control-sm');
 });
