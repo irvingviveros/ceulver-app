@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Editar escuela')
+@section('title', 'Editar información de la institución')
 
 @section('vendor-style')
     <!-- vendor css files -->
@@ -74,17 +74,17 @@
                                     <div class="form-group">
                                         <label for="school-phone">Teléfono</label>
                                         <input
-                                                type="text"
+                                                type="tel"
                                                 id="school-phone"
                                                 class="form-control"
                                                 name="school-phone"
                                                 placeholder="Teléfono"
+                                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                                 value="{{$school -> phone}}"
                                         />
-                                        <p><small class="text-muted">Solo números</small></p>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
                                         <label for="school-registration">Fecha de registro</label>
                                         <input
@@ -99,7 +99,7 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
                                         <label for="email-id-column">Correo electrónico</label>
                                         <input
@@ -114,9 +114,9 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="footer-column">Pie de página (footer)</label>
+                                        <label for="footer-column">Pie de página <small class="text-muted">Footer</small></label>
                                         <input
                                                 type="text"
                                                 id="footer-column"
@@ -180,10 +180,10 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
                                         <label for="country-floating">Maps API Key
-                                            <a href="https://developers.google.com/maps/documentation/embed/get-api-key">[Obtener API Key]</a>
+                                            <a href="https://developers.google.com/maps/documentation/embed/get-api-key"><small>[Obtener API Key]</small></a>
                                         </label>
                                         <input
                                                 type="text"
@@ -195,10 +195,10 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
                                         <label for="country-floating">Zoom API Key
-                                            <a href="https://devforum.zoom.us/t/finding-your-api-key-secret-credentials-in-marketplace/3471">[Obtener API Key]</a>
+                                            <a href="https://devforum.zoom.us/t/finding-your-api-key-secret-credentials-in-marketplace/3471"><small>[Obtener API Key]</small></a>
                                         </label>
                                         <input
                                                 type="text"
@@ -210,7 +210,7 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3 col-12">
+                                <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
                                         <label for="country-floating">Zoom Secret</label>
                                         <input
@@ -238,11 +238,10 @@
                                                 type="text"
                                                 id="facebook-column"
                                                 class="form-control"
-                                                placeholder="Facebook"
+                                                placeholder="URL de Facebook"
                                                 name="school-facebook"
                                                 value="{{$school -> facebook_url}}"
                                         />
-                                        <p><small class="text-muted">URL Facebook</small></p>
                                     </div>
                                 </div>
                             </div>
