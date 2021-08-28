@@ -13,9 +13,9 @@
       "slug": "",
       "submenu": [
         {
-          "url": "layouts/boxed",
-          "name": "Layout Boxed",
-          "slug": "layout-boxed"
+          "url": "layouts/full",
+          "name": "Layout Full",
+          "slug": "layout-full"
         },
         {
           "url": "layouts/without-menu",

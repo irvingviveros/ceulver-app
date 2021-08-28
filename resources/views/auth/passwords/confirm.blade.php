@@ -4,18 +4,17 @@
 
 @section('page-style')
 {{-- Page Css files --}}
-<link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
-<link rel="stylesheet" href="{{ asset(mix('css/base/pages/page-auth.css')) }}">
+<link rel="stylesheet" href="{{ asset(mix('css/base/pages/authentication.css')) }}">
 @endsection
 
 @section('content')
-<div class="auth-wrapper auth-v1 px-2">
-  <div class="auth-inner py-2">
-    <!-- Login v1 -->
+<div class="auth-wrapper auth-basic px-2">
+  <div class="auth-inner my-2">
+    <!-- Login basic -->
     <div class="card mb-0">
       <div class="card-body">
         <a href="javascript:void(0);" class="brand-logo">
-            <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" height="28">
+          <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" height="28">
             <defs>
               <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                 <stop stop-color="#000000" offset="0%"></stop>
@@ -56,7 +55,7 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block" tabindex="2">Confirm Password</button>
+          <button type="submit" class="btn btn-primary w-100" tabindex="2">Confirm Password</button>
         </form>
 
         <p class="text-center mt-2">
@@ -69,11 +68,7 @@
 
       </div>
     </div>
-    <!-- /Login v1 -->
+    <!-- /Login basic -->
   </div>
 </div>
-@endsection
-
-@section('vendor-script')
-<script src="{{asset(mix('vendors/js/forms/validation/jquery.validate.min.js'))}}"></script>
 @endsection
