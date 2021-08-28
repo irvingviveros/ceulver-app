@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Career;
 use App\Models\EmailSetting;
+use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Yajra\DataTables\DataTables;
@@ -23,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Return School data
 Route::get('schools', function(){
     return datatables()
-        ->eloquent(\App\Models\School::query())
+        ->eloquent(School::query())
         ->toJson();
 });
 
@@ -36,6 +38,6 @@ Route::get('email_settings', function(){
 // Return School data
 Route::get('careers', function(){
     return datatables()
-        ->eloquent(\App\Models\Career::query())
+        ->eloquent(Career::query())
         ->toJson();
 });

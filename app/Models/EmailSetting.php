@@ -38,7 +38,7 @@ class EmailSetting extends Model
     /**
      * Validation
      *  Check if the school id already exists in email settings table or not.
-     * If not then insert the record and return the insertid otherwise return 0.
+     * If not, then insert the record and return the insertid otherwise return 0.
      *
      */
     public static function insertData($data){
