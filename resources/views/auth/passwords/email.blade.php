@@ -35,6 +35,13 @@
           <p class="card-text mb-2">Ingresa tu correo electrónico personal y te enviaremos instrucciones para restablecer tu NIP</p>
           <form class="auth-forgot-password-form mt-2" method="POST" action="{{ route('password.email') }}">
             @csrf
+            @if(session('status'))
+              <div class="alert alert-success" role="alert">
+                <div class="alert-body">
+                  {{ session('status') }}
+                </div>
+              </div>
+            @endif
             <div class="mb-1">
               <label class="form-label" for="forgot-password-email">Correo electrónico</label>
               <input type="text" class="form-control @error('email') is-invalid @enderror" id="forgot-password-email"
