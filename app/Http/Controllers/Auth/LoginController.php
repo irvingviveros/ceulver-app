@@ -50,4 +50,14 @@ class LoginController extends Controller
             'pageConfigs' => $pageConfigs
         ]);
     }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @return mixed
+     */
+    protected function authenticated()
+    {
+        \Auth::logoutOtherDevices(request('password'));
+    }
 }
