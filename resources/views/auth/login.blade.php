@@ -15,7 +15,7 @@
   <div class="auth-wrapper auth-cover">
     <div class="auth-inner row m-0">
       <!-- Brand logo-->
-      <a class="brand-logo" href="javascript:void(0);">
+      <a class="brand-logo" href="/">
         <img src="{{asset('/images/logo/ceulver_transparent.png')}}" alt="Universidad CEULVER">
       </a>
       <!-- /Brand logo-->
