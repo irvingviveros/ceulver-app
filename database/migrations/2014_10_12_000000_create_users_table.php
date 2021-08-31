@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
-            $table->foreignId('role_id')->references('id')->on('roles');
+            $table->foreignId('school_id')->nullable()->constrained()->onDelete('set null');
+            $table->foreignId('role_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 

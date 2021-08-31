@@ -32,7 +32,7 @@ class CreateSystemAdminsTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->constrained();
         });
     }
 

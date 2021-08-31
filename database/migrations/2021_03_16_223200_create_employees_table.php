@@ -35,8 +35,8 @@ class CreateEmployeesTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
-            $table->foreignId('designation_id')->references('id')->on('designations');
+            $table->foreignId('school_id')->constrained();
+            $table->foreignId('designation_id')->constrained();
         });
     }
 

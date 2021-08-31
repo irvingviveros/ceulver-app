@@ -30,8 +30,8 @@ class CreateGuardiansTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('school_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 

@@ -27,9 +27,9 @@ class CreateEmailsTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
-            $table->foreignId('role_id')->references('id')->on('roles');
-            $table->foreignId('academic_year_id')->references('id')->on('academic_years');
+            $table->foreignId('school_id')->constrained();
+            $table->foreignId('role_id')->constrained();
+            $table->foreignId('academic_year_id')->constrained();
         });
     }
 

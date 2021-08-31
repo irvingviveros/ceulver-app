@@ -24,8 +24,8 @@ class CreateClassesTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
-            $table->foreignId('teacher_id')->references('id')->on('teachers');
+            $table->foreignId('school_id')->constrained();
+            $table->foreignId('teacher_id')->constrained();
         });
     }
 

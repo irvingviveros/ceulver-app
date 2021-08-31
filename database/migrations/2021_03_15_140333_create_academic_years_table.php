@@ -26,7 +26,7 @@ class CreateAcademicYearsTable extends Migration
             $table->timestamps();
 
             // Foreign key
-            $table->foreignId('school_id')->references('id')->on('schools');
+            $table->foreignId('school_id')->constrained();
         });
     }
 
