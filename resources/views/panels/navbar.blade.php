@@ -74,7 +74,9 @@
         <li class="nav-item dropdown dropdown-user">
           <a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="javascript:void(0);" data-bs-toggle="dropdown" aria-haspopup="true">
             <div class="user-nav d-sm-flex d-none">
-              <span class="user-name fw-bolder">John Doe</span>
+              <span class="user-name fw-bolder">
+                {{ Auth::user()->email }}
+              </span>
               <span class="user-status">Admin</span>
             </div>
             <span class="avatar">
@@ -87,27 +89,30 @@
               <i class="me-50" data-feather="user"></i> Profile
             </a>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="mail"></i> Inbox
+              <i class="me-50" data-feather="mail"></i> Mensajes
             </a>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="check-square"></i> Task
+              <i class="me-50" data-feather="check-square"></i> Tareas
             </a>
             <a class="dropdown-item" href="#">
               <i class="me-50" data-feather="message-square"></i> Chats
             </a>
+            <a class="dropdown-item" href="#">
+              <i class="me-50" data-feather="credit-card"></i> Recibos
+            </a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="settings"></i> Settings
+              <i class="me-50" data-feather="settings"></i> Configuración
             </a>
-            <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="credit-card"></i> Pricing
+            <a class="dropdown-item" href="{{ route('logout') }}"
+               onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+              <i class="me-50" data-feather="power"></i>
+              {{ __('Logout') }}
             </a>
-            <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="help-circle"></i> FAQ
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="me-50" data-feather="power"></i> Logout
-            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
           </div>
         </li>
       </ul>
