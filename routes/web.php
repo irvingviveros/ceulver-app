@@ -28,33 +28,47 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 // Route Components
 
 // Admin
-// Schools management
-Route::get('admin/manage-schools', [SchoolController::class, 'index'])->name('manage-schools');
-Route::post('admin/manage-schools', [SchoolController::class, 'store']);
-Route::get('admin/manage-schools/{id}/edit', [SchoolController::class, 'edit']);
-Route::post('admin/manage-schools/{id}/edit', [SchoolController::class, 'update']);
-Route::delete('admin/manage-schools/{id}', [SchoolController::class, 'destroy']);
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-// Email config
-Route::get('admin/email-settings', [EmailSettingController::class, 'index'])->name('email-settings');
-Route::post('admin/mail-settings', [EmailSettingController::class, 'store']);
-Route::get('admin/email-settings/{id}/edit', [EmailSettingController::class, 'edit']);
-Route::post('admin/email-settings/{id}/edit', [EmailSettingController::class, 'update']);
-Route::delete('admin/email-settings/{id}', [SchoolController::class, 'destroy']);
+    // Schools management, route admin/manage-schools
+    Route::group(['prefix' => 'manage-schools', 'as' => 'manage-schools.'], function() {
+        Route::get('/', [SchoolController::class, 'index'])->name('index');
+        Route::post('/', [SchoolController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [SchoolController::class, 'edit'])->name('edit');
+        Route::post('{id}/edit', [SchoolController::class, 'update'])->name('update');
+        Route::delete('{id}', [SchoolController::class, 'destroy'])->name('destroy');
+    });
 
-// Students type
-Route::get('admin/manage-students/type', [StudentTypeController::class, 'index'])->name('student-type');
-Route::get('admin/manage-students/type/create', [StudentTypeController::class, 'create'])->name('create-student-type');
-Route::post('admin/manage-students/type/create', [StudentTypeController::class, 'store'])->name('store-student-type');
-Route::get('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'edit']);
-Route::post('admin/manage-students/type/{id}/edit', [StudentTypeController::class, 'update']);
-Route::delete('admin/manage-students/type/{id}', [StudentTypeController::class, 'destroy']);
+    // Email config, route admin/email-settings
+    Route::group(['prefix' => 'email-settings', 'as' => 'email-settings.'], function() {
+        Route::get('/', [EmailSettingController::class, 'index'])->name('index');
+        Route::post('/', [EmailSettingController::class, 'store'])->name('store');
+        Route::get('{id}/edit', [EmailSettingController::class, 'edit'])->name('edit');
+        Route::post('{id}/edit', [EmailSettingController::class, 'update'])->name('update');
+        Route::delete('{id}', [SchoolController::class, 'destroy'])->name('destroy');
+    });
 
-// Careers management
-Route::get('admin/manage-careers', [CareerController::class, 'index'])->name('manage-careers');
-Route::post('admin/manage-careers', [CareerController::class, 'store']);
-Route::get('admin/manage-careers/{id}/edit', [CareerController::class, 'edit']);
-Route::post('admin/manage-careers/{id}/edit', [CareerController::class, 'update']);
+    // Students type, route admin/manage-students
+    Route::group(['prefix' => 'manage-students', 'as' => 'manage-students.'], function() {
+        // Students type, route admin/manage-students/type
+        Route::group(['prefix' => 'type', 'as' => 'type.'], function() {
+            Route::get('/', [StudentTypeController::class, 'index'])->name('index');
+            Route::get('create', [StudentTypeController::class, 'create'])->name('create');
+            Route::post('create', [StudentTypeController::class, 'store'])->name('store');
+            Route::get('{id}/edit', [StudentTypeController::class, 'edit'])->name('edit');
+            Route::post('{id}/edit', [StudentTypeController::class, 'update'])->name('update');
+            Route::delete('{id}', [StudentTypeController::class, 'destroy'])->name('destroy');
+        });
+    });
+
+    // Careers management, route admin/manage-careers
+    Route::group(['prefix' => 'manage-careers', 'as' => 'manage-careers.'], function () {
+        Route::get('/', [CareerController::class, 'index'])->name('index');
+        Route::post('/', [CareerController::class, 'store'])->name('store');
+        Route::get('admin/manage-careers/{id}/edit', [CareerController::class, 'edit'])->name('edit');
+        Route::post('admin/manage-careers/{id}/edit', [CareerController::class, 'update'])->name('update');
+    });
+});
 
 // locale Route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
