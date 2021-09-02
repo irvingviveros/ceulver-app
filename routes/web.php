@@ -31,13 +31,7 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Schools management, route admin/manage-schools
-    Route::group(['prefix' => 'manage-schools', 'as' => 'manage-schools.'], function() {
-        Route::get('/', [SchoolController::class, 'index'])->name('index');
-        Route::post('/', [SchoolController::class, 'store'])->name('store');
-        Route::get('{id}/edit', [SchoolController::class, 'edit'])->name('edit');
-        Route::post('{id}/edit', [SchoolController::class, 'update'])->name('update');
-        Route::delete('{id}', [SchoolController::class, 'destroy'])->name('destroy');
-    });
+    Route::resource('manage-schools', SchoolController::class);
 
     // Email config, route admin/email-settings
     Route::group(['prefix' => 'email-settings', 'as' => 'email-settings.'], function() {
