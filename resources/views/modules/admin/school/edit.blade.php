@@ -18,8 +18,9 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
-                <form class="form" method="post" action="{{url('admin/manage-schools/'.$school->id.'/edit')}}" autocomplete="new-text" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('manage-schools.update', $school->id)}}" autocomplete="new-text" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Información básica</h4>
@@ -28,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-code-column">Código de la escuela</label>
+                                        <label class="col-form-label" class="col-form-label" for="school-code-column">Código de la escuela</label>
                                         <input
                                                 type="text"
                                                 id="school-code-column"
@@ -41,7 +42,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-name-column">Nombre de la escuela</label>
+                                        <label class="col-form-label" for="school-name-column">Nombre de la escuela</label>
                                         <input
                                                 type="text"
                                                 id="school-name-column"
@@ -56,7 +57,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="address-column">Dirección</label>
+                                        <label class="col-form-label" for="address-column">Dirección</label>
                                         <input
                                                 type="text"
                                                 id="address-column"
@@ -72,21 +73,20 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-phone">Teléfono</label>
+                                        <label class="col-form-label" for="school-phone">Teléfono</label>
                                         <input
                                                 type="tel"
                                                 id="school-phone"
                                                 class="form-control"
                                                 name="school-phone"
                                                 placeholder="Teléfono"
-                                                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                                                 value="{{$school -> phone}}"
                                         />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="school-registration">Fecha de registro</label>
+                                        <label class="col-form-label" for="school-registration">Fecha de registro</label>
                                         <input
                                                 type="text"
                                                 id="school-registration"
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="email-id-column">Correo electrónico</label>
+                                        <label class="col-form-label" for="email-id-column">Correo electrónico</label>
                                         <input
                                                 type="email"
                                                 id="email-id-column"
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="footer-column">Pie de página <small class="text-muted">Footer</small></label>
+                                        <label class="col-form-label" for="footer-column">Pie de página <small class="text-muted">Footer</small></label>
                                         <input
                                                 type="text"
                                                 id="footer-column"
@@ -138,7 +138,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-frotend">Habilitar sitio web</label>
+                                        <label class="col-form-label" for="school-frotend">Habilitar sitio web</label>
                                         <select class="form-control" id="school-frotend" name="school-frontend">
                                             <option value="0" {{$school -> enable_frontend === 0 ? 'selected' : ''}}>No</option>
                                             <option value="1" {{$school -> enable_frontend === 1 ? 'selected' : ''}}>Si</option>
@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-admissions">Habilitar admisiones en línea</label>
+                                        <label class="col-form-label" for="school-admissions">Habilitar admisiones en línea</label>
                                         <select class="form-control" id="school-admissions" name="school-admissions">
                                             <option value="0" {{$school -> enable_online_admission === 0 ? 'selected' : ''}}>No</option>
                                             <option value="1" {{$school -> enable_online_admission === 1 ? 'selected' : ''}}>Si</option>
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="latitude-column">Latitud</label>
+                                        <label class="col-form-label" for="latitude-column">Latitud</label>
                                         <input
                                                 type="text"
                                                 id="latitude-column"
@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="longitude-column">Longitud</label>
+                                        <label class="col-form-label" for="longitude-column">Longitud</label>
                                         <input
                                                 type="text"
                                                 id="longitude-column"
@@ -182,7 +182,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="country-floating">Maps API Key
+                                        <label class="col-form-label" for="country-floating">Maps API Key
                                             <a href="https://developers.google.com/maps/documentation/embed/get-api-key"><small>[Obtener API Key]</small></a>
                                         </label>
                                         <input
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="country-floating">Zoom API Key
+                                        <label class="col-form-label" for="country-floating">Zoom API Key
                                             <a href="https://devforum.zoom.us/t/finding-your-api-key-secret-credentials-in-marketplace/3471"><small>[Obtener API Key]</small></a>
                                         </label>
                                         <input
@@ -212,7 +212,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12 mt-2">
                                     <div class="form-group">
-                                        <label for="country-floating">Zoom Secret</label>
+                                        <label class="col-form-label" for="country-floating">Zoom Secret</label>
                                         <input
                                                 type="text"
                                                 id="country-floating"
@@ -233,7 +233,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="facebook-column">Facebook</label>
+                                        <label class="col-form-label" for="facebook-column">Facebook</label>
                                         <input
                                                 type="text"
                                                 id="facebook-column"
@@ -254,16 +254,15 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="customFile">Logo frontal</label>
+                                        <label class="col-form-label" for="customFile">Logo frontal</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" id="customFile" name="school-logo">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="school-enabled">Habilitar escuela</label>
+                                        <label class="col-form-label" for="school-enabled">Habilitar escuela</label>
                                         <select class="form-control" id="school-enabled" name="school-status">
                                             <option value="0" {{$school -> status === 0 ? 'selected' : ''}}>No</option>
                                             <option value="1" {{$school -> status === 1 ? 'selected' : ''}}>Si</option>
@@ -275,7 +274,7 @@
                         <hr />
                         <div class="card-body">
                             <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-primary mr-1">Actualizar</button>
+                                <button type="submit" class="btn btn-primary me-1">Actualizar</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>
