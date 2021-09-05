@@ -217,25 +217,24 @@ $(function () {
           type: 'column',
           renderer: function (api, rowIdx, columns) {
             var data = $.map(columns, function (col, i) {
-              console.log(columns);
               return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
-                ? '<tr data-dt-row="' +
-                    col.rowIndex +
-                    '" data-dt-column="' +
-                    col.columnIndex +
-                    '">' +
-                    '<td>' +
-                    col.title +
-                    ':' +
-                    '</td> ' +
-                    '<td>' +
-                    col.data +
-                    '</td>' +
-                    '</tr>'
-                : '';
+                  ? '<tr data-dt-row="' +
+                  col.rowIdx +
+                  '" data-dt-column="' +
+                  col.columnIndex +
+                  '">' +
+                  '<td>' +
+                  col.title +
+                  ':' +
+                  '</td> ' +
+                  '<td>' +
+                  col.data +
+                  '</td>' +
+                  '</tr>'
+                  : '';
             }).join('');
 
-            return data ? $('<table class="table"/>').append(data) : false;
+            return data ? $('<table class="table"/>').append('<tbody>' + data + '</tbody>') : false;
           }
         }
       },
