@@ -39,8 +39,15 @@ class SchoolController extends Controller
         $modifiedBy = $user->id;
 
         // Save date into $data var
-        if($schoolName !='' && $schoolAddress !='' && $schoolEmail != '' && $schoolAdmission != ''){
-            $data = array('school_name'=>$schoolName,"address"=>$schoolAddress,"email"=>$schoolEmail, "enable_online_admission"=>$schoolAdmission, "created_by"=>$createdBy, "modified_by"=>$modifiedBy);
+        if($schoolName != '' && $schoolAddress != '' && $schoolEmail != '' && $schoolAdmission != ''){
+            $data = array(
+                'school_name'=>$schoolName,
+                "address"=>$schoolAddress,
+                "email"=>$schoolEmail,
+                "enable_online_admission"=>$schoolAdmission,
+                "created_by"=>$createdBy,
+                "modified_by"=>$modifiedBy
+            );
 
             // Call insertData() method of School Model
             $value = School::insertData($data);
