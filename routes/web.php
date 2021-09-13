@@ -31,37 +31,22 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Schools management, route admin/manage-schools
-    Route::resource('manage-schools', SchoolController::class);
+    Route::resource('manage-schools', SchoolController::class)->except([
+        'create', 'show'
+    ]);
 
     // Email config, route admin/email-settings
-    Route::group(['prefix' => 'email-settings', 'as' => 'email-settings.'], function() {
-        Route::get('/', [EmailSettingController::class, 'index'])->name('index');
-        Route::post('/', [EmailSettingController::class, 'store'])->name('store');
-        Route::get('{id}/edit', [EmailSettingController::class, 'edit'])->name('edit');
-        Route::post('{id}/edit', [EmailSettingController::class, 'update'])->name('update');
-        Route::delete('{id}', [SchoolController::class, 'destroy'])->name('destroy');
-    });
+    Route::resource('email-settings', EmailSettingController::class)->except([
+        'create', 'show'
+    ]);
 
     // Students type, route admin/manage-students
-    Route::group(['prefix' => 'manage-students', 'as' => 'manage-students.'], function() {
-        // Students type, route admin/manage-students/type
-        Route::group(['prefix' => 'type', 'as' => 'type.'], function() {
-            Route::get('/', [StudentTypeController::class, 'index'])->name('index');
-            Route::get('create', [StudentTypeController::class, 'create'])->name('create');
-            Route::post('create', [StudentTypeController::class, 'store'])->name('store');
-            Route::get('{id}/edit', [StudentTypeController::class, 'edit'])->name('edit');
-            Route::post('{id}/edit', [StudentTypeController::class, 'update'])->name('update');
-            Route::delete('{id}', [StudentTypeController::class, 'destroy'])->name('destroy');
-        });
-    });
+    Route::resource('manage-students.type', StudentTypeController::class)->except('show');
 
     // Careers management, route admin/manage-careers
-    Route::group(['prefix' => 'manage-careers', 'as' => 'manage-careers.'], function () {
-        Route::get('/', [CareerController::class, 'index'])->name('index');
-        Route::post('/', [CareerController::class, 'store'])->name('store');
-        Route::get('admin/manage-careers/{id}/edit', [CareerController::class, 'edit'])->name('edit');
-        Route::post('admin/manage-careers/{id}/edit', [CareerController::class, 'update'])->name('update');
-    });
+    Route::resource('manage-careers', CareerController::class)->except([
+        'create', 'show'
+    ]);
 });
 
 // locale Route

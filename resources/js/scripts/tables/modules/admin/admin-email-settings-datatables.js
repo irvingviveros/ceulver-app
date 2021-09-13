@@ -253,7 +253,7 @@ $(function () {
 
         if ($email_protocol !== '' && $smtp_host !== '' && $smtp_port !== '' && $smtp_username !== ''  && $smtp_password !== '') {
             $.ajax({
-                url: 'mail-settings',
+                url: 'email-settings',
                 type: 'post',
                 data: {
                     _token: CSRF_TOKEN,

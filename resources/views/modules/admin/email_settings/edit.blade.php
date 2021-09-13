@@ -18,8 +18,9 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
-                <form class="form" method="post" action="{{url('admin/email-settings/'.$emailSetting->id.'/edit')}}" autocomplete="new-text" enctype="multipart/form-data">
+                <form class="form" method="post" action="{{route('email-settings.update', $emailSetting->id)}}" autocomplete="new-text" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Información básica</h4>
@@ -28,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-host">Host SMTP</label>
+                                        <label class="col-form-label" class="col-form-label" for="smtp-host">Host SMTP</label>
                                         <input
                                                 type="text"
                                                 id="smtp-host"
@@ -41,7 +42,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-port">Puerto SMTP</label>
+                                        <label class="col-form-label" for="smtp-port">Puerto SMTP</label>
                                         <input
                                                 type="text"
                                                 id="smtp-port"
@@ -54,7 +55,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-timeout">Tiempo de espera</label>
+                                        <label class="col-form-label" for="smtp-timeout">Tiempo de espera</label>
                                         <input
                                                 type="text"
                                                 id="smtp-timeout"
@@ -69,11 +70,14 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="card-header">
+                            <h4 class="card-title">Configuración SMTP</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-user">Usuario SMTP</label>
+                                        <label class="col-form-label" for="smtp-user">Usuario SMTP</label>
                                         <input
                                                 type="text"
                                                 id="smtp-user"
@@ -87,7 +91,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-password">Contraseña SMTP</label>
+                                        <label class="col-form-label" for="smtp-password">Contraseña SMTP</label>
                                         <input
                                                 type="text"
                                                 id="smtp-password"
@@ -101,7 +105,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-security">Seguridad SMTP</label>
+                                        <label class="col-form-label" for="smtp-security">Seguridad SMTP</label>
                                         <select class="form-control" id="smtp-security" name="smtp-security">
                                             <option value="tls" {{$emailSetting -> crypto === 'tls' ? 'selected' : ''}}>TLS</option>
                                             <option value="smtp" {{$emailSetting -> crypto === 'smtp' ? 'selected' : ''}}>SMTP</option>
@@ -111,11 +115,14 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="card-header">
+                            <h4 class="card-title">Información de envío</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-type">Tipo de correo</label>
+                                        <label class="col-form-label" for="smtp-type">Tipo de correo</label>
                                         <select class="form-control" id="smtp-type" name="smtp-type">
                                             <option value="text" {{$emailSetting -> mail_type === 'text' ? 'selected' : ''}}>TEXT</option>
                                             <option value="html" {{$emailSetting -> mail_type === 'html' ? 'selected' : ''}}>HTML</option>
@@ -124,7 +131,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-charset">Charset</label>
+                                        <label class="col-form-label" for="smtp-charset">Charset</label>
                                         <select class="form-control" id="smtp-charset" name="smtp-charset">
                                             <option value="utf-8" {{$emailSetting -> char_set === 'utf-8' ? 'selected' : ''}}>utf-8</option>
                                             <option value="iso-8859-1" {{$emailSetting -> char_set === 'iso-8859-1' ? 'selected' : ''}}>iso-8859-1</option>
@@ -133,7 +140,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-priority">Prioridad</label>
+                                        <label class="col-form-label" for="smtp-priority">Prioridad</label>
                                         <select class="form-control" id="smtp-priority" name="smtp-priority">
                                             <option value="3" {{$emailSetting -> priority === 3 ? 'selected' : ''}}>Baja</option>
                                             <option value="2" {{$emailSetting -> priority === 2 ? 'selected' : ''}}>Normal</option>
@@ -144,11 +151,14 @@
                             </div>
                         </div>
                         <hr />
+                        <div class="card-header">
+                            <h4 class="card-title">Detalles del emisor</h4>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="email-from-name">Nombre del emisor</label>
+                                        <label class="col-form-label" for="email-from-name">Nombre del emisor</label>
                                         <input
                                                 type="text"
                                                 id="email-from-name"
@@ -163,7 +173,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="email-address">Correo del emisor</label>
+                                        <label class="col-form-label" for="email-address">Correo del emisor</label>
                                         <input
                                                 type="email"
                                                 id="email-address"
@@ -178,7 +188,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label for="smtp-charset">Estatus</label>
+                                        <label class="col-form-label" for="smtp-charset">Estatus</label>
                                         <select class="form-control" id="smtp-charset" name="email-status">
                                             <option value="1" {{$emailSetting -> status === 1 ? 'selected' : ''}}>Activo</option>
                                             <option value="0" {{$emailSetting -> status === 0 ? 'selected' : ''}}>Inactivo</option>
@@ -189,7 +199,7 @@
                         </div>
                         <div class="card-body">
                             <div class="col-12 text-right">
-                                <button type="submit" class="btn btn-primary mr-1">Actualizar</button>
+                                <button type="submit" class="btn btn-primary me-1">Actualizar</button>
                                 <a href="{{ url()->previous() }}" class="btn btn-outline-secondary">Cancelar</a>
                             </div>
                         </div>

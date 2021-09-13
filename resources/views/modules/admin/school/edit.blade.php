@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-6 col-lg-3 col-12">
                                     <div class="form-group">
-                                        <label class="col-form-label" class="col-form-label" for="school-code-column">Código de la escuela</label>
+                                        <label class="col-form-label" for="school-code-column">Código de la escuela</label>
                                         <input
                                                 type="text"
                                                 id="school-code-column"
