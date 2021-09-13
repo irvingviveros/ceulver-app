@@ -168,7 +168,6 @@
         </div>
     </section>
     <!--/ Basic table -->
-    @include('content/_partials/_modals/admin/modal-add-email')
 @endsection
 
 @section('vendor-script')

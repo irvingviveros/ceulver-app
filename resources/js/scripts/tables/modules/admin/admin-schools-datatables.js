@@ -130,7 +130,7 @@ $(function () {
               feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
               '</a>' +
               '<div class="dropdown-menu dropdown-menu-end">' +
-              '<a href="javascript:;" class="dropdown-item">' +
+              '<a href="javascript:;" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#showSchoolDetails">' +
               feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) +
               'Detalles</a>' +
               '<a href="javascript:;"' + ' data-id="' + $school_id + '"' + ' class="dropdown-item delete-record">' +

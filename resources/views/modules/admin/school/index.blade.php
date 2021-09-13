@@ -92,6 +92,8 @@
             </div>
         </div>
     </section>
+
+    @include('content._partials._modals.admin.show-school-info')
     <!--/ Basic table -->
 @endsection
 
