@@ -53,16 +53,16 @@ $(function () {
                     responsivePriority: 3,
                     render: function (data, type, full, meta) {
                         return (
-                            '<div class="custom-control custom-checkbox"> <input class="custom-control-input dt-checkboxes" type="checkbox" value="" id="checkbox' +
+                            '<div class="form-check"> <input class="form-check-input dt-checkboxes" type="checkbox" value="" id="checkbox' +
                             data +
-                            '" /><label class="custom-control-label" for="checkbox' +
+                            '" /><label class="form-check-label" for="checkbox' +
                             data +
                             '"></label></div>'
                         );
                     },
                     checkboxes: {
                         selectAllRender:
-                            '<div class="custom-control custom-checkbox"> <input class="custom-control-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="custom-control-label" for="checkboxSelectAll"></label></div>'
+                            '<div class="form-check"> <input class="form-check-input" type="checkbox" value="" id="checkboxSelectAll" /><label class="form-check-label" for="checkboxSelectAll"></label></div>'
                     }
                 },
                 {
@@ -101,15 +101,15 @@ $(function () {
                         const $career_id = full['id'];
                         return (
                             '<div class="d-inline-flex">' +
-                            '<a class="pr-1 dropdown-toggle hide-arrow text-primary" data-toggle="dropdown">' +
+                            '<a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown">' +
                             feather.icons['more-vertical'].toSvg({ class: 'font-small-4' }) +
                             '</a>' +
-                            '<div class="dropdown-menu dropdown-menu-right">' +
+                            '<div class="dropdown-menu dropdown-menu-end">' +
                             '<a href="javascript:;" class="dropdown-item">' +
-                            feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) +
+                            feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) +
                             'Detalles</a>' +
-                            '<a href="javascript:void(0)"' + ' data-id="' + $career_id + '"' + ' class="dropdown-item delete-record">' +
-                            feather.icons['trash-2'].toSvg({ class: 'font-small-4 mr-50' }) +
+                            '<a href="javascript:;"' + ' data-id="' + $career_id + '"' + ' class="dropdown-item delete-record">' +
+                            feather.icons['trash-2'].toSvg({ class: 'font-small-4 me-50' }) +
                             'Eliminar</a>' +
                             '</div>' +
                             '</div>' +
@@ -121,42 +121,42 @@ $(function () {
                 }
             ],
             dom:
-                '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-right"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
+                '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
             displayLength: 7,
             lengthMenu: [7, 10, 25, 50, 75, 100],
             buttons: [
                 {
                     extend: 'collection',
-                    className: 'btn btn-outline-secondary dropdown-toggle mr-2',
-                    text: feather.icons['share'].toSvg({ class: 'font-small-4 mr-50' }) + 'Exportar',
+                    className: 'btn btn-outline-secondary dropdown-toggle me-2',
+                    text: feather.icons['share'].toSvg({ class: 'font-small-4 me-50' }) + 'Exportar',
                     buttons: [
                         {
                             extend: 'print',
-                            text: feather.icons['printer'].toSvg({ class: 'font-small-4 mr-50' }) + 'Imprimir',
+                            text: feather.icons['printer'].toSvg({ class: 'font-small-4 me-50' }) + 'Imprimir',
                             className: 'dropdown-item',
                             exportOptions: { columns: [2, 3, 4, 5, 6] }
                         },
                         {
                             extend: 'csv',
-                            text: feather.icons['file-text'].toSvg({ class: 'font-small-4 mr-50' }) + 'CSV',
+                            text: feather.icons['file-text'].toSvg({ class: 'font-small-4 me-50' }) + 'CSV',
                             className: 'dropdown-item',
                             exportOptions: { columns: [2, 3, 4, 5, 6]  }
                         },
                         {
                             extend: 'excel',
-                            text: feather.icons['file'].toSvg({ class: 'font-small-4 mr-50' }) + 'Excel',
+                            text: feather.icons['file'].toSvg({ class: 'font-small-4 me-50' }) + 'Excel',
                             className: 'dropdown-item',
                             exportOptions: { columns: [2, 3, 4, 5, 6]  }
                         },
                         {
                             extend: 'pdf',
-                            text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 mr-50' }) + 'PDF',
+                            text: feather.icons['clipboard'].toSvg({ class: 'font-small-4 me-50' }) + 'PDF',
                             className: 'dropdown-item',
                             exportOptions: { columns: [2, 3, 4, 5, 6]  }
                         },
                         {
                             extend: 'copy',
-                            text: feather.icons['copy'].toSvg({ class: 'font-small-4 mr-50' }) + 'Copiar',
+                            text: feather.icons['copy'].toSvg({ class: 'font-small-4 me-50' }) + 'Copiar',
                             className: 'dropdown-item',
                             exportOptions: { columns: [2, 3, 4, 5, 6]  }
                         }
@@ -170,11 +170,11 @@ $(function () {
                     }
                 },
                 {
-                    text: feather.icons['plus'].toSvg({ class: 'mr-50 font-small-4' }) + 'Crear nuevo registro',
+                    text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Crear nuevo registro',
                     className: 'create-new btn btn-primary',
                     attr: {
-                        'data-toggle': 'modal',
-                        'data-target': '#modals-slide-in'
+                        'data-bs-toggle': 'modal',
+                        'data-bs-target': '#modals-slide-in'
                     },
                     init: function (api, node, config) {
                         $(node).removeClass('btn-secondary');
@@ -195,7 +195,7 @@ $(function () {
                             console.log(columns);
                             return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
                                 ? '<tr data-dt-row="' +
-                                col.rowIndex +
+                                col.rowIdx +
                                 '" data-dt-column="' +
                                 col.columnIndex +
                                 '">' +
@@ -249,9 +249,17 @@ $(function () {
                 success: function (response) {
                     if (response > 0){
                         $('.modal').modal('hide');
-
+                        //Toster popup
+                        toastr['success']('El registro ha sido creado correctamente', 'Registro creado', {
+                            closeButton: true,
+                            tapToDismiss: false,
+                            progressBar: true,
+                        });
                     } else if(response === 0){
-                        alert('School already in DB.');
+                        toastr['warning']('La institución ya se encontraba registrada', {
+                            closeButton: true,
+                            tapToDismiss: false,
+                        });
                     }else{
                         alert(response);
                     }
@@ -267,17 +275,40 @@ $(function () {
 
     // Delete Record
     $('.datatables-basic tbody').on('click', '.delete-record', function (event) {
+
         let id  = $(event.currentTarget).attr('data-id');
-        let _url = window.location.origin + `/admin/email-settings/${id}`;
+        let _url = window.location.origin + `/admin/manage-careers/${id}`;
 
-        $.ajax({
-            url: _url,
-            type: 'post',
-            data: {_method: 'delete', _token: CSRF_TOKEN},
-            success: function (response) {
-                dt_basic.row($(this).parents('tr')).remove().draw();
+        Swal.fire({
+            title: 'Confirme la eliminación',
+            text: "No se podrá revertir el cambio",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: "Cancelar",
+            customClass: {
+                confirmButton: 'btn btn-primary',
+                cancelButton: 'btn btn-outline-danger ms-1'
+            },
+            buttonsStyling: false
+        }).then(function (result) {
+            if (result.value) {
+
+                $.ajax({
+                    url: _url,
+                    type: 'post',
+                    data: {_method: 'delete', _token: CSRF_TOKEN},
+                    success: function (response) {
+                        dt_basic.row($(this).parents('tr')).remove().draw();
+                    }
+                });
+                // Toaster popup
+                toastr['success']('El registro ha sido eliminado correctamente', 'Registro eliminado', {
+                    closeButton: true,
+                    tapToDismiss: false,
+                    progressBar: true,
+                });
             }
-        });
+        })
     });
-
 });

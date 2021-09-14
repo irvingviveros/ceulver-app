@@ -109,6 +109,8 @@ class CareerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $career = Career::findOrFail($id);
+        $career -> delete();
+        return redirect('admin/manage-careers')->with('status', 'La carrera se ha eliminado correctamente');
     }
 }
