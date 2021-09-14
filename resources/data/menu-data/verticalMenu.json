@@ -47,6 +47,25 @@
       "name": "Careers",
       "icon": "book",
       "slug": "careers"
+    },
+    {
+      "name": "Roles & Permission",
+      "icon": "shield",
+      "slug": "",
+      "submenu": [
+        {
+          "url": "app/access-roles",
+          "name": "Roles",
+          "icon": "circle",
+          "slug": "app-access-roles"
+        },
+        {
+          "url": "app/access-permission",
+          "name": "Permission",
+          "icon": "circle",
+          "slug": "app-access-permission"
+        }
+      ]
     }
   ]
 }

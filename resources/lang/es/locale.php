@@ -1,6 +1,9 @@
 <?php
 
 return [
+    "Roles & Permission"=>"Roles y permisos",
+    "Roles"=>"Roles",
+    "Permission"=>"Permisos",
     "Aplicaciones"=>"Aplicaciones",
     "Careers"=>"Carreras",
     "Manage Students"=>"Administrar alumnos",
