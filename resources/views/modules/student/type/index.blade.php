@@ -11,7 +11,7 @@
                 <div class="head-label"></div>
                 <div class="dt-action-buttons text-right">
                     <div class="dt-buttons d-inline-flex">
-                        <a href="{{ route('create-student-type') }}" class="btn dt-button create-new btn btn-primary" tabindex="0" type="button">
+                        <a href="{{ route('manage-students-category.create') }}" class="btn dt-button create-new btn btn-primary" tabindex="0" type="button">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-50 font-small-4">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>

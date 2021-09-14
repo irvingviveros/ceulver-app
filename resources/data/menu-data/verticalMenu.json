@@ -35,7 +35,7 @@
       "slug": "students",
       "submenu": [
         {
-          "url": "admin/manage-students/type",
+          "url": "admin/manage-students-category",
           "name": "Students Type",
           "icon": "circle",
           "slug": "students-type"

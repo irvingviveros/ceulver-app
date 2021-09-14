@@ -40,8 +40,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'create', 'show'
     ]);
 
-    // Students type, route admin/manage-students
-    Route::resource('manage-students.type', StudentTypeController::class)->except('show');
+    // Students type, route admin/manage-students-category
+    Route::resource('manage-students-category', StudentTypeController::class)->except('show');
 
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except([
