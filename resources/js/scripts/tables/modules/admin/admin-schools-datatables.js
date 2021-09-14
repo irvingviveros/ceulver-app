@@ -275,9 +275,17 @@ $(function () {
         success: function (response) {
           if (response > 0){
             $('.modal').modal('hide');
-
+            //Toster popup
+            toastr['success']('El registro ha sido creado correctamente', 'Registro creado', {
+              closeButton: true,
+              tapToDismiss: false,
+              progressBar: true,
+            });
           } else if(response == 0){
-            alert('School already in DB.');
+            toastr['warning']('La institución ya se encontraba registrada', {
+              closeButton: true,
+              tapToDismiss: false,
+            });
           }else{
             alert(response);
           }
@@ -296,17 +304,46 @@ $(function () {
 
   // Delete Record
   $('.datatables-basic tbody').on('click', '.delete-record', function (event) {
+
     let id  = $(event.currentTarget).attr('data-id');
     let _url = window.location.origin + `/admin/manage-schools/${id}`;
 
-    $.ajax({
-      url: _url,
-      type: 'post',
-      data: {_method: 'delete', _token: CSRF_TOKEN},
-      success: function (response) {
-        dt_basic.row($(this).parents('tr')).remove().draw();
+    Swal.fire({
+      title: 'Confirme la eliminación',
+      text: "No se podrá revertir el cambio",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: "Cancelar",
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-outline-danger ms-1'
+      },
+      buttonsStyling: false
+    }).then(function (result) {
+      if (result.value) {
+
+        $.ajax({
+          url: _url,
+          type: 'post',
+          data: {_method: 'delete', _token: CSRF_TOKEN},
+          success: function (response) {
+            dt_basic.row($(this).parents('tr')).remove().draw();
+          }
+        });
+        // Toaster popup
+        toastr['success']('El registro ha sido eliminado correctamente', 'Registro eliminado', {
+          closeButton: true,
+          tapToDismiss: false,
+          progressBar: true,
+        });
       }
-    });
+    })
   });
 
 });
+
+
+
+
+

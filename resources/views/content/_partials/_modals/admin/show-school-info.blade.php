@@ -74,7 +74,6 @@
                                 name="school-registration"
                                 class="form-control flatpickr-human-friendly"
                                 placeholder="Octubre 14, 2020"
-{{--                                value="{{$school -> created_at}}"--}}
                                 disabled
                         />
                     </div>
