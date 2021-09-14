@@ -29,7 +29,6 @@ class CreateActivityLogsTable extends Migration
             // Foreign key
             $table->foreignId('school_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('role_id')->constrained();
         });
     }
 

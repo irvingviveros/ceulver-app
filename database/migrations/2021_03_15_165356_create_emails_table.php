@@ -28,7 +28,6 @@ class CreateEmailsTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->constrained();
-            $table->foreignId('role_id')->constrained();
             $table->foreignId('academic_year_id')->constrained();
         });
     }

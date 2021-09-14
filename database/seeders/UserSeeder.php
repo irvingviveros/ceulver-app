@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
         $date = now();   //Get current date
 
         DB::table('users')->insert([
-            'role_id' => 1,
             'school_id' => 1,
             'username' => 'sudo',
             'email' => 'irvingviveros@outlook.com',
