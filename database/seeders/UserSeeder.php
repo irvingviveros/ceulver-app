@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $date = now();   //Get current date
 
-        DB::table('users')->insert([
+        User::create([
             'school_id' => 1,
             'username' => 'sudo',
             'email' => 'irvingviveros@outlook.com',
@@ -24,6 +24,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('sudo!'),
             'created_at' => $date,
             'updated_at' => $date
-        ]);
+        ])->assignRole('admin');
     }
 }
