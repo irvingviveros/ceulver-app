@@ -6,7 +6,7 @@ use App\Models\School;
 use App\Models\StudentType;
 use Illuminate\Http\Request;
 
-class StudentTypeController extends Controller
+class StudentConventionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class StudentTypeController extends Controller
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"], ['link' => "javascript:void(0)", 'name' => "Alumnos"], ['name' => "Tipo de alumnos"]
         ];
-        return view('modules.student.type.index', ['breadcrumbs' => $breadcrumbs], compact('studentTypes'));
+        return view('modules.student.convention.index', ['breadcrumbs' => $breadcrumbs], compact('studentTypes'));
     }
 
     /**
@@ -35,10 +35,10 @@ class StudentTypeController extends Controller
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"], ['link' => "javascript:void(0)", 'name' => "Alumnos"],
-            ['link' => "admin/manage-students/type", 'name' => "Tipo de alumnos"], ['name' => "Nuevo tipo de alumno"]
+            ['link' => "admin/manage-students/convention", 'name' => "Tipo de alumnos"], ['name' => "Nuevo tipo de alumno"]
         ];
 
-        return view('modules.student.type.create', ['breadcrumbs' => $breadcrumbs], compact(['studentTypes', 'schools']));
+        return view('modules.student.convention.create', ['breadcrumbs' => $breadcrumbs], compact(['studentTypes', 'schools']));
     }
 
     /**
@@ -73,9 +73,9 @@ class StudentTypeController extends Controller
             // Insert data into the DB
             $value = StudentType::insertData($data);
             if($value > 0){
-                return redirect(route('student-type'))->with('status', 'El nuevo tipo de alumno se ha creado correctamente.');
+                return redirect(route('convention.index'))->with('status', 'El nuevo tipo de alumno se ha creado correctamente.');
             }else{
-                return redirect(route('student-type'))->with('status', 'El tipo de alumno es repetido, intente uno nuevo.');
+                return redirect(route('convention.index'))->with('status', 'El tipo de alumno es repetido, intente uno nuevo.');
             }
         } else {
             echo 'Fill all fields.';
@@ -92,7 +92,7 @@ class StudentTypeController extends Controller
     {
         // Find student type by id
         $studentType = StudentType::findOrFail($id);
-        return view('modules.student.type.edit', compact('studentType'));
+        return view('modules.student.convention.edit', compact('studentType'));
     }
 
     /**
@@ -111,7 +111,7 @@ class StudentTypeController extends Controller
         $studenType->type = $request->input('student-type');
 
         $studenType->save();
-        return redirect(route('student-type'))->with('status', 'Se ha actualizado el registro correctamente.');
+        return redirect(route('convention.index'))->with('status', 'Se ha actualizado el registro correctamente.');
     }
 
     /**
@@ -124,6 +124,6 @@ class StudentTypeController extends Controller
     {
         $studentType = StudentType::findOrFail($id);
         $studentType -> delete();
-        return redirect(route('student-type'))->with('status', 'Se ha eliminado el registro correctamente.');
+        return redirect(route('convention.index'))->with('status', 'Se ha eliminado el registro correctamente.');
     }
 }
