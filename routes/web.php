@@ -6,7 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaterkitController;
-use App\Http\Controllers\StudentTypeController;
+use App\Http\Controllers\StudentConventionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
         // Student convention types, route admin/manage-students/convention
-        Route::resource('convention', StudentTypeController::class)->except('show');
+        Route::resource('convention', StudentConventionController::class)->except('show');
     });
 
     // Careers management, route admin/manage-careers
