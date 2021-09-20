@@ -3,6 +3,7 @@
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\StudentTypeController;
@@ -40,13 +41,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'create', 'show'
     ]);
 
-    // Students type, route admin/manage-students-category
-    Route::resource('manage-students-category', StudentTypeController::class)->except('show');
+    // Students management
+    Route::group(['prefix' => 'manage-students'], function() {
+        // Student convention types, route admin/manage-students/convention
+        Route::resource('convention', StudentTypeController::class)->except('show');
+    });
 
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except([
         'create', 'show'
     ]);
+
+    Route::resource('roles', RoleController::class);
 });
 
 // locale Route

@@ -2,6 +2,15 @@
 
 @section('title', 'Tipo de alumnos')
 
+@section('vendor-style')
+    {{-- vendor css files --}}
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/dataTables.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+@endsection
+
 @section('content')
 <!-- Hoverable rows start -->
 <div class="row" id="table-hover-row">
@@ -9,9 +18,9 @@
         <div class="card">
             <div class="card-header border-bottom p-1">
                 <div class="head-label"></div>
-                <div class="dt-action-buttons text-right">
+                <div class="dt-action-buttons text-end">
                     <div class="dt-buttons d-inline-flex">
-                        <a href="{{ route('manage-students-category.create') }}" class="btn dt-button create-new btn btn-primary" tabindex="0" type="button">
+                        <a href="{{ route('convention.create') }}" class="btn dt-button create-new btn btn-primary" tabindex="0" type="button">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-50 font-small-4">
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -43,10 +52,10 @@
                                     <i data-feather="more-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                    <form action="{{ url('admin/manage-students/type/'.$studentType->id) }}" method="post">
+                                    <form action="{{ url('admin/manage-students/convention/'.$studentType->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <a class="dropdown-item" href="{{ url('admin/manage-students/type/'.$studentType->id.'/edit') }}">
+                                        <a class="dropdown-item" href="{{ url('admin/manage-students-convention'.$studentType->id.'/edit') }}">
                                             <i data-feather="edit-2" class="mr-50"></i>
                                             <span>Editar</span>
                                         </a>

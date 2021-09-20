@@ -12,7 +12,7 @@
                         <h4 class="card-title">Crear registro</h4>
                     </div>
                     <div class="card-body">
-                        <form class="form form-vertical" method="post" action="{{ route('store-student-type') }}">
+                        <form class="form form-vertical" method="post" action="{{ route('convention.store') }}">
                             @csrf
                             <div class="row">
                                 <div class="col-12">

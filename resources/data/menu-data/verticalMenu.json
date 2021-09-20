@@ -35,10 +35,16 @@
       "slug": "students",
       "submenu": [
         {
-          "url": "admin/manage-students-category",
-          "name": "Students Type",
+          "url": "admin/manage-students-list",
+          "name": "Manage Students",
           "icon": "circle",
-          "slug": "students-type"
+          "slug": "manage-students"
+        },
+        {
+          "url": "admin/manage-students/convention",
+          "name": "Students Convention",
+          "icon": "circle",
+          "slug": "students-convention"
         }
       ]
     },
@@ -54,7 +60,7 @@
       "slug": "",
       "submenu": [
         {
-          "url": "app/access-roles",
+          "url": "admin/roles",
           "name": "Roles",
           "icon": "circle",
           "slug": "app-access-roles"
