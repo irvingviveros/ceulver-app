@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\School;
-use App\Models\StudentType;
+use App\Models\StudentConvention;
 use Illuminate\Http\Request;
 
 class StudentConventionController extends Controller
@@ -15,7 +15,7 @@ class StudentConventionController extends Controller
      */
     public function index()
     {
-        $studentTypes = StudentType::all();
+        $studentTypes = StudentConvention::all();
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"], ['link' => "javascript:void(0)", 'name' => "Alumnos"], ['name' => "Tipo de alumnos"]
@@ -30,7 +30,7 @@ class StudentConventionController extends Controller
      */
     public function create()
     {
-        $studentTypes = StudentType::all();
+        $studentTypes = StudentConvention::all();
         $schools = School::all();
 
         $breadcrumbs = [
@@ -71,7 +71,7 @@ class StudentConventionController extends Controller
             );
 
             // Insert data into the DB
-            $value = StudentType::insertData($data);
+            $value = StudentConvention::insertData($data);
             if($value > 0){
                 return redirect(route('convention.index'))->with('status', 'El nuevo tipo de alumno se ha creado correctamente.');
             }else{
@@ -91,7 +91,7 @@ class StudentConventionController extends Controller
     public function edit($id)
     {
         // Find student type by id
-        $studentType = StudentType::findOrFail($id);
+        $studentType = StudentConvention::findOrFail($id);
         return view('modules.student.convention.edit', compact('studentType'));
     }
 
@@ -104,7 +104,7 @@ class StudentConventionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $studenType = StudentType::findOrFail($id);
+        $studenType = StudentConvention::findOrFail($id);
 
         $studenType->type = $request->input('student-type');
         $studenType->note = $request->input('student-type-note');
@@ -122,7 +122,7 @@ class StudentConventionController extends Controller
      */
     public function destroy($id)
     {
-        $studentType = StudentType::findOrFail($id);
+        $studentType = StudentConvention::findOrFail($id);
         $studentType -> delete();
         return redirect(route('convention.index'))->with('status', 'Se ha eliminado el registro correctamente.');
     }

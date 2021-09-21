@@ -53,7 +53,7 @@ class CreateAdmissionsTable extends Migration
             // Foreign key
             $table->foreignId('class_id')->references('id')->on('classes');
             $table->foreignId('career_id')->nullable()->constrained()->onDelete('set null');
-            $table->foreignId('student_type_id')->constrained();
+            $table->foreignId('convention_id')->constrained();
             $table->foreignId('guardian_id')->nullable()->constrained();
         });
     }

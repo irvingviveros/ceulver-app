@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class StudentType extends Model
+class StudentConvention extends Model
 {
     use HasFactory;
 
@@ -27,9 +27,9 @@ class StudentType extends Model
      */
     public static function insertData($data){
 
-        $value=DB::table('student_types')->where('type', $data['type'])->get();
+        $value=DB::table('student_conventions')->where('convention', $data['convention'])->get();
         if($value->count() == 0){
-            return DB::table('student_types')->insertGetId($data);
+            return DB::table('student_conventions')->insertGetId($data);
         }else{
             return 0;
         }

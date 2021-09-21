@@ -17,13 +17,15 @@ class CreateTeachersTable extends Migration
             $table->id();
             $table->string('national_id', 18)->unique()->nullable(true);  //CURP
             $table->string('responsibility', 100);  // Materia por impartir
-            $table->string('first_name',100);
-            $table->string('last_name',100);
+            $table->string('first_name', 25);
+            $table->string('middle_name', 25);
+            $table->string('paternal_surname', 25);
+            $table->string('maternal_surname', 25);
             $table->string('email',50);
             $table->string('phone',10);
             $table->string('address',250)->nullable(true);
             $table->string('blood_group', 4)->nullable(true);
-            $table->date('birthday');
+            $table->date('birth_date');
             $table->date('joining_date');
             $table->date('resign_date')->nullable(true);
             $table->string('photo', 100)->nullable(true);

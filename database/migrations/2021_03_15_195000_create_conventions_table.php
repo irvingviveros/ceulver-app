@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentTypesTable extends Migration
+class CreateConventionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateStudentTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_types', function (Blueprint $table) {
+        Schema::create('conventions', function (Blueprint $table) {
             $table->id();
-            $table->string('type',100);
+            $table->string('convention',100);
             $table->text('note')->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
@@ -34,6 +34,6 @@ class CreateStudentTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_types');
+        Schema::dropIfExists('conventions');
     }
 }
