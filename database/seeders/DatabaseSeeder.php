@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SystemAdminSeeder::class,
             CareerSeeder::class,
-            StudentConvention::class,
+            ConventionSeeder::class
         ]);
     }
 }

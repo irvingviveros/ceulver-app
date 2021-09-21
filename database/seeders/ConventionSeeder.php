@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StudentConvention extends Seeder
+class ConventionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,10 @@ class StudentConvention extends Seeder
     {
         $date = now();   //Get current date
 
-        DB::table('student_types')->insert([
+        DB::table('conventions')->insert([
             [
                 'school_id' => 1,
-                'type' => 'Normal',
+                'convention' => 'Normal',
                 'note' => 'Estudiante normal',
                 'status' => 1,
                 'created_by' => 0,
@@ -29,7 +29,7 @@ class StudentConvention extends Seeder
             ],
             [
                 'school_id' => 1,
-                'type' => 'Becado',
+                'convention' => 'Becado',
                 'note' => 'Estudiante becado',
                 'status' => 1,
                 'created_by' => 0,
