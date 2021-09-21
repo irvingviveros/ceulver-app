@@ -25,7 +25,7 @@ class School extends Model
      */
     public function studentType()
     {
-        return $this->hasMany(StudentType::class);
+        return $this->hasMany(StudentConvention::class);
     }
 
     public function careers(){
