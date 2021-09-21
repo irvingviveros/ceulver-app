@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 use App\Models\School;
+use App\Repositories\SchoolRepository;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
+    protected $school;
+
+    public function __construct(SchoolRepository $school)
+    {
+        $this->school = $school;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +58,7 @@ class SchoolController extends Controller
             );
 
             // Call insertData() method of School Model
-            $value = School::insertData($data);
+            $value = $this->school->insertData($data);
             if($value){
                 echo $value;
             }else{
