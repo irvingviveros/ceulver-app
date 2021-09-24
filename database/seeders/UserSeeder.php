@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -16,14 +16,25 @@ class UserSeeder extends Seeder
     {
         $date = now();   //Get current date
 
-        User::create([
-            'school_id' => 1,
-            'username' => 'sudo',
-            'email' => 'irvingviveros@outlook.com',
-            'status' => 1,
-            'password' => bcrypt('sudo!'),
-            'created_at' => $date,
-            'updated_at' => $date
-        ])->assignRole('admin');
+        DB::table('users')->insert([
+            [
+                'school_id' => 1,
+                'username' => 'sudo',
+                'email' => 'super-admin@mail.com',
+                'status' => 1,
+                'password' => bcrypt('super-admin'),
+                'created_at' => $date,
+                'updated_at' => $date
+            ],
+            [
+                'school_id' => 1,
+                'username' => 'sudo2',
+                'email' => 'super-admin2@mail.com',
+                'status' => 1,
+                'password' => bcrypt('super-admin2'),
+                'created_at' => $date,
+                'updated_at' => $date
+            ]
+        ]);
     }
 }
