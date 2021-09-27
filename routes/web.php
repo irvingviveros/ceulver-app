@@ -4,9 +4,10 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\StudentConventionController;
+use App\src\controller\SchoolController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-
+//Route::group(['prefix' => 'admin'], function() {
     // Schools management, route admin/manage-schools
     Route::resource('manage-schools', SchoolController::class)->except([
         'create', 'show'
