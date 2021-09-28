@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\src\Domain\School;
+namespace Domain\School\Repositories;
 
 interface SchoolRepository {
 

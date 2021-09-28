@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\src\Domain\School;
+namespace Domain\School\Services;
 
 use App\src\domain\shared\exception\CeulverOperationNotPermittedException;
 
