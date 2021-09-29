@@ -39,5 +39,4 @@ class SchoolRepository {
         DB::table('schools')->where('id', '=', $id)->delete();
     }
 
-
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\src\Infraestructure\School;
+namespace Infraestructure\School;
 
-use App\src\domain\School\SchoolRepository;
+use Domain\School\Repositories\SchoolRepository;
 use Illuminate\Support\Facades\DB;
 
 class EloquentSchoolRepository implements SchoolRepository {

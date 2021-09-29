@@ -1,14 +1,14 @@
 <?php
 
-namespace App\src\App\School\Controllers;
+namespace App\School\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\src\domain\School\SchoolService;
-use App\src\domain\shared\exception\CeulverOperationNotPermittedException;
-use App\src\Infraestructure\School\EloquentSchoolRepository;
+use Domain\School\Services\SchoolService;
+use Domain\shared\exception\CeulverOperationNotPermittedException;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Infraestructure\School\EloquentSchoolRepository;
 
 class SchoolController extends Controller {
 
