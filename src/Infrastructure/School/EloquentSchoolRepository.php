@@ -1,6 +1,6 @@
 <?php
 
-namespace Infraestructure\School;
+namespace Infrastructure\School;
 
 use Domain\School\Repositories\SchoolRepository;
 use Illuminate\Support\Facades\DB;
