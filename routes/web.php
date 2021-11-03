@@ -6,7 +6,7 @@ use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StaterkitController;
 use App\Http\Controllers\StudentConventionController;
-use App\src\App\School\Controllers\SchoolController;
+use App\School\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

@@ -18,6 +18,7 @@
 
 @section('content')
     <!-- Basic table -->
+    {!! Toastr::message() !!}
     <section id="basic-datatable">
         <div class="row">
             <div class="col-12">
@@ -98,7 +99,7 @@
         </div>
     </section>
 
-    @include('content._partials._modals.admin.show-school-info')
+    @include('content._partials._modals.admin.school.show-school-info')
     <!--/ Basic table -->
 @endsection
 

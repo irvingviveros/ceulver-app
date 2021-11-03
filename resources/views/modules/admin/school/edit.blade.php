@@ -1,26 +1,37 @@
-@extends('layouts/contentLayoutMaster')
+@extends('layouts.contentLayoutMaster')
 
 @section('title', 'Editar información de la institución')
 
 @section('vendor-style')
-    <!-- vendor css files -->
+    {{-- vendor css files --}}
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/pickadate/pickadate.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
 @endsection
 
 @section('page-style')
     <!-- Page css files -->
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-file-uploader.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
+
+@section('overwrite-page-script')
+    <!-- Custom scripts -->
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+@endsection
+
+
 
 @section('content')
     <!-- Basic multiple Column Form section start -->
+    {!! Toastr::message() !!}
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
                 <form class="form" method="post" action="{{route('manage-schools.update', $school->id)}}" autocomplete="new-text" enctype="multipart/form-data">
-                    @csrf
                     @method('PUT')
+                    @csrf
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Información básica</h4>
@@ -80,6 +91,7 @@
                                                 class="form-control"
                                                 name="school-phone"
                                                 placeholder="Teléfono"
+                                                maxlength="10"
                                                 value="{{$school -> phone}}"
                                         />
                                     </div>

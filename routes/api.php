@@ -2,9 +2,9 @@
 
 use App\Models\Career;
 use App\Models\EmailSetting;
-use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Infrastructure\School\Model\School;
 use Yajra\DataTables\DataTables;
 
 /*

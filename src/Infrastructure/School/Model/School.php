@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Infrastructure\School\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,14 +19,18 @@ class School extends Model
     }
 
     /**
-     * Get the student type associated with the School.
+     * Get the student convention associated with the School.
      *  $school -> studentType
      */
-    public function studentType()
+    public function studentConvention()
     {
         return $this->hasMany(StudentConvention::class);
     }
 
+    /**
+     * Get those careers associated with the School.
+     *  $school -> studentType
+     */
     public function careers(){
         return $this->belongsToMany(Career::class, 'career_school')
             ->using(CareerSchool::class)
