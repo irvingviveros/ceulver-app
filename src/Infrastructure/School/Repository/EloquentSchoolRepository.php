@@ -29,7 +29,6 @@ class EloquentSchoolRepository implements SchoolRepository {
     /**
      *  Insert data and validation
      *  Check if school name already exists in schools table or not.
-     *
      */
     public function checkIfNameExists($name): bool
     {
@@ -43,4 +42,8 @@ class EloquentSchoolRepository implements SchoolRepository {
         return DB::table('schools')->insertGetId($data);
     }
 
+    public function all($columns = ['*'])
+    {
+        return $this->model->all($columns);
+    }
 }

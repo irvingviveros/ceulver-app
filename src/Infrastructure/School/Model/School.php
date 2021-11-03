@@ -4,6 +4,7 @@ namespace Infrastructure\School\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Infrastructure\Agreement\Model\Agreement;
 
 class School extends Model
 {
@@ -22,9 +23,9 @@ class School extends Model
      * Get the student convention associated with the School.
      *  $school -> studentType
      */
-    public function studentConvention()
+    public function agreement()
     {
-        return $this->hasMany(StudentConvention::class);
+        return $this->hasMany(Agreement::class);
     }
 
     /**

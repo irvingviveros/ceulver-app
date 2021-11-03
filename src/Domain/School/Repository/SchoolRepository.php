@@ -11,4 +11,11 @@ interface SchoolRepository {
 
     public function create($data): int;
 
+    /**
+     * Get all the models from the database.
+     *
+     * @param  array|mixed  $columns
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function all($columns = ['*']);
 }

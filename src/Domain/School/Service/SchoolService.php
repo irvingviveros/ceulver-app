@@ -7,7 +7,8 @@ use Domain\School\Entity\SchoolEntity;
 use Domain\shared\exception\CeulverOperationNotPermittedException;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
-class SchoolService {
+class SchoolService
+{
     private EloquentSchoolRepository $schoolRepository;
 
     /**
