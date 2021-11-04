@@ -43,7 +43,7 @@ class SchoolController extends Controller {
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -103,7 +103,7 @@ class SchoolController extends Controller {
      *
      * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, int $id)
     {
@@ -131,13 +131,7 @@ class SchoolController extends Controller {
         try {
             $school->save();
         } catch (Exception $ex) {
-            dd($ex);
-            // TODO: Arreglar las excepciones
-//            Toastr::error('Ha habido un error al intentar actualizar el registro', 'No se ha actualizado', [
-//                "closeButton" => "true",
-//                "tapToDismiss" => "false",
-//                "progressBar" => "true"
-//            ]);
+
         }
 
         return redirect('admin/manage-schools')->with('status', 'La escuela se ha actualizado correctamente');
@@ -147,7 +141,7 @@ class SchoolController extends Controller {
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(int $id): Response
     {

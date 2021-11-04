@@ -22,9 +22,9 @@ class SchoolService
      * @throws CeulverOperationNotPermittedException
      */
     public function create(
-        SchoolEntity $school
-        ,         $createdBy
-        ,         $modifiedBy
+        SchoolEntity $school,
+        $createdBy,
+        $modifiedBy
     ): int
     {
 
