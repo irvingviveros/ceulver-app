@@ -3,24 +3,30 @@
 namespace App\Agreement\Controllers;
 
 use App\Http\Controllers\Controller;
+use Domain\Agreement\Entity\AgreementEntity;
+use Domain\Agreement\Service\AgreementService;
+use Domain\Shared\exception\CeulverOperationNotPermittedException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Infrastructure\Agreement\Model\Agreement;
+use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class AgreementController extends Controller
 {
+    private Agreement $agreementModel;
+    private EloquentAgreementRepository $agreementRepository;
+    private AgreementService $agreementService;
     private EloquentSchoolRepository $schoolRepository;
 
     public function __construct(EloquentSchoolRepository $schoolRepository)
     {
+        $this->agreementModel = new Agreement();
+        $this->agreementRepository = new EloquentAgreementRepository($this->agreementModel);
+        $this->agreementService = new AgreementService($this->agreementRepository);
         $this->schoolRepository = $schoolRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         // Get only the id and name from school table
@@ -37,68 +43,98 @@ class AgreementController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Declare new Agreement object
+        $agreement = new AgreementEntity();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Agreement  $agreement
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Agreement $agreement)
-    {
-        //
+        // Request and set agreement data
+        $agreement->setAgreement(
+            $request->input('agreement')
+        );
+
+        $agreement->setNote(
+            $request->input('note')
+        );
+
+        $agreement->setStatus(
+            $request->input('status')
+        );
+
+        // Request current user data
+        $user = auth()->user();
+        $createdBy = $user->id;
+        $modifiedBy = $user->id;
+
+        // Try to create new school
+        try {
+            $id = $this->agreementService->create(
+                $agreement, $createdBy, $modifiedBy
+            );
+
+            return response($id, 200);
+        } catch(CeulverOperationNotPermittedException $cop) {
+            return response($cop->getMessage(), 400);
+        } catch(Exception $ex) {
+            //TODO mandar al log el mensaje de error
+            return response("Error del interno del servidor", 500);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Agreement  $agreement
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return Response
      */
-    public function edit(Agreement $agreement)
+    public function edit($id)
     {
-        //
+        // Find agreement
+        $agreement = $this->agreementRepository->findById($id);
+        //return view('', compact('agreement'))
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Agreement  $agreement
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return Response
      */
-    public function update(Request $request, Agreement $agreement)
+    public function update(Request $request, int $id)
     {
-        //
+        // Find agreement
+        $agreement = $this->agreementRepository->findById($id);
+
+        $agreement->agreement = $request->input('agreement');
+        $agreement->note = $request->input('note');
+        $agreement->status = $request->input('status');
+        //$agreement->school_id = $request->input('school_id');
+
+        try{
+            $agreement->save();
+        } catch (Exception $ex) {
+
+        }
+
+        return redirect('')->with('status', 'El convenio se ha actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Agreement  $agreement
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return Response
      */
-    public function destroy(Agreement $agreement)
+    public function destroy(int $id)
     {
-        //
+        $agreement = $this->agreementRepository->findById($id);
+        $agreement->delete();
+        return Response(200);
     }
 }
