@@ -1,13 +1,28 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\StudentConvention\Controllers;
 
-use App\Models\School;
-use App\Models\StudentConvention;
+use App\Http\Controllers\Controller;
+use Domain\StudentConvention\Service\StudentConventionService;
 use Illuminate\Http\Request;
+use Infrastructure\School\Model\School;
+use Infrastructure\StudentConvention\Model\StudentConvention;
+use Infrastructure\StudentConvention\Repository\EloquentStudentConventionRepository;
 
 class StudentConventionController extends Controller
 {
+    private StudentConvention $studentConventionModel;
+    private EloquentStudentConventionRepository $studentConventionRepository;
+    private StudentConventionService $studentConventionService;
+
+    public function __construct()
+    {
+        $this->studentConventionModel = new StudentConvention();
+        $this->studentConventionRepository = new EloquentStudentConventionRepository($this->studentConventionModel);
+        $this->studentConventionService = new StudentConventionService($this->studentConventionRepository);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +33,13 @@ class StudentConventionController extends Controller
         $studentTypes = StudentConvention::all();
 
         $breadcrumbs = [
-            ['link' => 'home', 'name' => "Inicio"], ['link' => "javascript:void(0)", 'name' => "Alumnos"], ['name' => "Tipo de alumnos"]
+            ['link' => 'home', 'name' => "Inicio"],
+            ['link' => "javascript:void(0)", 'name' => "Alumnos"],
+            ['name' => "Convenio de alumnos"]
         ];
-        return view('modules.student.convention.index', ['breadcrumbs' => $breadcrumbs], compact('studentTypes'));
+        return view(
+            'modules.student.convention.index', ['breadcrumbs' => $breadcrumbs],
+            compact('studentTypes'));
     }
 
     /**

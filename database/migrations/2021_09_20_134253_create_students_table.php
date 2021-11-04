@@ -52,7 +52,7 @@ class CreateStudentsTable extends Migration
             // Foreign key
             $table->foreignId('school_id')->constrained();
             $table->foreignId('user_id')->unique()->constrained();
-            $table->foreignId('convention_id')->constrained();
+            $table->foreignId('agreement_id')->constrained();
             $table->foreignId('guardian_id')->constrained();
         });
     }

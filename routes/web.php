@@ -1,11 +1,11 @@
 <?php
 
+use App\Agreement\Controllers\AgreementController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\StaterkitController;
-use App\Http\Controllers\StudentConventionController;
 use App\School\Controllers\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -45,7 +45,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
         // Student convention types, route admin/manage-students/convention
-        Route::resource('convention', StudentConventionController::class)->except('show');
+        //Route::resource('convention', StudentConventionController::class)->except('show');
+        // Student agreement types, route admin/manage-students/agreement
+        Route::resource('agreement', AgreementController::class)->except([
+            'create', 'show'
+        ]);
     });
 
     // Careers management, route admin/manage-careers

@@ -41,7 +41,7 @@
           "slug": "manage-students"
         },
         {
-          "url": "admin/manage-students/convention",
+          "url": "admin/manage-students/agreement",
           "name": "Students Convention",
           "icon": "circle",
           "slug": "students-convention"

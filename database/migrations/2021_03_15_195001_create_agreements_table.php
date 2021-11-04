@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConventionsTable extends Migration
+class CreateAgreementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateConventionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('conventions', function (Blueprint $table) {
+        Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->string('convention',100);
+            $table->string('agreement',100);
             $table->text('note')->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
@@ -34,6 +34,6 @@ class CreateConventionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conventions');
+        Schema::dropIfExists('agreements');
     }
 }
