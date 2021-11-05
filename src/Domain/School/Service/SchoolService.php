@@ -5,7 +5,8 @@ namespace Domain\School\Service;
 
 use Domain\School\Entity\SchoolEntity;
 use Domain\School\Repository\SchoolRepository;
-use Domain\shared\exception\CeulverOperationNotPermittedException;
+use Domain\Shared\Exception\CeulverOperationNotPermittedException;
+use Domain\Shared\Exception\ValueNotFoundException;
 
 class SchoolService
 {
@@ -14,12 +15,12 @@ class SchoolService
     /**
      * @param SchoolRepository $schoolRepository
      */
-    public function __construct(SchoolRepository $schoolRepository) {
+    public function __construct(SchoolRepository $schoolRepository){
         $this->schoolRepository = $schoolRepository;
     }
 
     /**
-     * @throws CeulverOperationNotPermittedException
+     * @throws CeulverOperationNotPermittedException|ValueNotFoundException
      */
     public function create(
         SchoolEntity $school,
@@ -27,7 +28,6 @@ class SchoolService
         $modifiedBy
     ): int
     {
-
         if ($school->getSchoolName() == ''
             && $school->getSchoolAddress() == ''
             && $school->getSchoolEmail() == ''
@@ -45,12 +45,12 @@ class SchoolService
         }
 
         $data = array(
-            'school_name'=>$school->getSchoolName(),
-            "address"=>$school->getSchoolAddress(),
-            "email"=>$school->getSchoolEmail(),
-            "enable_online_admission"=>$school->getSchoolAdmission(),
-            "created_by"=>$createdBy,
-            "modified_by"=>$modifiedBy
+            'school_name'               =>  $school->getSchoolName(),
+            "address"                   =>  $school->getSchoolAddress(),
+            "email"                     =>  $school->getSchoolEmail(),
+            "enable_online_admission"   =>  $school->getSchoolAdmission(),
+            "created_by"                =>  $createdBy,
+            "modified_by"               =>  $modifiedBy
         );
 
         $school_id = $this->schoolRepository->create($data);
@@ -62,6 +62,41 @@ class SchoolService
 
         // Si no existe una escuela, entonces retorna 0
         return 0;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     * @throws ValueNotFoundException
+     */
+    public function findById($id)
+    {
+        $school = $this->schoolRepository->findById($id);
+
+        if ($school == null) {
+            throw new ValueNotFoundException(
+              "La escuela no existe"
+            );
+        }
+
+        return $school;
+    }
+
+    /**
+     * @throws ValueNotFoundException
+     */
+    public function update($data)
+    {
+        $school = $this->findById($data['id']);
+
+        $this->schoolRepository->update($school);
+    }
+
+    public function delete($id)
+    {
+        $school = $this->findById($id);
+
+        $this->schoolRepository->delete($school);
     }
 
     public function saveLogo($request)

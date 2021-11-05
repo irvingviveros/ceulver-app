@@ -9,6 +9,9 @@ use Infrastructure\School\Model\School;
 
 class EloquentSchoolRepository implements SchoolRepository {
 
+    /**
+     * @var School
+     */
     protected School $model;
 
     /**
@@ -21,14 +24,18 @@ class EloquentSchoolRepository implements SchoolRepository {
         $this->model = $school;
     }
 
+    /**
+     * @param $id
+     * @return Model
+     */
     public function findById($id): Model
     {
         return $this->model->findOrFail($id);
     }
 
     /**
-     *  Insert data and validation
-     *  Check if school name already exists in schools table or not.
+     * @param $name
+     * @return bool
      */
     public function checkIfNameExists($name): bool
     {
@@ -37,11 +44,35 @@ class EloquentSchoolRepository implements SchoolRepository {
         return $row->count() > 0;
     }
 
+    /**
+     * @param $data
+     * @return int
+     */
     public function create($data): int
     {
         return DB::table('schools')->insertGetId($data);
     }
 
+    /**
+     * @param $data
+     */
+    public function update($data)
+    {
+        $data->save();
+    }
+
+    /**
+     * @param $data
+     */
+    public function delete($data)
+    {
+        $data->delete();
+    }
+
+    /**
+     * @param array|mixed|string[] $columns
+     * @return \Illuminate\Database\Eloquent\Collection|School[]|EloquentSchoolRepository[]
+     */
     public function all($columns = ['*'])
     {
         return $this->model->all($columns);

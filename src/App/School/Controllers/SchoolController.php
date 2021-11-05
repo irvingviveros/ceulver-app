@@ -4,6 +4,7 @@ namespace App\School\Controllers;
 
 use App\Http\Controllers\Controller;
 use Domain\School\Entity\SchoolEntity;
+use Domain\School\Repository\SchoolRepository;
 use Domain\School\Service\SchoolService;
 use Domain\shared\exception\CeulverOperationNotPermittedException;
 use Exception;
@@ -14,9 +15,9 @@ use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class SchoolController extends Controller {
 
-    private School $schoolModel;
-    private EloquentSchoolRepository $schoolRepository;
+    private SchoolRepository $schoolRepository;
     private SchoolService $schoolService;
+    private School $schoolModel;
 
     public function __construct()
     {
@@ -129,7 +130,7 @@ class SchoolController extends Controller {
         $school->status = $request->input('school-status');
 
         try {
-            $school->save();
+            $this->schoolRepository->update($school);
         } catch (Exception $ex) {
 
         }

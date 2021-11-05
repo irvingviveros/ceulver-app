@@ -1,15 +1,15 @@
 <?php
 declare(strict_types = 1);
 
-namespace Domain\School\Repository;
+namespace Domain\Career\Repository;
 
-interface SchoolRepository {
+interface CareerRepository {
 
-    public function findById($id);
+    public function create($data);
 
     public function checkIfNameExists($name): bool;
 
-    public function create($data): int;
+    public function findById($id);
 
     public function update($data);
 

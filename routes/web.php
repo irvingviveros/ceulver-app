@@ -1,7 +1,7 @@
 <?php
 
 use App\Agreement\Controllers\AgreementController;
-use App\Http\Controllers\CareerController;
+use App\Career\Controller\CareerController;
 use App\Http\Controllers\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
