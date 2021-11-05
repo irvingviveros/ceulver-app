@@ -4,17 +4,17 @@ declare(strict_types = 1);
 namespace Domain\School\Service;
 
 use Domain\School\Entity\SchoolEntity;
+use Domain\School\Repository\SchoolRepository;
 use Domain\shared\exception\CeulverOperationNotPermittedException;
-use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class SchoolService
 {
-    private EloquentSchoolRepository $schoolRepository;
+    private SchoolRepository $schoolRepository;
 
     /**
-     * @param EloquentSchoolRepository $schoolRepository
+     * @param SchoolRepository $schoolRepository
      */
-    public function __construct(EloquentSchoolRepository $schoolRepository) {
+    public function __construct(SchoolRepository $schoolRepository) {
         $this->schoolRepository = $schoolRepository;
     }
 
