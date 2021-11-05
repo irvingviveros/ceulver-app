@@ -9,6 +9,9 @@ use Infrastructure\Agreement\Model\Agreement;
 
 class EloquentAgreementRepository implements AgreementRepository
 {
+    /**
+     * @var Agreement
+     */
     protected Agreement $model;
 
     /**
@@ -21,9 +24,13 @@ class EloquentAgreementRepository implements AgreementRepository
         $this->model = $agreement;
     }
 
+    /**
+     * @param $id
+     * @return Model
+     */
     public function findById($id): Model
     {
-        return $this->model->findOrFail();
+        return $this->model->findOrFail($id);
     }
 
     /**
@@ -37,6 +44,10 @@ class EloquentAgreementRepository implements AgreementRepository
         return $row->count() > 0;
     }
 
+    /**
+     * @param $data
+     * @return int
+     */
     public function create($data): int
     {
         return DB::table('agreements')->insertGetId($data);
