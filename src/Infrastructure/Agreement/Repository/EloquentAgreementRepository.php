@@ -9,19 +9,29 @@ use Infrastructure\Agreement\Model\Agreement;
 
 class EloquentAgreementRepository implements AgreementRepository
 {
-    /**
-     * @var Agreement
-     */
-    protected Agreement $model;
 
     /**
-     * EloquentSchoolRepository constructor.
-     *
-     * @param Agreement $agreement
+     * @param $data
+     * @return int
      */
-    public function __construct(Agreement $agreement)
+    public function create($data): int
     {
-        $this->model = $agreement;
+        return DB::table('agreements')->insertGetId($data);
+    }
+
+    public function update($data)
+    {
+        $data->save();
+    }
+
+    public function delete($data)
+    {
+        $data->delete();
+    }
+
+    public function all($columns = ['*'])
+    {
+        return Agreement::all($columns);
     }
 
     /**
@@ -30,7 +40,7 @@ class EloquentAgreementRepository implements AgreementRepository
      */
     public function findById($id): Model
     {
-        return $this->model->findOrFail($id);
+        return Agreement::findOrFail($id);
     }
 
     /**
@@ -42,14 +52,5 @@ class EloquentAgreementRepository implements AgreementRepository
         $row = DB::table('agreements')->where('agreement_name')->get();
 
         return $row->count() > 0;
-    }
-
-    /**
-     * @param $data
-     * @return int
-     */
-    public function create($data): int
-    {
-        return DB::table('agreements')->insertGetId($data);
     }
 }

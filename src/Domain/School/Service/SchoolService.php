@@ -4,18 +4,18 @@ declare(strict_types = 1);
 namespace Domain\School\Service;
 
 use Domain\School\Entity\SchoolEntity;
-use Domain\School\Repository\SchoolRepository;
 use Domain\Shared\Exception\CeulverOperationNotPermittedException;
 use Domain\Shared\Exception\ValueNotFoundException;
+use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class SchoolService
 {
-    private SchoolRepository $schoolRepository;
+    private EloquentSchoolRepository $schoolRepository;
 
     /**
-     * @param SchoolRepository $schoolRepository
+     * @param EloquentSchoolRepository $schoolRepository
      */
-    public function __construct(SchoolRepository $schoolRepository){
+    public function __construct(EloquentSchoolRepository $schoolRepository){
         $this->schoolRepository = $schoolRepository;
     }
 
@@ -64,6 +64,11 @@ class SchoolService
         return 0;
     }
 
+    public function getAll($columns = ['*'])
+    {
+        return $this->schoolRepository->all($columns);
+    }
+
     /**
      * @param $id
      * @return mixed
@@ -92,6 +97,9 @@ class SchoolService
         $this->schoolRepository->update($school);
     }
 
+    /**
+     * @throws ValueNotFoundException
+     */
     public function delete($id)
     {
         $school = $this->findById($id);

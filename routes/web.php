@@ -1,12 +1,12 @@
 <?php
 
-use App\Agreement\Controllers\AgreementController;
+use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
-use App\Http\Controllers\EmailSettingController;
+use App\Email\Controller\EmailSettingController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\StaterkitController;
-use App\School\Controllers\SchoolController;
+use App\School\Controller\SchoolController;
+use App\Staterkit\Controller\StaterkitController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

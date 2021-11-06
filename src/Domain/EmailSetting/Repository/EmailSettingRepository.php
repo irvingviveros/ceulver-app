@@ -1,13 +1,13 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
-namespace Domain\Career\Repository;
+namespace Domain\EmailSetting\Repository;
 
-interface CareerRepository
-{
+interface EmailSettingRepository {
+
     public function create($data);
 
-    public function checkIfNameExists($name): bool;
+    public function checkIfExists($schoolId): bool;
 
     public function findById($id);
 

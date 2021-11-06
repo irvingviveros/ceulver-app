@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Agreement\Controllers;
+namespace App\Agreement\Controller;
 
 use App\Http\Controllers\Controller;
 use Domain\Agreement\Entity\AgreementEntity;
@@ -8,29 +8,27 @@ use Domain\Agreement\Service\AgreementService;
 use Domain\Shared\exception\CeulverOperationNotPermittedException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class AgreementController extends Controller
 {
-    private Agreement $agreementModel;
-    private EloquentAgreementRepository $agreementRepository;
     private AgreementService $agreementService;
-    private EloquentSchoolRepository $schoolRepository;
 
-    public function __construct(EloquentSchoolRepository $schoolRepository)
+    /**
+     *
+     */
+    public function __construct()
     {
-        $this->agreementModel = new Agreement();
-        $this->agreementRepository = new EloquentAgreementRepository($this->agreementModel);
-        $this->agreementService = new AgreementService($this->agreementRepository);
-        $this->schoolRepository = $schoolRepository;
+        $this->agreementService = new AgreementService(new EloquentAgreementRepository());
     }
 
     public function index()
     {
+        $schoolRepository = new EloquentSchoolRepository();
+
         // Get only the id and name from school table
-        $schools = $this->schoolRepository->all(['id', 'school_name']);
+        $schools = $schoolRepository->all(['id', 'school_name']);
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
@@ -95,7 +93,7 @@ class AgreementController extends Controller
     public function edit($id)
     {
         // Find agreement
-        $agreement = $this->agreementRepository->findById($id);
+        $agreement = $this->agreementService->findById($id);
         //return view('', compact('agreement'))
     }
 
@@ -109,7 +107,7 @@ class AgreementController extends Controller
     public function update(Request $request, int $id)
     {
         // Find agreement
-        $agreement = $this->agreementRepository->findById($id);
+        $agreement = $this->agreementService->findById($id);
 
         $agreement->agreement = $request->input('agreement');
         $agreement->note = $request->input('note');
@@ -133,7 +131,7 @@ class AgreementController extends Controller
      */
     public function destroy(int $id)
     {
-        $agreement = $this->agreementRepository->findById($id);
+        $agreement = $this->agreementService->findById($id);
         $agreement->delete();
         return Response(200);
     }

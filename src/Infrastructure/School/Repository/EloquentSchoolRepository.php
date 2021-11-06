@@ -10,27 +10,12 @@ use Infrastructure\School\Model\School;
 class EloquentSchoolRepository implements SchoolRepository {
 
     /**
-     * @var School
-     */
-    protected School $model;
-
-    /**
-     * EloquentSchoolRepository constructor.
-     *
-     * @param School $school
-     */
-    public function __construct(School $school)
-    {
-        $this->model = $school;
-    }
-
-    /**
      * @param $id
      * @return Model
      */
     public function findById($id): Model
     {
-        return $this->model->findOrFail($id);
+        return School::findOrFail($id);
     }
 
     /**
@@ -75,6 +60,6 @@ class EloquentSchoolRepository implements SchoolRepository {
      */
     public function all($columns = ['*'])
     {
-        return $this->model->all($columns);
+        return School::all($columns);
     }
 }

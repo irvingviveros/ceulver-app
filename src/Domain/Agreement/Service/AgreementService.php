@@ -5,17 +5,32 @@ namespace Domain\Agreement\Service;
 
 use Domain\Agreement\Entity\AgreementEntity;
 use Domain\Shared\exception\CeulverOperationNotPermittedException;
+use Domain\Shared\Exception\ValueNotFoundException;
 use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
 
 class AgreementService
 {
+    /**
+     * @var EloquentAgreementRepository
+     */
     private EloquentAgreementRepository $agreementRepository;
 
+    /**
+     * @param EloquentAgreementRepository $agreementRepository
+     */
     public function __construct(EloquentAgreementRepository $agreementRepository)
     {
         $this->agreementRepository = $agreementRepository;
     }
 
+    /**
+     * @param AgreementEntity $agreement
+     * @param $createdBy
+     * @param $modifiedBy
+     * @return int
+     * @throws CeulverOperationNotPermittedException
+     * @throws ValueNotFoundException
+     */
     public function create(
         AgreementEntity $agreement,
         $createdBy,
@@ -53,6 +68,46 @@ class AgreementService
 
         // If no agreement exist, then return 0
         return 0;
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws ValueNotFoundException
+     */
+    public function findById($id)
+    {
+        $agreement = $this->agreementRepository->findById($id);
+
+        if ($agreement == null) {
+            throw new ValueNotFoundException(
+                "El convenio no existe"
+            );
+        }
+
+        return $agreement;
+    }
+
+    /**
+     * @param $data
+     * @throws ValueNotFoundException
+     */
+    public function update($data)
+    {
+        $agreement = $this->findById($data['id']);
+
+        $this->agreementRepository->update($agreement);
+    }
+
+    /**
+     * @param $id
+     * @throws ValueNotFoundException
+     */
+    public function delete($id)
+    {
+        $agreement = $this->findById($id);
+
+        $this->agreementRepository->delete($agreement);
     }
 
 }

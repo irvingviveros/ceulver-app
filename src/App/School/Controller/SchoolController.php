@@ -1,30 +1,24 @@
 <?php
+declare(strict_types=1);
 
-namespace App\School\Controllers;
+namespace App\School\Controller;
 
 use App\Http\Controllers\Controller;
 use Domain\School\Entity\SchoolEntity;
-use Domain\School\Repository\SchoolRepository;
 use Domain\School\Service\SchoolService;
 use Domain\shared\exception\CeulverOperationNotPermittedException;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Infrastructure\School\Model\School;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
-class SchoolController extends Controller {
-
-    private SchoolRepository $schoolRepository;
+class SchoolController extends Controller
+{
     private SchoolService $schoolService;
-    private School $schoolModel;
 
     public function __construct()
     {
-        // TODO: Dependency Injection
-        $this->schoolModel = new School();
-        $this->schoolRepository = new EloquentSchoolRepository($this->schoolModel);
-        $this->schoolService = new SchoolService($this->schoolRepository);
+        $this->schoolService = new SchoolService(new EloquentSchoolRepository());
     }
 
     public function index()
@@ -49,7 +43,7 @@ class SchoolController extends Controller {
     public function edit($id)
     {
         // Find school
-        $school = $this->schoolRepository->findById($id);
+        $school = $this->schoolService->findById($id);
         return view('modules.admin.school.edit', compact('school'));
     }
 
@@ -57,7 +51,8 @@ class SchoolController extends Controller {
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response {
+    public function store(Request $request): Response
+    {
 
         // Declare new school object
         $school = new SchoolEntity();
@@ -108,9 +103,8 @@ class SchoolController extends Controller {
      */
     public function update(Request $request, int $id)
     {
-        $school = $this->schoolRepository->findById($id);
+        $school = $this->schoolService->findById($id);
         $this->schoolService->saveLogo($request);
-        //aqui me quedé 29 10 21 - 01:15am
 
         $school->school_name = $request->input('school-name');
         $school->school_code = $request->input('school-code');
@@ -130,7 +124,7 @@ class SchoolController extends Controller {
         $school->status = $request->input('school-status');
 
         try {
-            $this->schoolRepository->update($school);
+            $this->schoolService->update($school);
         } catch (Exception $ex) {
 
         }
@@ -146,7 +140,7 @@ class SchoolController extends Controller {
      */
     public function destroy(int $id): Response
     {
-        $school = $this->schoolRepository->findById($id);
+        $school = $this->schoolService->findById($id);
         $school -> delete();
         return \response(200);
     }

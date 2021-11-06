@@ -23,11 +23,6 @@ class StudentConventionController extends Controller
         $this->studentConventionService = new StudentConventionService($this->studentConventionRepository);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $studentTypes = StudentConvention::all();

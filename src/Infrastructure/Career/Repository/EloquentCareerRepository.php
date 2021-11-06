@@ -11,19 +11,6 @@ use Infrastructure\Career\Model\Career;
 class EloquentCareerRepository implements CareerRepository {
 
     /**
-     * @var Career
-     */
-    protected Career $model;
-
-    /**
-     * @param Career $career
-     */
-    public function __construct(Career $career)
-    {
-        $this->model = $career;
-    }
-
-    /**
      * @param $data
      * @return int
      */
@@ -49,7 +36,7 @@ class EloquentCareerRepository implements CareerRepository {
      */
     public function findById($id): Model
     {
-        return $this->model->findOrFail($id);
+        return Career::findOrFail($id);
     }
 
     /**
@@ -70,6 +57,6 @@ class EloquentCareerRepository implements CareerRepository {
 
     public function all($columns = ['*'])
     {
-        return $this->model->all($columns);
+        return Career::all($columns);
     }
 }
