@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Language\Controller;
+
+use App\Http\Controllers\Controller;
 
 class LanguageController extends Controller
 {

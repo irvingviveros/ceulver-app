@@ -3,8 +3,8 @@
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Email\Controller\EmailSettingController;
-use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\RoleController;
+use App\Language\Controller\LanguageController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
 use Illuminate\Support\Facades\Auth;
