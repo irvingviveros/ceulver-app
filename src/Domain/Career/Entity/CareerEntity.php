@@ -8,7 +8,7 @@ class CareerEntity
 {
     private string $career_name;
     private string $enrollment;
-    private Carbon $opening_date;
+    private string $opening_date;
 
     /**
      * @return string
@@ -43,19 +43,19 @@ class CareerEntity
     }
 
     /**
-     * @return Carbon
+     * @return string
      */
-    public function getOpeningDate(): Carbon
+    public function getOpeningDate(): string
     {
         return $this->opening_date;
     }
 
     /**
-     * @param Carbon $opening_date
+     * @param string $opening_date
      */
-    public function setOpeningDate(Carbon $opening_date): void
+    public function setOpeningDate(String $opening_date): void
     {
-        $this->opening_date = $opening_date;
+        $this->opening_date = Carbon::parse($opening_date);
     }
 
 }

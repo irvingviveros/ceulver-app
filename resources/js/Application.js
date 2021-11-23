@@ -85,7 +85,8 @@ const Application = (function(){
                         }
                     }
                     , {
-                        text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Crear nuevo registro'
+                        name: 'create'
+                        , text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Crear nuevo registro'
                         , className: 'btn btn-primary createCareer'
                         , init: function (api, node, config) {
                             $(node).removeClass('btn-secondary');
@@ -95,7 +96,12 @@ const Application = (function(){
                 , displayLength: 10
                 , lengthMenu: [10, 25, 50, 75, 100]
                 , language: {
-                    url: '//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                }
+                , initComplete: function(settings, json) {
+                    console.log('DataTables has finished its initialisation.');
+                    Career.loadEvents();
+                    console.log('Eventos cargados del datatable')
                 }
             }
         }

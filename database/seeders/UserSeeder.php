@@ -20,18 +20,18 @@ class UserSeeder extends Seeder
             [
                 'school_id' => 1,
                 'username' => 'sudo',
-                'email' => 'super-admin@mail.com',
+                'email' => 'admin@mail.com',
                 'status' => 1,
-                'password' => bcrypt('super-admin'),
+                'password' => bcrypt('admin'),
                 'created_at' => $date,
                 'updated_at' => $date
             ],
             [
                 'school_id' => 1,
                 'username' => 'sudo2',
-                'email' => 'super-admin2@mail.com',
+                'email' => 'admin2@mail.com',
                 'status' => 1,
-                'password' => bcrypt('super-admin2'),
+                'password' => bcrypt('admin2'),
                 'created_at' => $date,
                 'updated_at' => $date
             ]

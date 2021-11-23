@@ -47,15 +47,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         // Student convention types, route admin/manage-students/convention
         //Route::resource('convention', StudentConventionController::class)->except('show');
         // Student agreement types, route admin/manage-students/agreement
-        Route::resource('agreement', AgreementController::class)->except([
-            'create', 'show'
-        ]);
+        Route::resource('agreement', AgreementController::class)->except(['show']);
     });
 
     // Careers management, route admin/manage-careers
-    Route::resource('manage-careers', CareerController::class)->except([
-        'create', 'show'
-    ]);
+    Route::resource('manage-careers', CareerController::class)->except(['show']);
+    Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
 
     Route::resource('roles', RoleController::class);
 });

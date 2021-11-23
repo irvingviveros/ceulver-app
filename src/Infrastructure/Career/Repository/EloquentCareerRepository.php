@@ -55,8 +55,8 @@ class EloquentCareerRepository implements CareerRepository {
         $data->delete();
     }
 
-    public function all($columns = ['*'])
+    public function getAll()
     {
-        return Career::all($columns);
+        return Career::all();
     }
 }

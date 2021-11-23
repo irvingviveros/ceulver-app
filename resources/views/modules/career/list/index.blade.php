@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
 @endsection
+
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
 @endsection
@@ -20,73 +21,19 @@
 @section('content')
     <!-- Basic table -->
     <section id="basic-datatable">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <table class="datatables-basic table" id="data">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>id</th>
-                            <th>Nombre</th>
-                            <th>Matrícula</th>
-                            <th>Fecha de apertura</th>
-                            <th>Estatus</th>
-                            <th>Acciones</th>
-                        </tr>
-                        </thead>
-                    </table>
+        <div class="card" id="careerList">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="divCareerTable" class="table-responsive">
+                                    @include('modules.career.list.list')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- Modal to add new record -->
-        <div class="modal modal-slide-in fade" id="modals-slide-in">
-            <div class="modal-dialog sidebar-sm">
-                <form class="add-new-record modal-content pt-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                    <div class="modal-header mb-1">
-                        <h5 class="modal-title" id="exampleModalLabel">Registro de carreras</h5>
-                    </div>
-                    <div class="modal-body flex-grow-1">
-                        <div class="mb-1">
-                            <label class="form-label" for="basic-icon-default-careerName">Nombre de la carrera</label>
-                            <input
-                                    type="text"
-                                    class="form-control dt-career-name"
-                                    id="basic-icon-default-careerName"
-                                    name="career_name"
-                                    placeholder="Nombre de la carrera"
-                                    aria-label="Nombre de la carrera"
-                                    required
-                            />
-                        </div>
-                        <div class="mb-1">
-                            <label class="form-label" for="basic-icon-default-enrollment">Matrícula</label>
-                            <input
-                                    type="text"
-                                    id="basic-icon-default-enrollment"
-                                    class="form-control dt-career-enrollment"
-                                    name="career_enrollment"
-                                    placeholder="Matrícula"
-                                    aria-label="Matrícula"
-                                    required
-                            />
-                        </div>
-                        <div class="mb-1">
-                            <label class="form-label" for="school-registration">Fecha de apertura</label>
-                            <input
-                                    type="text"
-                                    id="school-registration"
-                                    class="form-control flatpickr-human-friendly dt-opening-date"
-                                    name="opening_date"
-                                    placeholder="Fecha de apertura"
-                                    required
-                            />
-                        </div>
-                        <button type="button" class="btn btn-primary data-submit me-1">Crear</button>
-                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
@@ -114,9 +61,21 @@
     <script src="{{ asset(mix('vendors/js/pickers/pickadate/legacy.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
 @endsection
+
 @section('page-script')
     {{-- Page js files --}}
-    <script src="{{ asset(mix('js/scripts/tables/modules/admin/admin-careers-datatables.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
+    <script src="{{ asset(mix('js/Application.js')) }}"></script>
+    <script src="{{ asset(mix('js/Modal.js')) }}"></script>
+    <script src="{{ asset(mix('js/Configuration.js')) }}"></script>
+    <script src="{{ asset(mix('js/AppNotification.js')) }}"></script>
+    <script src="{{ asset(mix('js/Delete.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/tables/modules/admin/admin-careers-datatables.js')) }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Career.load();
+        });
+    </script>
 @endsection

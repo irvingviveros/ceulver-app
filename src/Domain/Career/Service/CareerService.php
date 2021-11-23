@@ -4,18 +4,17 @@ declare(strict_types = 1);
 namespace Domain\Career\Service;
 
 use Domain\Career\Entity\CareerEntity;
-use Domain\Career\Repository\CareerRepository;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
-use Domain\Shared\Exception\ValueNotFoundException;
+use Infrastructure\Career\Repository\EloquentCareerRepository;
 
 class CareerService {
 
-    private CareerRepository $careerRepository;
+    private EloquentCareerRepository $careerRepository;
 
     /**
-     * @param CareerRepository $careerRepository
+     * @param EloquentCareerRepository $careerRepository
      */
-    public function __construct(CareerRepository $careerRepository){
+    public function __construct(EloquentCareerRepository $careerRepository){
         $this->careerRepository = $careerRepository;
     }
 
@@ -25,7 +24,6 @@ class CareerService {
      * @param $modifiedBy
      * @return int
      * @throws OperationNotPermittedCeulverException
-     * @throws ValueNotFoundException
      */
     public function create(
         CareerEntity $career,
@@ -42,7 +40,7 @@ class CareerService {
         }
 
         if ($this->careerRepository->checkIfNameExists($career->getCareerName())) {
-            throw new ValueNotFoundException(
+            throw new OperationNotPermittedCeulverException(
                 "Ya existe una carrera con el mismo nombre"
             );
         }
@@ -68,15 +66,22 @@ class CareerService {
     }
 
     /**
+     * @return mixed
+     */
+    public function getAll() {
+        return $this->careerRepository->getAll();
+    }
+
+    /**
      * @param $id
      * @return mixed
-     * @throws ValueNotFoundException
+     * @throws OperationNotPermittedCeulverException
      */
     public function findById($id) {
         $career = $this->careerRepository->findById($id);
 
         if ($career == null) {
-            throw new ValueNotFoundException(
+            throw new OperationNotPermittedCeulverException(
                 "La carrera no existe"
             );
         }
@@ -85,18 +90,37 @@ class CareerService {
     }
 
     /**
-     * @param $data
-     * @throws ValueNotFoundException
+     * @param $id
+     * @param CareerEntity $careerEntity
+     * @param $modifiedBy
+     * @throws OperationNotPermittedCeulverException
      */
-    public function update($data) {
-        $career = $this->findById($data['id']);
+    public function update(
+          $id
+        , CareerEntity $careerEntity
+        , $modifiedBy
+    ) {
+        $career = $this->findById($id);
+
+        if ($career->name != $careerEntity->getCareerName()) {
+            if ($this->careerRepository->checkIfNameExists($careerEntity->getCareerName())) {
+                throw new OperationNotPermittedCeulverException(
+                    "Ya existe una carrera con el mismo nombre"
+                );
+            }
+        }
+
+        $career->name = $careerEntity->getCareerName();
+        $career->enrollment = $careerEntity->getEnrollment();
+        $career->opening_date = $careerEntity->getOpeningDate();
+        $career->modified_by = $modifiedBy;
 
         $this->careerRepository->update($career);
     }
 
     /**
      * @param $id
-     * @throws ValueNotFoundException
+     * @throws OperationNotPermittedCeulverException
      */
     public function delete($id) {
         $career = $this->findById($id);

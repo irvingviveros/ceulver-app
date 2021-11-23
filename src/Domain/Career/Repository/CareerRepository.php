@@ -5,21 +5,38 @@ namespace Domain\Career\Repository;
 
 interface CareerRepository
 {
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function create($data);
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function checkIfNameExists($name): bool;
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function findById($id);
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function update($data);
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function delete($data);
 
     /**
-     * Get all the models from the database.
-     *
-     * @param  array|mixed  $columns
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     * @return mixed
      */
-    public function all($columns = ['*']);
+    public function getAll();
 }

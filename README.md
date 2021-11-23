@@ -12,8 +12,6 @@
     ·
     <a href="https://github.com/irvingviveros/ceulver-app/issues">Solicitar Función</a>
   </p>
-</p>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -155,8 +153,8 @@ Para loguear como super administrador, usar las siguientes credenciales
 
 Usuario       | Contraseña
 ------------- | -------------
-super-admin@mail.com  | super-admin
-super-admin2@mail.com  | super-admin2
+admin@mail.com  | admin
+admin2@mail.com  | admin2
 
 
 

@@ -1,22 +1,19 @@
 const Delete = (function() {
-
     return {
-        ejecutar: function(id, url, datatable, row) {
+        run: function(object, id, tableName, rowElement) {
             Modal.alert.confirm(
                 'Confirme la eliminación'
                 , 'No se podrá revertir el cambio'
                 , function () {
-                    Configuration.consume({
-                        url: Application.getUrl() + url + id
-                        , data: {
-                            _method: 'delete'
-                            , _token: Application.getToken()
-                        }
-                    }).then(function() {
-                        row.remove();
+                    object.delete(id).then(function () {
+
+                        tableName
+                            .row(rowElement.parents('tr'))
+                            .remove()
+                            .draw();
 
                         AppNotification.show(
-                            'success', 'El registro ha sido eliminado correctamente', 'Registro Eliminado'
+                            'success', 'El registro ha sido eliminado correctamente', 'Registro eliminado'
                         );
                     });
                 }

@@ -1,4 +1,4 @@
-const Modal = (function(Swal) {
+let Modal = (function(Swal) {
     /**
      * id, title, content, cssClass
      * @returns object (jquery)
@@ -99,8 +99,13 @@ const Modal = (function(Swal) {
                     , cancelButtonText: 'Cerrar'
                     , confirmButtonText: 'Aceptar'
                     , animation: false
+                    , customClass: {
+                        confirmButton: 'btn btn-primary',
+                        cancelButton: 'btn btn-outline-danger ms-1'
+                    }
+                    , buttonsStyling: false
                 }).then(function(result) {
-                    if (result.value && functionConfirm) {
+                    if (result.value) {
                         functionConfirm();
                     }
                 });
