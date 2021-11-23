@@ -102,20 +102,28 @@ El sistema será en línea y alojado en un servidor VPS, por lo que se requiere 
    ```sh
    git clone https://github.com/irvingviveros/ceulver-app.git
    ```
-2. Abre la terminal en tu directorio raíz y para instalar los paquetes del compositor, ejecuta el siguiente comando:
+2. Generar archivo .env con configuración propia a partir del archivo .env.example
+   ```sh
+   git clone https://github.com/irvingviveros/ceulver-app.git
+   ```
+3. Asegurar de tener instalado el paquete yarn
+   ```sh
+   npm install -g yarn
+   ```
+4. Abre la terminal en tu directorio raíz y para instalar los paquetes del compositor, ejecuta el siguiente comando:
    ```sh
    php artisan key:generate
    ```
-3. Al ejecutar el siguiente comando, podrás obtener todas las dependencias en tu carpeta node_modules:
+5. Al ejecutar el siguiente comando, podrás obtener todas las dependencias en tu carpeta node_modules:
    ```sh
    yarn
    ```
-4. Para ejecutar el proyecto, debes ejecutar el siguiente comando en el directorio del proyecto.
+6. Para ejecutar el proyecto, debes ejecutar el siguiente comando en el directorio del proyecto.
 Compilará los archivos php y todos los demás archivos del proyecto. Si estás realizando algún cambio en cualquiera de los archivos php, debe ejecutar el comando dado nuevamente.
    ```sh
    yarn mix
    ```
-5. Para servir la aplicación, debe ejecutar el siguiente comando en el directorio del proyecto. (Esto le dará una dirección con el número de puerto 8000).
+7. Para servir la aplicación, debe ejecutar el siguiente comando en el directorio del proyecto. (Esto le dará una dirección con el número de puerto 8000).
 Ahora navegue hasta la dirección indicada y verá que su aplicación se está ejecutando.
    ```sh
    php artisan serve
