@@ -264,9 +264,10 @@ $(function () {
     if ($school_name !== '' && $school_address !== '' && $school_email !== '' && $school_admission !== '') {
       $.ajax({
         url: 'manage-schools',
-        type: 'post',
+        type: 'POST',
         data: {
           _token: CSRF_TOKEN,
+          _method: 'POST',
           school_name: $school_name,
           school_address: $school_address,
           school_email: $school_email,

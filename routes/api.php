@@ -2,9 +2,10 @@
 
 use App\Models\Career;
 use App\Models\EmailSetting;
-use App\Models\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Infrastructure\Agreement\Model\Agreement;
+use Infrastructure\School\Model\School;
 use Yajra\DataTables\DataTables;
 
 /*
@@ -35,9 +36,16 @@ Route::get('email_settings', function(){
     return DataTables::of($formattedData)->toJson();
 });
 
-// Return School data
+// Return Careers data
 Route::get('careers', function(){
     return datatables()
         ->eloquent(Career::query())
+        ->toJson();
+});
+
+// Return School data
+Route::get('agreements', function(){
+    return datatables()
+        ->eloquent(Agreement::query())
         ->toJson();
 });

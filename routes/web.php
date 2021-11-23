@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\CareerController;
-use App\Http\Controllers\EmailSettingController;
-use App\Http\Controllers\LanguageController;
+use App\Agreement\Controller\AgreementController;
+use App\Career\Controller\CareerController;
+use App\Email\Controller\EmailSettingController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\StaterkitController;
-use App\Http\Controllers\StudentConventionController;
+use App\Language\Controller\LanguageController;
+use App\School\Controller\SchoolController;
+use App\Staterkit\Controller\StaterkitController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 
 // Admin
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-
+//Route::group(['prefix' => 'admin'], function() {
     // Schools management, route admin/manage-schools
     Route::resource('manage-schools', SchoolController::class)->except([
         'create', 'show'
@@ -44,13 +45,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
         // Student convention types, route admin/manage-students/convention
-        Route::resource('convention', StudentConventionController::class)->except('show');
+        //Route::resource('convention', StudentConventionController::class)->except('show');
+        // Student agreement types, route admin/manage-students/agreement
+        Route::resource('agreement', AgreementController::class)->except(['show']);
     });
 
     // Careers management, route admin/manage-careers
-    Route::resource('manage-careers', CareerController::class)->except([
-        'create', 'show'
-    ]);
+    Route::resource('manage-careers', CareerController::class)->except(['show']);
+    Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
 
     Route::resource('roles', RoleController::class);
 });
