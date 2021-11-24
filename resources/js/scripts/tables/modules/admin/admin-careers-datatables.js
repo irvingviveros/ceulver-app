@@ -111,6 +111,7 @@ const Career = (function () {
                     $('div[id="careerList"]').html(arguments[0]);
 
                     initializeTable();
+                    initializeEvents();
                 });
             });
         });
@@ -151,6 +152,7 @@ const Career = (function () {
                     feather.replace();
 
                     initializeTable();
+                    initializeEvents();
                 });
             });
         });
