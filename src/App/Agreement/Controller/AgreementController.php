@@ -1,13 +1,16 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Agreement\Controller;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Controllers\Controller;
 use Domain\Agreement\Entity\AgreementEntity;
 use Domain\Agreement\Service\AgreementService;
 use Domain\Shared\exception\CeulverOperationNotPermittedException;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+
 use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
@@ -20,11 +23,14 @@ class AgreementController extends Controller
      */
     public function __construct()
     {
-        $this->agreementService = new AgreementService(new EloquentAgreementRepository());
+        $this->agreementService = new AgreementService(
+            new EloquentAgreementRepository()
+        );
     }
 
     public function index()
     {
+        //Initialize variables
         $schoolRepository = new EloquentSchoolRepository();
 
         // Get only the id and name from school table

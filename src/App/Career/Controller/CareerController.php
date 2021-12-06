@@ -4,16 +4,19 @@ declare(strict_types = 1);
 namespace App\Career\Controller;
 
 use App\Http\Controllers\Controller;
-use Domain\Career\Entity\CareerEntity;
-use Domain\Career\Service\CareerService;
-use Domain\Shared\Exception\OperationNotPermittedCeulverException;
-use Exception;
+
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+
+use Domain\Career\Entity\CareerEntity;
+use Domain\Career\Service\CareerService;
+use Domain\Shared\Exception\OperationNotPermittedCeulverException;
+
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 
+use Exception;
 
 class CareerController extends Controller {
 
