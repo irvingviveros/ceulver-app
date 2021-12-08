@@ -55,6 +55,15 @@ class EloquentSchoolRepository implements SchoolRepository {
     }
 
     /**
+     * @param $relation
+     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
+     */
+    public function with($relation)
+    {
+        return School::with($relation)->get();
+    }
+
+    /**
      * @param array|mixed|string[] $columns
      * @return \Illuminate\Database\Eloquent\Collection|School[]|EloquentSchoolRepository[]
      */

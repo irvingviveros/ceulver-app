@@ -21,11 +21,12 @@ class School extends Model
 
     /**
      * Get the student convention associated with the School.
-     *  $school -> studentType
+     *  $school -> agreements
      */
-    public function agreement()
+    public function agreements()
     {
-        return $this->hasMany(Agreement::class);
+        return $this->belongsToMany(Agreement::class)
+            ->withTimestamps();
     }
 
     /**

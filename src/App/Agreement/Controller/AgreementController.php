@@ -3,16 +3,13 @@ declare(strict_types = 1);
 
 namespace App\Agreement\Controller;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 use App\Http\Controllers\Controller;
 use Domain\Agreement\Entity\AgreementEntity;
 use Domain\Agreement\Service\AgreementService;
 use Domain\Shared\exception\CeulverOperationNotPermittedException;
-
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
-use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class AgreementController extends Controller
 {
@@ -31,19 +28,18 @@ class AgreementController extends Controller
     public function index()
     {
         //Initialize variables
-        $schoolRepository = new EloquentSchoolRepository();
-
-        // Get only the id and name from school table
-        $schools = $schoolRepository->all(['id', 'school_name']);
+        $agreementRepository = new EloquentAgreementRepository();
+        $agreements = $agreementRepository->with('schools');
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
             ['link' => "javascript:void(0)", 'name' => "Alumnos"],
             ['name' => "Convenio de alumnos"]
         ];
+
         return view(
             'modules.student.agreement.index',
-            ['breadcrumbs' => $breadcrumbs], compact('schools'));
+            ['breadcrumbs' => $breadcrumbs], compact('agreements'));
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAgreementsTable extends Migration
+class CreateAgreementSchoolTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAgreementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('agreements', function (Blueprint $table) {
+        // Pivot table agreements - schools
+        Schema::create('agreement_school', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
-            $table->text('note')->nullable(true);
-            $table->tinyInteger('status')->default(1);
-            $table->integer('created_by');
-            $table->integer('modified_by');
+            $table->foreignId('agreement_id')->constrained();
+            $table->foreignId('school_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAgreementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agreements');
+        Schema::dropIfExists('agreement_school');
     }
 }

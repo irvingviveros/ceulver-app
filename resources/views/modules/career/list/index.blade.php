@@ -65,13 +65,14 @@
 @endsection
 
 @section('page-script')
-    {{-- Page js files --}}
+    {{-- Page js files, global --}}
     <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
     <script src="{{ asset(mix('js/Application.js')) }}"></script>
     <script src="{{ asset(mix('js/Modal.js')) }}"></script>
     <script src="{{ asset(mix('js/Configuration.js')) }}"></script>
     <script src="{{ asset(mix('js/AppNotification.js')) }}"></script>
     <script src="{{ asset(mix('js/Delete.js')) }}"></script>
+    {{-- Local files --}}
     <script src="{{ asset(mix('js/scripts/tables/modules/admin/admin-careers-datatables.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {

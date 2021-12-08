@@ -11,11 +11,12 @@ class Agreement extends Model
     use HasFactory;
 
     /**
-     * Get the school associated with the student type.
-     *  $school -> agreement
+     * Get the school associated with the student agreement.
+     *  $agreement -> school
      */
-    public function school()
+    public function schools()
     {
-        return $this->belongsTo(School::class);
+        return $this->belongsToMany(School::class)
+            ->withTimestamps();
     }
 }

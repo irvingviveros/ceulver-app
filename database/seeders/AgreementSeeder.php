@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Infrastructure\Agreement\Model\Agreement;
+use Infrastructure\School\Model\School;
+
 
 class AgreementSeeder extends Seeder
 {
@@ -16,10 +19,10 @@ class AgreementSeeder extends Seeder
     {
         $date = now();   //Get current date
 
+        // Inserting specific records
         DB::table('agreements')->insert([
             [
-                'school_id' => 1,
-                'agreement' => 'Normal',
+                'name' => 'Normal',
                 'note' => 'Estudiante normal',
                 'status' => 1,
                 'created_by' => 0,
@@ -28,8 +31,7 @@ class AgreementSeeder extends Seeder
                 'updated_at' => $date
             ],
             [
-                'school_id' => 1,
-                'agreement' => 'Becado',
+                'name' => 'Becado',
                 'note' => 'Estudiante becado',
                 'status' => 1,
                 'created_by' => 0,
@@ -38,5 +40,16 @@ class AgreementSeeder extends Seeder
                 'updated_at' => $date
             ],
         ]);
+
+        // Inserting random records
+        Agreement::factory()->times(10)->create();
+        School::factory()->count(5)->create();
+
+        foreach(School::all() as $school) {
+            $agreements = Agreement::inRandomOrder()
+                ->take(rand(1,3))
+                ->pluck('id');
+            $school->agreements()->syncWithoutDetaching($agreements);
+        }
     }
 }
