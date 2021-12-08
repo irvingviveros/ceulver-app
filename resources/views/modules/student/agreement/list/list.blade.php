@@ -5,6 +5,8 @@
         <th>id</th>
         <th>Convenio</th>
         <th>Descripción</th>
+        <th>Descuento - Precio</th>
+        <th>Descuento - Porcentaje</th>
         <th>Escuela</th>
         <th>Estatus</th>
         <th class="text-center">Acciones</th>
@@ -19,6 +21,8 @@
             <td>{{ $agreement->id }}</td>
             <td>{{ $agreement->name}}</td>
             <td>{{ $agreement->note}}</td>
+            <td>{{ $school->pivot->discount_price}}</td>
+            <td>{{ $school->pivot->discount_percentage}}%</td>
             <td>{{ $school->school_name}}</td>
             <td>
                 @if ($agreement->status == 1)

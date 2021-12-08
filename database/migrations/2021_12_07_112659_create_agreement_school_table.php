@@ -18,6 +18,8 @@ class CreateAgreementSchoolTable extends Migration
             $table->id();
             $table->foreignId('agreement_id')->constrained();
             $table->foreignId('school_id')->constrained();
+            $table->float('discount_price')->default(0);
+            $table->float('discount_percentage')->default(0);
             $table->timestamps();
         });
     }
