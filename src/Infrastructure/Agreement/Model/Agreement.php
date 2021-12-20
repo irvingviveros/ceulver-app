@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Infrastructure\Agreement\Model;
 
@@ -17,7 +18,7 @@ class Agreement extends Model
     public function schools()
     {
         return $this->belongsToMany(School::class)
-            ->withTimestamps()
-            ->withPivot(['discount_price', 'discount_percentage']);
+            ->withTimestamps();
+//            ->withPivot(['discount_price', 'discount_percentage']);
     }
 }

@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/responsive.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/buttons.bootstrap5.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/tables/datatable/rowGroup.bootstrap5.min.css')) }}">
-    <link rel="stylesheet" href="{{ asset(mix('vendors/css/pickers/flatpickr/flatpickr.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/sweetalert2.min.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('vendors/css/extensions/toastr.min.css')) }}">
+    <link rel="stylesheet" href="{{ asset(mix('vendors/css/forms/select/select2.min.css')) }}">
 @endsection
 @section('page-style')
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
@@ -19,13 +19,13 @@
 @section('content')
     <!-- Basic table -->
     <section id="basic-datatable">
-        <div class="card" id="careerList">
+        <div class="card" id="dataList">
             <div class="card-body">
                 <div class="row">
                     <div class="col-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <div id="divCareerTable" class="table-responsive">
+                                <div id="divAgreementTable" class="table-responsive">
                                     @include('modules.student.agreement.list.list')
                                 </div>
                             </div>
@@ -56,20 +56,21 @@
     <script src="{{ asset(mix('vendors/js/extensions/sweetalert2.all.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/toastr.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
 @endsection
 @section('page-script')
     {{-- Page JS files, global --}}
-    <script src="{{ asset(mix('js/scripts/forms/pickers/form-pickers.js')) }}"></script>
     <script src="{{ asset(mix('js/Application.js')) }}"></script>
     <script src="{{ asset(mix('js/Modal.js')) }}"></script>
     <script src="{{ asset(mix('js/Configuration.js')) }}"></script>
     <script src="{{ asset(mix('js/AppNotification.js')) }}"></script>
     <script src="{{ asset(mix('js/Delete.js')) }}"></script>
     {{-- Local JS files --}}
+    <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/tables/modules/student/student-agreement-datatables.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            Agreement.load();
+            StudentAgreementDatatables.load();
         });
     </script>
 

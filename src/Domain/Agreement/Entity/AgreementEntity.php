@@ -4,7 +4,7 @@ namespace Domain\Agreement\Entity;
 
 class AgreementEntity
 {
-    private string $agreement;
+    private string $name;
     private string $note;
     private int $status;
 
@@ -27,17 +27,17 @@ class AgreementEntity
     /**
      * @return string
      */
-    public function getAgreement(): string
+    public function getName(): string
     {
-        return $this->agreement;
+        return $this->name;
     }
 
     /**
-     * @param string $agreement
+     * @param string $name
      */
-    public function setAgreement(string $agreement): void
+    public function setName(string $name): void
     {
-        $this->agreement = $agreement;
+        $this->name = $name;
     }
 
     /**

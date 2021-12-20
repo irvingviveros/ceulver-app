@@ -26,8 +26,8 @@ class School extends Model
     public function agreements()
     {
         return $this->belongsToMany(Agreement::class)
-            ->withTimestamps()
-            ->withPivot(['discount_price', 'discount_percentage']);
+            ->withTimestamps();
+//            ->withPivot(['discount_price', 'discount_percentage']);
     }
 
     /**

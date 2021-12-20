@@ -45,14 +45,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
         // Student agreement types, route admin/manage-students/agreement
-        Route::group(['prefix' => 'agreement'], function() {
-            Route::resource('/', AgreementController::class)->except(['show']);
-        });
-
+        Route::resource('agreements', AgreementController::class)->except(['show']);
+        Route::get('agreements/getList', [AgreementController::class, 'getList']);
     });
+//
+//    Route::get('manage-students/agreement/', [AgreementController::class, 'index']);
+//    Route::get('manage-students/agreement/{agreement}/edit', [AgreementController::class, 'edit']);
+
 
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except(['show']);
+    Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
 
     // Roles management, route admin/roles
     Route::resource('roles', RoleController::class);

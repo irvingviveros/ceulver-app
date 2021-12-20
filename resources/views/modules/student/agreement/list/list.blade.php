@@ -1,29 +1,30 @@
-<table class="table table-hover" id="careerTable">
+<table class="table table-hover" id="dataTable">
     <thead>
     <tr>
         <th></th>
         <th>id</th>
         <th>Convenio</th>
         <th>Descripción</th>
-        <th>Descuento - Precio</th>
-        <th>Descuento - Porcentaje</th>
         <th>Escuela</th>
         <th>Estatus</th>
         <th class="text-center">Acciones</th>
     </tr>
     </thead>
-
     <tbody>
     @foreach ($agreements as $agreement)
-        @foreach ($agreement->schools as $school)
+
         <tr>
             <td></td>
             <td>{{ $agreement->id }}</td>
             <td>{{ $agreement->name}}</td>
             <td>{{ $agreement->note}}</td>
-            <td>{{ $school->pivot->discount_price}}</td>
-            <td>{{ $school->pivot->discount_percentage}}%</td>
-            <td>{{ $school->school_name}}</td>
+            <td>
+                @foreach ($agreement->schools as $school)
+                    {{ $school->school_name}}
+                    <br>
+                @endforeach
+            </td>
+
             <td>
                 @if ($agreement->status == 1)
                     <span class="badge badge-pill badge-light-success">
@@ -56,7 +57,6 @@
                 </div>
             </td>
         </tr>
-        @endforeach
     @endforeach
     </tbody>
 </table>

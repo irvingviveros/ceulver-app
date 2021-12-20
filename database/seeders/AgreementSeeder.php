@@ -22,8 +22,8 @@ class AgreementSeeder extends Seeder
         // Inserting specific records
         DB::table('agreements')->insert([
             [
-                'name' => 'Normal',
-                'note' => 'Estudiante normal',
+                'name' => 'Pago día 30',
+                'note' => 'Pago colegiatura estudiante día 30',
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
@@ -31,14 +31,23 @@ class AgreementSeeder extends Seeder
                 'updated_at' => $date
             ],
             [
-                'name' => 'Becado',
-                'note' => 'Estudiante becado',
+                'name' => 'Pago día 15',
+                'note' => 'Pago colegiatura estudiante día 15',
                 'status' => 1,
                 'created_by' => 0,
                 'modified_by' => 1,
                 'created_at' => $date,
                 'updated_at' => $date
             ],
+            [
+                'name' => 'Pago día 7',
+                'note' => 'Pago colegiatura estudiante día 7',
+                'status' => 1,
+                'created_by' => 0,
+                'modified_by' => 1,
+                'created_at' => $date,
+                'updated_at' => $date
+            ]
         ]);
 
         // Inserting random records

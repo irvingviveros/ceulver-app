@@ -56,6 +56,11 @@ class EloquentAgreementRepository implements AgreementRepository
         return Agreement::with($relation)->get();
     }
 
+    public function detachSchools(Model $agreement)
+    {
+        $agreement->schools()->detach();
+    }
+
     /**
      * @param $id
      * @return Model
@@ -71,8 +76,13 @@ class EloquentAgreementRepository implements AgreementRepository
      */
     public function checkIfNameExists($name): bool
     {
-        $row = DB::table('agreements')->where('agreement_name')->get();
+        $row = DB::table('agreements')->where('name')->get();
 
         return $row->count() > 0;
+    }
+
+    public function getAll()
+    {
+        return Agreement::all();
     }
 }
