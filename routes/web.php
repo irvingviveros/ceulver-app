@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Language\Controller\LanguageController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
+use App\Subject\Controller\SubjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except(['show']);
     Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
+
+    // Subject management, route admin/manage-subjects
+    Route::resource('manage-subjects', SubjectController::class)->except(['show']);
+    Route::get('/manage-subjects/getList', [SubjectController::class, 'getList']);
 
     // Roles management, route admin/roles
     Route::resource('roles', RoleController::class);

@@ -1,11 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace Domain\Agreement\Repository;
+namespace Domain\Shared\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 
-interface AgreementRepository {
+interface GlobalRepository
+{
 
     /**
      * @param $id
@@ -56,5 +57,4 @@ interface AgreementRepository {
      * @return mixed
      */
     public function detach(Model $model);
-
 }

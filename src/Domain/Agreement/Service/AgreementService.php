@@ -62,7 +62,6 @@ class AgreementService
         }
 
         $data = array(
-
             'name'          => $agreement->getName(),
             'note'          => $agreement->getNote(),
             'status'        => $agreement->getStatus(),
@@ -143,7 +142,7 @@ class AgreementService
     {
         $agreement = $this->findById($id);
 
-        $this->agreementRepository->detachSchools($agreement);
+        $this->agreementRepository->detach($agreement);
     }
 
     /**

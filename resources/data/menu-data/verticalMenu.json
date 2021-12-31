@@ -51,6 +51,12 @@
     {
       "url": "admin/manage-careers",
       "name": "Careers",
+      "icon": "bookmark",
+      "slug": "careers"
+    },
+    {
+      "url": "admin/manage-subjects",
+      "name": "Subjects",
       "icon": "book",
       "slug": "careers"
     },

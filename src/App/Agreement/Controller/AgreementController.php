@@ -36,7 +36,6 @@ class AgreementController extends Controller
     public function index()
     {
         //Initialize variables
-
         $agreements = $this->agreementService->with('schools');
 
         $breadcrumbs = [

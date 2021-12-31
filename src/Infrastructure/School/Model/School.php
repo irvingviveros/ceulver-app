@@ -5,6 +5,8 @@ namespace Infrastructure\School\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Infrastructure\Agreement\Model\Agreement;
+use Infrastructure\Career\Model\Career;
+use Infrastructure\Subject\Model\Subject;
 
 class School extends Model
 {
@@ -34,9 +36,15 @@ class School extends Model
      * Get those careers associated with the School.
      *  $school -> studentType
      */
-    public function careers(){
+    public function careers()
+    {
         return $this->belongsToMany(Career::class, 'career_school')
             ->using(CareerSchool::class)
             ->withTimestamps();
+    }
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
     }
 }

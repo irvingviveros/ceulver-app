@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Subjects"=>"Materias",
     "Roles & Permission"=>"Roles y permisos",
     "Roles"=>"Roles",
     "Permission"=>"Permisos",

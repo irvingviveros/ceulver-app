@@ -56,7 +56,7 @@ class EloquentAgreementRepository implements AgreementRepository
         return Agreement::with($relation)->get();
     }
 
-    public function detachSchools(Model $agreement)
+    public function detach(Model $agreement)
     {
         $agreement->schools()->detach();
     }
