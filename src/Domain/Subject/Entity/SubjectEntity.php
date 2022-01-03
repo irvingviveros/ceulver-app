@@ -8,7 +8,7 @@ class SubjectEntity
 {
     private string $name;
     private string $code;
-    private string $description = "";
+    private ?string $description;
     private Carbon $openingDate;
     private int $status;
     private int $schoolId;

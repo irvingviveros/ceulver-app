@@ -26,6 +26,12 @@
           "name": "Email Settings",
           "icon": "circle",
           "slug": "email-settings"
+        },
+        {
+          "url": "admin/academic-years",
+          "name": "Academic Year",
+          "icon": "circle",
+          "slug": "academic-year"
         }
       ]
     },

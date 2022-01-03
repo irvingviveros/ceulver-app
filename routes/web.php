@@ -1,5 +1,6 @@
 <?php
 
+use App\AcademicYear\Controller\AcademicYearController;
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Email\Controller\EmailSettingController;
@@ -42,6 +43,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('email-settings', EmailSettingController::class)->except([
         'create', 'show'
     ]);
+
+    // Academic year config, route admin/academic-year
+    Route::resource('academic-years', AcademicYearController::class)->except([
+        'show'
+    ]);
+    Route::get('/academic-years/getList', [AcademicYearController::class, 'getList']);
 
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {

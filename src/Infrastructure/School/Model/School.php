@@ -4,6 +4,7 @@ namespace Infrastructure\School\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
 use Infrastructure\Subject\Model\Subject;
@@ -46,5 +47,10 @@ class School extends Model
     public function subjects()
     {
         return $this->hasMany(Subject::class);
+    }
+
+    public function academicYears()
+    {
+        return $this->hasMany(AcademicYear::class);
     }
 }
