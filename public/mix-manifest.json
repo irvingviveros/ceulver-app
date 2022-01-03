@@ -154,6 +154,7 @@
     "/js/scripts/pages/page-profile.js": "/js/scripts/pages/page-profile.js",
     "/js/scripts/pagination/components-pagination.js": "/js/scripts/pagination/components-pagination.js",
     "/js/scripts/tables/modules/academics/academicYear-datatables.js": "/js/scripts/tables/modules/academics/academicYear-datatables.js",
+    "/js/scripts/tables/modules/academics/modality-datatables.js": "/js/scripts/tables/modules/academics/modality-datatables.js",
     "/js/scripts/tables/modules/academics/subject-datatables.js": "/js/scripts/tables/modules/academics/subject-datatables.js",
     "/js/scripts/tables/modules/admin/admin-careers-datatables.js": "/js/scripts/tables/modules/admin/admin-careers-datatables.js",
     "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js": "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js",

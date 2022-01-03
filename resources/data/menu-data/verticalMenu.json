@@ -32,6 +32,12 @@
           "name": "Academic Year",
           "icon": "circle",
           "slug": "academic-year"
+        },
+        {
+          "url": "admin/modalities",
+          "name": "Modalities",
+          "icon": "circle",
+          "slug": "modalities"
         }
       ]
     },

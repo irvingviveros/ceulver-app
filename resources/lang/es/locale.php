@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Modalities"=>"Modalidades",
     "Academic Year"=>"Año académico",
     "Subjects"=>"Materias",
     "Roles & Permission"=>"Roles y permisos",
