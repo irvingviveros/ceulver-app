@@ -8,6 +8,7 @@ use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
 use Infrastructure\Subject\Model\Subject;
+use Infrastructure\Teacher\Model\Teacher;
 
 class School extends Model
 {
@@ -52,5 +53,10 @@ class School extends Model
     public function academicYears()
     {
         return $this->hasMany(AcademicYear::class);
+    }
+
+    public function teachers()
+    {
+        return $this->hasMany(Teacher::class);
     }
 }

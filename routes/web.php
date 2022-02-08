@@ -10,6 +10,8 @@ use App\Modality\Controller\ModalityController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
 use App\Subject\Controller\SubjectController;
+use App\Teacher\Controller\TeacherController;
+use App\Upload\Controller\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +58,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     ]);
     Route::get('/modalities/getList', [ModalityController::class, 'getList']);
 
+    Route::resource('teachers', TeacherController::class)->except([
+       'show'
+    ]);
+    Route::get('/teachers/getList', [TeacherController::class, 'getList']);
+
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
         // Student agreement types, route admin/manage-students/agreement
@@ -77,6 +84,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Roles management, route admin/roles
     Route::resource('roles', RoleController::class);
+
+    // Uploads testing
+    Route::resource('upload', UploadController::class);
+//    Route::post('/upload', [UploadController::class, 'store']);
+//    Route::delete('/upload', [UploadController::class, 'destroy']);
 });
 
 // locale Route

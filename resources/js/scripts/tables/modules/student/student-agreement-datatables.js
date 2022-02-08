@@ -37,6 +37,7 @@ const StudentAgreementDatatables = (function () {
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
+                    , size: 'lg'
                 });
 
                 // Assign attributes of the method select2 to the select field

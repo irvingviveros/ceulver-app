@@ -1,7 +1,7 @@
-const Career = (function () {
+const TeacherDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/manage-careers/';
+    const urlController = Application.getUrl() + 'admin/teachers/';
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO
@@ -11,14 +11,14 @@ const Career = (function () {
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
-        let table =  $('#careerTable');
+        let table =  $('#dataTable');
 
         // Apply icons on all table pages
         feather.replace();
 
-        // Apply Datatable configuration
+        // Apply Datatable default configuration
         table.DataTable(
-            Application.getDatatableConfiguration(Career)
+            Application.getDatatableConfiguration(TeacherDatatable)
         )
 
     }
@@ -26,80 +26,83 @@ const Career = (function () {
     // Initializes events from the datatable
     function initializeEvents() {
 
-        let table =  $('#careerTable');
+        let table =  $('#dataTable');
 
         // Create event
         $('.createEntry').on('click', function () {
-            Career.getRegisterForm().then(function () {
+            TeacherDatatable.getRegisterForm().then(function () {
                 let modal = Modal.create({
-                    id: 'careerRegisterForm'
-                    , title: 'Crear Carrera'
+                    id: 'teacherRegisterForm'
+                    , title: 'Añadir maestro'
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
-                    , size: 'lg'
+                    , size: 'xl'
                 });
 
+                // Show modal
                 modal.modal('show').on('shown.bs.modal', function () {
-                    createCareerForm(modal)
+                    createForm(modal)
                 });
             });
         });
 
         // Update event
-        $('#careerTable tbody').on('click', '.item-edit', function (event) {
+        $('#dataTable tbody').on('click', '.item-edit', function (event) {
 
-            let careerId = $(event.currentTarget).attr('data-id');
+            let itemId = $(event.currentTarget).attr('data-id');
 
-            Career.getEditForm(
-                careerId
+            TeacherDatatable.getEditForm(
+                itemId
             ).then(function () {
                 let modal = Modal.create({
-                    id: 'careerEditForm'
-                    , title: 'Modificar carrera'
+                    id: 'editForm'
+                    , title: 'Editar datos del maestro'
                     , content: arguments[0]
                     , okButtonText: 'Guardar'
                     , cancelButtonText: 'Cerrar'
-                    , size: 'lg'
+                    , size: 'xl'
                 });
 
                 modal.modal('show').on('shown.bs.modal', function () {
-                    updateCareerForm(modal)
+                    updateForm(modal)
                 });
             });
         });
 
         // Assign methods from DataTable object
-        table = $('#careerTable').DataTable();
+        table = $('#dataTable').DataTable();
 
         // Delete event
-        $('#careerTable tbody').on('click', '.delete-record',  function (event) {
+        $('#dataTable tbody').on('click', '.delete-record',  function (event) {
 
-            let careerId = $(event.currentTarget).attr('data-id');
+            let dataId = $(event.currentTarget).attr('data-id');
             let row = $(this);
 
             // Show Swal component and delete
-            Delete.run(Career, careerId, table, row);
+            Delete.run(TeacherDatatable, dataId, table, row);
         });
     }
 
     // Loads a modal and creates a new record
-    function createCareerForm(modal) {
+    function createForm(modal, table) {
 
-        $('input[id="openingDate"]').flatpickr();
+        feather.replace(); // Shows eye icon
 
         modal.find('[id="okModal"]').on('click', function () {
-            let form = $("form[id='careerRegisterForm']");
+
+            let form = $("form[id='teacherRegisterForm']");
 
             if (!form.valid()) {
                 return;
             }
 
-            Career.save({
+            console.log(JSON.stringify(form.serializeArray()))
+
+            // This is sent to the store request parameter
+            TeacherDatatable.save({
                 _token: Application.getToken()
-                , name: form.find('input[id="careerName"]').val()
-                , enrollment: form.find('input[id="careerEnrollment"]').val()
-                , opening_date: form.find('input[id="openingDate"]').val()
+                , fields: JSON.stringify($('#teacherRegisterForm').serializeArray())
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -108,10 +111,10 @@ const Career = (function () {
                 Modal.close(modal.attr('id'));
 
                 // Reload table
-                Career.getList().then(function () {
-                    $('table[id="careerTable"]').DataTable().destroy;
+                TeacherDatatable.getList().then(function () {
+                    $('table[id="teacherTable"]').DataTable().destroy;
 
-                    $('div[id="careerList"]').html(arguments[0]);
+                    $('div[id="dataList"]').html(arguments[0]);
 
                     initializeTable();
                 });
@@ -122,23 +125,21 @@ const Career = (function () {
     }
 
     // Loads a modal and update a record
-    function updateCareerForm(modal) {
-
-        $('input[id="openingDate"]').flatpickr();
+    function updateForm(modal) {
 
         modal.find('[id="okModal"]').on('click', function () {
-            let form = $("form[id='careerEditForm']");
+            let form = $("form[id='editForm']");
 
             if (!form.valid()) {
                 return;
             }
 
-            Career.update({
+            // All this data goes to the update function controller
+            TeacherDatatable.update({
                 _token: Application.getToken()
-                , id: form.find('input[id="careerId"]').val()
-                , name: form.find('input[id="careerName"]').val()
-                , enrollment: form.find('input[id="careerEnrollment"]').val()
-                , opening_date: form.find('input[id="openingDate"]').val()
+                , id: form.find('input[name="modalityId"]').val()
+                , name: form.find('input[id="name"]').val()
+                , note: form.find('textarea[id="note"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido actualizado correctamente', 'Registro actualizado'
@@ -147,10 +148,10 @@ const Career = (function () {
                 Modal.close(modal.attr('id'));
 
                 // Reload table
-                Career.getList().then(function () {
-                    $('table[id="careerTable"]').DataTable().destroy;
+                TeacherDatatable.getList().then(function () {
+                    $('table[id="dataTable"]').DataTable().destroy;
 
-                    $('div[id="careerList"]').html(arguments[0]);
+                    $('div[id="dataList"]').html(arguments[0]);
 
                     initializeTable();
                 });
@@ -158,13 +159,14 @@ const Career = (function () {
         });
 
         loadFormValidation();
-
     }
 
     // Load validations
     function loadFormValidation() {
-        let careerRegisterForm = $("form[id='careerRegisterForm']");
-
+        let form = $("form[id='teacherRegisterForm']");
+        if (form.length === 0){
+            form = $("form[id='editForm']");
+        }
         // Validate that the contents of a field are not spaces
         $.validator.addMethod("emptyField", function (value, element) {
             let valido = value.trim().length !== 0;
@@ -172,41 +174,25 @@ const Career = (function () {
             return this.optional(element) || valido;
         });
 
-        careerRegisterForm.validate({
+        form.validate({
             rules: {
-                careerName: {
-                    required: true
-                    , emptyField: true
-                }
-                , careerEnrollment: {
-                    required: true
-                    , emptyField: true
-                }
-                , openingDate: {
-                    required: true
-                    , emptyField: true
+                name: {
+                    required: true,
+                    maxlength: 30
                 }
             }
             , messages: {
-                careerName: {
-                    required: "Requerido"
-                    , emptyField: "Requerido"
-                }
-                , careerEnrollment: {
-                    required: "Requerido"
-                    , emptyField: "Requerido"
-                }
-                , openingDate: {
-                    required: "Requerido"
-                    , emptyField: "Requerido"
+                name: {
+                    required: "El nombre de la modalidad es requerido",
+                    maxlength: "El nombre es muy largo, por favor intente con uno más corto o contacte al admin."
                 }
             }
             , errorPlacement: function (error, element) {
-                careerRegisterForm.find("span[for='" + element.attr('id') + "']").append(error);
+                form.find("span[for='" + element.attr('id') + "']").append(error);
             }
         });
 
-        return careerRegisterForm;
+        return form;
     }
 
     return {
@@ -250,7 +236,7 @@ const Career = (function () {
         , update: function (data) {
             return Configuration.consume({
                 url: urlController + data.id
-                , method: 'PATCH'
+                , method: 'PUT'
                 , data: data
             })
         }

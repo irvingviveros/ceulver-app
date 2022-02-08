@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Teachers"=>"Maestros",
     "Modalities"=>"Modalidades",
     "Academic Year"=>"Año académico",
     "Subjects"=>"Materias",

@@ -61,6 +61,12 @@
       ]
     },
     {
+      "url": "admin/teachers",
+      "name": "Teachers",
+      "icon": "book",
+      "slug": "teachers"
+    },
+    {
       "url": "admin/manage-careers",
       "name": "Careers",
       "icon": "bookmark",

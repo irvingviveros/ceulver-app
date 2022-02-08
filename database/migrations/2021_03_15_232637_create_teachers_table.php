@@ -16,17 +16,19 @@ class CreateTeachersTable extends Migration
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('national_id', 18)->unique()->nullable(true);  //CURP
+            $table->string('rfc', 13)->unique()->nullable(true); //RFC
             $table->string('responsibility', 100);  // Materia por impartir
-            $table->string('first_name', 25);
-            $table->string('middle_name', 25);
-            $table->string('paternal_surname', 25);
-            $table->string('maternal_surname', 25);
-            $table->string('email',50);
-            $table->string('phone',10);
+            $table->string('enrollment')->nullable(true); //Matrícula
+            $table->string('first_name', 50);
+            $table->string('middle_name', 50)->nullable(true);
+            $table->string('paternal_surname', 50);
+            $table->string('maternal_surname', 50)->nullable(true);
+            $table->string('email',50)->nullable(true);
+            $table->string('phone',10)->nullable(true);
             $table->string('address',250)->nullable(true);
-            $table->string('blood_group', 4)->nullable(true);
-            $table->date('birth_date');
-            $table->date('joining_date');
+            $table->string('blood_group', 14)->nullable(true);
+            $table->date('birth_date')->nullable(true);
+            $table->date('joining_date')->nullable(true);
             $table->date('resign_date')->nullable(true);
             $table->string('photo', 100)->nullable(true);
             $table->string('resume', 100)->nullable(true);

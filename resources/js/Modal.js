@@ -10,7 +10,7 @@ let Modal = (function(Swal) {
 
         $('body').append(
             '<div id="' + config.id + '" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true">' +
-            '<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable ' + (config.sizeClass || '') + '">' +
+            '<div class="modal-dialog modal-'+config.size+' modal-dialog-centered modal-dialog-scrollable ' + (config.sizeClass || '') + '">' +
             '<div class="modal-content">' +
             (!config.hideHeader ?
                     '<div class="modal-header bg-transparent">' +
@@ -21,7 +21,7 @@ let Modal = (function(Swal) {
                     : ''
             ) +
             '<div class="modal-body pb-5 px-sm-5 pt-50">' +
-            '<h1 class="text-center mb-2" id="myModalLabel160">' + (config.title || '') + '</h1>'
+            '<h1 class="fw-bolder mb-2" id="myModalLabel160">' + (config.title || '') + '</h1>'
             + (config.content || '') +
             '</div>' +
             (!config.hideFooter

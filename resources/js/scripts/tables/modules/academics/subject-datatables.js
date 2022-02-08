@@ -37,6 +37,7 @@ const SubjectDatatable = (function () {
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
+                    , size: 'lg'
                 });
 
                 // Show modal
@@ -60,6 +61,7 @@ const SubjectDatatable = (function () {
                     , content: arguments[0]
                     , okButtonText: 'Guardar'
                     , cancelButtonText: 'Cerrar'
+                    , size: 'lg'
                 });
 
                 modal.modal('show').on('shown.bs.modal', function () {
