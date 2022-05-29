@@ -7,7 +7,7 @@ const Application = (function(){
         , getToken: function() {
             return $('meta[name="csrf-token"]').attr('content');
         }
-        , getDatatableConfiguration() {
+        , getDatatableConfiguration(DataTableObject) {
             return {
                 columnDefs: [
                     {
@@ -87,7 +87,7 @@ const Application = (function(){
                     , {
                         name: 'create'
                         , text: feather.icons['plus'].toSvg({ class: 'me-50 font-small-4' }) + 'Crear nuevo registro'
-                        , className: 'btn btn-primary createCareer'
+                        , className: 'btn btn-primary createEntry'
                         , init: function (api, node, config) {
                             $(node).removeClass('btn-secondary');
                         }
@@ -100,7 +100,7 @@ const Application = (function(){
                 }
                 , initComplete: function(settings, json) {
                     console.log('DataTables has finished its initialisation.');
-                    Career.loadEvents();
+                    DataTableObject.loadEvents();
                     console.log('Eventos cargados del datatable')
                 }
             }

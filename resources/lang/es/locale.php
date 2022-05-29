@@ -1,6 +1,16 @@
 <?php
 
 return [
+    "Main Dashboard"=>"Panel principal",
+    "Elementary school"=>"Primaria",
+    "High school"=>"Secundaria",
+    "Bachelor"=>"Bachillerato",
+    "University"=>"Universidad",
+    "Administrative Coordination"=>"Coordinación administrativa",
+    "Teachers"=>"Maestros",
+    "Modalities"=>"Modalidades",
+    "Academic Year"=>"Año académico",
+    "Subjects"=>"Materias",
     "Roles & Permission"=>"Roles y permisos",
     "Roles"=>"Roles",
     "Permission"=>"Permisos",

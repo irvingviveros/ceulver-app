@@ -15,15 +15,12 @@ class CreateAgreementsTable extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->string('agreement',100);
+            $table->string('name',50);
             $table->text('note')->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();
-
-            // Foreign key
-            $table->foreignId('school_id')->constrained();
         });
     }
 

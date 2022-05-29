@@ -26,6 +26,18 @@
           "name": "Email Settings",
           "icon": "circle",
           "slug": "email-settings"
+        },
+        {
+          "url": "admin/academic-years",
+          "name": "Academic Year",
+          "icon": "circle",
+          "slug": "academic-year"
+        },
+        {
+          "url": "admin/modalities",
+          "name": "Modalities",
+          "icon": "circle",
+          "slug": "modalities"
         }
       ]
     },
@@ -41,7 +53,7 @@
           "slug": "manage-students"
         },
         {
-          "url": "admin/manage-students/agreement",
+          "url": "admin/manage-students/agreements",
           "name": "Students Convention",
           "icon": "circle",
           "slug": "students-convention"
@@ -49,8 +61,20 @@
       ]
     },
     {
+      "url": "admin/teachers",
+      "name": "Teachers",
+      "icon": "book",
+      "slug": "teachers"
+    },
+    {
       "url": "admin/manage-careers",
       "name": "Careers",
+      "icon": "bookmark",
+      "slug": "careers"
+    },
+    {
+      "url": "admin/manage-subjects",
+      "name": "Subjects",
       "icon": "book",
       "slug": "careers"
     },
@@ -72,6 +96,43 @@
           "slug": "app-access-permission"
         }
       ]
-    }
+    },
+      {
+          "name": "Administrative Coordination",
+          "icon": "briefcase",
+          "slug": "administrative",
+          "submenu": [
+              {
+                  "url": "admin/administrative/dashboard",
+                  "name": "Main Dashboard",
+                  "icon": "circle",
+                  "slug": "administrative-dashboard"
+              },
+              {
+                  "url": "admin/administrative/university",
+                  "name": "University",
+                  "icon": "circle",
+                  "slug": "university"
+              },
+              {
+                  "url": "admin/administrative/bachelor",
+                  "name": "Bachelor",
+                  "icon": "circle",
+                  "slug": "bachelor"
+              },
+              {
+                  "url": "admin/administrative/high-school",
+                  "name": "High school",
+                  "icon": "circle",
+                  "slug": "high-school"
+              },
+              {
+                  "url": "admin/administrative/elementary-school",
+                  "name": "Elementary school",
+                  "icon": "circle",
+                  "slug": "elementary-school"
+              }
+          ]
+      }
   ]
 }

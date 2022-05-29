@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 
-
 class CareerController extends Controller {
 
     /**
@@ -35,7 +34,7 @@ class CareerController extends Controller {
         ];
 
         return view(
-            'modules.career.list.index'
+            'modules.career.index'
             , ['breadcrumbs' => $breadcrumbs]
             , compact('careers')
         );
@@ -48,7 +47,7 @@ class CareerController extends Controller {
      */
     public function create()
     {
-        return view('modules.career.list.registerForm');
+        return view('modules.career.actions.modal-create-career');
     }
 
     /**
@@ -81,8 +80,8 @@ class CareerController extends Controller {
         } catch (OperationNotPermittedCeulverException $opx) {
             return response($opx->getMessage(), 400);
         } catch (Exception $ex) {
-            // TODO enviar mensaje al log
-            Log::info($ex->getMessage());
+
+            Log::info($ex->getMessage());   //Send error message to Log
 
             return response("Error interno del servidor", 500);
         }
@@ -135,22 +134,7 @@ class CareerController extends Controller {
         }
 
         return view(
-            'modules.career.list.editForm', compact('career')
-        );
-    }
-
-    /**
-     * Get information of careers
-     */
-    public function getList() {
-        $careerService = new CareerService(
-            new EloquentCareerRepository()
-        );
-
-        $careers = $careerService->getAll();
-
-        return view(
-            'modules.career.list.list', compact('careers')
+            'modules.career.actions.modal-edit-career', compact('career')
         );
     }
 
@@ -172,5 +156,21 @@ class CareerController extends Controller {
             // TODO enviar mensaje de error al log
             return new Response('Error interno en el servidor', 500);
         }
+    }
+
+    /**
+     * Get information of careers
+     */
+    public function getList() {
+
+        //Initialize variables
+        $careerService = new CareerService(
+            new EloquentCareerRepository()
+        );
+        $careers = $careerService->getAll();
+
+        return view(
+            'modules.career.list.list', compact('careers')
+        );
     }
 }

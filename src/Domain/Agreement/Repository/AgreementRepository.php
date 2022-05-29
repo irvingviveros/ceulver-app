@@ -3,6 +3,8 @@ declare(strict_types = 1);
 
 namespace Domain\Agreement\Repository;
 
+use Illuminate\Database\Eloquent\Model;
+
 interface AgreementRepository {
 
     /**
@@ -42,4 +44,17 @@ interface AgreementRepository {
      * @return \Illuminate\Database\Eloquent\Collection|static[]
      */
     public function all($columns = ['*']);
+
+    /**
+     * @param $relation
+     * @return mixed
+     */
+    public function with($relation);
+
+    /**
+     * @param Model $model
+     * @return mixed
+     */
+    public function detach(Model $model);
+
 }

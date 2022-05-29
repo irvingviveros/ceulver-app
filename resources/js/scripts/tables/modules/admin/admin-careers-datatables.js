@@ -16,9 +16,9 @@ const Career = (function () {
         // Apply icons on all table pages
         feather.replace();
 
-        // Apply Datatable default configuration
+        // Apply Datatable configuration
         table.DataTable(
-            Application.getDatatableConfiguration()
+            Application.getDatatableConfiguration(Career)
         )
 
     }
@@ -29,7 +29,7 @@ const Career = (function () {
         let table =  $('#careerTable');
 
         // Create event
-        $('.createCareer').on('click', function () {
+        $('.createEntry').on('click', function () {
             Career.getRegisterForm().then(function () {
                 let modal = Modal.create({
                     id: 'careerRegisterForm'
@@ -37,6 +37,7 @@ const Career = (function () {
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
+                    , size: 'lg'
                 });
 
                 modal.modal('show').on('shown.bs.modal', function () {
@@ -46,8 +47,9 @@ const Career = (function () {
         });
 
         // Update event
-        $('.item-edit').on('click', function () {
-            let careerId = $(this).attr('data-id');
+        $('#careerTable tbody').on('click', '.item-edit', function (event) {
+
+            let careerId = $(event.currentTarget).attr('data-id');
 
             Career.getEditForm(
                 careerId
@@ -58,6 +60,7 @@ const Career = (function () {
                     , content: arguments[0]
                     , okButtonText: 'Guardar'
                     , cancelButtonText: 'Cerrar'
+                    , size: 'lg'
                 });
 
                 modal.modal('show').on('shown.bs.modal', function () {
@@ -148,7 +151,6 @@ const Career = (function () {
                     $('table[id="careerTable"]').DataTable().destroy;
 
                     $('div[id="careerList"]').html(arguments[0]);
-                    feather.replace();
 
                     initializeTable();
                 });

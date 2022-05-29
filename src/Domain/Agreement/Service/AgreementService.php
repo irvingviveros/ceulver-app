@@ -5,7 +5,10 @@ namespace Domain\Agreement\Service;
 
 use Domain\Agreement\Entity\AgreementEntity;
 use Domain\Shared\exception\CeulverOperationNotPermittedException;
+use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Shared\Exception\ValueNotFoundException;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Infrastructure\Agreement\Repository\EloquentAgreementRepository;
 
 class AgreementService
@@ -24,6 +27,13 @@ class AgreementService
     }
 
     /**
+     * @return mixed
+     */
+    public function getAll() {
+        return $this->agreementRepository->getAll();
+    }
+
+    /**
      * @param AgreementEntity $agreement
      * @param $createdBy
      * @param $modifiedBy
@@ -38,25 +48,25 @@ class AgreementService
     ): int
     {
         // Verify if the agreement input is not empty
-        if ($agreement->getAgreement() == '') {
+        if ($agreement->getName() == '') {
             throw new CeulverOperationNotPermittedException(
                 "El convenio se encuentra vacío"
             );
         }
 
         // Verify if the agreement exist
-        if ($this->agreementRepository->checkIfNameExists($agreement->getAgreement())){
+        if ($this->agreementRepository->checkIfNameExists($agreement->getName())){
             throw new ValueNotFoundException(
                 "Ya existe un convenio con el mismo nombre"
             );
         }
 
         $data = array(
-            'agreement'=>$agreement->getAgreement(),
-            'notes'=>$agreement->getNote(),
-            'status'=>$agreement->getStatus(),
-            'created_by'=>$createdBy,
-            'modified_by'=>$modifiedBy
+            'name'          => $agreement->getName(),
+            'note'          => $agreement->getNote(),
+            'status'        => $agreement->getStatus(),
+            'created_by'    => $createdBy,
+            'modified_by'   => $modifiedBy
         );
 
         $agreement_id = $this->agreementRepository->create($data);
@@ -91,10 +101,28 @@ class AgreementService
     /**
      * @param $data
      * @throws ValueNotFoundException
+     * @throws OperationNotPermittedCeulverException
      */
-    public function update($data)
+    public function update(
+        $id,
+        AgreementEntity $agreementEntity,
+        $modifiedBy
+    )
     {
-        $agreement = $this->findById($data['id']);
+        $agreement = $this->findById($id);
+
+        if ($agreement->name != $agreementEntity->getName()) {
+            if ($this->agreementRepository->checkIfNameExists($agreementEntity->getName())) {
+                throw new OperationNotPermittedCeulverException(
+                    "Ya existe un convenio con el mismo nombre"
+                );
+            }
+        }
+
+        $agreement->name = $agreementEntity->getName();
+        $agreement->note = $agreementEntity->getNote();
+        $agreement->status = $agreementEntity->getStatus();
+        $agreement->modified_by = $modifiedBy;
 
         $this->agreementRepository->update($agreement);
     }
@@ -108,6 +136,22 @@ class AgreementService
         $agreement = $this->findById($id);
 
         $this->agreementRepository->delete($agreement);
+    }
+
+    public function detach($id)
+    {
+        $agreement = $this->findById($id);
+
+        $this->agreementRepository->detach($agreement);
+    }
+
+    /**
+     * @param $relation
+     * @return Builder[]|Collection
+     */
+    public function with($relation)
+    {
+        return $this->agreementRepository->with($relation);
     }
 
 }

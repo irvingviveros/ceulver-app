@@ -10,7 +10,7 @@ let Modal = (function(Swal) {
 
         $('body').append(
             '<div id="' + config.id + '" class="modal fade show" tabindex="-1" role="dialog" aria-modal="true">' +
-            '<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ' + (config.sizeClass || '') + '">' +
+            '<div class="modal-dialog modal-'+config.size+' modal-dialog-centered modal-dialog-scrollable ' + (config.sizeClass || '') + '">' +
             '<div class="modal-content">' +
             (!config.hideHeader ?
                     '<div class="modal-header bg-transparent">' +
@@ -20,8 +20,8 @@ let Modal = (function(Swal) {
                     '</div>'
                     : ''
             ) +
-            '<div class="modal-body">' +
-            '<h1 class="text-center mb-1" id="myModalLabel160">' + (config.title || '') + '</h1>'
+            '<div class="modal-body pb-5 px-sm-5 pt-50">' +
+            '<h1 class="fw-bolder mb-2" id="myModalLabel160">' + (config.title || '') + '</h1>'
             + (config.content || '') +
             '</div>' +
             (!config.hideFooter
@@ -31,7 +31,7 @@ let Modal = (function(Swal) {
                         '<span class="d-none d-sm-block">' + (config.okButtonText || 'Guardar') + '</span>' +
                         '</button>' +
                         '<button type="reset" id="cancelModal" class="btn btn-outline-secondary mt-2 waves-effect" data-bs-dismiss="modal" aria-label="Close">' +
-                        '<span class="d-none d-sm-block">' + (config.cancelButtonText || 'Cerrar') + '</span>' +
+                        '<span class="d-none d-sm-block">' + (config.cancelButtonText || 'Cancelar') + '</span>' +
                         '</button>' +
                         '</div>')
                     : ''

@@ -15,8 +15,10 @@ class CareerSchool extends Migration
     {
         // Pivot table careers - schools
         Schema::create('career_school', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('career_id')->constrained();
             $table->foreignId('school_id')->constrained();
+            $table->timestamps();
         });
     }
 

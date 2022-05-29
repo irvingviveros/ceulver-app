@@ -3,6 +3,7 @@
 namespace Infrastructure\Agreement\Repository;
 
 use Domain\Agreement\Repository\AgreementRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\Agreement\Model\Agreement;
@@ -19,19 +20,45 @@ class EloquentAgreementRepository implements AgreementRepository
         return DB::table('agreements')->insertGetId($data);
     }
 
+    /**
+     * @param $data
+     * @return mixed|void
+     */
     public function update($data)
     {
         $data->save();
     }
 
+    /**
+     * @param $data
+     * @return mixed|void
+     */
     public function delete($data)
     {
         $data->delete();
     }
 
+    /**
+     * @param array|mixed|string[] $columns
+     * @return Agreement[]|Collection|EloquentAgreementRepository[]
+     */
     public function all($columns = ['*'])
     {
         return Agreement::all($columns);
+    }
+
+    /**
+     * @param $relation
+     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
+     */
+    public function with($relation)
+    {
+        return Agreement::with($relation)->get();
+    }
+
+    public function detach(Model $agreement)
+    {
+        $agreement->schools()->detach();
     }
 
     /**
@@ -49,8 +76,13 @@ class EloquentAgreementRepository implements AgreementRepository
      */
     public function checkIfNameExists($name): bool
     {
-        $row = DB::table('agreements')->where('agreement_name')->get();
+        $row = DB::table('agreements')->where('name')->get();
 
         return $row->count() > 0;
+    }
+
+    public function getAll()
+    {
+        return Agreement::all();
     }
 }

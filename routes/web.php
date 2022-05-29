@@ -1,12 +1,17 @@
 <?php
 
+use App\AcademicYear\Controller\AcademicYearController;
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Email\Controller\EmailSettingController;
 use App\Http\Controllers\RoleController;
 use App\Language\Controller\LanguageController;
+use App\Modality\Controller\ModalityController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
+use App\Subject\Controller\SubjectController;
+use App\Teacher\Controller\TeacherController;
+use App\Upload\Controller\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,19 +47,48 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'create', 'show'
     ]);
 
+    // Academic year config, route admin/academic-year
+    Route::resource('academic-years', AcademicYearController::class)->except([
+        'show'
+    ]);
+    Route::get('/academic-years/getList', [AcademicYearController::class, 'getList']);
+
+    Route::resource('modalities', ModalityController::class)->except([
+        'show'
+    ]);
+    Route::get('/modalities/getList', [ModalityController::class, 'getList']);
+
+    Route::resource('teachers', TeacherController::class)->except([
+       'show'
+    ]);
+    Route::get('/teachers/getList', [TeacherController::class, 'getList']);
+
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
-        // Student convention types, route admin/manage-students/convention
-        //Route::resource('convention', StudentConventionController::class)->except('show');
         // Student agreement types, route admin/manage-students/agreement
-        Route::resource('agreement', AgreementController::class)->except(['show']);
+        Route::resource('agreements', AgreementController::class)->except(['show']);
+        Route::get('agreements/getList', [AgreementController::class, 'getList']);
     });
+//
+//    Route::get('manage-students/agreement/', [AgreementController::class, 'index']);
+//    Route::get('manage-students/agreement/{agreement}/edit', [AgreementController::class, 'edit']);
+
 
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except(['show']);
     Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
 
+    // Subject management, route admin/manage-subjects
+    Route::resource('manage-subjects', SubjectController::class)->except(['show']);
+    Route::get('/manage-subjects/getList', [SubjectController::class, 'getList']);
+
+    // Roles management, route admin/roles
     Route::resource('roles', RoleController::class);
+
+    // Uploads testing
+    Route::resource('upload', UploadController::class);
+//    Route::post('/upload', [UploadController::class, 'store']);
+//    Route::delete('/upload', [UploadController::class, 'destroy']);
 });
 
 // locale Route
