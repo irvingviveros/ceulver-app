@@ -96,6 +96,43 @@
           "slug": "app-access-permission"
         }
       ]
-    }
+    },
+      {
+          "name": "Administrative Coordination",
+          "icon": "briefcase",
+          "slug": "administrative",
+          "submenu": [
+              {
+                  "url": "admin/administrative/dashboard",
+                  "name": "Main Dashboard",
+                  "icon": "circle",
+                  "slug": "administrative-dashboard"
+              },
+              {
+                  "url": "admin/administrative/university",
+                  "name": "University",
+                  "icon": "circle",
+                  "slug": "university"
+              },
+              {
+                  "url": "admin/administrative/bachelor",
+                  "name": "Bachelor",
+                  "icon": "circle",
+                  "slug": "bachelor"
+              },
+              {
+                  "url": "admin/administrative/high-school",
+                  "name": "High school",
+                  "icon": "circle",
+                  "slug": "high-school"
+              },
+              {
+                  "url": "admin/administrative/elementary-school",
+                  "name": "Elementary school",
+                  "icon": "circle",
+                  "slug": "elementary-school"
+              }
+          ]
+      }
   ]
 }
