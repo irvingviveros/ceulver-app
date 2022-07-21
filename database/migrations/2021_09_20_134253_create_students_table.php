@@ -32,7 +32,7 @@ class CreateStudentsTable extends Migration
             $table->string('nationality', 25)->default('Mexicano'); // Nacionalidad
             $table->enum('marital_status', ['married', 'single', 'divorced', 'widowed'])->nullable(true)->default('single'); //Estado civil
             $table->enum('sex', ['male', 'female']); // Sexo
-            $table->string('gender', ['heterosexual', 'homosexual', 'bisexual', 'lesbian', 'pansexual', 'other', 'not specific'])->nullable(true); // Género
+            $table->enum('gender', ['heterosexual', 'homosexual', 'bisexual', 'lesbian', 'pansexual', 'other', 'not specific'])->nullable(true); // Género
             $table->string('religion', 20); // Religión
             // Parents
             $table->string('father_name', 100)->nullable(true); // Nombre del padre

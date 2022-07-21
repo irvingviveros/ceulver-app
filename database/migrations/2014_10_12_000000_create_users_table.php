@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->nullable()->constrained()->onDelete('set null');
+            //$table->foreignId('student_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 
