@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+
 //use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -17,7 +18,8 @@ class User extends Authenticatable
      * Get the Student associated with the user.
      *  $user -> student
      */
-    public function student() {
+    public function student(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
