@@ -14,6 +14,14 @@ class User extends Authenticatable
     use HasFactory, Notifiable, HasRoles;
 
     /**
+     * Get the Student associated with the user.
+     *  $user -> student
+     */
+    public function student() {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
