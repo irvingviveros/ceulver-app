@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Career;
 use App\Models\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Agreement\Model\Agreement;
+use Infrastructure\Career\Model\Career;
 use Infrastructure\School\Model\School;
+use Infrastructure\Student\Model\Student;
 use Yajra\DataTables\DataTables;
 
 /*
@@ -47,5 +48,12 @@ Route::get('careers', function(){
 Route::get('agreements', function(){
     return datatables()
         ->eloquent(Agreement::query())
+        ->toJson();
+});
+
+// Return Students data
+Route::get('students', function(){
+    return datatables()
+        ->eloquent(Student::query())
         ->toJson();
 });

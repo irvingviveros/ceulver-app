@@ -5,6 +5,7 @@ use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Email\Controller\EmailSettingController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\StudentController;
 use App\Language\Controller\LanguageController;
 use App\Modality\Controller\ModalityController;
 use App\School\Controller\SchoolController;
@@ -65,6 +66,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
+        Route::resource('students', StudentController::class)->except(['show']);
+        Route::get('students/getList', [StudentController::class, 'getList']);
         // Student agreement types, route admin/manage-students/agreement
         Route::resource('agreements', AgreementController::class)->except(['show']);
         Route::get('agreements/getList', [AgreementController::class, 'getList']);

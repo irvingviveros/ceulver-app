@@ -5,6 +5,7 @@ namespace Infrastructure\Career\Repository;
 
 use Domain\Career\Repository\CareerRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\Career\Model\Career;
 
@@ -58,5 +59,10 @@ class EloquentCareerRepository implements CareerRepository {
     public function getAll()
     {
         return Career::all();
+    }
+
+    public function orderBy(string $column): \Illuminate\Support\Collection
+    {
+        return DB::table('careers')->orderBy($column)->get();
     }
 }

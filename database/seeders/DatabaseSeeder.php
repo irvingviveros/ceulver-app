@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             SystemAdminSeeder::class,
             CareerSeeder::class,
             AgreementSeeder::class,
-            ModalitySeeder::class
+            ModalitySeeder::class,
+            StudentSeeder::class,
         ]);
     }
 }

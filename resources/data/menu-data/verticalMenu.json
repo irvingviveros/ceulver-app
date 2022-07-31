@@ -12,7 +12,7 @@
     },
     {
       "name": "Administrator",
-      "icon": "user",
+      "icon": "menu",
       "slug": "admin",
       "submenu": [
         {
@@ -43,11 +43,11 @@
     },
     {
       "name": "Students",
-      "icon": "users",
+        "icon": "menu",
       "slug": "students",
       "submenu": [
         {
-          "url": "admin/manage-students-list",
+          "url": "admin/manage-students/students",
           "name": "Manage Students",
           "icon": "circle",
           "slug": "manage-students"
@@ -63,24 +63,24 @@
     {
       "url": "admin/teachers",
       "name": "Teachers",
-      "icon": "book",
+        "icon": "menu",
       "slug": "teachers"
     },
     {
       "url": "admin/manage-careers",
       "name": "Careers",
-      "icon": "bookmark",
+      "icon": "menu",
       "slug": "careers"
     },
     {
       "url": "admin/manage-subjects",
       "name": "Subjects",
-      "icon": "book",
+      "icon": "menu",
       "slug": "careers"
     },
     {
       "name": "Roles & Permission",
-      "icon": "shield",
+      "icon": "menu",
       "slug": "",
       "submenu": [
         {
@@ -99,7 +99,7 @@
     },
       {
           "name": "Administrative Coordination",
-          "icon": "briefcase",
+          "icon": "menu",
           "slug": "administrative",
           "submenu": [
               {

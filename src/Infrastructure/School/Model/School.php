@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Student\Model\Student;
 use Infrastructure\Subject\Model\Subject;
 use Infrastructure\Teacher\Model\Teacher;
 
@@ -58,5 +59,10 @@ class School extends Model
     public function teachers()
     {
         return $this->hasMany(Teacher::class);
+    }
+
+    public function students()
+    {
+        return $this->hasMany(Student::class);
     }
 }
