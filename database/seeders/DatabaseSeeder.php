@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             AgreementSeeder::class,
             ModalitySeeder::class,
             StudentSeeder::class,
+            EducationalSystemSeeder::class,
         ]);
     }
 }

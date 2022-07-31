@@ -2,6 +2,7 @@
 
 namespace Infrastructure\School\Model;
 
+use Infrastructure\EducationalSystem\Model\EducationalSystem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Infrastructure\AcademicYear\Model\AcademicYear;
@@ -25,10 +26,19 @@ class School extends Model
     }
 
     /**
+     * Get the educational system associated with the school.
+     *  $school -> educationalSystems
+     */
+    public function educationalSystems(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(EducationalSystem::class);
+    }
+
+    /**
      * Get the student convention associated with the School.
      *  $school -> agreements
      */
-    public function agreements()
+    public function agreements(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Agreement::class)
             ->withTimestamps();
@@ -39,29 +49,29 @@ class School extends Model
      * Get those careers associated with the School.
      *  $school -> studentType
      */
-    public function careers()
+    public function careers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Career::class, 'career_school')
             ->using(CareerSchool::class)
             ->withTimestamps();
     }
 
-    public function subjects()
+    public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Subject::class);
     }
 
-    public function academicYears()
+    public function academicYears(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(AcademicYear::class);
     }
 
-    public function teachers()
+    public function teachers(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Teacher::class);
     }
 
-    public function students()
+    public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Student::class);
     }
