@@ -1,6 +1,7 @@
 const StudentDatatable = (function () {
     'use strict';
 
+    // Main route
     const urlController = Application.getUrl() + 'admin/manage-students/students/';
 
     function initialize() {
@@ -12,15 +13,12 @@ const StudentDatatable = (function () {
     function initializeTable() {
         // JQuery selector for table
         let table =  $('#dataTable');
-
         // Apply icons on all table pages
         feather.replace();
-
         // Apply Datatable default configuration
         table.DataTable(
             Application.getDatatableConfiguration(StudentDatatable)
         )
-
     }
 
     // Initializes events from the datatable

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
 use Infrastructure\Career\Repository\EloquentCareerRepository;
+use Infrastructure\School\Model\School;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
@@ -58,7 +59,7 @@ class StudentController extends Controller
     {
         $schoolRepository = new EloquentSchoolRepository();
         $careersRepository = new EloquentCareerRepository();
-        $schools = $schoolRepository->all();
+        $schools = $schoolRepository->with('educationalSystems');
         $careers = $careersRepository->orderBy('name');
         return view('modules.student.actions.modal-add-student', compact(['schools', 'careers']));
     }
