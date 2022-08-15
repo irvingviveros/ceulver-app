@@ -170,6 +170,8 @@
     "/js/Configuration.js": "/js/Configuration.js",
     "/js/Delete.js": "/js/Delete.js",
     "/js/Modal.js": "/js/Modal.js",
+    "/js/utils/input-uppercase.js": "/js/utils/input-uppercase.js",
+    "/js/utils/toggle-selector-input.js": "/js/utils/toggle-selector-input.js",
     "/vendors/js/alpinejs/alpine.js": "/vendors/js/alpinejs/alpine.js",
     "/vendors/js/blockui/blockui.min.js": "/vendors/js/blockui/blockui.min.js",
     "/vendors/js/bootstrap/bootstrap.min.js": "/vendors/js/bootstrap/bootstrap.min.js",
