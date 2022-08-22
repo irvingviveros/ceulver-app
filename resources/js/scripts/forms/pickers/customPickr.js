@@ -1,5 +1,5 @@
 /*=========================================================================================
-    File Name: system.default.js
+    File Name: customPickr.js
     Description: Pick a date/time Picker, Date Range Picker JS
     ----------------------------------------------------------------------------------------
     Item Name:
@@ -9,12 +9,13 @@
 (function (window, document, $) {
     'use strict';
 
-    var pickr = $('.flatpickrDefault');
+    var basicPickr = $('.flatpickr-basic');
 
-    if (pickr.length) {
-        pickr.flatpickr({
+    if (basicPickr.length) {
+        basicPickr.flatpickr({
+            static: true,
             altInput: true,
-            altFormat: 'F j, Y',
+            altFormat: 'j F, Y',
             dateFormat: 'Y-m-d',
             locale: {
                 firstDayOfWeek: 1,
@@ -26,7 +27,7 @@
                     shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
                     longhand: ['Enero', 'Febrero', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                 }
-            }
+            },
         });
     }
 

@@ -4,26 +4,41 @@
         <b>Seleccionar institución</b>
     </div>
 
-    <div class="col-6">
-        <div class="col-md-6 basic-select2">
-            <label class="form-label" for="schoolSelect">Nombre de la institución</label>
-            <select class="form-select" id="schoolSelect" onchange="showUniversityInputs(this.value)">
-                @foreach($schools as $school)
-                    <option value="{{$school->id}}">{{$school->school_name}}</option>
-                @endforeach
-            </select>
-        </div>
+    <div class="col-3">
+        <label class="form-label" for="schoolSelect">Nombre de la institución
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-select" id="schoolSelect">
+            @foreach($schools as $school)
+                <option value="{{$school->id}}">{{$school->school_name}}</option>
+            @endforeach
+        </select>
         <span for="schoolSelect" class="text-danger"></span>
     </div>
 
-    <div class="col-6"></div>
+    <div class="col-3">
+        <label class="form-label" for="educationalSystems">Nivel educativo
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-select" id="educationalSystems"
+                onchange="toggleSelectorInput(this.value, '6', '#university')">
+            @foreach($schools as $school)
+                @foreach($school->educationalSystems as $educationalSystem)
+                    <option value="{{$educationalSystem->id}}">{{$educationalSystem->name}}</option>
+                @endforeach
+            @endforeach
+        </select>
+        <span for="educationalSystems" class="text-danger"></span>
+    </div>
 
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
         <b>Información personal</b>
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="paternalSurname">Apellido paterno<span class="text-danger">*</span></label>
+        <label class="form-label" for="paternalSurname">Apellido paterno
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -36,9 +51,10 @@
         <span for="paternalSurname" class="text-danger"></span>
     </div>
 
-
     <div class="col-3">
-        <label class="form-label" for="maternalSurname">Apellido materno<span class="text-danger">*</span></label>
+        <label class="form-label" for="maternalSurname">Apellido materno
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -52,7 +68,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="firstName">Nombre(s)<span class="text-danger">*</span></label>
+        <label class="form-label" for="firstName">Nombre(s)
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -65,18 +83,20 @@
         <span for="firstName" class="text-danger"></span>
     </div>
 
-    <div class="col-md-3">
-        <label class="form-label" for="pickrBirthday">Fecha de nacimiento<span class="text-danger">*</span></label>
-        <input
-            type="text"
-            id="pickrBirthday"
-            class="form-control flatpickrDefault"
-            placeholder="Seleccionar"
-        />
+    <div class="col-3">
+        <label class="form-label" for="fp-default">Fecha de nacimiento
+            <span class="text-danger">*</span>
+        </label>
+        <br>
+        <input type="text" id="fp-default" class="form-control flatpickr-basic"
+               placeholder="Seleccionar" readonly>
     </div>
 
+
     <div class="col-3">
-        <label class="form-label" for="nationalId">CURP<span class="text-danger">*</span></label>
+        <label class="form-label" for="nationalId">CURP
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -127,7 +147,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="email">Correo electrónico personal</label>
+        <label class="form-label" for="email">Correo electrónico personal
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="email"
             class="form-control"
@@ -140,15 +162,18 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="phone">Número telefónico personal</label>
+        <label class="form-label" for="phone">Número telefónico personal (celular)
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="tel"
             class="form-control"
             id="phone"
             name="phone"
-            placeholder="Número telefónico (celular)"
+            placeholder="Teléfono a 10 dígitos"
             aria-label="Número telefónico (celular)"
             maxlength="12"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
         />
         <span for="phone" class="text-danger"></span>
     </div>
@@ -210,9 +235,11 @@
         <b>Información académica</b>
     </div>
 
-    <div class="col-3" id="university">
+    <div class="col-3" id="university" style="display: none">
         <div class="col-md-12 basic-select2">
-            <label class="form-label" for="careerSelect">Carrera a cursar<span class="text-danger">*</span></label>
+            <label class="form-label" for="careerSelect">Carrera a cursar
+                <span class="text-danger">*</span>
+            </label>
             <select class="form-select" id="careerSelect">
                 @foreach($careers as $career)
                     <option value="{{$career->id}}">{{$career->name}}</option>
@@ -227,7 +254,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="guardianLastName">Apellido(s)<span class="text-danger">*</span></label>
+        <label class="form-label" for="guardianLastName">Apellido(s)
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -241,7 +270,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="guardianFirstName">Nombre(s)<span class="text-danger">*</span></label>
+        <label class="form-label" for="guardianFirstName">Nombre(s)
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -305,7 +336,8 @@
             name="guardianPhone"
             placeholder="Número telefónico (celular)"
             aria-label="Número telefónico (celular)"
-            maxlength="12"
+            maxlength="10"
+            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
         />
         <span for="guardianPhone" class="text-danger"></span>
     </div>
@@ -315,14 +347,10 @@
 
 {{-- Page scripts --}}
 <script src="{{ asset(mix('js/scripts/forms/pickers/customPickr.js')) }}"></script>
+<script src="{{ asset(mix('js/utils/input-uppercase.js')) }}"></script>
+<script src="{{asset(mix('js/utils/toggle-selector-input.js'))}}"></script>
 
-{{-- Show the university input if university is selected --}}
+{{-- Event listeners --}}
 <script>
-    function showUniversityInputs(id){
-        if (id === "1"){
-            $("#university").css('display', 'block');
-        } else{
-            $("#university").css('display', 'none');
-        }
-    }
+    document.getElementById("nationalId").addEventListener("keypress", toUpperCase, false);
 </script>
