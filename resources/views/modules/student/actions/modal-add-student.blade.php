@@ -110,7 +110,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="address">Domicilio</label>
+        <label class="form-label" for="address">Domicilio
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -137,9 +139,11 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="sexSelect">Sexo</label>
+        <label class="form-label" for="sexSelect">Sexo
+            <span class="text-danger">*</span>
+        </label>
         <select class="form-select" id="sexSelect">
-            <option selected value="">Seleccionar</option>
+            <option selected value="" disabled>Seleccionar</option>
             <option>Masculino</option>
             <option>Femenino</option>
         </select>
@@ -187,7 +191,7 @@
     <div class="col-3">
         <label class="form-label" for="bloodGroup">Grupo sanguíneo</label>
         <select class="form-select" id="bloodGroup">
-            <option selected value="">Seleccionar</option>
+            <option selected value="" disabled>Seleccionar</option>
             <option>A+</option>
             <option>A-</option>
             <option>A desconocido</option>
@@ -258,7 +262,6 @@
             <i type="button" data-feather='info'></i>
         </span>
         <select class="form-select" id="studentStatus">
-            <option selected value="">Seleccionar</option>
             <option value="0">Inactivo</option>
             <option value="1" selected>Activo</option>
         </select>
@@ -304,7 +307,7 @@
     <div class="col-3">
         <label class="form-label" for="guardianRelationship">Parentesco</label>
         <select class="form-select" id="guardianRelationship">
-            <option selected value="">Seleccionar</option>
+            <option selected value="" disabled>Seleccionar</option>
             <option>Madre</option>
             <option>Padre</option>
             <option>Hermano(a)</option>
