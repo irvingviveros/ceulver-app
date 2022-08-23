@@ -39,6 +39,7 @@ class StudentEntity
     private ?string $ailments;
     private ?string $other_info;
     private ?string $health_condition;
+    private ?int $status;
     // Foreign info
     private int $school_id;
     private int $user_id;
@@ -524,6 +525,22 @@ class StudentEntity
     public function setHealthCondition(?string $health_condition = null): void
     {
         $this->health_condition = $health_condition;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param int|null $status
+     */
+    public function setStatus(?int $status = 1): void
+    {
+        $this->status = $status;
     }
 
     /**

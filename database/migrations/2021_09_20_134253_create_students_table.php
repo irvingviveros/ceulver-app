@@ -57,7 +57,7 @@ class CreateStudentsTable extends Migration
             $table->foreignId('agreement_id')->nullable(true)->constrained();
             $table->foreignId('guardian_id')->nullable(true)->constrained();
             $table->foreignId('career_id')->nullable(true)->constrained();
-
+            $table->tinyInteger('status')->default(1); // 1 = active, 0 = inactive
             $table->integer('created_by');
             $table->integer('modified_by');
         });

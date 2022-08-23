@@ -84,11 +84,11 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="fp-default">Fecha de nacimiento
+        <label class="form-label" for="birthday">Fecha de nacimiento
             <span class="text-danger">*</span>
         </label>
         <br>
-        <input type="text" id="fp-default" class="form-control flatpickr-basic"
+        <input type="text" id="birthday" class="form-control flatpickr-basic"
                placeholder="Seleccionar" readonly>
     </div>
 
@@ -249,6 +249,22 @@
         <span for="schoolSelect" class="text-danger"></span>
     </div>
 
+    <div class="col-3">
+        <label class="form-label" for="studentStatus">Estatus del alumno</label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Permite el ingreso del alumno a su cuenta y a la plataforma. Si se desactiva, no podrá ingresar a la plataforma."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Estatus del alumno">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <select class="form-select" id="studentStatus">
+            <option selected value="">Seleccionar</option>
+            <option value="0">Inactivo</option>
+            <option value="1" selected>Activo</option>
+        </select>
+        <span for="studentStatus" class="text-danger"></span>
+    </div>
+
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
         <b>Datos del padre o tutor</b>
     </div>
@@ -287,15 +303,17 @@
 
     <div class="col-3">
         <label class="form-label" for="guardianRelationship">Parentesco</label>
-        <input
-            type="text"
-            class="form-control"
-            id="guardianRelationship"
-            name="guardianRelationship"
-            maxlength="50"
-            placeholder="Parentesco"
-            aria-label="Parentesco con el padre o tutor"
-        />
+        <select class="form-select" id="guardianRelationship">
+            <option selected value="">Seleccionar</option>
+            <option>Madre</option>
+            <option>Padre</option>
+            <option>Hermano(a)</option>
+            <option>Abuelo(a)</option>
+            <option>Tío(a)</option>
+            <option>Amistad de la familia</option>
+            <option>Cuidador(a) social</option>
+            <option>Otro</option>
+        </select>
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
 
@@ -346,9 +364,15 @@
 </form>
 
 {{-- Page scripts --}}
+<script src="{{ asset(mix('vendors/js/feather-icons/feather-icons.min.js')) }}"></script>
+
 <script src="{{ asset(mix('js/scripts/forms/pickers/customPickr.js')) }}"></script>
+<script src="{{ asset(mix('js/scripts/components/components-popovers.js'))}}"></script>
+
 <script src="{{ asset(mix('js/utils/input-uppercase.js')) }}"></script>
-<script src="{{asset(mix('js/utils/toggle-selector-input.js'))}}"></script>
+<script src="{{ asset(mix('js/utils/toggle-selector-input.js'))}}"></script>
+
+<script>feather.replace() //Icons</script>
 
 {{-- Event listeners --}}
 <script>

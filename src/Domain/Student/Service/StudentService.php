@@ -65,6 +65,7 @@ class StudentService
             'ailments' => $student->getAilments(),
 //            'other_info' => $student->getOtherInfo(),
 //            'health_condition' => $student->getHealthCondition(),
+            'status' => $student->getStatus(),
             'created_by' => $createdBy,
             'modified_by' => $modifiedBy
         );
@@ -136,6 +137,7 @@ class StudentService
         $student->ailments = $studentEntity->getAilments();
         $student->other_info = $studentEntity->getOtherInfo();
         $student->health_condition = $studentEntity->getHealthCondition();
+        $student->status = $studentEntity->getStatus();
         $student->modified_by = $modifiedBy;
 
         $this->studentRepository->update($student);

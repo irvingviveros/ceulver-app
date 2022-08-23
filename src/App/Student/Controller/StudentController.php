@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Student\Controller;
 
 use Carbon\Carbon;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
@@ -13,8 +13,9 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
+use App\Http\Controllers\Controller;
+
 use Infrastructure\Career\Repository\EloquentCareerRepository;
-use Infrastructure\School\Model\School;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
@@ -105,7 +106,7 @@ class StudentController extends Controller
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setGuardianId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
-//        // TODO: Add setStatus, student status to the DB
+        $studentEntity->setStatus((int)$request->input('student_status'));
 
         // Guardian info
         // Request and set data

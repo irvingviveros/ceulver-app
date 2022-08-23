@@ -100,7 +100,7 @@ const StudentDatatable = (function () {
                 , paternal_surname: form.find('input[id="paternalSurname"]').val()
                 , maternal_surname: form.find('input[id="maternalSurname"]').val()
                 , first_name: form.find('input[id="firstName"]').val()
-                , birth_date: form.find('input[id="pickrBirthday"]').val()
+                , birth_date: form.find('input[id="birthday"]').val()
                 , national_id: form.find('input[id="nationalId"]').val()
                 , address: form.find('input[id="address"]').val()
                 , occupation: form.find('input[id="occupation"]').val()
@@ -111,6 +111,7 @@ const StudentDatatable = (function () {
                 , ailments: form.find('input[id="ailments"]').val()
                 , allergies: form.find('input[id="allergies"]').val()
                 , career: form.find('select[id="careerSelect"]').val()
+                , student_status: form.find('select[id="studentStatus"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
