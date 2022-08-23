@@ -14,6 +14,7 @@ class CreateEducationalSystemSchoolTable extends Migration
     public function up()
     {
         Schema::create('educational_system_school', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('educational_system_id')->constrained();
             $table->foreignId('school_id')->constrained();
             $table->timestamps();
