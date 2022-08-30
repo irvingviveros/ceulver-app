@@ -24,6 +24,7 @@ return [
     "Manage Schools"=>"Administrar escuelas",
     "Administrator"=>"Administrador",
     "Home"=>"Inicio",
+    "Groups"=>"Grupos",
     "Starter Kit"=>"Starter Kit",
     "Dashboards" => "Tableros",
     "Analytics" => "Analíticas",

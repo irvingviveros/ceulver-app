@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            EducationalSystemSeeder::class,
             RoleSeeder::class,
             ModuleSeeder::class,
             SchoolSeeder::class,
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
             AgreementSeeder::class,
             ModalitySeeder::class,
             StudentSeeder::class,
-            EducationalSystemSeeder::class,
+            GroupSeeder::class,
         ]);
     }
 }

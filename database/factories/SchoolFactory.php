@@ -28,7 +28,8 @@ class SchoolFactory extends Factory
             'phone' => $this->faker->numerify('##########'),
             'address' => $this->faker->address,
             'email' => $this->faker->email,
-            'created_by' => 0,
+            'educational_system_id' => $this->faker->numberBetween(1, 5),
+            'created_by' => 1,
             'modified_by' => 1,
             'created_at' => $this->faker->dateTime,
             'updated_at' => $this->faker->dateTime

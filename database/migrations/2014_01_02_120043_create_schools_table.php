@@ -15,7 +15,7 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('school_name', 255)->unique();
+            $table->string('school_name', 255);
             $table->string('school_code', 100)->nullable(true);
             $table->string('registration_date', 50)->nullable(true);
             $table->string('address', 255);
@@ -38,6 +38,9 @@ class CreateSchoolsTable extends Migration
             $table->string('about_image', 100)->nullable(true);
             $table->string('facebook_url', 255)->nullable(true);
             $table->tinyInteger('status')->default(1);
+            // Foreign key
+            $table->foreignId('educational_system_id')->nullable()->constrained();
+
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();

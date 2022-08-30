@@ -4,6 +4,7 @@ use App\AcademicYear\Controller\AcademicYearController;
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Email\Controller\EmailSettingController;
+use App\Group\Controller\GroupController;
 use App\Http\Controllers\RoleController;
 use App\Language\Controller\LanguageController;
 use App\Modality\Controller\ModalityController;
@@ -80,6 +81,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Careers management, route admin/manage-careers
     Route::resource('manage-careers', CareerController::class)->except(['show']);
     Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
+
+    // Groups management, route admin/manage-groups
+    Route::resource('manage-groups', GroupController::class)->except(['show']);
+    Route::get('/manage-groups/getList', [GroupController::class, 'getList']);
 
     // Subject management, route admin/manage-subjects
     Route::resource('manage-subjects', SubjectController::class)->except(['show']);

@@ -51,8 +51,8 @@ class AgreementSeeder extends Seeder
         ]);
 
         // Inserting random records
-        Agreement::factory()->times(10)->create();
-        School::factory()->count(5)->create();
+        //Agreement::factory()->times(10)->create();
+        //School::factory()->count(5)->create();
 
         foreach(School::all() as $school) {
             $agreements = Agreement::inRandomOrder()

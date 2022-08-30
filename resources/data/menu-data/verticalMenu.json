@@ -1,138 +1,144 @@
 {
-  "menu": [
-    {
-      "url": "home",
-      "name": "Home",
-      "icon": "home",
-      "slug": "home"
-    },
-    {
-      "navheader": "Aplicaciones",
-      "slug": ""
-    },
-    {
-      "name": "Administrator",
-      "icon": "menu",
-      "slug": "admin",
-      "submenu": [
+    "menu": [
         {
-          "url": "admin/manage-schools",
-          "name": "Manage Schools",
-          "icon": "circle",
-          "slug": "manage-schools"
+            "url": "home",
+            "name": "Home",
+            "icon": "home",
+            "slug": "home"
         },
         {
-          "url": "admin/email-settings",
-          "name": "Email Settings",
-          "icon": "circle",
-          "slug": "email-settings"
+            "navheader": "Aplicaciones",
+            "slug": ""
         },
         {
-          "url": "admin/academic-years",
-          "name": "Academic Year",
-          "icon": "circle",
-          "slug": "academic-year"
+            "name": "Administrator",
+            "icon": "menu",
+            "slug": "admin",
+            "submenu": [
+                {
+                    "url": "admin/manage-schools",
+                    "name": "Manage Schools",
+                    "icon": "circle",
+                    "slug": "manage-schools"
+                },
+                {
+                    "url": "admin/email-settings",
+                    "name": "Email Settings",
+                    "icon": "circle",
+                    "slug": "email-settings"
+                },
+                {
+                    "url": "admin/academic-years",
+                    "name": "Academic Year",
+                    "icon": "circle",
+                    "slug": "academic-year"
+                },
+                {
+                    "url": "admin/modalities",
+                    "name": "Modalities",
+                    "icon": "circle",
+                    "slug": "modalities"
+                }
+            ]
         },
         {
-          "url": "admin/modalities",
-          "name": "Modalities",
-          "icon": "circle",
-          "slug": "modalities"
+            "name": "Students",
+            "icon": "menu",
+            "slug": "students",
+            "submenu": [
+                {
+                    "url": "admin/manage-students/students",
+                    "name": "Manage Students",
+                    "icon": "circle",
+                    "slug": "manage-students"
+                },
+                {
+                    "url": "admin/manage-students/agreements",
+                    "name": "Students Convention",
+                    "icon": "circle",
+                    "slug": "students-convention"
+                }
+            ]
+        },
+        {
+            "url": "admin/teachers",
+            "name": "Teachers",
+            "icon": "menu",
+            "slug": "teachers"
+        },
+        {
+            "url": "admin/manage-careers",
+            "name": "Careers",
+            "icon": "menu",
+            "slug": "careers"
+        },
+        {
+            "url": "admin/manage-groups",
+            "name": "Groups",
+            "icon": "menu",
+            "slug": "groups"
+        },
+        {
+            "url": "admin/manage-subjects",
+            "name": "Subjects",
+            "icon": "menu",
+            "slug": "subjects"
+        },
+        {
+            "name": "Roles & Permission",
+            "icon": "menu",
+            "slug": "",
+            "submenu": [
+                {
+                    "url": "admin/roles",
+                    "name": "Roles",
+                    "icon": "circle",
+                    "slug": "app-access-roles"
+                },
+                {
+                    "url": "app/access-permission",
+                    "name": "Permission",
+                    "icon": "circle",
+                    "slug": "app-access-permission"
+                }
+            ]
+        },
+        {
+            "name": "Administrative Coordination",
+            "icon": "menu",
+            "slug": "administrative",
+            "submenu": [
+                {
+                    "url": "admin/administrative/dashboard",
+                    "name": "Main Dashboard",
+                    "icon": "circle",
+                    "slug": "administrative-dashboard"
+                },
+                {
+                    "url": "admin/administrative/university",
+                    "name": "University",
+                    "icon": "circle",
+                    "slug": "university"
+                },
+                {
+                    "url": "admin/administrative/bachelor",
+                    "name": "Bachelor",
+                    "icon": "circle",
+                    "slug": "bachelor"
+                },
+                {
+                    "url": "admin/administrative/high-school",
+                    "name": "High school",
+                    "icon": "circle",
+                    "slug": "high-school"
+                },
+                {
+                    "url": "admin/administrative/elementary-school",
+                    "name": "Elementary school",
+                    "icon": "circle",
+                    "slug": "elementary-school"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "name": "Students",
-        "icon": "menu",
-      "slug": "students",
-      "submenu": [
-        {
-          "url": "admin/manage-students/students",
-          "name": "Manage Students",
-          "icon": "circle",
-          "slug": "manage-students"
-        },
-        {
-          "url": "admin/manage-students/agreements",
-          "name": "Students Convention",
-          "icon": "circle",
-          "slug": "students-convention"
-        }
-      ]
-    },
-    {
-      "url": "admin/teachers",
-      "name": "Teachers",
-        "icon": "menu",
-      "slug": "teachers"
-    },
-    {
-      "url": "admin/manage-careers",
-      "name": "Careers",
-      "icon": "menu",
-      "slug": "careers"
-    },
-    {
-      "url": "admin/manage-subjects",
-      "name": "Subjects",
-      "icon": "menu",
-      "slug": "careers"
-    },
-    {
-      "name": "Roles & Permission",
-      "icon": "menu",
-      "slug": "",
-      "submenu": [
-        {
-          "url": "admin/roles",
-          "name": "Roles",
-          "icon": "circle",
-          "slug": "app-access-roles"
-        },
-        {
-          "url": "app/access-permission",
-          "name": "Permission",
-          "icon": "circle",
-          "slug": "app-access-permission"
-        }
-      ]
-    },
-      {
-          "name": "Administrative Coordination",
-          "icon": "menu",
-          "slug": "administrative",
-          "submenu": [
-              {
-                  "url": "admin/administrative/dashboard",
-                  "name": "Main Dashboard",
-                  "icon": "circle",
-                  "slug": "administrative-dashboard"
-              },
-              {
-                  "url": "admin/administrative/university",
-                  "name": "University",
-                  "icon": "circle",
-                  "slug": "university"
-              },
-              {
-                  "url": "admin/administrative/bachelor",
-                  "name": "Bachelor",
-                  "icon": "circle",
-                  "slug": "bachelor"
-              },
-              {
-                  "url": "admin/administrative/high-school",
-                  "name": "High school",
-                  "icon": "circle",
-                  "slug": "high-school"
-              },
-              {
-                  "url": "admin/administrative/elementary-school",
-                  "name": "Elementary school",
-                  "icon": "circle",
-                  "slug": "elementary-school"
-              }
-          ]
-      }
-  ]
+    ]
 }

@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Group\Model\Group;
 use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
 use Yajra\DataTables\DataTables;
@@ -55,5 +56,12 @@ Route::get('agreements', function(){
 Route::get('students', function(){
     return datatables()
         ->eloquent(Student::query())
+        ->toJson();
+});
+
+// Return Groups data
+Route::get('groups', function(){
+    return datatables()
+        ->eloquent(Group::query())
         ->toJson();
 });

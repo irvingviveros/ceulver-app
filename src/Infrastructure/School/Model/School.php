@@ -2,6 +2,9 @@
 
 namespace Infrastructure\School\Model;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\EducationalSystem\Model\EducationalSystem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,6 +14,7 @@ use Infrastructure\Career\Model\Career;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Subject\Model\Subject;
 use Infrastructure\Teacher\Model\Teacher;
+use PHPUnit\TextUI\XmlConfiguration\Groups;
 
 class School extends Model
 {
@@ -27,18 +31,27 @@ class School extends Model
 
     /**
      * Get the educational system associated with the school.
-     *  $school -> educationalSystems
+     *  $school -> educationalSystem
      */
-    public function educationalSystems(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function educationalSystem(): BelongsTo
     {
-        return $this->belongsToMany(EducationalSystem::class);
+        return $this->belongsTo(EducationalSystem::class);
+    }
+
+    /**
+     * Get the educational system associated with the school.
+     *  $school -> groups
+     */
+    public function groups(): HasMany
+    {
+        return $this->hasMany(Groups::class);
     }
 
     /**
      * Get the student convention associated with the School.
      *  $school -> agreements
      */
-    public function agreements(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function agreements(): BelongsToMany
     {
         return $this->belongsToMany(Agreement::class)
             ->withTimestamps();

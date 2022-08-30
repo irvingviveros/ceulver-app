@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEducationalSystemSchoolTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,15 @@ class CreateEducationalSystemSchoolTable extends Migration
      */
     public function up()
     {
-        Schema::create('educational_system_school', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('educational_system_id')->constrained();
+            $table->string('name', 100)->nullable(false);
+            $table->string('note')->nullable(true);
+            // Foreign key
             $table->foreignId('school_id')->constrained();
+
+            $table->integer('created_by');
+            $table->integer('modified_by');
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ class CreateEducationalSystemSchoolTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('educational_system_school');
+        Schema::dropIfExists('groups');
     }
 }
