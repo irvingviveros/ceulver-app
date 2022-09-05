@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Group\Model\Group;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Subject\Model\Subject;
+use Infrastructure\Syllabus\Model\Syllabus;
 use Infrastructure\Teacher\Model\Teacher;
-use PHPUnit\TextUI\XmlConfiguration\Groups;
 
 class School extends Model
 {
@@ -44,7 +45,16 @@ class School extends Model
      */
     public function groups(): HasMany
     {
-        return $this->hasMany(Groups::class);
+        return $this->hasMany(Group::class);
+    }
+
+    /**
+     * Get the syllabi associated with the school.
+     *  $school -> syllabi
+     */
+    public function syllabi(): HasMany
+    {
+        return $this->hasMany(Syllabus::class);
     }
 
     /**

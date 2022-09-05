@@ -6,6 +6,7 @@ namespace Domain\School\Service;
 use Domain\School\Entity\SchoolEntity;
 use Domain\Shared\Exception\CeulverOperationNotPermittedException;
 use Domain\Shared\Exception\ValueNotFoundException;
+use Illuminate\Database\Query\Builder;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class SchoolService
@@ -67,6 +68,11 @@ class SchoolService
     public function getAll($columns = ['*'])
     {
         return $this->schoolRepository->all($columns);
+    }
+
+    public function where($column, $operator = null, $value = null, string $boolean = 'and')
+    {
+        return $this->schoolRepository->where($column, $operator, $value, $boolean);
     }
 
     /**

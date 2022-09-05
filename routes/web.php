@@ -12,6 +12,7 @@ use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
 use App\Student\Controller\StudentController;
 use App\Subject\Controller\SubjectController;
+use App\Syllabus\Controller\SyllabusController;
 use App\Teacher\Controller\TeacherController;
 use App\Upload\Controller\UploadController;
 use Illuminate\Support\Facades\Auth;
@@ -85,6 +86,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Groups management, route admin/manage-groups
     Route::resource('manage-groups', GroupController::class)->except(['show']);
     Route::get('/manage-groups/getList', [GroupController::class, 'getList']);
+
+    // Syllabi management, route admin/manage-syllabi
+    Route::resource('manage-syllabi', SyllabusController::class)->except(['show']);
+    Route::get('/manage-syllabi/getList', [SyllabusController::class, 'getList']);
 
     // Subject management, route admin/manage-subjects
     Route::resource('manage-subjects', SubjectController::class)->except(['show']);

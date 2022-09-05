@@ -127,4 +127,9 @@ class CareerService {
 
         $this->careerRepository->delete($career);
     }
+
+    public function orderBy($name): \Illuminate\Support\Collection
+    {
+        return $this->careerRepository->orderBy($name);
+    }
 }

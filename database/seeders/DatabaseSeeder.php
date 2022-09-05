@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             ModalitySeeder::class,
             StudentSeeder::class,
             GroupSeeder::class,
+            SyllabusSeeder::class,
         ]);
     }
 }

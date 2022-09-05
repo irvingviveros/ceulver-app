@@ -11,6 +11,7 @@ return [
     "Modalities"=>"Modalidades",
     "Academic Year"=>"Año académico",
     "Subjects"=>"Materias",
+    "Syllabi"=>"Retículas",
     "Roles & Permission"=>"Roles y permisos",
     "Roles"=>"Roles",
     "Permission"=>"Permisos",

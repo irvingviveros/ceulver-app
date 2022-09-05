@@ -3,6 +3,7 @@
 namespace Infrastructure\School\Repository;
 
 use Domain\School\Repository\SchoolRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\School\Model\School;
@@ -70,5 +71,10 @@ class EloquentSchoolRepository implements SchoolRepository {
     public function all($columns = ['*'])
     {
         return School::all($columns);
+    }
+
+    public function where($column, $operator = null, $value = null, string $boolean = 'and')
+    {
+        return DB::table('schools')->where($column, $operator, $value, $boolean)->get();
     }
 }

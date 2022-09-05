@@ -73,6 +73,12 @@
             "slug": "careers"
         },
         {
+            "url": "admin/manage-syllabi",
+            "name": "Syllabi",
+            "icon": "menu",
+            "slug": "syllabi"
+        },
+        {
             "url": "admin/manage-groups",
             "name": "Groups",
             "icon": "menu",

@@ -8,6 +8,7 @@ use Infrastructure\Career\Model\Career;
 use Infrastructure\Group\Model\Group;
 use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
+use Infrastructure\Syllabus\Model\Syllabus;
 use Yajra\DataTables\DataTables;
 
 /*
@@ -63,5 +64,12 @@ Route::get('students', function(){
 Route::get('groups', function(){
     return datatables()
         ->eloquent(Group::query())
+        ->toJson();
+});
+
+// Return Syllabi data
+Route::get('syllabi', function(){
+    return datatables()
+        ->eloquent(Syllabus::query())
         ->toJson();
 });

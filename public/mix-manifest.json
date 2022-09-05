@@ -157,6 +157,7 @@
     "/js/scripts/tables/modules/academics/group-datatables.js": "/js/scripts/tables/modules/academics/group-datatables.js",
     "/js/scripts/tables/modules/academics/modality-datatables.js": "/js/scripts/tables/modules/academics/modality-datatables.js",
     "/js/scripts/tables/modules/academics/subject-datatables.js": "/js/scripts/tables/modules/academics/subject-datatables.js",
+    "/js/scripts/tables/modules/academics/syllabus-datatables.js": "/js/scripts/tables/modules/academics/syllabus-datatables.js",
     "/js/scripts/tables/modules/admin/admin-careers-datatables.js": "/js/scripts/tables/modules/admin/admin-careers-datatables.js",
     "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js": "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js",
     "/js/scripts/tables/modules/admin/admin-schools-datatables.js": "/js/scripts/tables/modules/admin/admin-schools-datatables.js",

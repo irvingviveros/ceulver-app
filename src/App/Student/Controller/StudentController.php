@@ -58,6 +58,7 @@ class StudentController extends Controller
      */
     public function create(): View
     {
+        // TODO: USAR EL SERVICIO Y NO EL REPOSITORIO
         $schoolRepository = new EloquentSchoolRepository();
         $careersRepository = new EloquentCareerRepository();
         $schools = $schoolRepository->with('educationalSystems');
