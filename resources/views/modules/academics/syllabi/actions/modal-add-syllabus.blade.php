@@ -27,7 +27,7 @@
 
     <div class="col-6">
         <label class="form-label" for="careerSelect">Carrera <span class="text-danger">*</span></label>
-        <select class="form-select" id="schoolSelect">
+        <select class="form-select" id="careerSelect">
             @foreach($careers as $career)
                 <option value="{{$career->id}}">{{$career->name}}</option>
             @endforeach
