@@ -1,7 +1,8 @@
-const StudentAgreementDatatables = (function () {
+const CycleDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl();
+    // Main route
+    const urlController = Application.getUrl();  // TODO: Cambiar valor, plantilla
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO
@@ -12,15 +13,12 @@ const StudentAgreementDatatables = (function () {
     function initializeTable() {
         // JQuery selector for table
         let table =  $('#dataTable');
-
         // Apply icons on all table pages
         feather.replace();
-
         // Apply Datatable default configuration
         table.DataTable(
-            Application.getDatatableConfiguration(StudentAgreementDatatables)
+            Application.getDatatableConfiguration(CycleDatatable)
         )
-
     }
 
     // Initializes events from the datatable
@@ -30,22 +28,19 @@ const StudentAgreementDatatables = (function () {
 
         // Create event
         $('.createEntry').on('click', function () {
-            StudentAgreementDatatables.getRegisterForm().then(function () {
+            CycleDatatable.getRegisterForm().then(function () {
                 let modal = Modal.create({
-                    id: 'agreementRegisterForm'
-                    , title: 'Crear convenio'
+                    id: 'syllabusRegisterForm' // TODO: Cambiar valor, plantilla
+                    , title: 'Registrar retícula'
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
-                    , size: 'lg'
+                    , size: 'lg' // lg, xl
                 });
-
-                // Assign attributes of the method select2 to the select field
-                $('.select2').select2();
 
                 // Show modal
                 modal.modal('show').on('shown.bs.modal', function () {
-                    createEntryForm(modal)
+                    createForm(modal)
                 });
             });
         });
@@ -53,32 +48,22 @@ const StudentAgreementDatatables = (function () {
         // Update event
         $('#dataTable tbody').on('click', '.item-edit', function (event) {
 
-            let agreementId = $(event.currentTarget).attr('data-id');
+            let itemId = $(event.currentTarget).attr('data-id');
 
-            StudentAgreementDatatables.getEditForm(
-                agreementId
+            CycleDatatable.getEditForm(
+                itemId
             ).then(function () {
                 let modal = Modal.create({
-                    id: 'agreementEditForm'
-                    , title: 'Editar convenio'
+                    id: 'editForm'
+                    , title: 'Editar retícula' // TODO: Cambiar valor, plantilla
                     , content: arguments[0]
                     , okButtonText: 'Guardar'
                     , cancelButtonText: 'Cerrar'
-                });
-
-                // Assign attributes of the method select2 to the select field
-                $('.select2').select2();
-                // Check|uncheck all
-                $('#selectCheckbox').change(function () {
-                    let isChecked = $(this).is(':checked');
-                    $('#select2-multiple').select2('destroy').find('option').prop('selected', 'selected').end().select2();
-                    if(!isChecked){
-                        $('#select2-multiple').select2('destroy').find('option').prop('selected', false).end().select2();
-                    }
+                    , size: 'lg' // TODO: Cambiar tamaño
                 });
 
                 modal.modal('show').on('shown.bs.modal', function () {
-                    updateAgreementForm(modal)
+                    updateForm(modal)
                 });
             });
         });
@@ -89,28 +74,32 @@ const StudentAgreementDatatables = (function () {
         // Delete event
         $('#dataTable tbody').on('click', '.delete-record',  function (event) {
 
-            let agreementId = $(event.currentTarget).attr('data-id');
+            let dataId = $(event.currentTarget).attr('data-id');
             let row = $(this);
 
             // Show Swal component and delete
-            Delete.run(StudentAgreementDatatables, agreementId, table, row);
+            Delete.run(CycleDatatable, dataId, table, row);
         });
     }
 
     // Loads a modal and creates a new record
-    function createEntryForm(modal, table) {
+    function createForm(modal) {
 
         modal.find('[id="okModal"]').on('click', function () {
-            let form = $("form[id='agreementRegisterForm']");
+
+            let form = $("form[id='syllabusRegisterForm']"); // TODO: Cambiar valor, plantilla
 
             if (!form.valid()) {
                 return;
             }
 
-            StudentAgreementDatatables.save({
+            // This is sent to the store request parameter
+            CycleDatatable.save({
                 _token: Application.getToken()
-                , name: form.find('input[id="agreementName"]').val()
-                , note: form.find('textarea[id="agreementNote"]').val()
+                , school_id: form.find('select[id="schoolSelect"]').val()
+                , career_id: form.find('select[id="careerSelect"]').val()
+                , name: form.find('input[id="syllabusName"]').val()
+                , note: form.find('textarea[id="syllabusNote"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -119,8 +108,8 @@ const StudentAgreementDatatables = (function () {
                 Modal.close(modal.attr('id'));
 
                 // Reload table
-                StudentAgreementDatatables.getList().then(function () {
-                    $('table[id="agreementTable"]').DataTable().destroy;
+                CycleDatatable.getList().then(function () {
+                    $('table[id="syllabusTable"]').DataTable().destroy; // TODO: Cambiar valor, plantilla
 
                     $('div[id="dataList"]').html(arguments[0]);
 
@@ -129,26 +118,25 @@ const StudentAgreementDatatables = (function () {
             });
         });
 
-        //loadFormValidation();
+        loadFormValidation();
     }
 
     // Loads a modal and update a record
-    function updateAgreementForm(modal) {
+    function updateForm(modal) {
 
         modal.find('[id="okModal"]').on('click', function () {
-            let form = $("form[id='agreementEditForm']");
+            let form = $("form[id='editForm']");
 
             if (!form.valid()) {
                 return;
             }
 
             // All this data goes to the update function controller
-            StudentAgreementDatatables.update({
+            CycleDatatable.update({
                 _token: Application.getToken()
-                , id: form.find('input[name="agreementId"]').val()
-                , name: form.find('input[name="agreementName"]').val()
-                , note: form.find('textarea[name="agreementNote"]').val()
-                , schools: form.find('select[name="schools[]"]').val()
+                , id: form.find('input[name="syllabusId"]').val()
+                , name: form.find('input[id="syllabusName"]').val()
+                , note: form.find('textarea[id="syllabusNote"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido actualizado correctamente', 'Registro actualizado'
@@ -157,7 +145,7 @@ const StudentAgreementDatatables = (function () {
                 Modal.close(modal.attr('id'));
 
                 // Reload table
-                StudentAgreementDatatables.getList().then(function () {
+                CycleDatatable.getList().then(function () {
                     $('table[id="dataTable"]').DataTable().destroy;
 
                     $('div[id="dataList"]').html(arguments[0]);
@@ -168,13 +156,14 @@ const StudentAgreementDatatables = (function () {
         });
 
         loadFormValidation();
-
     }
 
     // Load validations
     function loadFormValidation() {
-        let agreementRegisterForm = $("form[id='agreementRegisterForm']");
-
+        let form = $("form[id='syllabusForm']"); // TODO: Cambiar valor, plantilla
+        if (form.length === 0){
+            form = $("form[id='editForm']");
+        }
         // Validate that the contents of a field are not spaces
         $.validator.addMethod("emptyField", function (value, element) {
             let valido = value.trim().length !== 0;
@@ -182,25 +171,17 @@ const StudentAgreementDatatables = (function () {
             return this.optional(element) || valido;
         });
 
-        agreementRegisterForm.validate({
+        form.validate({
             rules: {
-                agreementName: {
-                    required: true
-                    , emptyField: true
-                }
             }
             , messages: {
-                agreementName: {
-                    required: "El nombre del convenio es requerido"
-                    , emptyField: "Requerido"
-                }
             }
             , errorPlacement: function (error, element) {
-                agreementRegisterForm.find("span[for='" + element.attr('id') + "']").append(error);
+                form.find("span[for='" + element.attr('id') + "']").append(error);
             }
         });
 
-        return agreementRegisterForm;
+        return form;
     }
 
     return {

@@ -1,7 +1,7 @@
 const Career = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/manage-careers/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

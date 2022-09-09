@@ -1,7 +1,7 @@
 const AcademicYearDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/academic-years/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

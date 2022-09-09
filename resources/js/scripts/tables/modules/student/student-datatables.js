@@ -2,7 +2,7 @@ const StudentDatatable = (function () {
     'use strict';
 
     // Main route
-    const urlController = Application.getUrl() + 'admin/manage-students/students/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

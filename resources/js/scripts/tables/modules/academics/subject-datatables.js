@@ -1,7 +1,7 @@
 const SubjectDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/manage-subjects/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

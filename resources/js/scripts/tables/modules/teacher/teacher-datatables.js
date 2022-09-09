@@ -1,7 +1,7 @@
 const TeacherDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/teachers/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

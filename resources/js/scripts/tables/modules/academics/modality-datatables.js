@@ -1,7 +1,7 @@
 const ModalityDatatable = (function () {
     'use strict';
 
-    const urlController = Application.getUrl() + 'admin/modalities/';
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO

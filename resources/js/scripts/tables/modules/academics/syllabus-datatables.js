@@ -2,7 +2,7 @@ const SyllabusDatatable = (function () {
     'use strict';
 
     // Main route
-    const urlController = Application.getUrl() + 'admin/manage-syllabi/';   // TODO: Cambiar valor, plantilla
+    const urlController = Application.getUrl();
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO
@@ -215,6 +215,7 @@ const SyllabusDatatable = (function () {
         }
         // Create a new record into the database
         , save: function (data) {
+            console.log(data)
             return Configuration.consume({
                 url: urlController
                 , method: 'POST'
