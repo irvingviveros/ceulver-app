@@ -70,7 +70,7 @@ let Modal = (function(Swal) {
                 Swal.fire({
                     title: title || 'Error en el procesamiento'
                     , text: content || ''
-                    , type: 'error'
+                    , icon: 'error'
                     , animation: false
                 }).then(function(result) {
                     if (result.value && functionConfirm) {
@@ -82,7 +82,7 @@ let Modal = (function(Swal) {
                 Swal.fire({
                     title: title || "Procesamiento exitoso"
                     , text: content || ''
-                    , type: 'success'
+                    , icon: 'success'
                     , animation: false
                 }).then(function(result) {
                     if (result.value && functionConfirm) {
@@ -94,7 +94,7 @@ let Modal = (function(Swal) {
                 Swal.fire({
                     title: title || '¿Está seguro de inactivar el registro?'
                     , text: content || ''
-                    , type: 'warning'
+                    , icon: 'warning'
                     , showCancelButton: true
                     , cancelButtonText: 'Cerrar'
                     , confirmButtonText: 'Aceptar'
