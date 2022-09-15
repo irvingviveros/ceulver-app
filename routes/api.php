@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Cycle\Model\Cycle;
 use Infrastructure\Group\Model\Group;
 use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
@@ -71,5 +72,12 @@ Route::get('groups', function(){
 Route::get('syllabi', function(){
     return datatables()
         ->eloquent(Syllabus::query())
+        ->toJson();
+});
+
+// Return Syllabi data
+Route::get('cycle', function(){
+    return datatables()
+        ->eloquent(Cycle::query())
         ->toJson();
 });

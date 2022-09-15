@@ -2,7 +2,9 @@ const CycleDatatable = (function () {
     'use strict';
 
     // Main route
-    const urlController = Application.getUrl();  // TODO: Cambiar valor, plantilla
+    const urlController = Application.getUrl().slice(0, -1);
+    // Nested URL (cycles with shallow in routes)
+    const nestedUrl = window.location.origin + '/admin/cycles/'
 
     function initialize() {
         // TODO EVENTOS DE FILTROS DE LISTADO
@@ -12,7 +14,7 @@ const CycleDatatable = (function () {
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
-        let table =  $('#dataTable');
+        let table = $('#dataTable');
         // Apply icons on all table pages
         feather.replace();
         // Apply Datatable default configuration
@@ -24,14 +26,14 @@ const CycleDatatable = (function () {
     // Initializes events from the datatable
     function initializeEvents() {
 
-        let table =  $('#dataTable');
+        let table = $('#dataTable');
 
         // Create event
         $('.createEntry').on('click', function () {
             CycleDatatable.getRegisterForm().then(function () {
                 let modal = Modal.create({
-                    id: 'syllabusRegisterForm' // TODO: Cambiar valor, plantilla
-                    , title: 'Registrar retícula'
+                    id: 'registerForm'
+                    , title: 'Registrar ciclo'
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
@@ -48,14 +50,15 @@ const CycleDatatable = (function () {
         // Update event
         $('#dataTable tbody').on('click', '.item-edit', function (event) {
 
-            let itemId = $(event.currentTarget).attr('data-id');
+            // Nested resources
+            let childrenId = $(event.currentTarget).attr('data-children');
 
             CycleDatatable.getEditForm(
-                itemId
+                childrenId
             ).then(function () {
                 let modal = Modal.create({
                     id: 'editForm'
-                    , title: 'Editar retícula' // TODO: Cambiar valor, plantilla
+                    , title: 'Editar ciclo' // TODO: Cambiar valor, plantilla
                     , content: arguments[0]
                     , okButtonText: 'Guardar'
                     , cancelButtonText: 'Cerrar'
@@ -72,7 +75,7 @@ const CycleDatatable = (function () {
         table = $('#dataTable').DataTable();
 
         // Delete event
-        $('#dataTable tbody').on('click', '.delete-record',  function (event) {
+        $('#dataTable tbody').on('click', '.delete-record', function (event) {
 
             let dataId = $(event.currentTarget).attr('data-id');
             let row = $(this);
@@ -87,7 +90,8 @@ const CycleDatatable = (function () {
 
         modal.find('[id="okModal"]').on('click', function () {
 
-            let form = $("form[id='syllabusRegisterForm']"); // TODO: Cambiar valor, plantilla
+            let form = $("form[id='registerForm']");
+            let parentId = form.find('input[id="syllabusId"]').val();
 
             if (!form.valid()) {
                 return;
@@ -96,10 +100,9 @@ const CycleDatatable = (function () {
             // This is sent to the store request parameter
             CycleDatatable.save({
                 _token: Application.getToken()
-                , school_id: form.find('select[id="schoolSelect"]').val()
-                , career_id: form.find('select[id="careerSelect"]').val()
-                , name: form.find('input[id="syllabusName"]').val()
-                , note: form.find('textarea[id="syllabusNote"]').val()
+                , syllabus_id: parentId
+                , name: form.find('input[id="cycleName"]').val()
+                , note: form.find('textarea[id="cycleNote"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -107,9 +110,11 @@ const CycleDatatable = (function () {
 
                 Modal.close(modal.attr('id'));
 
-                // Reload table
+                // TODO: Cambiar esto, recargar solo el registro o la table que se creó
+
+                //Reload table
                 CycleDatatable.getList().then(function () {
-                    $('table[id="syllabusTable"]').DataTable().destroy; // TODO: Cambiar valor, plantilla
+                    $('table[id="dataTable"]').DataTable().destroy;
 
                     $('div[id="dataList"]').html(arguments[0]);
 
@@ -134,9 +139,9 @@ const CycleDatatable = (function () {
             // All this data goes to the update function controller
             CycleDatatable.update({
                 _token: Application.getToken()
-                , id: form.find('input[name="syllabusId"]').val()
-                , name: form.find('input[id="syllabusName"]').val()
-                , note: form.find('textarea[id="syllabusNote"]').val()
+                , id: form.find('input[name="cycleId"]').val()
+                , name: form.find('input[id="cycleName"]').val()
+                , note: form.find('textarea[id="cycleNote"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido actualizado correctamente', 'Registro actualizado'
@@ -160,8 +165,8 @@ const CycleDatatable = (function () {
 
     // Load validations
     function loadFormValidation() {
-        let form = $("form[id='syllabusForm']"); // TODO: Cambiar valor, plantilla
-        if (form.length === 0){
+        let form = $("form[id='cycleForm']"); // TODO: Cambiar valor, plantilla
+        if (form.length === 0) {
             form = $("form[id='editForm']");
         }
         // Validate that the contents of a field are not spaces
@@ -172,10 +177,8 @@ const CycleDatatable = (function () {
         });
 
         form.validate({
-            rules: {
-            }
-            , messages: {
-            }
+            rules: {}
+            , messages: {}
             , errorPlacement: function (error, element) {
                 form.find("span[for='" + element.attr('id') + "']").append(error);
             }
@@ -204,9 +207,9 @@ const CycleDatatable = (function () {
             });
         }
         // Loads the edit form
-        , getEditForm: function (id) {
+        , getEditForm: function (childrenId) {
             return Configuration.consume({
-                url: urlController + `${id}/edit`
+                url: nestedUrl + `${childrenId}/edit`
                 , method: 'GET'
                 , data: {
                     _token: Application.getToken()
@@ -224,7 +227,7 @@ const CycleDatatable = (function () {
         // Update a record from the database
         , update: function (data) {
             return Configuration.consume({
-                url: urlController + data.id
+                url: nestedUrl + data.id
                 , method: 'PUT'
                 , data: data
             })
@@ -232,9 +235,9 @@ const CycleDatatable = (function () {
         // Delete a record from the database
         , delete: function (id) {
             return Configuration.consume({
-                url: urlController + id
+                url: window.location.origin + '/admin/cycles/' + id
                 , data: {
-                    _method: 'delete'
+                    _method: 'DELETE'
                     , _token: Application.getToken()
                 }
             });

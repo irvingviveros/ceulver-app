@@ -6,7 +6,9 @@ namespace Infrastructure\Syllabus\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Cycle\Model\Cycle;
 use Infrastructure\School\Model\School;
 
 class Syllabus extends Model
@@ -29,5 +31,14 @@ class Syllabus extends Model
     public function career(): BelongsTo
     {
         return $this->belongsTo(Career::class);
+    }
+
+    /**
+     * Get cycles associated with the syllabus.
+     *  $syllabus -> cycles
+     */
+    public function cycles(): HasMany
+    {
+        return $this->hasMany(Cycle::class);
     }
 }

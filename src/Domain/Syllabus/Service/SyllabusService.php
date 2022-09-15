@@ -86,4 +86,9 @@ class SyllabusService
     public function with($relation){
         return $this->syllabusRepository->with($relation);
     }
+
+    public function where($column, $id): Collection|array
+    {
+        return $this->syllabusRepository->where($column, $id);
+    }
 }

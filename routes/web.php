@@ -3,6 +3,7 @@
 use App\AcademicYear\Controller\AcademicYearController;
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
+use App\Cycle\Controller\CycleController;
 use App\Email\Controller\EmailSettingController;
 use App\Group\Controller\GroupController;
 use App\Http\Controllers\RoleController;
@@ -88,8 +89,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('/manage-groups/getList', [GroupController::class, 'getList']);
 
     // Syllabi management, route admin/manage-syllabi
-    Route::resource('manage-syllabi', SyllabusController::class)->except(['show']);
     Route::get('/manage-syllabi/getList', [SyllabusController::class, 'getList']);
+    Route::resource('manage-syllabi', SyllabusController::class)->except(['show']);
+
+    Route::get('/manage-syllabi/{id}/cycles/getList', [CycleController::class, 'getList'])->name('manage-syllabi.cycles.getList');
+    Route::resource('manage-syllabi.cycles', CycleController::class)->except(['show'])->shallow();
 
     // Subject management, route admin/manage-subjects
     Route::resource('manage-subjects', SubjectController::class)->except(['show']);

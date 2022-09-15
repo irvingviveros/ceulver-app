@@ -27,6 +27,7 @@ class CreateSubjectsTable extends Migration
             // Foreign key
             $table->foreignId('school_id')->constrained();
             $table->foreignId('teacher_id')->nullable()->constrained();
+            $table->foreignId('cycle_id')->nullable()->constrained();
         });
     }
 

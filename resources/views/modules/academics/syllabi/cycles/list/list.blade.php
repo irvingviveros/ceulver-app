@@ -3,28 +3,26 @@
     <tr>
         <th></th>
         <th>id</th>
+        <th>Nombre</th>
         <th>Retícula</th>
-        <th>Carrera</th>
-        <th>Escuela</th>
-        <th>Plantel</th>
+        <th>Descripción</th>
         <th class="text-center">Acciones</th>
     </tr>
     </thead>
     <tbody>
-    @foreach ($syllabi as $syllabus)
+    @foreach ($cycles as $cycle)
         <tr>
             <td></td>
-            <td>{{ $syllabus->id }}</td>
-            <td>{{ $syllabus->name }}</td>
-            <td>{{ $syllabus->career->name }}</td>
-            <td>{{ $syllabus->school->school_name }}</td>
-            <td>{{ $syllabus->school->educationalSystem->name}}</td>
-            <td>
+            <td>{{ $cycle->id }}</td>
+            <td>{{ $cycle->name }}</td>
+            <td>{{ $cycle->syllabus->name }}</td>
+            <td>{{ $cycle->note }}</td>
+            <td class="text-center">
                 <div class="dropdown d-inline-flex">
 
-                    <a href="manage-syllabi/{{$syllabus->id}}/cycles/" class="dropdown-item item-cycle rounded bg-primary bg-opacity-10" data-id="{{ $syllabus->id }}">
+                    <a href="#" class="dropdown-item item-cycle rounded bg-primary bg-opacity-10" data-id="{{ $cycle->id }}">
                         <i class="me-50" data-feather="clock"></i>
-                        <span>Ciclos</span>
+                        <span>Materias</span>
                     </a>
 
                     <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect text-primary" data-bs-toggle="dropdown" aria-expanded="false">
@@ -32,12 +30,12 @@
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-end">
-                        <a href="#" class="dropdown-item item-edit" data-id="{{ $syllabus->id }}">
+                        <a href="#" class="dropdown-item item-edit" data-id="{{ $cycle->id }}" data-children="{{ $cycle->id }}">
                             <i class="me-50" data-feather="edit-2"></i>
                             <span>Editar</span>
                         </a>
 
-                        <a href="#" class="dropdown-item delete-record" data-id="{{ $syllabus->id }}">
+                        <a href="#" class="dropdown-item delete-record" data-id="{{ $cycle->id }}">
                             <i class="me-50" data-feather="trash"></i>
                             <span>Eliminar</span>
                         </a>

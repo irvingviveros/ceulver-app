@@ -1,31 +1,31 @@
 <?php
 declare(strict_types=1);
 
-namespace Infrastructure\Syllabus\Repository;
+namespace Infrastructure\Cycle\Repository;
 
 use Domain\Shared\Repository\GlobalRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Infrastructure\Syllabus\Model\Syllabus;
+use Infrastructure\Cycle\Model\Cycle;
 
-class EloquentSyllabusRepository implements GlobalRepository
+class EloquentCycleRepository implements GlobalRepository
 {
 
     public function findById($id)
     {
-        return Syllabus::findOrFail($id);
+        return Cycle::query()->findOrFail($id);
     }
 
     public function checkIfNameExists($name): bool
     {
-        $row = DB::table('syllabi')->where('name', $name)->get();
+        $row = DB::table('cycles')->where('name', $name)->get();
         return $row->count() > 0;
     }
 
     public function create($data): int
     {
-        return DB::table('syllabi')->insertGetId($data);
+        return DB::table('cycles')->insertGetId($data);
     }
 
     public function update($data)
@@ -40,12 +40,12 @@ class EloquentSyllabusRepository implements GlobalRepository
 
     public function all($columns = ['*'])
     {
-        return Syllabus::all($columns);
+        return Cycle::all($columns);
     }
 
     public function with($relation)
     {
-        return Syllabus::with($relation)->get();
+        return Cycle::with($relation)->get();
     }
 
     public function detach(Model $model)
@@ -55,6 +55,6 @@ class EloquentSyllabusRepository implements GlobalRepository
 
     public function where($column, $id): Collection|array
     {
-        return Syllabus::query()->where($column, $id)->get();
+        return Cycle::query()->where($column, $id)->get();
     }
 }
