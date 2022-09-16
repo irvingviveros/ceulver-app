@@ -6,11 +6,6 @@ const CycleDatatable = (function () {
     // Nested URL (cycles with shallow in routes)
     const nestedUrl = window.location.origin + '/admin/cycles/'
 
-    function initialize() {
-        // TODO EVENTOS DE FILTROS DE LISTADO
-        initializeTable();
-    }
-
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
@@ -190,7 +185,7 @@ const CycleDatatable = (function () {
     return {
         // Initialize datatable
         load: function () {
-            initialize();
+            initializeTable();
         }
         // Load create, update and edit events to the datatable
         , loadEvents: function () {
