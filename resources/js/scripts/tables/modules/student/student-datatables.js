@@ -4,11 +4,6 @@ const StudentDatatable = (function () {
     // Main route
     const urlController = Application.getUrl();
 
-    function initialize() {
-        // TODO EVENTOS DE FILTROS DE LISTADO
-        initializeTable();
-    }
-
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
@@ -212,7 +207,7 @@ const StudentDatatable = (function () {
     return {
         // Initialize datatable
         load: function () {
-            initialize();
+            initializeTable();
         }
         // Load create, update and edit events to the datatable
         , loadEvents: function () {
