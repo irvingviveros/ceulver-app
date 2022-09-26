@@ -69,6 +69,7 @@
     <script src="{{ asset(mix('js/AppNotification.js')) }}"></script>
     <script src="{{ asset(mix('js/Delete.js')) }}"></script>
     {{-- Local JS files --}}
+    <script src="{{ asset((mix('js/scripts/forms/validation/localization/messages_es.js'))) }}"></script>
     <script src="{{ asset(mix('js/scripts/tables/modules/student/student-datatables.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

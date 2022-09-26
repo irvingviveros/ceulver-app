@@ -105,6 +105,7 @@
     "/js/scripts/forms/form-wizard.js": "/js/scripts/forms/form-wizard.js",
     "/js/scripts/forms/pickers/customPickr.js": "/js/scripts/forms/pickers/customPickr.js",
     "/js/scripts/forms/pickers/form-pickers.js": "/js/scripts/forms/pickers/form-pickers.js",
+    "/js/scripts/forms/validation/localization/messages_es.js": "/js/scripts/forms/validation/localization/messages_es.js",
     "/js/scripts/maps/map-leaflet.js": "/js/scripts/maps/map-leaflet.js",
     "/js/scripts/pages/app-access-permission.js": "/js/scripts/pages/app-access-permission.js",
     "/js/scripts/pages/app-access-roles.js": "/js/scripts/pages/app-access-roles.js",
