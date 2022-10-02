@@ -2,13 +2,12 @@
 
 namespace Infrastructure\School\Repository;
 
-use Domain\School\Repository\SchoolRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Domain\Shared\Repository\GlobalRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\School\Model\School;
 
-class EloquentSchoolRepository implements SchoolRepository {
+class EloquentSchoolRepository implements GlobalRepository {
 
     /**
      * @param $id
@@ -55,26 +54,28 @@ class EloquentSchoolRepository implements SchoolRepository {
         $data->delete();
     }
 
-    /**
-     * @param $relation
-     * @return \Illuminate\Database\Eloquent\Builder[]|Collection
-     */
-    public function with($relation)
-    {
-        return School::with($relation)->get();
-    }
-
-    /**
-     * @param array|mixed|string[] $columns
-     * @return \Illuminate\Database\Eloquent\Collection|School[]|EloquentSchoolRepository[]
-     */
     public function all($columns = ['*'])
     {
         return School::all($columns);
     }
 
+    public function with($relation)
+    {
+        return School::with($relation)->get();
+    }
+
     public function where($column, $operator = null, $value = null, string $boolean = 'and')
     {
         return DB::table('schools')->where($column, $operator, $value, $boolean)->get();
+    }
+
+    public function detach(Model $model)
+    {
+        // TODO: Implement detach() method.
+    }
+
+    public function orderBy(string $column, ?string $direction = 'asc')
+    {
+        return School::orderBy($column, $direction)->get();
     }
 }

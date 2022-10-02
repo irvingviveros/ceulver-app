@@ -3,21 +3,20 @@ declare(strict_types = 1);
 
 namespace Infrastructure\Career\Repository;
 
-use Domain\Career\Repository\CareerRepository;
+use Domain\Shared\Repository\GlobalRepository;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\Career\Model\Career;
 
-class EloquentCareerRepository implements CareerRepository {
+class EloquentCareerRepository implements GlobalRepository {
 
     /**
-     * @param $data
-     * @return int
+     * @param $id
+     * @return Model
      */
-    public function create($data): int
+    public function findById($id): Model
     {
-        return DB::table('careers')->insertGetId($data);
+        return Career::query()->findOrFail($id);
     }
 
     /**
@@ -27,17 +26,16 @@ class EloquentCareerRepository implements CareerRepository {
     public function checkIfNameExists($name): bool
     {
         $row = DB::table('careers')->where('name', $name)->get();
-
         return $row->count() > 0;
     }
 
     /**
-     * @param $id
-     * @return Model
+     * @param $data
+     * @return int
      */
-    public function findById($id): Model
+    public function create($data): int
     {
-        return Career::findOrFail($id);
+        return DB::table('careers')->insertGetId($data);
     }
 
     /**
@@ -56,13 +54,23 @@ class EloquentCareerRepository implements CareerRepository {
         $data->delete();
     }
 
-    public function getAll()
+    public function all($columns = ['*'])
     {
-        return Career::all();
+        return Career::all($columns);
     }
 
-    public function orderBy(string $column): \Illuminate\Support\Collection
+    public function with($relation)
     {
-        return DB::table('careers')->orderBy($column)->get();
+        return Career::with($relation)->get();
+    }
+
+    public function detach(Model $model)
+    {
+        // TODO: Implement detach() method.
+    }
+
+    public function orderBy(string $column, ?string $direction = 'asc'): \Illuminate\Support\Collection
+    {
+        return Career::orderBy($column, $direction)->get();
     }
 }
