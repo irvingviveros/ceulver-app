@@ -1,15 +1,19 @@
 <table class="table table-hover" id="dataTable">
     <thead>
     <tr>
-        <th></th>
-        <th>id</th>
+        <th class="noVis"></th>
+        <th>ID</th>
+        <th>Escuela</th>
         <th>Matrícula</th>
+        <th>Apellido paterno</th>
+        <th>Apellido materno</th>
         <th>Nombre</th>
         <th>CURP</th>
-        <th>Convenio</th>
-        <th>Escuela</th>
-        <th>Nota</th>
-        <th class="text-center">Acciones</th>
+        <th>Estado civil</th>
+        <th>Domicilio</th>
+        <th>Correo personal</th>
+        <th>Teléfono</th>
+        <th class="noVis">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -17,13 +21,16 @@
         <tr>
             <td></td>
             <td>{{ $student->id }}</td>
-            <td>{{ $student->enrollment }}</td>
-            <td>{{ "{$student->paternal_surname} {$student->maternal_surname} {$student->middle_name} {$student->first_name}"}}</td>
-            <td>{{ $student->national_id }}</td>
-            <td>{{ $student->agreement_id }}</td>
             <td>{{ $student->school->school_name }}</td>
-            <td>{{ $student->other_info }}</td>
-
+            <td>{{ $student->enrollment }}</td>
+            <td>{{ $student->paternal_surname }}</td>
+            <td>{{ $student->maternal_surname }}</td>
+            <td>{{ $student->first_name }}</td>
+            <td>{{ $student->national_id }}</td>
+            <td>{{ $student->marital_status }}</td>
+            <td>{{ $student->address }}</td>
+            <td>{{ $student->personal_email }}</td>
+            <td>{{ $student->personal_phone }}</td>
             <td align="center">
                 <div class="dropdown">
                     <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0 waves-effect waves-float waves-light" data-bs-toggle="dropdown" aria-expanded="false">

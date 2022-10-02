@@ -6,7 +6,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Infrastructure\ReceiptStudent\Model\ReceiptStudent;
+use Infrastructure\Scholarship\Model\Scholarship;
 use Infrastructure\School\Model\School;
 use Support\Enums\GenderEnum;
 use Support\Enums\MaritalStatusEnum;
@@ -17,9 +20,9 @@ class Student extends Model
     use HasFactory;
 
     protected $casts = [
-        "marital_status" => MaritalStatusEnum::class,
-        "sex" => SexEnum::class,
-        "gender" => GenderEnum::class
+//        "marital_status" => MaritalStatusEnum::class,
+//        "sex" => SexEnum::class,
+//        "gender" => GenderEnum::class
     ];
 
     /**
@@ -38,5 +41,23 @@ class Student extends Model
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * Get the receipts associated with the student.
+     *  $student -> receipts
+     */
+    public function receipts(): HasMany
+    {
+        return $this->hasMany(ReceiptStudent::class);
+    }
+
+    /**
+     * Get the scholarship associated with the student.
+     *  $student -> scholarship
+     */
+    public function scholarship(): HasOne
+    {
+        return $this->HasOne(Scholarship::class);
     }
 }

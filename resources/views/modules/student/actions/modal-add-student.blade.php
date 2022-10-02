@@ -1,34 +1,21 @@
-<form class="add-new-record row gy-2 gx-2" id="studentRegisterForm">
+<form class="add-new-record row gy-2 gx-2" id="registerForm">
 
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
         <b>Seleccionar institución</b>
     </div>
 
-    <div class="col-3">
-        <label class="form-label" for="schoolSelect">Nombre de la institución
-            <span class="text-danger">*</span>
-        </label>
-        <select class="form-select" id="schoolSelect">
-            @foreach($schools as $school)
-                <option value="{{$school->id}}">{{$school->school_name}}</option>
-            @endforeach
-        </select>
-        <span for="schoolSelect" class="text-danger"></span>
-    </div>
-
-    <div class="col-3">
-        <label class="form-label" for="educationalSystems">Nivel educativo
-            <span class="text-danger">*</span>
-        </label>
-        <select class="form-select" id="educationalSystems"
-                onchange="toggleSelectorInput(this.value, '6', '#university')">
-            @foreach($schools as $school)
-                @foreach($school->educationalSystems as $educationalSystem)
-                    <option value="{{$educationalSystem->id}}">{{$educationalSystem->name}}</option>
+    <div class="col-6">
+        <div class="col-md-6 basic-select2">
+            <label class="form-label" for="schoolSelect">Institución - Plantel</label>
+            <select class="form-select" name="schoolSelect" id="schoolSelect">
+                <option selected disabled>Seleccionar</option>
+                @foreach($schools as $school)
+                    <option value="{{$school->id}}"
+                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->school_name}}
+                        - {{$school->educationalSystem->name}}</option>
                 @endforeach
-            @endforeach
-        </select>
-        <span for="educationalSystems" class="text-danger"></span>
+            </select>
+        </div>
     </div>
 
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
@@ -44,7 +31,6 @@
             class="form-control"
             id="paternalSurname"
             name="paternalSurname"
-            maxlength="50"
             placeholder="Apellido paterno"
             aria-label="Apellido paterno"
         />
@@ -60,7 +46,6 @@
             class="form-control"
             id="maternalSurname"
             name="maternalSurname"
-            maxlength="50"
             placeholder="Apellido materno"
             aria-label="Apellido materno"
         />
@@ -76,7 +61,6 @@
             class="form-control"
             id="firstName"
             name="firstName"
-            maxlength="50"
             placeholder="Nombre(s)"
             aria-label="Nombre o nombres"
         />
@@ -88,8 +72,13 @@
             <span class="text-danger">*</span>
         </label>
         <br>
-        <input type="text" id="birthday" class="form-control flatpickr-basic"
-               placeholder="Seleccionar" readonly>
+        <input
+            type="text"
+            id="birthday"
+            name="birthday"
+            class="form-control flatpickr-basic"
+            placeholder="Seleccionar"
+            readonly>
     </div>
 
 
@@ -102,7 +91,6 @@
             class="form-control"
             id="nationalId"
             name="nationalId"
-            maxlength="18"
             placeholder="CURP"
             aria-label="CURP"
         />
@@ -124,7 +112,7 @@
         <span for="address" class="text-danger"></span>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 d-none" dynamic-toggle>
         <label class="form-label" for="occupation">Ocupación</label>
         <input
             type="text"
@@ -142,7 +130,7 @@
         <label class="form-label" for="sexSelect">Sexo
             <span class="text-danger">*</span>
         </label>
-        <select class="form-select" id="sexSelect">
+        <select class="form-select" id="sexSelect" name="sexSelect">
             <option selected value="" disabled>Seleccionar</option>
             <option>Masculino</option>
             <option>Femenino</option>
@@ -150,7 +138,21 @@
         <span for="sexSelect" class="text-danger"></span>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 d-none" dynamic-toggle>
+        <label class="form-label" for="maritalStatus">Estado civil
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-select" id="maritalStatus" name="maritalStatus">
+            <option selected value="" disabled>Seleccionar</option>
+            <option>Soltero(a)</option>
+            <option>Casado(a)</option>
+            <option>Divorciado(a)</option>
+            <option>Viudo(a)</option>
+        </select>
+        <span for="maritalStatus" class="text-danger"></span>
+    </div>
+
+    <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="email">Correo electrónico personal
             <span class="text-danger">*</span>
         </label>
@@ -165,7 +167,7 @@
         <span for="email" class="text-danger"></span>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="phone">Número telefónico personal (celular)
             <span class="text-danger">*</span>
         </label>
@@ -190,7 +192,7 @@
 
     <div class="col-3">
         <label class="form-label" for="bloodGroup">Grupo sanguíneo</label>
-        <select class="form-select" id="bloodGroup">
+        <select class="form-select" id="bloodGroup" name="bloodGroup">
             <option selected value="" disabled>Seleccionar</option>
             <option>A+</option>
             <option>A-</option>
@@ -239,18 +241,73 @@
         <b>Información académica</b>
     </div>
 
-    <div class="col-3" id="university" style="display: none">
-        <div class="col-md-12 basic-select2">
-            <label class="form-label" for="careerSelect">Carrera a cursar
-                <span class="text-danger">*</span>
-            </label>
-            <select class="form-select" id="careerSelect">
-                @foreach($careers as $career)
-                    <option value="{{$career->id}}">{{$career->name}}</option>
-                @endforeach
-            </select>
+    <div class="container d-none" dynamic-toggle data-system="Universidad">
+        <div class="row">
+            <div class="col-3">
+                <div class="basic-select2">
+                    <label class="form-label" for="careerSelect">Carrera a cursar
+                        <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select" id="careerSelect" name="careerSelect">
+                        <option selected value="" disabled>Seleccionar</option>
+                        @foreach($careers as $career)
+                            <option value="{{$career->id}}" enrollment="{{$career->enrollment}}">{{$career->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <span for="schoolSelect" class="text-danger"></span>
+            </div>
+
+            <div class="col-3">
+                <label class="form-label" for="enrollment">Matrícula
+                    <span class="text-danger">*</span>
+                </label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="enrollment"
+                    name="enrollment"
+                    placeholder="Matrícula"
+                    aria-label="Matrícula"
+                />
+                <span for="address" class="text-danger"></span>
+            </div>
         </div>
-        <span for="schoolSelect" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="paymentReference">Referencia de pago <i> - Opcional</i></label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Dato opcional. Si no cuenta con una, puede introducirla después del registro del alumno."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Referencia de pago">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <input
+            type="text"
+            class="form-control"
+            id="paymentReference"
+            name="paymentReference"
+            placeholder="Número de referencia"
+            aria-label="Referencia de pago"
+        />
+        <span for="address" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="scholarship">Descuento (beca)<i> - Opcional</i></label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Puede asignar una beca o descuento en este momento o en otro momento."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Descuento (beca)">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <select class="form-select" id="scholarship">
+            <option selected value="" disabled>Seleccionar</option>
+            <option value="0">Beca inicial</option>
+            <option value="1">Beca 50% descuento</option>
+        </select>
+        <span for="scholarship" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -281,7 +338,6 @@
             class="form-control"
             id="guardianLastName"
             name="guardianLastName"
-            maxlength="50"
             placeholder="Apellido(s)"
             aria-label="Apellido o apellidos"
         />
@@ -306,7 +362,7 @@
 
     <div class="col-3">
         <label class="form-label" for="guardianRelationship">Parentesco</label>
-        <select class="form-select" id="guardianRelationship">
+        <select class="form-select" id="guardianRelationship" name="guardianRelationship">
             <option selected value="" disabled>Seleccionar</option>
             <option>Madre</option>
             <option>Padre</option>
@@ -363,21 +419,67 @@
         <span for="guardianPhone" class="text-danger"></span>
     </div>
 
+    <div class="border d-flex align-items-center bg-light" style="height: 35px;">
+        <b>Otra información</b>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="studentUsername">Usuario</label>
+        <span data-bs-toggle="popover"
+              data-bs-content="El usuario se genera automáticamente con el dato de la CURP del estudiante."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Generar usuario">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <input
+            class="form-control"
+            id="studentUsername"
+            name="studentUsername"
+            placeholder="Nombre de usuario"
+            aria-label="Nombre de usuario"
+        />
+        <span for="studentUsername" class="text-danger"></span>
+    </div>
+    <div class="col-3">
+        <label class="form-label" for="studentPassword">Contraseña</label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Genere una contraseña o introduzca una manualmente."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Creación de contraseña">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <div class="input-group form-password-toggle input-group-merge">
+            <input
+                type="password"
+                class="form-control"
+                id="studentPassword"
+                name="studentPassword"
+                placeholder="Contraseña"
+                data-msg="Generar contraseña"
+            />
+            <div class="input-group-text cursor-pointer">
+                <i data-feather="eye"></i>
+            </div>
+            <button class="btn btn-outline-primary" id="randomPassword" type="button">Generar contraseña</button>
+        </div>
+    </div>
+
     <input type="hidden" name="studentId" id="studentId" value="@isset($student){{ $student->id }}@endisset"/>
 </form>
 
 {{-- Page scripts --}}
 <script src="{{ asset(mix('vendors/js/feather-icons/feather-icons.min.js')) }}"></script>
-
 <script src="{{ asset(mix('js/scripts/forms/pickers/customPickr.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/components/components-popovers.js'))}}"></script>
-
 <script src="{{ asset(mix('js/utils/input-uppercase.js')) }}"></script>
 <script src="{{ asset(mix('js/utils/toggle-selector-input.js'))}}"></script>
-
+<script src="{{ asset(mix('js/utils/enrollment-generator.js'))}}"></script>
+<script src="{{ asset(mix('js/utils/student-username-generator.js'))}}"></script>
+<script src="{{ asset(mix('js/utils/password-toggle.js'))}}"></script>
+<script src="{{ asset(mix('js/utils/random-password-generator.js'))}}"></script>
 <script>feather.replace() //Icons</script>
 
-{{-- Event listeners --}}
+{{-- Convert the input characters from lower to uppercase --}}
 <script>
     document.getElementById("nationalId").addEventListener("keypress", toUpperCase, false);
 </script>

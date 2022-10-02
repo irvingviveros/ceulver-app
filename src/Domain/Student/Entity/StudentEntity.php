@@ -18,7 +18,7 @@ class StudentEntity
     private ?string $address;
     private ?int $age;
     private ?string $occupation;
-    private string $personal_email;
+    private ?string $personal_email;
     private ?string $home_phone;
     private ?string $personal_phone;
     private ?string $nationality;
@@ -224,17 +224,17 @@ class StudentEntity
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPersonalEmail(): string
+    public function getPersonalEmail(): ?string
     {
         return $this->personal_email;
     }
 
     /**
-     * @param string $personal_email
+     * @param string|null $personal_email
      */
-    public function setPersonalEmail(string $personal_email): void
+    public function setPersonalEmail(?string $personal_email = null): void
     {
         $this->personal_email = $personal_email;
     }

@@ -28,7 +28,7 @@
                     <div class="col-12">
                         <div class="row">
                             <div class="col-md-12">
-                                <div id="divAgreementTable" class="table-responsive">
+                                <div class="table-responsive">
                                     @include('modules.student.list.list')
                                 </div>
                             </div>
@@ -49,6 +49,7 @@
     <script src="{{ asset(mix('vendors/js/tables/datatable/responsive.bootstrap5.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.checkboxes.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/datatables.buttons.min.js')) }}"></script>
+    <script src="{{ asset(mix('vendors/js/tables/datatable/buttons.colVis.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/jszip.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/pdfmake.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/tables/datatable/vfs_fonts.js')) }}"></script>
@@ -63,6 +64,7 @@
 @endsection
 @section('page-script')
     {{-- Page JS files, global --}}
+
     <script src="{{ asset(mix('js/Application.js')) }}"></script>
     <script src="{{ asset(mix('js/Modal.js')) }}"></script>
     <script src="{{ asset(mix('js/Configuration.js')) }}"></script>
@@ -70,6 +72,7 @@
     <script src="{{ asset(mix('js/Delete.js')) }}"></script>
     {{-- Local JS files --}}
     <script src="{{ asset((mix('js/scripts/forms/validation/localization/messages_es.js'))) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/validation/student-validation.js')) }}"></script>
     <script src="{{ asset(mix('js/scripts/tables/modules/student/student-datatables.js')) }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {

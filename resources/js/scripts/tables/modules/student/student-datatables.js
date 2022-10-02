@@ -25,7 +25,7 @@ const StudentDatatable = (function () {
         $('.createEntry').on('click', function () {
             StudentDatatable.getRegisterForm().then(function () {
                 let modal = Modal.create({
-                    id: 'studentRegisterForm' // TODO: Cambiar valor, plantilla
+                    id: 'registerForm' // TODO: Cambiar valor, plantilla
                     , title: 'Registrar alumno'
                     , content: arguments[0]
                     , okButtonText: 'Crear'
@@ -82,9 +82,10 @@ const StudentDatatable = (function () {
 
         modal.find('[id="okModal"]').on('click', function () {
 
-            let form = $("form[id='studentRegisterForm']"); // TODO: Cambiar valor, plantilla
+            let form = $("form[id='registerForm']");
 
-            if (!form.valid()) {
+            // JS validations before submit
+            if (!FormIsValid(form)) {
                 return;
             }
 
@@ -124,8 +125,6 @@ const StudentDatatable = (function () {
                 });
             });
         });
-
-        loadFormValidation();
     }
 
     // Loads a modal and update a record

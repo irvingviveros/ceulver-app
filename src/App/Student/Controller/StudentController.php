@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Student\Controller;
 
 use Carbon\Carbon;
+use Domain\Career\Service\CareerService;
+use Domain\School\Service\SchoolService;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Service\StudentService;
@@ -23,11 +25,21 @@ use Infrastructure\Student\Repository\EloquentStudentRepository;
 class StudentController extends Controller
 {
     private StudentService $studentService;
+    private SchoolService $schoolService;
+    private CareerService $careerService;
 
     public function __construct()
     {
         $this->studentService = new StudentService(
             new EloquentStudentRepository()
+        );
+
+        $this->schoolService = new SchoolService(
+            new EloquentSchoolRepository()
+        );
+
+        $this->careerService = new CareerService(
+            new EloquentCareerRepository()
         );
     }
 
@@ -58,11 +70,9 @@ class StudentController extends Controller
      */
     public function create(): View
     {
-        // TODO: USAR EL SERVICIO Y NO EL REPOSITORIO
-        $schoolRepository = new EloquentSchoolRepository();
-        $careersRepository = new EloquentCareerRepository();
-        $schools = $schoolRepository->with('educationalSystems');
-        $careers = $careersRepository->orderBy('name');
+        $schools = $this->schoolService->orderBy('id', 'desc');
+        $careers = $this->careerService->orderBy('name');
+
         return view('modules.student.actions.modal-add-student', compact(['schools', 'careers']));
     }
 
