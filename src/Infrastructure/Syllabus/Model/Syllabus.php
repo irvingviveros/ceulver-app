@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\Career\Model\Career;
 use Infrastructure\Cycle\Model\Cycle;
 use Infrastructure\School\Model\School;
+use Infrastructure\Subject\Model\Subject;
 
 class Syllabus extends Model
 {
@@ -40,5 +41,14 @@ class Syllabus extends Model
     public function cycles(): HasMany
     {
         return $this->hasMany(Cycle::class);
+    }
+
+    /**
+     * Get subject associated with the syllabus.
+     *  $syllabus -> subject
+     */
+    public function subject(): BelongsTo
+    {
+        return $this->belongsTo(Subject::class);
     }
 }
