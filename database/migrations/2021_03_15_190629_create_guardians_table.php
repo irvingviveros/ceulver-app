@@ -31,7 +31,7 @@ class CreateGuardiansTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
         });
     }
 
