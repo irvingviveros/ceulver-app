@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\Cycle\Model\Cycle;
 use Infrastructure\School\Model\School;
 use Infrastructure\Syllabus\Model\Syllabus;
@@ -33,11 +34,11 @@ class Subject extends Model
 
     /**
      * Get the syllabus associated with the subject.
-     *  $subject -> syllabus
+     *  $subject -> syllabi
      */
-    public function syllabus(): BelongsTo
+    public function syllabi(): HasMany
     {
-        return $this->belongsTo(Syllabus::class);
+        return $this->hasMany(Syllabus::class);
     }
 
     /**
