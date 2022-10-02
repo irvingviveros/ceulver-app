@@ -5,6 +5,7 @@ namespace Domain\Career\Service;
 
 use Domain\Career\Entity\CareerEntity;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
+use Illuminate\Database\Eloquent\Collection;
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 
 class CareerService {
@@ -65,11 +66,10 @@ class CareerService {
         return 0;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAll() {
-        return $this->careerRepository->getAll();
+
+    public function getAll(): Collection|array
+    {
+        return $this->careerRepository->all();
     }
 
     /**
@@ -128,8 +128,8 @@ class CareerService {
         $this->careerRepository->delete($career);
     }
 
-    public function orderBy($name): \Illuminate\Support\Collection
+    public function orderBy($name, $direction = 'asc'): \Illuminate\Support\Collection
     {
-        return $this->careerRepository->orderBy($name);
+        return $this->careerRepository->orderBy($name, $direction);
     }
 }
