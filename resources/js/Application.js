@@ -36,6 +36,9 @@ const Application = (function () {
                     {
                         extend: 'colvis',
                         className: 'btn btn-outline-secondary dropdown-toggle me-2',
+                        text: feather.icons['eye'].toSvg({
+                            class: 'font-small-4 me-50'
+                        }) + 'Visibilidad',
                         columns: ':not(.noVis)'
                     },
                     {
@@ -105,7 +108,15 @@ const Application = (function () {
                                 $(node).closest('.dt-buttons').removeClass('btn-group').addClass('d-inline-flex');
                             }, 50);
                         }
-                    }, {
+                    },
+                    {
+                        name: 'import',
+                        text: feather.icons['package'].toSvg({
+                            class: 'me-50 font-small-4 mr-5'
+                        }) + 'Carga masiva',
+                        className: 'btn btn-outline-secondary me-2 bulk-upload'
+                    },
+                    {
                         name: 'create',
                         text: feather.icons['plus'].toSvg({
                             class: 'me-50 font-small-4'
