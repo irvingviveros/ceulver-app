@@ -43,16 +43,17 @@ const Application = (function () {
                         text: feather.icons['share'].toSvg({
                             class: 'font-small-4 me-50'
                         }) + 'Exportar',
-                        buttons: [{
-                            extend: 'print',
-                            text: feather.icons['printer'].toSvg({
-                                class: 'font-small-4 me-50'
-                            }) + 'Imprimir',
-                            className: 'dropdown-item',
-                            exportOptions: {
-                                columns: ':visible:not(.noVis)'
-                            }
-                        },
+                        buttons: [
+                            {
+                                extend: 'print',
+                                text: feather.icons['printer'].toSvg({
+                                    class: 'font-small-4 me-50'
+                                }) + 'Imprimir',
+                                className: 'dropdown-item',
+                                exportOptions: {
+                                    columns: ':visible:not(.noVis)'
+                                }
+                            },
                             {
                                 extend: 'csv',
                                 text: feather.icons['file-text'].toSvg({
@@ -119,7 +120,6 @@ const Application = (function () {
                 language: {
                     url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
                 },
-                // scrollX: true,
                 select: true,
                 initComplete: function (settings, json) {
                     DataTableObject.loadEvents();
