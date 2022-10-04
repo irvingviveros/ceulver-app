@@ -113,7 +113,9 @@
     </div>
 
     <div class="col-3 d-none" dynamic-toggle>
-        <label class="form-label" for="occupation">Ocupación</label>
+        <label class="form-label" for="occupation">Ocupación
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -191,7 +193,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="bloodGroup">Grupo sanguíneo</label>
+        <label class="form-label" for="bloodGroup">Grupo sanguíneo
+            <span class="text-danger">*</span>
+        </label>
         <select class="form-select" id="bloodGroup" name="bloodGroup">
             <option selected value="" disabled>Seleccionar</option>
             <option>A+</option>
@@ -361,7 +365,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="guardianRelationship">Parentesco</label>
+        <label class="form-label" for="guardianRelationship">Parentesco
+            <span class="text-danger">*</span>
+        </label>
         <select class="form-select" id="guardianRelationship" name="guardianRelationship">
             <option selected value="" disabled>Seleccionar</option>
             <option>Madre</option>
@@ -379,7 +385,9 @@
     <div class="col-3"></div>
 
     <div class="col-3">
-        <label class="form-label" for="guardianAddress">Domicilio</label>
+        <label class="form-label" for="guardianAddress">Domicilio
+            <span class="text-danger">*</span>
+        </label>
         <input
             type="text"
             class="form-control"
@@ -424,7 +432,7 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="studentUsername">Usuario</label>
+        <label class="form-label" for="studentUsername">Usuario del alumno</label>
         <span data-bs-toggle="popover"
               data-bs-content="El usuario se genera automáticamente con el dato de la CURP del estudiante."
               data-bs-trigger="hover"
