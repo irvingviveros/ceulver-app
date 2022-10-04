@@ -45,10 +45,10 @@ class CreateStudentsTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->constrained();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->foreignId('scholarship_id')->nullable(true)->constrained();
-            $table->foreignId('guardian_id')->nullable(true)->constrained();
-            $table->foreignId('career_id')->nullable(true)->constrained();
+            $table->foreignId('user_id')->nullable();
+            $table->foreignId('scholarship_id')->nullable(true);
+            $table->foreignId('guardian_id')->nullable(true);
+            $table->foreignId('career_id')->nullable(true);
             $table->tinyInteger('status')->default(1); // 1 = active, 0 = inactive
             $table->integer('created_by');
             $table->integer('modified_by')->nullable(true);

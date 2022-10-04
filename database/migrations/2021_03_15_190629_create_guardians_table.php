@@ -19,11 +19,9 @@ class CreateGuardiansTable extends Migration
             $table->string('last_name', 100)->nullable(true);
             $table->string('phone', 10)->nullable(true);
             $table->string('email', 50)->nullable(true);
-//            $table->string('profession',100)->nullable(true);
             $table->string('address', 255)->nullable(true);
             $table->string('photo', 100)->nullable(true);
             $table->text('other_info')->nullable(true);
-            $table->string('religion', 100)->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');
@@ -31,7 +29,7 @@ class CreateGuardiansTable extends Migration
 
             // Foreign key
             $table->foreignId('school_id')->constrained();
-            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable();
         });
     }
 

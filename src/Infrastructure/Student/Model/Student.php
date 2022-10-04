@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Infrastructure\Guardian\Model\Guardian;
 use Infrastructure\ReceiptStudent\Model\ReceiptStudent;
 use Infrastructure\Scholarship\Model\Scholarship;
 use Infrastructure\School\Model\School;
-use Support\Enums\GenderEnum;
-use Support\Enums\MaritalStatusEnum;
-use Support\Enums\SexEnum;
 
 class Student extends Model
 {
@@ -59,5 +57,14 @@ class Student extends Model
     public function scholarship(): HasOne
     {
         return $this->HasOne(Scholarship::class);
+    }
+
+    /**
+     * Get the guardian associated with the student.
+     *  $student -> guardian
+     */
+    public function guardian(): HasOne
+    {
+        return $this->HasOne(Guardian::class);
     }
 }
