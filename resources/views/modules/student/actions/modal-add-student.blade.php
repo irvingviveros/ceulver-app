@@ -432,7 +432,9 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="studentUsername">Usuario del alumno</label>
+        <label class="form-label" for="studentUsername">Usuario del alumno
+            <span class="text-danger">*</span>
+        </label>
         <span data-bs-toggle="popover"
               data-bs-content="El usuario se genera automáticamente con el dato de la CURP del estudiante."
               data-bs-trigger="hover"
@@ -449,7 +451,9 @@
         <span for="studentUsername" class="text-danger"></span>
     </div>
     <div class="col-3">
-        <label class="form-label" for="studentPassword">Contraseña</label>
+        <label class="form-label" for="studentPassword">Contraseña
+            <span class="text-danger">*</span>
+        </label>
         <span data-bs-toggle="popover"
               data-bs-content="Genere una contraseña o introduzca una manualmente."
               data-bs-trigger="hover"
