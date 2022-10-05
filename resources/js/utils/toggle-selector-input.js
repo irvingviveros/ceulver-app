@@ -10,6 +10,11 @@ $(function() {
     $("#schoolSelect").change(function (){
         let selector = $('div[dynamic-toggle]');
         let option = $('option:checked', this).attr('educationalSystem')
-        option === "Universidad" ? selector.removeClass("d-none") : selector.addClass("d-none")
+        option === $('div[data-system]').data('system') ? selector.removeClass("d-none") : selector.addClass("d-none")
+
+        // If value from select equals 'Universidad', hide divs with class 'hide-toggle'
+        if (option === 'Universidad') {
+            $('div.hide-toggle').addClass("d-none")
+        } else $('div.hide-toggle').removeClass("d-none")
     })
 })

@@ -19,6 +19,7 @@ $('#nationalId').blur(function() {
     // If the national id field has more than 5 characters, then generate the username
     if (nationalId.length >= 5) {
         let username = nationalId.slice(0,5); // Slice the national id and saves the first 5 characters
-        $('#studentUsername').val(username + currentYear + currentMonth)
+        $('#studentUsername').val(username + currentYear + currentMonth);
+        $('#guardianUsername').val(username + currentYear + currentMonth);
     }
 });
