@@ -427,11 +427,62 @@
         <span for="guardianPhone" class="text-danger"></span>
     </div>
 
-    <div class="border d-flex align-items-center bg-light" style="height: 35px;">
-        <b>Otra información</b>
+    <div class="col-3"></div>
+
+    <div class="border d-flex align-items-center bg-light hide-toggle" style="height: 35px;">
+        <b>Padre o tutor - Acceso a la plataforma</b>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 hide-toggle">
+        <label class="form-label" for="guardianUsername">Usuario
+            <span class="text-danger">*</span>
+        </label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Con el usuario, el padre/tutor podrá acceder al módulo de recibos de pago del estudiante destinado."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Usuario del padre/tutor">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <input
+            class="form-control"
+            id="guardianUsername"
+            name="guardianUsername"
+            placeholder="Nombre de usuario"
+            aria-label="Nombre de usuario del padre o tutor"
+        />
+        <span for="guardianUsername" class="text-danger"></span>
+    </div>
+    <div class="col-3 hide-toggle">
+        <label class="form-label" for="guardianPassword">Contraseña
+            <span class="text-danger">*</span>
+        </label>
+        <span data-bs-toggle="popover"
+              data-bs-content="Genere una contraseña o introduzca una manualmente."
+              data-bs-trigger="hover"
+              title data-bs-original-title="Creación de contraseña">
+            <i type="button" data-feather='info'></i>
+        </span>
+        <div class="input-group form-password-toggle input-group-merge">
+            <input
+                type="password"
+                class="form-control generated-password"
+                id="guardianPassword"
+                name="guardianPassword"
+                placeholder="Contraseña"
+                data-msg="Generar contraseña"
+            />
+            <div class="input-group-text cursor-pointer">
+                <i data-feather="eye"></i>
+            </div>
+            <button class="btn btn-outline-primary" id="guardianGeneratePwd" type="button">Generar contraseña</button>
+        </div>
+    </div>
+
+    <div class="border d-flex align-items-center bg-light d-none" dynamic-toggle data-system="Universidad" style="height: 35px;">
+        <b>Alumno - Acceso a la plataforma</b>
+    </div>
+
+    <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="studentUsername">Usuario del alumno
             <span class="text-danger">*</span>
         </label>
@@ -450,7 +501,7 @@
         />
         <span for="studentUsername" class="text-danger"></span>
     </div>
-    <div class="col-3">
+    <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="studentPassword">Contraseña
             <span class="text-danger">*</span>
         </label>
@@ -472,7 +523,7 @@
             <div class="input-group-text cursor-pointer">
                 <i data-feather="eye"></i>
             </div>
-            <button class="btn btn-outline-primary" id="randomPassword" type="button">Generar contraseña</button>
+            <button class="btn btn-outline-primary" id="studentGeneratePwd" type="button">Generar contraseña</button>
         </div>
     </div>
 
