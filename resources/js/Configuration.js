@@ -70,6 +70,16 @@ const Configuration = (function(Modal){
                         , arguments[0].responseText
                     );
                 }
+                , 422: function() {
+                    let matches = arguments[0].responseText.match(/\["(.*?)"\]/);
+                    if (matches) {
+                        var response = matches[1];
+                    }
+                    Modal.alert.error(
+                        "Error al procesar la información"
+                        , response
+                    );
+                }
                 , 500: function() {
                     Modal.alert.error(
                         "Error interno del servidor"
