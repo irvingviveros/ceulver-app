@@ -10,5 +10,5 @@ enum MaritalStatusEnum:string
     case SINGLE = 'Soltero';
     case DIVORCED = 'Divorciado';
     case WIDOWED = 'Viudo';
-    case NOT_SPECIFIC = 'No especifica';
+    case NOT_SPECIFIC = 'No aplica';
 }
