@@ -1,12 +1,12 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Domain\School\Service;
 
 use Domain\School\Entity\SchoolEntity;
 use Domain\Shared\Exception\CeulverOperationNotPermittedException;
 use Domain\Shared\Exception\ValueNotFoundException;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class SchoolService
@@ -16,48 +16,43 @@ class SchoolService
     /**
      * @param EloquentSchoolRepository $schoolRepository
      */
-    public function __construct(EloquentSchoolRepository $schoolRepository){
+    public function __construct(EloquentSchoolRepository $schoolRepository)
+    {
         $this->schoolRepository = $schoolRepository;
     }
 
     /**
      * @throws CeulverOperationNotPermittedException|ValueNotFoundException
      */
-    public function create(
-        SchoolEntity $school,
-        $createdBy,
-        $modifiedBy
-    ): int
+    public function create(SchoolEntity $school, $createdBy, $modifiedBy): int
     {
         if ($school->getSchoolName() == ''
             && $school->getSchoolAddress() == ''
             && $school->getSchoolEmail() == ''
             && $school->getSchoolAdmission() == ''
         ) {
-            throw new CeulverOperationNotPermittedException(
-                "Todos los campos se encuentran vacíos"
-            );
+            throw new CeulverOperationNotPermittedException("Todos los campos se encuentran vacíos");
         }
 
-        if ($this->schoolRepository->checkIfNameExists($school->getSchoolName())){
+        if ($this->schoolRepository->checkIfNameExists($school->getSchoolName())) {
             throw new ValueNotFoundException(
                 "Ya existe una escuela con el mismo nombre"
             );
         }
 
         $data = array(
-            'school_name'               =>  $school->getSchoolName(),
-            "address"                   =>  $school->getSchoolAddress(),
-            "email"                     =>  $school->getSchoolEmail(),
-            "enable_online_admission"   =>  $school->getSchoolAdmission(),
-            "created_by"                =>  $createdBy,
-            "modified_by"               =>  $modifiedBy
+            'school_name' => $school->getSchoolName(),
+            "address" => $school->getSchoolAddress(),
+            "email" => $school->getSchoolEmail(),
+            "enable_online_admission" => $school->getSchoolAdmission(),
+            "created_by" => $createdBy,
+            "modified_by" => $modifiedBy
         );
 
         $school_id = $this->schoolRepository->create($data);
 
         // Si existe una escuela, entonces retorna el ID
-        if ($school_id > 0){
+        if ($school_id > 0) {
             return $school_id;
         }
 
@@ -76,6 +71,16 @@ class SchoolService
     }
 
     /**
+     * @throws ValueNotFoundException
+     */
+    public function update($data)
+    {
+        $school = $this->findById($data['id']);
+
+        $this->schoolRepository->update($school);
+    }
+
+    /**
      * @param $id
      * @return mixed
      * @throws ValueNotFoundException
@@ -86,21 +91,11 @@ class SchoolService
 
         if ($school == null) {
             throw new ValueNotFoundException(
-              "La escuela no existe"
+                "La escuela no existe"
             );
         }
 
         return $school;
-    }
-
-    /**
-     * @throws ValueNotFoundException
-     */
-    public function update($data)
-    {
-        $school = $this->findById($data['id']);
-
-        $this->schoolRepository->update($school);
     }
 
     /**
@@ -117,10 +112,15 @@ class SchoolService
     {
         if ($request->hasFile('school-logo')) {
             $file = $request->file('school-logo');
-            $extension = $file -> getClientOriginalExtension(); //get original file extension
-            $name = uniqid().'.'.$extension; //assign new file name
+            $extension = $file->getClientOriginalExtension(); //get original file extension
+            $name = uniqid() . '.' . $extension; //assign new file name
             $file->move(public_path() . '/images/uploads/schools/logo', $name);
         }
+    }
+
+    public function orderBy($name, $direction = 'asc'): Collection
+    {
+        return $this->schoolRepository->orderBy($name, $direction);
     }
 }
 

@@ -20,19 +20,17 @@ const StudentDatatable = (function () {
     function initializeEvents() {
 
         let table =  $('#dataTable');
-
         // Create event
         $('.createEntry').on('click', function () {
             StudentDatatable.getRegisterForm().then(function () {
                 let modal = Modal.create({
-                    id: 'registerForm' // TODO: Cambiar valor, plantilla
-                    , title: 'Registrar alumno'
+                    id: 'registerForm'
+                    , title: 'Registrar alumno' // TODO: Cambiar valor, plantilla
                     , content: arguments[0]
                     , okButtonText: 'Crear'
                     , cancelButtonText: 'Cancelar'
                     , size: 'xl' // lg, xl
                 });
-
                 // Show modal
                 modal.modal('show').on('shown.bs.modal', function () {
                     createForm(modal)
@@ -83,12 +81,12 @@ const StudentDatatable = (function () {
         modal.find('[id="okModal"]').on('click', function () {
 
             let form = $("form[id='registerForm']");
-
             // JS validations before submit
             if (!FormIsValid(form)) {
-                return;
+                AppNotification.show(
+                    'warning', 'Hubo un error al intentar crear el registro.', 'Advertencia'
+                );
             }
-
             // This is sent to the store request parameter
             StudentDatatable.save({
                 _token: Application.getToken()
@@ -100,27 +98,38 @@ const StudentDatatable = (function () {
                 , national_id: form.find('input[id="nationalId"]').val()
                 , address: form.find('input[id="address"]').val()
                 , occupation: form.find('input[id="occupation"]').val()
-                , sex: form.find('select[id="schoolSelect"]').val()
+                , sex: form.find('select[id="sexSelect"]').val()
+                , marital_status: form.find('select[id="maritalStatus"]').val()
                 , email: form.find('input[id="email"]').val()
-                , personal_phone: form.find('input[id="phone"]').val()
+                , phone: form.find('input[id="phone"]').val()
                 , blood_group: form.find('select[id="bloodGroup"]').val()
                 , ailments: form.find('input[id="ailments"]').val()
                 , allergies: form.find('input[id="allergies"]').val()
                 , career: form.find('select[id="careerSelect"]').val()
+                , enrollment: form.find('input[id="enrollment"]').val()
+                , payment_reference: form.find('input[id="paymentReference"]').val()
+                , guardian_last_name: form.find('input[id="guardianLastName"]').val()
+                , guardian_first_name: form.find('input[id="guardianFirstName"]').val()
+                , guardian_relationship: form.find('select[id="guardianRelationship"]').val()
+                , guardian_address: form.find('input[id="guardianAddress"]').val()
+                , guardian_email: form.find('input[id="guardianEmail"]').val()
+                , guardian_phone: form.find('input[id="guardianPhone"]').val()
+                , guardian_username: form.find('input[id="guardianUsername"]').val()
+                , guardian_password: form.find('input[id="guardianPassword"]').val()
+                , student_username: form.find('input[id="studentUsername"]').val()
+                , student_password: form.find('input[id="studentPassword"]').val()
                 , student_status: form.find('select[id="studentStatus"]').val()
+                , educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
                 );
 
                 Modal.close(modal.attr('id'));
-
                 // Reload table
                 StudentDatatable.getList().then(function () {
-                    $('table[id="studentTable"]').DataTable().destroy; // TODO: Cambiar valor, plantilla
-
+                    $('table[id="dataTable"]').DataTable().destroy;
                     $('div[id="dataList"]').html(arguments[0]);
-
                     initializeTable();
                 });
             });
@@ -133,8 +142,11 @@ const StudentDatatable = (function () {
         modal.find('[id="okModal"]').on('click', function () {
             let form = $("form[id='editForm']");
 
-            if (!form.valid()) {
-                return;
+            // JS validations before submit
+            if (!FormIsValid(form)) {
+                AppNotification.show(
+                    'warning', 'Hubo un error al intentar crear el registro. El registro no se ha creado.', 'Error'
+                );
             }
 
             // All this data goes to the update function controller
@@ -161,46 +173,6 @@ const StudentDatatable = (function () {
                 });
             });
         });
-
-        loadFormValidation();
-    }
-
-    // Load validations
-    function loadFormValidation() {
-        let form = $("form[id='studentForm']"); // TODO: Cambiar valor, plantilla
-        if (form.length === 0){
-            form = $("form[id='editForm']");
-        }
-        // Validate that the contents of a field are not spaces
-        $.validator.addMethod("emptyField", function (value, element) {
-            let valido = value.trim().length !== 0;
-
-            return this.optional(element) || valido;
-        });
-
-        form.validate({
-            rules: {
-                startDate: {
-                    required: true
-                },
-                endDate: {
-                    required: true
-                }
-            }
-            , messages: {
-                startDate: {
-                    required: "La fecha de inicio es requerido"
-                },
-                endDate: {
-                    required: "La fecha de finalización es requerido"
-                }
-            }
-            , errorPlacement: function (error, element) {
-                form.find("span[for='" + element.attr('id') + "']").append(error);
-            }
-        });
-
-        return form;
     }
 
     return {
@@ -234,6 +206,7 @@ const StudentDatatable = (function () {
         }
         // Create a new record into the database
         , save: function (data) {
+            console.log(data)
             return Configuration.consume({
                 url: urlController
                 , method: 'POST'

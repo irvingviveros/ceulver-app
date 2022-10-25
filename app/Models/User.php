@@ -6,22 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Infrastructure\Student\Model\Student;
 use Spatie\Permission\Traits\HasRoles;
-
-//use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
-
-    /**
-     * Get the Student associated with the user.
-     *  $user -> student
-     */
-    public function student(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -52,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the Student associated with the user.
+     *  $user -> student
+     */
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

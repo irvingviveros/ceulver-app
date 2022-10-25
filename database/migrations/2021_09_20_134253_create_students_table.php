@@ -37,8 +37,6 @@ class CreateStudentsTable extends Migration
             $table->string('blood_group', 15)->nullable(true); // Grupo de sangre
             $table->string('allergies', 250)->nullable(true); // Alergias
             $table->string('ailments', 250)->nullable(true); // Padecimientos
-            $table->text('other_info')->nullable(true); // Otra información, notas
-            $table->text('health_condition')->nullable(true); // Condición de salud
             $table->string('guardian_relationship')->nullable(false)->default('Otro'); // Relación con el padre/tutor
             $table->timestamps();
 

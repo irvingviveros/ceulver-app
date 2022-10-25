@@ -5,17 +5,17 @@ namespace Domain\Student\Service;
 
 use Carbon\Carbon;
 use Domain\Shared\Exception\ValueNotFoundException;
-use Domain\Shared\Repository\GlobalRepository;
+use Domain\Student\Actions\CalculateAge;
 use Domain\Student\Entity\StudentEntity;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Date;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
+use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class StudentService
 {
     private EloquentStudentRepository $studentRepository;
 
-    public function __construct(GlobalRepository $studentRepository)
+    public function __construct(EloquentStudentRepository $studentRepository)
     {
         $this->studentRepository = $studentRepository;
     }
@@ -25,10 +25,8 @@ class StudentService
         return $this->studentRepository->all();
     }
 
-    public function create(StudentEntity $student, $createdBy, $modifiedBy): int
+    public function createStudent(StudentEntity $student, $createdBy): int
     {
-        // TODO: Validaciones?
-
         $data = array(
             'school_id' => $student->getSchoolId(),
             'career_id' => $student->getCareerId(),
@@ -36,7 +34,8 @@ class StudentService
 //            'agreement_id' => $student->getAgreementId(),
 //            'guardian_id' => $student->getGuardianId(),
             'national_id' => $student->getNationalId(),
-//            'enrollment' => $student->getEnrollment(),
+            'enrollment' => $student->getEnrollment(),
+            'payment_reference' => $student->getPaymentReference(),
 //            'admission_no' => $student->getAdmissionNo(),
 //            'admission_date' => $student->getAdmissionDate(),
             'first_name' => $student->getFirstName(),
@@ -44,41 +43,25 @@ class StudentService
             'maternal_surname' => $student->getMaternalSurname(),
             'address' => $student->getAddress(),
             'birth_date' => $student->getBirthDate(),
-//            'age' => $student->getAge(),
+            'age' => $student->getAge(),
             'occupation' => $student->getOccupation(),
             'personal_email' => $student->getPersonalEmail(),
-//            'home_phone' => $student->getHomePhone(),
             'personal_phone' => $student->getPersonalPhone(),
-//            'nationality' => $student->getNationality(),
-//            'marital_status' => $student->getMaritalStatus(),
+            'marital_status' => $student->getMaritalStatus(),
             'sex' => $student->getSex(),
-//            'gender' => $student->getGender(),
-//            'religion' => $student->getReligion(),
-//            'father_name' => $student->getFatherName(),
-//            'father_phone' => $student->getFatherPhone(),
-//            'father_profession' => $student->getFatherProfession(),
-//            'mother_name' => $student->getMotherName(),
-//            'mother_phone' => $student->getMotherPhone(),
-//            'mother_profession' => $student->getMotherProfession(),
             'blood_group' => $student->getBloodGroup(),
             'allergies' => $student->getAllergies(),
             'ailments' => $student->getAilments(),
-//            'other_info' => $student->getOtherInfo(),
-//            'health_condition' => $student->getHealthCondition(),
+            'guardian_relationship' => $student->getGuardianRelationship(),
             'status' => $student->getStatus(),
             'created_by' => $createdBy,
-            'modified_by' => $modifiedBy
         );
 
-        $studentId = $this->studentRepository->create($data);
-
-        // If the student exists, then return the ID
-        if ($studentId > 0) {
-            return $studentId;
+        if (!$this->studentRepository->create($data))
+        {
+            return ResponseAlias::HTTP_BAD_REQUEST;
         }
-
-        // If the student doesn't exist, then return 0
-        return 0;
+        return ResponseAlias::HTTP_OK;
     }
 
     /**
@@ -153,21 +136,8 @@ class StudentService
         $this->studentRepository->delete($student);
     }
 
-    public function getFullName(
-        string $first_name,
-        string $paternal_surname,
-        ?string $maternal_surname): string
+    public function calculateAge(Carbon $birth_date): int
     {
-        return "{$first_name} {$paternal_surname} {$maternal_surname}";
-    }
-
-    public function calculateAge(
-        Date $birth_date
-    ): int
-    {
-        $date = $birth_date;
-        $dateFormat = Carbon::createFromDate($date);
-        $now = Carbon::now();
-        return $dateFormat->diffInYears($now);
+        return CalculateAge::execute($birth_date);
     }
 }

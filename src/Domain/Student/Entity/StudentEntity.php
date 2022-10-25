@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class StudentEntity
 {
     private string $national_id;
-    private string $enrollment;
+    private ?string $enrollment;
     private ?string $admission_no;
     private ?Carbon $admission_date;
     private string $first_name;
@@ -19,20 +19,12 @@ class StudentEntity
     private ?int $age;
     private ?string $occupation;
     private ?string $personal_email;
-    private ?string $home_phone;
     private ?string $personal_phone;
     private ?string $nationality;
     private ?string $marital_status;
     private ?string $sex;
     private ?string $gender;
-    private ?string $religion;
-    // Parents info
-    private ?string $father_name;
-    private ?string $father_phone;
-    private ?string $father_profession;
-    private ?string $mother_name;
-    private ?string $mother_phone;
-    private ?string $mother_profession;
+    private ?string $payment_reference;
     // Health and other info
     private ?string $blood_group;
     private ?string $allergies;
@@ -40,6 +32,7 @@ class StudentEntity
     private ?string $other_info;
     private ?string $health_condition;
     private ?int $status;
+    private string $guardian_relationship;
     // Foreign info
     private int $school_id;
     private int $user_id;
@@ -74,7 +67,7 @@ class StudentEntity
     /**
      * @param string|null $enrollment
      */
-    public function setEnrollment(?string $enrollment): void
+    public function setEnrollment(?string $enrollment = null): void
     {
         $this->enrollment = $enrollment;
     }
@@ -104,11 +97,11 @@ class StudentEntity
     }
 
     /**
-     * @param Carbon|null $admission_date
+     * @param string|null $admission_date
      */
-    public function setAdmissionDate(?Carbon $admission_date = null): void
+    public function setAdmissionDate(?string $admission_date = null): void
     {
-        $this->admission_date = $admission_date;
+        $this->admission_date = Carbon::parse($admission_date);
     }
 
     /**
@@ -168,11 +161,11 @@ class StudentEntity
     }
 
     /**
-     * @param Carbon $birth_date
+     * @param string $birth_date
      */
-    public function setBirthDate(Carbon $birth_date): void
+    public function setBirthDate(string $birth_date): void
     {
-        $this->birth_date = $birth_date;
+        $this->birth_date = Carbon::parse($birth_date);
     }
 
     /**
@@ -237,22 +230,6 @@ class StudentEntity
     public function setPersonalEmail(?string $personal_email = null): void
     {
         $this->personal_email = $personal_email;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getHomePhone(): ?string
-    {
-        return $this->home_phone;
-    }
-
-    /**
-     * @param string|null $home_phone
-     */
-    public function setHomePhone(?string $home_phone = null): void
-    {
-        $this->home_phone = $home_phone;
     }
 
     /**
@@ -338,118 +315,6 @@ class StudentEntity
     /**
      * @return string|null
      */
-    public function getReligion(): ?string
-    {
-        return $this->religion;
-    }
-
-    /**
-     * @param string|null $religion
-     */
-    public function setReligion(?string $religion = null): void
-    {
-        $this->religion = $religion;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFatherName(): ?string
-    {
-        return $this->father_name;
-    }
-
-    /**
-     * @param string|null $father_name
-     */
-    public function setFatherName(?string $father_name = null): void
-    {
-        $this->father_name = $father_name;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFatherPhone(): ?string
-    {
-        return $this->father_phone;
-    }
-
-    /**
-     * @param string|null $father_phone
-     */
-    public function setFatherPhone(?string $father_phone = null): void
-    {
-        $this->father_phone = $father_phone;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getFatherProfession(): ?string
-    {
-        return $this->father_profession;
-    }
-
-    /**
-     * @param string|null $father_profession
-     */
-    public function setFatherProfession(?string $father_profession = null): void
-    {
-        $this->father_profession = $father_profession;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getMotherName(): ?string
-    {
-        return $this->mother_name;
-    }
-
-    /**
-     * @param string|null $mother_name
-     */
-    public function setMotherName(?string $mother_name = null): void
-    {
-        $this->mother_name = $mother_name;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getMotherPhone(): ?string
-    {
-        return $this->mother_phone;
-    }
-
-    /**
-     * @param string|null $mother_phone
-     */
-    public function setMotherPhone(?string $mother_phone = null): void
-    {
-        $this->mother_phone = $mother_phone;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getMotherProfession(): ?string
-    {
-        return $this->mother_profession;
-    }
-
-    /**
-     * @param string|null $mother_profession
-     */
-    public function setMotherProfession(?string $mother_profession = null): void
-    {
-        $this->mother_profession = $mother_profession;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getBloodGroup(): ?string
     {
         return $this->blood_group;
@@ -525,6 +390,38 @@ class StudentEntity
     public function setHealthCondition(?string $health_condition = null): void
     {
         $this->health_condition = $health_condition;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPaymentReference(): ?string
+    {
+        return $this->payment_reference;
+    }
+
+    /**
+     * @param string|null $payment_reference
+     */
+    public function setPaymentReference(?string $payment_reference = null): void
+    {
+        $this->payment_reference = $payment_reference;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGuardianRelationship(): string
+    {
+        return $this->guardian_relationship;
+    }
+
+    /**
+     * @param string $guardian_relationship
+     */
+    public function setGuardianRelationship(string $guardian_relationship): void
+    {
+        $this->guardian_relationship = $guardian_relationship;
     }
 
     /**

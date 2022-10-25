@@ -24,7 +24,8 @@ class EloquentStudentRepository implements GlobalRepository
 
     public function create($data): int
     {
-        return DB::table('students')->insertGetId($data);
+//        return Student::create($data);
+        return DB::table('students')->insert($data);
     }
 
     public function update($data)

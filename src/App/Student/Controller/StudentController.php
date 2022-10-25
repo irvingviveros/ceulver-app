@@ -17,10 +17,11 @@ use Illuminate\View\View;
 
 use App\Http\Controllers\Controller;
 
-use Infrastructure\Career\Repository\EloquentCareerRepository;
-use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
+use Infrastructure\Student\Request\StoreStudentRequest;
+use Infrastructure\Career\Repository\EloquentCareerRepository;
+use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 class StudentController extends Controller
 {
@@ -79,10 +80,10 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param StoreStudentRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request): Response
     {
         // Declare new Student object
         $studentEntity = new StudentEntity();
@@ -92,43 +93,47 @@ class StudentController extends Controller
         // Request current user data
         $user = auth()->user();
         $createdBy  = $user->id;
-        $modifiedBy = $user->id;
 
-        // Student info
-        // Request and set data
-        $birth_date = Carbon::parse($request->input('birth_date'));
+        // Retrieve the validated input data...
+        $validatedRequest = $request->validated();
 
-        $studentEntity->setSchoolId((int)$request->input('school_id'));
-        $studentEntity->setPaternalSurname($request->input('paternal_surname'));
-        $studentEntity->setMaternalSurname($request->input('maternal_surname'));
-        $studentEntity->setFirstName($request->input('first_name'));
-        $studentEntity->setBirthDate($birth_date);
-        $studentEntity->setNationalId($request->input('national_id'));
-        $studentEntity->setAddress($request->input('address'));
-        $studentEntity->setOccupation($request->input('occupation'));
-        $studentEntity->setSex($request->input('sex'));
-        $studentEntity->setPersonalEmail($request->input('email'));
-        $studentEntity->setPersonalPhone($request->input('personal_phone'));
-        $studentEntity->setBloodGroup($request->input('blood_group'));
-        $studentEntity->setAilments($request->input('ailments'));
-        $studentEntity->setAllergies($request->input('allergies'));
-        $studentEntity->setCareerId((int)$request->input('career'));
+        // Request and set data for student
+        $studentEntity->setSchoolId((int)$validatedRequest['school_id']);
+        $studentEntity->setPaternalSurname($validatedRequest['paternal_surname']);
+        $studentEntity->setMaternalSurname($validatedRequest['maternal_surname']);
+        $studentEntity->setFirstName($validatedRequest['first_name']);
+        $studentEntity->setBirthDate($validatedRequest['birth_date']);
+        $studentEntity->setNationalId($validatedRequest['national_id']);
+        $studentEntity->setAddress($validatedRequest['address']);
+        $studentEntity->setOccupation($validatedRequest['occupation']  ?? null);
+        $studentEntity->setSex($validatedRequest['sex']);
+        $studentEntity->setMaritalStatus($validatedRequest['marital_status'] ?? null);
+        $studentEntity->setPersonalEmail($validatedRequest['email'] ?? null);
+        $studentEntity->setPersonalPhone($validatedRequest['phone'] ?? null);
+        $studentEntity->setBloodGroup($validatedRequest['blood_group']);
+        $studentEntity->setAilments($validatedRequest['ailments']);
+        $studentEntity->setAllergies($validatedRequest['allergies']);
+        $studentEntity->setCareerId((int)($validatedRequest['career'] ?? null));
+        $studentEntity->setEnrollment($validatedRequest['enrollment'] ?? null);
+        $studentEntity->setPaymentReference($validatedRequest['payment_reference']);
+        $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
+        $studentEntity->setStatus((int)$validatedRequest['student_status']);
+        $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
         $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setGuardianId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
-        $studentEntity->setStatus((int)$request->input('student_status'));
 
         // Guardian info
-        // Request and set data
+        // Request and set data for user
         // TODO: Gather guardian info
 
         // Create new student
         try {
-            $id = $this->studentService->create(
-                $studentEntity, $createdBy, $modifiedBy
+            $response = $this->studentService->createStudent(
+                $studentEntity, $createdBy
             );
-            return response($id, 200);
+            return response($response);
 
         } catch(OperationNotPermittedCeulverException $cop) {
             return response($cop->getMessage(), 400);

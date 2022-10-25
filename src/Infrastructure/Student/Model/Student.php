@@ -17,11 +17,12 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-//        "marital_status" => MaritalStatusEnum::class,
-//        "sex" => SexEnum::class,
-//        "gender" => GenderEnum::class
-    ];
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * Get the user associated with the student.
