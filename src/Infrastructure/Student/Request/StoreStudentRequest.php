@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Domain\Student\Request;
+namespace Infrastructure\Student\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -32,28 +32,28 @@ class StoreStudentRequest extends FormRequest
             'maternal_surname'      => 'required|string|max:25',
             'first_name'            => 'required|string|max:35',
             'birth_date'            => 'required|date',
-            'national_id'           => 'required|string|unique:students,national_id|min:18',
+            'national_id'           => 'required|string|unique:students,national_id|min:18|max:18',
             'address'               => 'required|string|max:250',
-            'occupation'            => 'nullable|string|max:100',
+            'occupation'            => 'exclude_unless:educational_system,Universidad|string|max:100',
             'sex'                   => 'required|max:20',
-            'marital_status'        => 'nullable',
-            'email'                 => 'nullable|email',
-            'phone'                 => 'nullable|max:17',
+            'marital_status'        => 'exclude_unless:educational_system,Universidad',
+            'email'                 => 'exclude_unless:educational_system,Universidad|email',
+            'phone'                 => 'exclude_unless:educational_system,Universidad|max:10',
             'blood_group'           => 'required',
             'ailments'              => 'nullable|string|max:250',
             'allergies'             => 'nullable|string|max:250',
-            'career'                => 'nullable',
-            'enrollment'            => 'nullable|string',
+            'career'                => 'exclude_unless:educational_system,Universidad',
+            'enrollment'            => 'exclude_unless:educational_system,Universidad|string',
             'payment_reference'     => 'nullable|string',
             'guardian_last_name'    => 'required|string|max:100',
             'guardian_first_name'   => 'required|string|max:100',
             'guardian_relationship' => 'required',
             'guardian_address'      => 'required|string',
             'guardian_email'        => 'nullable|email',
-            'guardian_phone'        => 'nullable',
-            'guardian_username'     => 'nullable|unique:users,username',
+            'guardian_phone'        => 'nullable|max:10',
+            'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username',
             'guardian_password'     => 'required_with:guardian_username',
-            'student_username'      => 'nullable',
+            'student_username'      => 'exclude_unless:educational_system,Universidad',
             'student_password'      => 'required_with:student_username|unique:users,username',
             'student_status'        => 'required|boolean'
         ];
@@ -94,7 +94,8 @@ class StoreStudentRequest extends FormRequest
             'guardian_password'     => 'Contraseña de padre o tutor',
             'student_username'      => 'Usuario del alumno',
             'student_password'      => 'Contraseña del alumno',
-            'student_status'        => 'Estatus del alumno'
+            'student_status'        => 'Estatus del alumno',
+            'educational_system'    => 'Sistema educacional'
         ];
     }
 
