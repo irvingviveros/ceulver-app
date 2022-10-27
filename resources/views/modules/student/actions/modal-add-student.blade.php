@@ -93,6 +93,7 @@
             name="nationalId"
             placeholder="CURP"
             aria-label="CURP"
+            onkeydown="return event.code === 'Space' ? event.preventDefault() : ''"
         />
         <span for="nationalId" class="text-danger"></span>
     </div>
@@ -449,6 +450,7 @@
             name="guardianUsername"
             placeholder="Nombre de usuario"
             aria-label="Nombre de usuario del padre o tutor"
+            onkeydown="return event.code === 'Space' ? event.preventDefault() : ''"
         />
         <span for="guardianUsername" class="text-danger"></span>
     </div>
@@ -470,6 +472,7 @@
                 name="guardianPassword"
                 placeholder="Contraseña"
                 data-msg="Generar contraseña"
+                onkeydown="return event.code === 'Space' ? event.preventDefault() : ''"
             />
             <div class="input-group-text cursor-pointer">
                 <i data-feather="eye"></i>
@@ -498,6 +501,7 @@
             name="studentUsername"
             placeholder="Nombre de usuario"
             aria-label="Nombre de usuario"
+            onkeydown="return event.code === 'Space' ? event.preventDefault() : ''"
         />
         <span for="studentUsername" class="text-danger"></span>
     </div>
@@ -519,6 +523,7 @@
                 name="studentPassword"
                 placeholder="Contraseña"
                 data-msg="Generar contraseña"
+                onkeydown="return event.code === 'Space' ? event.preventDefault() : ''"
             />
             <div class="input-group-text cursor-pointer">
                 <i data-feather="eye"></i>
