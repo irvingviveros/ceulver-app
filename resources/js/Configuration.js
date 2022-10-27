@@ -71,10 +71,9 @@ const Configuration = (function(Modal){
                     );
                 }
                 , 422: function() {
-                    let matches = arguments[0].responseText.match(/\["(.*?)"\]/);
-                    if (matches) {
-                        var response = matches[1];
-                    }
+                    let jsonResponse = JSON.parse(arguments[0].responseText)
+                    let response = jsonResponse[Object.keys(jsonResponse)[0]]
+
                     Modal.alert.error(
                         "Error al procesar la información"
                         , response
@@ -97,7 +96,8 @@ const Configuration = (function(Modal){
         consume: function(pconfig) {
             let config = getInitialConfig();
             $.extend(config, (pconfig || {}));
-
+            console.log(config)
+            console.log(pconfig)
             return $.ajax(config).always(function(
                 data, status, error
             ) {
