@@ -210,8 +210,11 @@ const StudentDatatable = (function () {
         // Create a new record into the database
         , save: function (data) {
             console.log(data)
+            // Return string without trailing slash
+            let newUrl = urlController.substr(0, urlController.length - 1);
+
             return Configuration.consume({
-                url: urlController
+                url: newUrl
                 , method: 'POST'
                 , data: data
             });
