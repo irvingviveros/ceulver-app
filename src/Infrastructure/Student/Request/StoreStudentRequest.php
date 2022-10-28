@@ -29,7 +29,7 @@ class StoreStudentRequest extends FormRequest
         return [
             'school_id'             => 'required',
             'paternal_surname'      => 'required|string|max:25',
-            'maternal_surname'      => 'required|string|max:25',
+            'maternal_surname'      => 'nullable|string|max:25',
             'first_name'            => 'required|string|max:35',
             'birth_date'            => 'required|date',
             'national_id'           => 'required|string|unique:students,national_id|min:18|max:18',

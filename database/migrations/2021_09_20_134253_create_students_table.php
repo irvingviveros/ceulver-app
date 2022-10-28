@@ -23,7 +23,7 @@ class CreateStudentsTable extends Migration
             $table->date('admission_date')->nullable(true); // Fecha de admisión (registro en línea)
             $table->string('payment_reference')->nullable(true); // Referencia de pago
             $table->string('first_name', 35);  // Nombre(s)
-            $table->string('paternal_surname', 25)->nullable(true); // Apellido paterno
+            $table->string('paternal_surname', 25); // Apellido paterno
             $table->string('maternal_surname', 25)->nullable(true); // Apellido materno
             $table->date('birth_date')->nullable(false); // Fecha cumpleaños
             $table->integer('age')->nullable(true); // Edad //TODO: calcular automáticamente edad en base a birth_date
