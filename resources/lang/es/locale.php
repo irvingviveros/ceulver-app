@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Bulk upload"=>"Carga masiva",
     "Main Dashboard"=>"Panel principal",
     "Elementary school"=>"Primaria",
     "High school"=>"Secundaria",

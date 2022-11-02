@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace App\Student\Controller;
 
-use Carbon\Carbon;
 use Domain\Career\Service\CareerService;
 use Domain\School\Service\SchoolService;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Student\Entity\StudentEntity;
+use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
 
 use Illuminate\Http\Request;
@@ -22,6 +22,8 @@ use Infrastructure\Student\Repository\EloquentStudentRepository;
 use Infrastructure\Student\Request\StoreStudentRequest;
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
+
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -207,5 +209,33 @@ class StudentController extends Controller
         $students = $this->studentService->getAll();
 
         return view('modules.student.list.list', compact('students'));
+    }
+
+    /**
+     * Store a newly created resource in storage from CSV/Excel.
+     *
+     * @param StoreStudentRequest $request
+     * @return Response
+     */
+    public function storeBulkImport(Request $request): Response
+    {
+        Excel::import(new StudentsImport(), $request->file('import_file'));
+        return response('Success');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return View
+     */
+    public function createBulkImport(): View
+    {
+        $breadcrumbs = [
+            ['link' => 'home', 'name' => "Inicio"],
+            ['link' => "javascript:void(0)", 'name' => "Alumnos"],
+            ['name' => "Carga masiva de estudiantes"]
+        ];
+
+        return view('modules.student.bulk.bulk-upload',
+            ['breadcrumbs' => $breadcrumbs]);
     }
 }

@@ -57,6 +57,12 @@
                     "name": "Students Convention",
                     "icon": "circle",
                     "slug": "students-convention"
+                },
+                {
+                    "url": "admin/manage-students/students/bulk-upload",
+                    "name": "Bulk upload",
+                    "icon": "box",
+                    "slug": "bulk-upload"
                 }
             ]
         },
