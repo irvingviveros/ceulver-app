@@ -18,6 +18,18 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if (isset($errors) && $errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                    @endif
                 <form
                     action="{{route('manage-students.bulk-upload.store')}}"
                     enctype="multipart/form-data"

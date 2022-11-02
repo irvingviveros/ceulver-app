@@ -215,12 +215,12 @@ class StudentController extends Controller
      * Store a newly created resource in storage from CSV/Excel.
      *
      * @param StoreStudentRequest $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function storeBulkImport(Request $request): Response
+    public function storeBulkImport(Request $request): \Illuminate\Http\RedirectResponse
     {
         Excel::import(new StudentsImport(), $request->file('import_file'));
-        return response('Success');
+        return back()->with('status', 'Datos importados correctamente');
     }
 
     /**
