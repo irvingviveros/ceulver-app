@@ -18,18 +18,6 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-12">
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                @if (isset($errors) && $errors->any())
-                    <div class="alert alert-danger">
-                        @foreach($errors->all() as $error)
-                            {{ $error }}
-                        @endforeach
-                    </div>
-                    @endif
                 <form
                     action="{{route('manage-students.bulk-upload.store')}}"
                     enctype="multipart/form-data"
@@ -56,6 +44,44 @@
                         </div>
                     </div>
                 </form>
+                @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if (isset($errors) && $errors->any())
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
+                @if (session('failures'))
+                    <table class="table table-danger">
+                        <tr>
+                            <th>Fila</th>
+                            <th>Columna</th>
+                            <th>Errores</th>
+                            <th>Valor</th>
+                        </tr>
+                        @foreach(session()->get('failures') as $validation)
+                            <tr>
+                                <td>{{ $validation->row() }}</td>
+                                <td>{{ $validation->attribute() }}</td>
+                                <td>
+                                    <ul>
+                                        @foreach($validation->errors() as $e)
+                                            <li>{{ $e }}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    {{ $validation->values()[$validation->attribute()] }}
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                @endif
             </div>
         </div>
     </section>

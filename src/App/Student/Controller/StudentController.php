@@ -10,6 +10,7 @@ use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -215,11 +216,16 @@ class StudentController extends Controller
      * Store a newly created resource in storage from CSV/Excel.
      *
      * @param StoreStudentRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function storeBulkImport(Request $request): \Illuminate\Http\RedirectResponse
+    public function storeBulkImport(Request $request): RedirectResponse
     {
-        Excel::import(new StudentsImport(), $request->file('import_file'));
+        $import = new StudentsImport();
+        $import->import($request->file('import_file'));
+
+        if ($import->failures()->isNotEmpty()) {
+           return back()->with('failures', $import->failures());
+        }
         return back()->with('status', 'Datos importados correctamente');
     }
 

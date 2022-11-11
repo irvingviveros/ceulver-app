@@ -3,31 +3,47 @@ declare(strict_types=1);
 
 namespace Domain\Student\Imports;
 
+use Domain\School\Service\SchoolService;
 use Domain\Student\Service\StudentService;
 
 use Illuminate\Validation\Rule;
-
+use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
 
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Carbon\Carbon;
 
-class StudentsImport implements ToModel, WithHeadingRow, WithValidation
+class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
 {
-    use Importable;
+    use Importable, SkipsFailures;
 
     private StudentService $studentService;
+    private SchoolService $schoolService;
+    private int $userSchool;
+    private mixed $school;
+    private string $educationalSystem;
 
     public function __construct()
     {
         $this->studentService = new StudentService(
             new EloquentStudentRepository()
         );
+        $this->schoolService = new SchoolService(
+            new EloquentSchoolRepository()
+        );
+        // Get school ID from user
+        $this->userSchool = auth()->user()->school_id;
+        // Get school collection data
+        $this->school = $this->schoolService->findById($this->userSchool);
+        // Get educational system name
+        $this->educationalSystem = $this->school->educationalSystem->name;
     }
 
     /**
@@ -38,12 +54,14 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row): Student
     {
         // Get birthday value from file
-        $studentAge = Carbon::instance(Date::excelToDateTimeObject($row['fecha_de_nacimiento']));
+        $studentAge = Carbon::instance(Date::excelToDateTimeObject($row['fecha_nacimiento']));
 
+//        dd($row);
         return new Student([
-            'school_id'                 => auth()->id(),
+            'school_id'                 => $this->userSchool,
             'national_id'               => $row['curp'],
             'enrollment'                => $row['matricula'] ?? NULL,
+            'career_id'                 => $row['carrera'] ?? NULL,
             'admission_no'              => $row['id_admision'] ?? NULL,
             'admission_date'            => $row['fecha_admision'] ?? NULL,
             'payment_reference'         => $row['referencia_de_pago'] ?? NULL,
@@ -61,7 +79,8 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation
             'blood_group'               => $row['grupo_sanguineo'] ?? NULL,
             'allergies'                 => $row['alergias'],
             'ailments'                  => $row['padecimientos'],
-            'status'                    => 1,
+//            'guardian_relationship'     => $row['tutor_relacion'],
+            'status'                    => $row['estatus'],
             'created_by'                => auth()->id()
         ]);
     }
@@ -73,10 +92,9 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation
      */
     public function rules(): array
     {
-//        $test = new StoreStudentRequest();
-//        return $test->rules();
-        return [
-            '*.curp' => Rule::unique('students', 'national_id'),
-        ];
+        // If educational system is university, then add the university rules for cells.
+        if ($this->educationalSystem !== 'Universidad') {
+            return array_merge(StudentImportRules::$commonRules, StudentImportRules::$maternalToHighSchoolRules);
+        } else return array_merge(StudentImportRules::$commonRules, StudentImportRules::$universityRules);
     }
 }
