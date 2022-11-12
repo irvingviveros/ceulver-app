@@ -11,21 +11,20 @@ class StudentImportRules
      * @return array
      */
     static array $commonRules =  [
-        'id_admision'           => ['nullable', 'numeric'],
         'apellido_paterno'      => ['required', 'string', 'max:25'],
-        'apellido_materno'      => 'nullable', 'string', 'max:25',
-        'nombres'               => 'required', 'string', 'max:35',
-        'fecha_admision'        => 'nullable', 'date',
-        'fecha_nacimiento'      => 'required', 'date',
-        'curp'                  => 'required', 'unique:students,national_id', 'string', 'min:18', 'max:18',
-        'direccion'             => 'required', 'string', 'max:250',
-        'sexo'                  => 'required', 'max:20',
-        'grupo_sanguineo'       => 'required', 'string',
-        'padecimientos'         => 'nullable', 'string', 'max:250',
-        'alergias'              => 'nullable', 'string', 'max:250',
-        'referencia_de_pago'    => 'nullable', 'string',
+        'apellido_materno'      => ['nullable', 'string', 'max:25'],
+        'nombres'               => ['required', 'string', 'max:35'],
+        'fecha_admision'        => ['nullable'],
+        'fecha_nacimiento'      => ['required'],
+        'curp'                  => ['required', 'unique:students,national_id', 'string', 'min:18', 'max:18'],
+        'direccion'             => ['required', 'string', 'max:35'],
+        'sexo'                  => ['required', 'string', 'max:20'],
+        'grupo_sanguineo'       => ['required', 'string'],
+        'padecimientos'         => ['nullable', 'string', 'max:250'],
+        'alergias'              => ['nullable', 'string', 'max:250'],
+        'referencia_de_pago'    => ['nullable', 'string'],
 //        'tutor_relacion'        => 'required', 'string',
-        'estatus'    => 'required', 'boolean'
+        'estatus'               => ['required', 'numeric'],
     ];
 
     /**
@@ -39,12 +38,12 @@ class StudentImportRules
     ];
 
      static array $universityRules = [
-         'carrera'               => 'required', 'integer',
-         'matricula'             => 'required', 'string',
-         'ocupacion'            => 'required', 'string', 'max:100',
-         'estado_civil'          => 'required', 'string',
-         'email'                 => 'required', 'email',
-         'telefono_celular'      => 'required', 'integer', 'max:10',
+         'carrera'               => ['required'],
+         'matricula'             => ['required', 'string'],
+         'ocupacion'             => ['required', 'string', 'max:100'],
+         'estado_civil'          => ['required', 'string'],
+         'email'                 => ['required', 'email'],
+         'telefono_celular'      => ['required', 'string', 'max:10'],
 //         'student_username'      => 'required', 'string',
 //         'student_password'      => 'required_with:student_username|unique:users,username',
      ];

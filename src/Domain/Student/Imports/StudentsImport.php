@@ -6,7 +6,6 @@ namespace Domain\Student\Imports;
 use Domain\School\Service\SchoolService;
 use Domain\Student\Service\StudentService;
 
-use Illuminate\Validation\Rule;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
@@ -56,15 +55,13 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
         // Get birthday value from file
         $studentAge = Carbon::instance(Date::excelToDateTimeObject($row['fecha_nacimiento']));
 
-//        dd($row);
         return new Student([
             'school_id'                 => $this->userSchool,
             'national_id'               => $row['curp'],
             'enrollment'                => $row['matricula'] ?? NULL,
             'career_id'                 => $row['carrera'] ?? NULL,
-            'admission_no'              => $row['id_admision'] ?? NULL,
             'admission_date'            => $row['fecha_admision'] ?? NULL,
-            'payment_reference'         => $row['referencia_de_pago'] ?? NULL,
+            'payment_reference'         => $row['referencia_pago'] ?? NULL,
             'first_name'                => $row['nombres'],
             'paternal_surname'          => $row['apellido_paterno'],
             'maternal_surname'          => $row['apellido_materno'] ?? NULL,
@@ -92,6 +89,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
      */
     public function rules(): array
     {
+//        dd(array_merge(StudentImportRules::$commonRules, StudentImportRules::$universityRules));
         // If educational system is university, then add the university rules for cells.
         if ($this->educationalSystem !== 'Universidad') {
             return array_merge(StudentImportRules::$commonRules, StudentImportRules::$maternalToHighSchoolRules);
