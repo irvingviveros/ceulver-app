@@ -114,7 +114,10 @@ const Application = (function () {
                         text: feather.icons['package'].toSvg({
                             class: 'me-50 font-small-4 mr-5'
                         }) + 'Carga masiva',
-                        className: 'btn btn-outline-secondary me-2 bulk-upload'
+                        className: 'btn btn-outline-secondary me-2 bulk-upload',
+                        action: () => {
+                            window.location = site + 'bulk-upload';
+                        }
                     },
                     {
                         name: 'create',
