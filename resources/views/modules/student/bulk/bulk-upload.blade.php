@@ -34,17 +34,18 @@
                                     Excel los datos
                                     de los estudiantes que desea integrar a la plataforma.</p>
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-3 col-12">
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="import_file">Seleccione un
-                                                archivo</label>
+                                    <div class="col-6">
+                                        <div class="mb-1">
+                                            <label class="col-form-label" for="import_file">Seleccione el archivo
+                                                plantilla válido</label>
                                             <input
                                                 type="file"
                                                 id="import_file"
+                                                class="form-control"
                                                 name="import_file"
                                             />
-                                            <button type="submit">Importar</button>
                                         </div>
+                                        <button type="submit" class="btn btn-primary">Importar</button>
                                     </div>
                                 </div>
                             </div>
