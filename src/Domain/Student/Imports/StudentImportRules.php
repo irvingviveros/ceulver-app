@@ -42,8 +42,8 @@ class StudentImportRules
          'matricula'             => ['required', 'string'],
          'ocupacion'             => ['required', 'string', 'max:100'],
          'estado_civil'          => ['required', 'string'],
-         'email'                 => ['required', 'email'],
-         'telefono_celular'      => ['required', 'string', 'max:10'],
+         'email'                 => ['required', 'email', 'unique:students,personal_email'],
+         'telefono_celular'      => ['required', 'numeric'],
 //         'student_username'      => 'required', 'string',
 //         'student_password'      => 'required_with:student_username|unique:users,username',
      ];

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Student\Controller;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Domain\Career\Service\CareerService;
 use Domain\School\Service\SchoolService;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
@@ -224,8 +225,14 @@ class StudentController extends Controller
         $import->import($request->file('import_file'));
 
         if ($import->failures()->isNotEmpty()) {
-           return back()->with('failures', $import->failures());
+            Toastr::warning(
+                'Hubo un error al intentar cargar los registros.',
+                'Advertencia',
+                ["positionClass" => "toast-top-right"]);
+            return back()->with('failures', $import->failures());
         }
+
+        Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-center"]);
         return back()->with('status', 'Datos importados correctamente');
     }
 

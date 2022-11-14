@@ -54,13 +54,14 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
     {
         // Get birthday value from file
         $studentAge = Carbon::instance(Date::excelToDateTimeObject($row['fecha_nacimiento']));
+        $admissionDate = Carbon::instance(Date::excelToDateTimeObject($row['fecha_admision']));
 
         return new Student([
             'school_id'                 => $this->userSchool,
             'national_id'               => $row['curp'],
             'enrollment'                => $row['matricula'] ?? NULL,
             'career_id'                 => $row['carrera'] ?? NULL,
-            'admission_date'            => $row['fecha_admision'] ?? NULL,
+            'admission_date'            => $admissionDate ?? NULL,
             'payment_reference'         => $row['referencia_pago'] ?? NULL,
             'first_name'                => $row['nombres'],
             'paternal_surname'          => $row['apellido_paterno'],
