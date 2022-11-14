@@ -125,14 +125,10 @@
                                     <li>
                                         Verifique el nivel educativo en el que se encuentra.
                                         <ul>
-                                            <li>Algunos campos de para el nivel educativo de Universidad son
-                                                obligatorios mientras que para Maternal hasta Bachillerato
-                                                no lo son.
-                                            </li>
                                             <li>
-                                                Los encabezados de color gris (columna A - K) son campos obligatorios
+                                                Los encabezados de <b>color gris</b> (columna A - K) son campos obligatorios
                                                 para todos los niveles educativos, mientras que los encabezados
-                                                de color azul (columna L - S) solo son requeridos cuando el alumno es
+                                                de <b>color azul</b> (columna L - S) solo son requeridos cuando el alumno es
                                                 universitario.
                                             </li>
                                             <li>
@@ -153,9 +149,8 @@
                                         default) a la plataforma.
                                     </li>
                                     <li>
-                                        Si presentó un error por valores incorrectos, el sistema <u>no
-                                            procesará ningún dato del archivo.</u> Verifique los datos y vuelva a
-                                        subir el archivo.
+                                        El sistema <u>almacenará las filas que no tuvieron errores del archivo.</u>
+                                        Verifique los datos incorrectos y vuelva a subir el archivo.
                                     </li>
                                 </ol>
                             </div>
