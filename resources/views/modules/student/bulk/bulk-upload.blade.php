@@ -49,7 +49,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         @if (isset($errors) && $errors->any())
                             <div class="alert alert-danger">
@@ -107,11 +106,24 @@
                             </div>
                             <!-- Basic Tables end -->
                         @endif
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
+                        @if (session('success'))
+                            <div class="card bg-success">
+                                <div class="card-body">
+                                    <p class="card-text text-white">
+                                        {{ session('success') }}
+                                    </p>
+                                </div>
                             </div>
-                    @endif
+                        @endif
+                        @if (session('error'))
+                            <div class="card bg-danger">
+                                <div class="card-body">
+                                    <p class="card-text text-white">
+                                        {{ session('error') }}
+                                    </p>
+                                </div>
+                            </div>
+                        @endif
                     <!-- Upload card end -->
                     </div>
                     <div class="col-lg-4">
@@ -127,9 +139,11 @@
                                         Verifique el nivel educativo en el que se encuentra.
                                         <ul>
                                             <li>
-                                                Los encabezados de <b>color gris</b> (columna A - K) son campos obligatorios
+                                                Los encabezados de <b>color gris</b> (columna A - L) son campos
+                                                obligatorios
                                                 para todos los niveles educativos, mientras que los encabezados
-                                                de <b>color azul</b> (columna L - S) solo son requeridos cuando el alumno es
+                                                de <b>color azul</b> (columna M - T) solo son requeridos cuando el
+                                                alumno es
                                                 universitario.
                                             </li>
                                             <li>

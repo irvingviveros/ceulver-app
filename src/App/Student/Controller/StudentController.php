@@ -25,7 +25,9 @@ use Infrastructure\Student\Request\StoreStudentRequest;
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
+use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
 use Maatwebsite\Excel\Facades\Excel;
+use function PHPUnit\Framework\isEmpty;
 
 class StudentController extends Controller
 {
@@ -222,7 +224,12 @@ class StudentController extends Controller
     public function storeBulkImport(Request $request): RedirectResponse
     {
         $import = new StudentsImport();
-        $import->import($request->file('import_file'));
+
+        try {
+            $import->import($request->file('import_file'));
+        } catch (NoFilePathGivenException $e) {
+            return back()->with('error', 'Error. No se ha seleccionado ningún archivo.');
+        }
 
         if ($import->failures()->isNotEmpty()) {
             Toastr::warning(
@@ -232,8 +239,11 @@ class StudentController extends Controller
             return back()->with('failures', $import->failures());
         }
 
-        Toastr::success('Messages in here', 'Title', ["positionClass" => "toast-top-center"]);
-        return back()->with('status', 'Datos importados correctamente');
+        Toastr::success(
+            'Registros importados correctamente.',
+            'Éxito',
+            ["positionClass" => "toast-top-right"]);
+        return back()->with('success', 'Los registros se han importado correctamente.');
     }
 
     /**
