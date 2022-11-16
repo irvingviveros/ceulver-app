@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Domain\Student\Imports;
 
 use Domain\School\Service\SchoolService;
+use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Service\StudentService;
 
 use Infrastructure\School\Repository\EloquentSchoolRepository;
@@ -25,24 +26,35 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
 
     private StudentService $studentService;
     private SchoolService $schoolService;
-    private int $userSchool;
-    private mixed $school;
+//    private int $userSchool;
+    private mixed $schoolCollection;
     private string $educationalSystem;
+    private int $selectedSchool;
 
-    public function __construct()
+    /**
+     * Stores the information of each row. Provide a school ID to trigger the correct rules depending on the educational
+     * system.
+     *
+     * @param int $schoolId
+     *
+     * @throws ValueNotFoundException
+     */
+    public function __construct(int $schoolId)
     {
+        $this->selectedSchool = $schoolId;
+
         $this->studentService = new StudentService(
             new EloquentStudentRepository()
         );
         $this->schoolService = new SchoolService(
             new EloquentSchoolRepository()
         );
-        // Get school ID from user
-        $this->userSchool = auth()->user()->school_id;
+//        // Get school ID from user
+//        $this->userSchool = auth()->user()->school_id;
         // Get school collection data
-        $this->school = $this->schoolService->findById($this->userSchool);
+        $this->schoolCollection = $this->schoolService->findById($this->selectedSchool);
         // Get educational system name
-        $this->educationalSystem = $this->school->educationalSystem->name;
+        $this->educationalSystem = $this->schoolCollection->educationalSystem->name;
     }
 
     /**
@@ -57,7 +69,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
         $admissionDate = Carbon::instance(Date::excelToDateTimeObject($row['fecha_admision']));
 
         return new Student([
-            'school_id'                 => $this->userSchool,
+            'school_id'                 => $this->selectedSchool,
             'national_id'               => $row['curp'],
             'enrollment'                => $row['matricula'] ?? NULL,
             'career_id'                 => $row['carrera'] ?? NULL,

@@ -7,6 +7,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Domain\Career\Service\CareerService;
 use Domain\School\Service\SchoolService;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
+use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
@@ -155,7 +156,7 @@ class StudentController extends Controller
      *
      * @param int $id
      * @return View
-     * @throws \Domain\Shared\Exception\ValueNotFoundException
+     * @throws ValueNotFoundException
      */
     public function edit(int $id): View
     {
@@ -219,11 +220,18 @@ class StudentController extends Controller
      *
      * @param StoreStudentRequest $request
      * @return RedirectResponse
+     * @throws ValueNotFoundException
      */
     public function storeBulkImport(Request $request): RedirectResponse
     {
-        $import = new StudentsImport();
+        // Get selected school id
+        $schoolId = (int)$request->input('selectSchool');
 
+        // Create new StudentImport object
+        $import = new StudentsImport($schoolId);
+
+
+        // Validates if the user submitted a file
         try {
             $import->import($request->file('import_file'));
             // Validate if the file is xlsx or csv
@@ -238,13 +246,13 @@ class StudentController extends Controller
                 'Advertencia',
                 ["positionClass" => "toast-top-right"]);
             return back()->with('failures', $import->failures());
+        } else {
+            Toastr::success(
+                'Registros importados correctamente.',
+                'Éxito',
+                ["positionClass" => "toast-top-right"]);
+            return back()->with('success', 'Los registros se han importado correctamente.');
         }
-
-        Toastr::success(
-            'Registros importados correctamente.',
-            'Éxito',
-            ["positionClass" => "toast-top-right"]);
-        return back()->with('success', 'Los registros se han importado correctamente.');
     }
 
     /**
@@ -253,6 +261,8 @@ class StudentController extends Controller
      */
     public function createBulkImport(): View
     {
+        $schools = $this->schoolService->orderBy('id', 'desc');
+
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
             ['link' => "javascript:void(0)", 'name' => "Alumnos"],
@@ -260,6 +270,6 @@ class StudentController extends Controller
         ];
 
         return view('modules.student.bulk.bulk-upload',
-            ['breadcrumbs' => $breadcrumbs]);
+            ['breadcrumbs' => $breadcrumbs], compact('schools'));
     }
 }
