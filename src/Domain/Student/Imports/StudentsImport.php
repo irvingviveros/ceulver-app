@@ -69,7 +69,7 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
             'birth_date'                => $studentAge,
             'age'                       => $this->studentService->calculateAge($studentAge),
             'occupation'                => $row['ocupacion'],
-            'address'                   => $row['direccion'],
+            'address'                   => $row['direccion'] ?? NULL,
             'personal_email'            => $row['email'] ?? NULL,
             'personal_phone'            => $row['telefono_celular'] ?? NULL,
             'marital_status'            => $row['estado_civil'],

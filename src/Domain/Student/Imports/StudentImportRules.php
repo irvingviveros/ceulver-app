@@ -17,7 +17,7 @@ class StudentImportRules
         'fecha_admision'        => ['nullable'],
         'fecha_nacimiento'      => ['required'],
         'curp'                  => ['required', 'unique:students,national_id', 'string', 'min:18', 'max:18'],
-        'direccion'             => ['required', 'string', 'max:35'],
+        'direccion'             => ['nullable', 'string', 'max:35'],
         'sexo'                  => ['required', 'string', 'max:20'],
         'grupo_sanguineo'       => ['required', 'string'],
         'padecimientos'         => ['nullable', 'string', 'max:250'],
