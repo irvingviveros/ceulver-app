@@ -26,8 +26,7 @@ use Infrastructure\Career\Repository\EloquentCareerRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 
 use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
-use Maatwebsite\Excel\Facades\Excel;
-use function PHPUnit\Framework\isEmpty;
+use Mockery\CountValidator\Exception;
 
 class StudentController extends Controller
 {
@@ -227,6 +226,8 @@ class StudentController extends Controller
 
         try {
             $import->import($request->file('import_file'));
+            // Validate if the file is xlsx or csv
+            $request->validate(['import_file' => ['mimes:xlsx,csv']]);
         } catch (NoFilePathGivenException $e) {
             return back()->with('error', 'Error. No se ha seleccionado ningún archivo.');
         }

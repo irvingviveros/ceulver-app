@@ -51,10 +51,14 @@
                             </div>
                         </div>
                         @if (isset($errors) && $errors->any())
-                            <div class="alert alert-danger">
-                                @foreach($errors->all() as $error)
-                                    {{ $error }}
-                                @endforeach
+                            <div class="card bg-danger">
+                                <div class="card-body">
+                                    <p class="card-text text-white">
+                                        @foreach($errors->all() as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </p>
+                                </div>
                             </div>
                         @endif
                         @if (session('failures'))
