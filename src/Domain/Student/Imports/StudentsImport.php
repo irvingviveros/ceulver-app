@@ -90,7 +90,6 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
      */
     public function rules(): array
     {
-//        dd(array_merge(StudentImportRules::$commonRules, StudentImportRules::$universityRules));
         // If educational system is university, then add the university rules for cells.
         if ($this->educationalSystem !== 'Universidad') {
             return array_merge(StudentImportRules::$commonRules, StudentImportRules::$maternalToHighSchoolRules);
