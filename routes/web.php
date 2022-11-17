@@ -69,13 +69,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
-        Route::resource('students', StudentController::class)->except(['show']);
         Route::get('students/bulk-upload', [StudentController::class, 'createBulkImport'])->name('manage-students.bulk-upload.create');
         Route::post('students/bulk-upload', [StudentController::class, 'storeBulkImport'])->name('manage-students.bulk-upload.store');
         Route::get('students/getList', [StudentController::class, 'getList']);
+        Route::resource('students', StudentController::class);
         // Student agreement types, route admin/manage-students/agreement
-        Route::resource('agreements', AgreementController::class)->except(['show']);
         Route::get('agreements/getList', [AgreementController::class, 'getList']);
+        Route::resource('agreements', AgreementController::class)->except(['show']);
     });
 //
 //    Route::get('manage-students/agreement/', [AgreementController::class, 'index']);
@@ -83,12 +83,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 
     // Careers management, route admin/manage-careers
-    Route::resource('manage-careers', CareerController::class)->except(['show']);
     Route::get('/manage-careers/getList', [CareerController::class, 'getList']);
+    Route::resource('manage-careers', CareerController::class)->except(['show']);
 
     // Groups management, route admin/manage-groups
-    Route::resource('manage-groups', GroupController::class)->except(['show']);
     Route::get('/manage-groups/getList', [GroupController::class, 'getList']);
+    Route::resource('manage-groups', GroupController::class)->except(['show']);
 
     // Syllabi management, route admin/manage-syllabi
     Route::get('/manage-syllabi/getList', [SyllabusController::class, 'getList']);
@@ -98,8 +98,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('manage-syllabi.cycles', CycleController::class)->except(['show'])->shallow();
 
     // Subject management, route admin/manage-subjects
-    Route::resource('manage-subjects', SubjectController::class)->except(['show']);
     Route::get('/manage-subjects/getList', [SubjectController::class, 'getList']);
+    Route::resource('manage-subjects', SubjectController::class)->except(['show']);
 
     // Roles management, route admin/roles
     Route::resource('roles', RoleController::class);
