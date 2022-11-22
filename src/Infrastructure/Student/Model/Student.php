@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Infrastructure\Career\Model\Career;
 use Infrastructure\Guardian\Model\Guardian;
 use Infrastructure\ReceiptStudent\Model\ReceiptStudent;
 use Infrastructure\Scholarship\Model\Scholarship;
@@ -67,5 +68,14 @@ class Student extends Model
     public function guardian(): HasOne
     {
         return $this->HasOne(Guardian::class);
+    }
+
+    /**
+     * Get the career associated with the student.
+     *  $student -> career
+     */
+    public function career(): BelongsTo
+    {
+        return $this->belongsTo(Career::class);
     }
 }

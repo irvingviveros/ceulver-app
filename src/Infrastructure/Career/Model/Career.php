@@ -6,8 +6,10 @@ namespace Infrastructure\Career\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Infrastructure\School\Model\School;
+use Infrastructure\Student\Model\Student;
 use Infrastructure\Syllabus\Model\Syllabus;
 
 class Career extends Model {
@@ -29,5 +31,14 @@ class Career extends Model {
     public function syllabus(): HasOne
     {
         return $this->hasOne(Syllabus::class);
+    }
+
+    /**
+     * Get students associated with the career.
+     *  $career -> students
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(Student::class);
     }
 }
