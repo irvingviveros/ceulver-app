@@ -28,7 +28,7 @@ class CreateStudentsTable extends Migration
             $table->date('birth_date')->nullable(false); // Fecha cumpleaños
             $table->integer('age')->nullable(true); // Edad //TODO: calcular automáticamente edad en base a birth_date
             $table->string('occupation', 100)->nullable(true); // Ocupación
-            $table->string('country', 100)->nullable(true)->default('México'); // País
+            $table->string('nationality', 100)->nullable(true)->default('Mexicana'); // País
             $table->string('address', 250)->nullable(true); // Dirección
             $table->string('personal_email')->unique()->nullable(true); // Correo personal
             $table->string('personal_phone', 17)->nullable(true); // Teléfono personal
