@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Infrastructure\School\Repository;
 
@@ -31,9 +32,9 @@ class EloquentSchoolRepository implements GlobalRepository {
 
     /**
      * @param $data
-     * @return int
+     * @return bool
      */
-    public function create($data): int
+    public function create($data): bool
     {
         return DB::table('schools')->insertGetId($data);
     }

@@ -1,31 +1,29 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
-namespace Infrastructure\Student\Repository;
+namespace Infrastructure\Guardian\Repository;
 
 use Domain\Shared\Repository\GlobalRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Infrastructure\Student\Model\Student;
+use Infrastructure\Guardian\Model\Guardian;
 
-class EloquentStudentRepository implements GlobalRepository
+class EloquentGuardianRepository implements GlobalRepository
 {
 
     public function findById($id)
     {
-        return Student::findOrFail($id);
+        return Guardian::findOrFail($id);
     }
 
     public function checkIfNameExists($name): bool
     {
-        $row = DB::table('students')->where('national_id')->get();
-        return $row->count() > 0;
+         return false;
     }
 
     public function create($data): bool
     {
-//        return Student::create($data);
         return DB::table('students')->insert($data);
     }
 
@@ -39,14 +37,14 @@ class EloquentStudentRepository implements GlobalRepository
         $data->delete();
     }
 
-    public function all($columns = ['*']):Collection|array
+    public function all($columns = ['*']): Collection|array
     {
-        return Student::all($columns);
+        return Guardian::all($columns);
     }
 
     public function with($relation)
     {
-        return Student::with($relation)->get();
+        return Guardian::with($relation)->get();
     }
 
     public function detach(Model $model)

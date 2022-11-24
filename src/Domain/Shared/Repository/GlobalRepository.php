@@ -22,9 +22,9 @@ interface GlobalRepository
 
     /**
      * @param $data
-     * @return int
+     * @return bool
      */
-    public function create($data): int;
+    public function create($data): bool;
 
     /**
      * @param $data
