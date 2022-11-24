@@ -152,17 +152,14 @@
                                         Verifique el nivel educativo en el que se encuentra.
                                         <ul>
                                             <li>
-                                                Los encabezados de <b>color gris</b> (columna A - L) son campos
-                                                obligatorios
-                                                para todos los niveles educativos, mientras que los encabezados
-                                                de <b>color azul</b> (columna M - T) solo son requeridos cuando el
-                                                alumno es
+                                                Los encabezados de <b>color gris</b> son campos
+                                                obligatorios para todos los niveles educativos, mientras que los
+                                                encabezados de <b>color azul</b> solo son requeridos cuando el alumno es
                                                 universitario.
                                             </li>
                                             <li>
                                                 No mezcle en un mismo archivo los alumnos de distinto nivel educativo;
-                                                por
-                                                ejemplo, incluir primaria, con universidad o bachillerato.
+                                                por ejemplo, incluir primaria, con universidad o bachillerato.
                                             </li>
                                         </ul>
                                     </li>
