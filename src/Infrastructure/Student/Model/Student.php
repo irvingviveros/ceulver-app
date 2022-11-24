@@ -65,9 +65,9 @@ class Student extends Model
      * Get the guardian associated with the student.
      *  $student -> guardian
      */
-    public function guardian(): HasOne
+    public function guardian(): BelongsTo
     {
-        return $this->HasOne(Guardian::class);
+        return $this->belongsTo(Guardian::class);
     }
 
     /**
