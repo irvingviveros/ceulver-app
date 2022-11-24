@@ -38,6 +38,29 @@ const StudentDatatable = (function () {
             });
         });
 
+        // Show data event
+        $('#dataTable tbody').on('click', '.item-show', function (event) {
+
+            let itemId = $(event.currentTarget).attr('data-id');
+
+            StudentDatatable.getShowForm(
+                itemId
+            ).then(function () {
+                let modal = Modal.create({
+                    id: 'showData'
+                    , title: 'Información del alumno'
+                    , content: arguments[0]
+                    , okButtonText: 'Editar'
+                    , cancelButtonText: 'Cerrar'
+                    , size: 'xl'
+                });
+
+                modal.modal('show').on('shown.bs.modal', function () {
+                    showModal(modal)
+                });
+            });
+        });
+
         // Update event
         $('#dataTable tbody').on('click', '.item-edit', function (event) {
 
@@ -72,6 +95,12 @@ const StudentDatatable = (function () {
 
             // Show Swal component and delete
             Delete.run(StudentDatatable, dataId, table, row);
+        });
+    }
+
+    function showModal(modal) {
+        modal.find('[id="okModal"]').on('click', function () {
+            Modal.close(modal.attr('id'));
         });
     }
 
@@ -201,6 +230,16 @@ const StudentDatatable = (function () {
         , getEditForm: function (id) {
             return Configuration.consume({
                 url: urlController + `${id}/edit`
+                , method: 'GET'
+                , data: {
+                    _token: Application.getToken()
+                }
+            })
+        }
+        // Loads the edit form
+        , getShowForm: function (id) {
+            return Configuration.consume({
+                url: urlController + `${id}`
                 , method: 'GET'
                 , data: {
                     _token: Application.getToken()

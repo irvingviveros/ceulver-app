@@ -152,6 +152,22 @@ class StudentController extends Controller
     }
 
     /**
+     * Show the profile for a given user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        // Get student data model
+        $student = $this->studentService->findById($id);
+        // Get school data model from the student.
+        $school = $this->schoolService->findById($student->school_id);
+
+        return view('modules.student.actions.modal-show-student', compact(['school', 'student']));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
