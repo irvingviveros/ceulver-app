@@ -16,7 +16,6 @@ class StudentEntity
     private ?string $maternal_surname;
     private Carbon $birth_date;
     private ?string $address;
-    private ?string $country;
     private ?int $age;
     private ?string $occupation;
     private ?string $personal_email;
@@ -183,22 +182,6 @@ class StudentEntity
     public function setAddress(?string $address = null): void
     {
         $this->address = $address;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getCountry(): ?string
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param string|null $country
-     */
-    public function setCountry(?string $country = null): void
-    {
-        $this->country = $country;
     }
 
     /**
