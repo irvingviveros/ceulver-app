@@ -3,35 +3,36 @@ declare(strict_types=1);
 
 namespace App\Student\Controller;
 
+use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Domain\Career\Service\CareerService;
+use Domain\Guardian\Entity\GuardianEntity;
+use Domain\Guardian\Service\GuardianService;
 use Domain\School\Service\SchoolService;
+use Domain\Shared\exception\CeulverOperationNotPermittedException;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
-
-use App\Http\Controllers\Controller;
-
+use Infrastructure\Career\Repository\EloquentCareerRepository;
+use Infrastructure\Guardian\Repository\EloquentGuardianRepository;
+use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
 use Infrastructure\Student\Request\StoreStudentRequest;
-use Infrastructure\Career\Repository\EloquentCareerRepository;
-use Infrastructure\School\Repository\EloquentSchoolRepository;
-
 use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
 use Mockery\CountValidator\Exception;
 
 class StudentController extends Controller
 {
     private StudentService $studentService;
+    private GuardianService $guardianService;
     private SchoolService $schoolService;
     private CareerService $careerService;
 
@@ -39,6 +40,10 @@ class StudentController extends Controller
     {
         $this->studentService = new StudentService(
             new EloquentStudentRepository()
+        );
+
+        $this->guardianService = new GuardianService(
+            new EloquentGuardianRepository()
         );
 
         $this->schoolService = new SchoolService(
@@ -91,14 +96,14 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request): Response
     {
-        // Declare new Student object
+        // Declare entities
         $studentEntity = new StudentEntity();
         // Declare new Guardian object
-        // TODO: Create guardian entity
+        $guardianEntity = new GuardianEntity();
 
         // Request current user data
         $user = auth()->user();
-        $createdBy  = $user->id;
+        $createdBy = $user->id;
 
         // Retrieve the validated input data...
         $validatedRequest = $request->validated();
@@ -111,7 +116,7 @@ class StudentController extends Controller
         $studentEntity->setBirthDate($validatedRequest['birth_date']);
         $studentEntity->setNationalId($validatedRequest['national_id']);
         $studentEntity->setAddress($validatedRequest['address']);
-        $studentEntity->setOccupation($validatedRequest['occupation']  ?? null);
+        $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
         $studentEntity->setSex($validatedRequest['sex']);
         $studentEntity->setMaritalStatus($validatedRequest['marital_status'] ?? null);
         $studentEntity->setPersonalEmail($validatedRequest['email'] ?? null);
@@ -127,35 +132,59 @@ class StudentController extends Controller
         $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
         $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
-//        $studentEntity->setGuardianId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 
         // Guardian info
         // Request and set data for user
-        // TODO: Gather guardian info
+        $guardianEntity->setName($validatedRequest['guardian_first_name']);
+        $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+        $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+        $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
+        $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
+        $guardianEntity->setStatus(1);
+        $guardianEntity->setUserId(5);
 
-        // Create new student
         try {
-            $response = $this->studentService->createStudent(
-                $studentEntity, $createdBy
+            $guardianId = $this->guardianService->createGetId(
+                $guardianEntity, $createdBy
             );
-            return response($response);
 
-        } catch(OperationNotPermittedCeulverException $cop) {
-            return response($cop->getMessage(), 400);
-        } catch(Exception $ex) {
+            if ($guardianId === 0) {
+                Toastr::warning(
+                    'No se completó la carga del padre o tutor',
+                    'Advertencia',
+                    ["positionClass" => "toast-top-right"]);
+            }
 
+            $studentEntity->setGuardianId($guardianId);
+
+            // Create new student
+            try {
+                $response = $this->studentService->createStudent(
+                    $studentEntity, $createdBy
+                );
+                return response($response);
+
+            } catch (Exception $ex) {
+
+                Log::info($ex->getMessage());   //Send error message to Log
+
+                return response("Error del interno del servidor", 500);
+            }
+
+
+        } catch (CeulverOperationNotPermittedException $ex) {
             Log::info($ex->getMessage());   //Send error message to Log
-
             return response("Error del interno del servidor", 500);
         }
+
     }
 
     /**
      * Show the profile for a given user.
      *
-     * @param  int  $id
-     * @return \Illuminate\View\View
+     * @param int $id
+     * @return View
      */
     public function show($id)
     {
