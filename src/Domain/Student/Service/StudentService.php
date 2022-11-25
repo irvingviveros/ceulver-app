@@ -56,6 +56,7 @@ class StudentService
             'guardian_relationship' => $student->getGuardianRelationship(),
             'status'                => $student->getStatus(),
             'created_by'            => $createdBy,
+            'created_at'            => date_create(),
         );
 
         if (!$this->studentRepository->create($data))
@@ -115,6 +116,7 @@ class StudentService
         $student->health_condition = $studentEntity->getHealthCondition();
         $student->status = $studentEntity->getStatus();
         $student->modified_by = $modifiedBy;
+        $student->updated_at = date_create();
 
         $this->studentRepository->update($student);
     }
