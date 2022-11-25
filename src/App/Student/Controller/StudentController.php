@@ -9,12 +9,12 @@ use Domain\Career\Service\CareerService;
 use Domain\Guardian\Entity\GuardianEntity;
 use Domain\Guardian\Service\GuardianService;
 use Domain\School\Service\SchoolService;
-use Domain\Shared\exception\CeulverOperationNotPermittedException;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -93,6 +93,7 @@ class StudentController extends Controller
      *
      * @param StoreStudentRequest $request
      * @return Response
+     * @throws \Exception
      */
     public function store(StoreStudentRequest $request): Response
     {
@@ -135,7 +136,7 @@ class StudentController extends Controller
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 
         // Guardian info
-        // Request and set data for user
+        // Request and set data for guardian
         $guardianEntity->setName($validatedRequest['guardian_first_name']);
         $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
         $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
@@ -144,40 +145,24 @@ class StudentController extends Controller
         $guardianEntity->setStatus(1);
         $guardianEntity->setUserId(5);
 
+        // Request guardian id and save it
+        $guardianId = $this->guardianService->createGetId($guardianEntity, $createdBy);
+
+        // Set guardian ID into student entity
+        $studentEntity->setGuardianId($guardianId ?? null);
+
+        // Create new student
         try {
-            $guardianId = $this->guardianService->createGetId(
-                $guardianEntity, $createdBy
+            $response = $this->studentService->createStudent(
+                $studentEntity, $createdBy
             );
+            return response($response);
 
-            if ($guardianId === 0) {
-                Toastr::warning(
-                    'No se completó la carga del padre o tutor',
-                    'Advertencia',
-                    ["positionClass" => "toast-top-right"]);
-            }
+        } catch (Exception $ex) {
 
-            $studentEntity->setGuardianId($guardianId);
-
-            // Create new student
-            try {
-                $response = $this->studentService->createStudent(
-                    $studentEntity, $createdBy
-                );
-                return response($response);
-
-            } catch (Exception $ex) {
-
-                Log::info($ex->getMessage());   //Send error message to Log
-
-                return response("Error del interno del servidor", 500);
-            }
-
-
-        } catch (CeulverOperationNotPermittedException $ex) {
             Log::info($ex->getMessage());   //Send error message to Log
             return response("Error del interno del servidor", 500);
         }
-
     }
 
     /**
@@ -185,8 +170,9 @@ class StudentController extends Controller
      *
      * @param int $id
      * @return View
+     * @throws ValueNotFoundException
      */
-    public function show($id)
+    public function show(int $id): View
     {
         // Get student data model
         $student = $this->studentService->findById($id);
