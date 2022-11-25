@@ -36,7 +36,7 @@ class EloquentSchoolRepository implements GlobalRepository {
      */
     public function create($data): bool
     {
-        return DB::table('schools')->insertGetId($data);
+        return DB::table('schools')->insert($data);
     }
 
     /**

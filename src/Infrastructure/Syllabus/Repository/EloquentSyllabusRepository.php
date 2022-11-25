@@ -23,9 +23,9 @@ class EloquentSyllabusRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('syllabi')->insertGetId($data);
+        return DB::table('syllabi')->insert($data);
     }
 
     public function update($data)

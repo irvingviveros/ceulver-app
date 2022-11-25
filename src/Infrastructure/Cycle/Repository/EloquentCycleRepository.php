@@ -23,9 +23,9 @@ class EloquentCycleRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('cycles')->insertGetId($data);
+        return DB::table('cycles')->insert($data);
     }
 
     public function update($data)

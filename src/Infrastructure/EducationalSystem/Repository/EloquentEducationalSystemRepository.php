@@ -23,9 +23,9 @@ class EloquentEducationalSystemRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('educational_systems')->insertGetId($data);
+        return DB::table('educational_systems')->insert($data);
     }
 
     public function update($data)

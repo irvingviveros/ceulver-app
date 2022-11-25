@@ -35,7 +35,7 @@ class EloquentCareerRepository implements GlobalRepository {
      */
     public function create($data): bool
     {
-        return DB::table('careers')->insertGetId($data);
+        return DB::table('careers')->insert($data);
     }
 
     /**

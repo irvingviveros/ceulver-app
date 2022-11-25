@@ -22,9 +22,9 @@ class EloquentGroupRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('groups')->insertGetId($data);
+        return DB::table('groups')->insert($data);
     }
 
     public function update($data)

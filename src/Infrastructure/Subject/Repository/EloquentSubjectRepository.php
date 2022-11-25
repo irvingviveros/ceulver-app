@@ -22,9 +22,9 @@ class EloquentSubjectRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('subjects')->insertGetId($data);
+        return DB::table('subjects')->insert($data);
     }
 
     public function update($data)

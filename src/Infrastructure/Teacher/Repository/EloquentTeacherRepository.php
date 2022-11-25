@@ -22,9 +22,9 @@ class EloquentTeacherRepository implements GlobalRepository
         return $row->count() > 0;
     }
 
-    public function create($data): int
+    public function create($data): bool
     {
-        return DB::table('teachers')->insertGetId($data);
+        return DB::table('teachers')->insert($data);
     }
 
     public function update($data)
