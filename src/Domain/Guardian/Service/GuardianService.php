@@ -42,6 +42,21 @@ class GuardianService
         return ResponseAlias::HTTP_OK;
     }
 
+    public function createGetId(GuardianEntity $guardianEntity, $createdBy): int
+    {
+        $data = array(
+            'name'          => $guardianEntity->getName(),
+            'last_name'     => $guardianEntity->getLastName(),
+            'phone'         => $guardianEntity->getPhone(),
+            'email'         => $guardianEntity->getEmail(),
+            'address'       => $guardianEntity->getAddress(),
+            'status'        => $guardianEntity->getStatus(),
+            'created_by'    => $createdBy
+        );
+
+        return $this->guardianRepository->createGetId($data);
+    }
+
     /**
      * @throws ValueNotFoundException
      */
