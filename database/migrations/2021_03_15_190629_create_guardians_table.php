@@ -22,7 +22,7 @@ class CreateGuardiansTable extends Migration
             $table->string('address', 255)->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
-            $table->integer('modified_by');
+            $table->integer('modified_by')->nullable(true);
             $table->timestamps();
 
             // Foreign key
