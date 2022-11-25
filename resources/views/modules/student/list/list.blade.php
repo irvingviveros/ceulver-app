@@ -3,7 +3,7 @@
     <tr>
         <th class="noVis"></th>
         <th>ID</th>
-        <th>Escuela</th>
+        <th>Nivel educativo</th>
         <th>Matrícula</th>
         <th>Apellido paterno</th>
         <th>Apellido materno</th>
@@ -21,7 +21,7 @@
         <tr>
             <td></td>
             <td>{{ $student->id }}</td>
-            <td>{{ $student->school->school_name }}</td>
+            <td>{{ $student->school->educationalSystem->name }}</td>
             <td>{{ $student->enrollment }}</td>
             <td>{{ $student->paternal_surname }}</td>
             <td>{{ $student->maternal_surname }}</td>
