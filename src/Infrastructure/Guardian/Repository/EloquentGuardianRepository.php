@@ -24,7 +24,7 @@ class EloquentGuardianRepository implements GlobalRepository
 
     public function create($data): bool
     {
-        return DB::table('students')->insert($data);
+        return DB::table('guardians')->insert($data);
     }
 
     public function update($data)
