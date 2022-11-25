@@ -10,7 +10,6 @@ class GuardianEntity
     private ?string $phone;
     private ?string $email;
     private ?string $address;
-    private ?string $other_info;
     private int $status;
     private int $user_id;
 
@@ -92,22 +91,6 @@ class GuardianEntity
     public function setAddress(?string $address = null): void
     {
         $this->address = $address;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getOtherInfo(): ?string
-    {
-        return $this->other_info;
-    }
-
-    /**
-     * @param string|null $other_info
-     */
-    public function setOtherInfo(?string $other_info = null): void
-    {
-        $this->other_info = $other_info;
     }
 
     /**

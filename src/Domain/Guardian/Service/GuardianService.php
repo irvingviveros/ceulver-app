@@ -31,7 +31,6 @@ class GuardianService
             'phone'         => $guardianEntity->getPhone(),
             'email'         => $guardianEntity->getEmail(),
             'address'       => $guardianEntity->getAddress(),
-            'other_info'    => $guardianEntity->getOtherInfo(),
             'status'        => $guardianEntity->getStatus(),
             'created_by'    => $createdBy
         );
@@ -70,7 +69,6 @@ class GuardianService
         $guardian->phone = $guardianEntity->getPhone();
         $guardian->email = $guardianEntity->getEmail();
         $guardian->address = $guardianEntity->getAddress();
-        $guardian->other_info = $guardianEntity->getOtherInfo();
         $guardian->status = $guardianEntity->getStatus();
         $guardian->modified_by = $modifiedBy;
 

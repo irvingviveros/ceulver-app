@@ -20,7 +20,6 @@ class CreateGuardiansTable extends Migration
             $table->string('phone', 10)->nullable(true);
             $table->string('email', 50)->nullable(true);
             $table->string('address', 255)->nullable(true);
-            $table->text('other_info')->nullable(true);
             $table->tinyInteger('status')->default(1);
             $table->integer('created_by');
             $table->integer('modified_by');

@@ -32,7 +32,6 @@ class StoreGuardianRequest extends FormRequest
             'phone' => 'nullable|string|max:10',
             'email' => 'nullable|email',
             'address' => 'nullable|string|max:255',
-            'other_info' => 'nullable|string',
             'status' => 'required|boolean'
         ];
     }
@@ -49,8 +48,7 @@ class StoreGuardianRequest extends FormRequest
             'last_name' => 'Apellido(s)',
             'phone' => 'Teléfono celular',
             'email' => 'Correo electrónico',
-            'address' => 'Dirección',
-            'other_info' => 'Información adicional'
+            'address' => 'Dirección'
         ];
     }
 
