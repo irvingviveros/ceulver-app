@@ -27,6 +27,11 @@ class EloquentGuardianRepository implements GlobalRepository
         return DB::table('guardians')->insert($data);
     }
 
+    public function createGetId($data): int
+    {
+        return DB::table('guardians')->insertGetId($data);
+    }
+
     public function update($data)
     {
         $data->save();
