@@ -217,27 +217,27 @@
                     <div class="row">
                         <div class="col-3">
                             <label class="form-label" for="guardianLastName">Apellidos</label>
-                            <p id="guardianLastName"></p>
+                            <p id="guardianLastName">{{$guardian->name}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianName">Apellidos</label>
-                            <p id="guardianName"></p>
+                            <p id="guardianName">{{$guardian->last_name}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianRelationship">Parentesco</label>
-                            <p id="guardianRelationship"></p>
+                            <p id="guardianRelationship">{{$student->guardian_relationship}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianAddress">Dirección</label>
-                            <p id="guardianAddress"></p>
+                            <p id="guardianAddress">{{$guardian->address}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianEmail">Email</label>
-                            <p id="guardianEmail"></p>
+                            <p id="guardianEmail">{{$guardian->email}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianPhone">Teléfono personal</label>
-                            <p id="guardianPhone"></p>
+                            <p id="guardianPhone">{{$guardian->phone}}</p>
                         </div>
                     </div>
                 </div>
