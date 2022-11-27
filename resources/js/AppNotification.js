@@ -1,7 +1,7 @@
 const AppNotification = (function(toastr) {
 
     return {
-        show: function(type, title, content) {
+        show: function(type, content, title) {
             toastr[type](
                 title
                 , content
