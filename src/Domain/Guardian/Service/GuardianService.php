@@ -51,6 +51,7 @@ class GuardianService
             'email'         => $guardianEntity->getEmail(),
             'address'       => $guardianEntity->getAddress(),
             'status'        => $guardianEntity->getStatus(),
+            'created_at'    => date_create(),
             'created_by'    => $createdBy
         );
 
