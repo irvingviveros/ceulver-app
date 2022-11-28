@@ -142,8 +142,8 @@
             <span class="text-danger">*</span>
         </label>
         <select class="form-select" id="sexSelect" name="sexSelect">
-            <option {{$student->sex === 'Masculino' ? 'selected' : ''}}>Masculino</option>
-            <option {{$student->sex === 'Femenino' ? 'selected' : ''}}>Femenino</option>
+            <option value="Masculino" {{$student->sex === 'Masculino' ? 'selected' : ''}}>Masculino</option>
+            <option value="Femenino" {{$student->sex === 'Femenino' ? 'selected' : ''}}>Femenino</option>
         </select>
         <span for="sexSelect" class="text-danger"></span>
     </div>
@@ -154,10 +154,10 @@
                 <span class="text-danger">*</span>
             </label>
             <select class="form-select" id="maritalStatus" name="maritalStatus">
-                <option {{$student->marital_status === 'Soltero(a)' ? 'selected' : ''}}>Soltero(a)</option>
-                <option {{$student->marital_status === 'Casado(a)' ? 'selected' : ''}}>Casado(a)</option>
-                <option {{$student->marital_status === 'Divorciado(a)' ? 'selected' : ''}}>Divorciado(a)</option>
-                <option {{$student->marital_status === 'Viudo(a)' ? 'selected' : ''}}>Viudo(a)</option>
+                <option value="Soltero(a)" {{$student->marital_status === 'Soltero(a)' ? 'selected' : ''}}>Soltero(a)</option>
+                <option value="Casado(a)" {{$student->marital_status === 'Casado(a)' ? 'selected' : ''}}>Casado(a)</option>
+                <option value="Divorciado(a)" {{$student->marital_status === 'Divorciado(a)' ? 'selected' : ''}}>Divorciado(a)</option>
+                <option value="Viudo(a)" {{$student->marital_status === 'Viudo(a)' ? 'selected' : ''}}>Viudo(a)</option>
             </select>
             <span for="maritalStatus" class="text-danger"></span>
         </div>
@@ -236,7 +236,7 @@
             aria-label="Padecimientos conocidos"
             value="{{$student->ailments}}"
         />
-        <span for="address" class="text-danger"></span>
+        <span for="ailments" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -250,7 +250,7 @@
             aria-label="Alergias"
             value="{{$student->allergies}}"
         />
-        <span for="address" class="text-danger"></span>
+        <span for="allergies" class="text-danger"></span>
     </div>
 
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
@@ -266,10 +266,10 @@
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" id="careerSelect" name="careerSelect">
-                            <option selected value="" disabled>{{$student->career->name}}</option>
+                            <option selected value="{{$student->career_id}}">{{$student->career->name}}</option>
                         </select>
                     </div>
-                    <span for="schoolSelect" class="text-danger"></span>
+                    <span for="careerSelect" class="text-danger"></span>
                 </div>
 
                 <div class="col-3">
@@ -285,7 +285,7 @@
                         aria-label="Matrícula"
                         value="{{$student->enrollment}}"
                     />
-                    <span for="address" class="text-danger"></span>
+                    <span for="enrollment" class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -308,7 +308,7 @@
             aria-label="Referencia de pago"
             value="{{$student->payment_reference}}"
         />
-        <span for="address" class="text-danger"></span>
+        <span for="paymentReference" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -336,8 +336,8 @@
             <i type="button" data-feather='info'></i>
         </span>
         <select class="form-select" id="studentStatus">
-            <option {{$student->status === 0 ? 'selected' : ''}}>Inactivo</option>
-            <option {{$student->status === 1 ? 'selected' : ''}}>Activo</option>
+            <option value="0" {{$student->status === 0 ? 'selected' : ''}}>Inactivo</option>
+            <option value="1" {{$student->status === 1 ? 'selected' : ''}}>Activo</option>
         </select>
         <span for="studentStatus" class="text-danger"></span>
     </div>
@@ -390,17 +390,17 @@
             <span class="text-danger">*</span>
         </label>
         <select class="form-select" id="guardianRelationship" name="guardianRelationship">
-            <option {{$student->guardian_relationship === 'Madre' ? 'selected' : ''}}>Madre</option>
-            <option {{$student->guardian_relationship === 'Padre' ? 'selected' : ''}}>Padre</option>
-            <option {{$student->guardian_relationship === 'Hermano(a)' ? 'selected' : ''}}>Hermano(a)</option>
-            <option {{$student->guardian_relationship === 'Abuelo(a)' ? 'selected' : ''}}>Abuelo(a)</option>
-            <option {{$student->guardian_relationship === 'Tío(a)' ? 'selected' : ''}}>Tío(a)</option>
-            <option {{$student->guardian_relationship === 'Amistad de la familia' ? 'selected' : ''}}>Amistad de la
+            <option value="Madre" {{$student->guardian_relationship === 'Madre' ? 'selected' : ''}}>Madre</option>
+            <option value="Padre" {{$student->guardian_relationship === 'Padre' ? 'selected' : ''}}>Padre</option>
+            <option value="Hermano(a)" {{$student->guardian_relationship === 'Hermano(a)' ? 'selected' : ''}}>Hermano(a)</option>
+            <option value="Abuelo(a)" {{$student->guardian_relationship === 'Abuelo(a)' ? 'selected' : ''}}>Abuelo(a)</option>
+            <option value="Tío(a)" {{$student->guardian_relationship === 'Tío(a)' ? 'selected' : ''}}>Tío(a)</option>
+            <option value="Amistad de la familia" {{$student->guardian_relationship === 'Amistad de la familia' ? 'selected' : ''}}>Amistad de la
                 familia
             </option>
-            <option {{$student->guardian_relationship === 'Cuidador(a) social' ? 'selected' : ''}}>Cuidador(a) social
+            <option value="Cuidador(a) social" {{$student->guardian_relationship === 'Cuidador(a) social' ? 'selected' : ''}}>Cuidador(a) social
             </option>
-            <option {{$student->guardian_relationship === 'Otro' ? 'selected' : ''}}>Otro</option>
+            <option value="Otro" {{$student->guardian_relationship === 'Otro' ? 'selected' : ''}}>Otro</option>
         </select>
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
