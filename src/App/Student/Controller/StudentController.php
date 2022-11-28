@@ -14,7 +14,6 @@ use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -26,6 +25,7 @@ use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
 use Infrastructure\Student\Request\StoreStudentRequest;
+use Infrastructure\Student\Request\UpdateStudentRequest;
 use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
 use Mockery\CountValidator\Exception;
 
@@ -127,7 +127,7 @@ class StudentController extends Controller
         $studentEntity->setAllergies($validatedRequest['allergies']);
         $studentEntity->setCareerId((int)($validatedRequest['career'] ?? null));
         $studentEntity->setEnrollment($validatedRequest['enrollment'] ?? null);
-        $studentEntity->setPaymentReference($validatedRequest['payment_reference']);
+        $studentEntity->setPaymentReference($validatedRequest['payment_reference'] ?? null);
         $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
         $studentEntity->setStatus((int)$validatedRequest['student_status']);
         $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
@@ -178,8 +178,10 @@ class StudentController extends Controller
         $student = $this->studentService->findById($id);
         // Get school data model from the student.
         $school = $this->schoolService->findById($student->school_id);
+        // Get guardian data from the student
+        $guardian = $this->guardianService->findById($student->guardian_id);
 
-        return view('modules.student.actions.modal-show-student', compact(['school', 'student']));
+        return view('modules.student.actions.modal-show-student', compact(['school', 'student', 'guardian']));
     }
 
     /**
@@ -193,16 +195,23 @@ class StudentController extends Controller
     {
         $student = null;
 
-        if ($id > 0) {
-            try {
-                $student = $this->studentService->findById($id);
-            } catch (Exception $exception) {
-                Log::info($exception->getMessage());
-            }
+        // Get student data model
+        try {
+            $student = $this->studentService->findById($id);
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
         }
 
+        // Get school data model from the student.
+        $school = $this->schoolService->findById($student->school_id);
+        // Get careers
+        $careers = $this->careerService->getAll();
+        // Get guardian data from the student
+        $guardian = $this->guardianService->findById($student->guardian_id);
+
         return view(
-            'modules.academics.academicYear.actions.modal-edit-academicYear', compact(['student'])
+            'modules.student.actions.modal-edit-student',
+            compact(['student', 'school', 'careers', 'guardian'])
         );
     }
 
@@ -213,9 +222,72 @@ class StudentController extends Controller
      * @param Student $student
      * @return Response
      */
-    public function update(Request $request, Student $student)
+    public function update(UpdateStudentRequest $request)
     {
-        //
+        // Declare entities
+        $studentEntity = new StudentEntity();
+        // Declare new Guardian object
+        $guardianEntity = new GuardianEntity();
+
+        // Request current user data
+        $user = auth()->user();
+        $modifiedBy = $user->id;
+
+        // Retrieve the validated input data...
+        $validatedRequest = $request->validated();
+
+        // Request and set data for student
+        $studentId = $request->input('student_id');
+        $guardianId = $request->input('guardian_id');
+        $studentEntity->setSchoolId((int)$validatedRequest['school_id']);
+        $studentEntity->setPaternalSurname($validatedRequest['paternal_surname']);
+        $studentEntity->setMaternalSurname($validatedRequest['maternal_surname']);
+        $studentEntity->setFirstName($validatedRequest['first_name']);
+        $studentEntity->setBirthDate($validatedRequest['birth_date']);
+        $studentEntity->setNationalId($validatedRequest['national_id']);
+        $studentEntity->setAddress($validatedRequest['address']);
+        $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
+        $studentEntity->setSex($validatedRequest['sex']);
+        $studentEntity->setMaritalStatus($validatedRequest['marital_status'] ?? null);
+        $studentEntity->setPersonalEmail($validatedRequest['email'] ?? null);
+        $studentEntity->setPersonalPhone($validatedRequest['phone'] ?? null);
+        $studentEntity->setBloodGroup($validatedRequest['blood_group']);
+        $studentEntity->setAilments($validatedRequest['ailments']);
+        $studentEntity->setAllergies($validatedRequest['allergies']);
+        $studentEntity->setCareerId((int)($validatedRequest['career'] ?? null));
+        $studentEntity->setEnrollment($validatedRequest['enrollment'] ?? null);
+        $studentEntity->setPaymentReference($validatedRequest['payment_reference'] ?? null);
+        $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
+        $studentEntity->setStatus((int)$validatedRequest['student_status']);
+        $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
+        $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
+//        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
+//        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
+        $studentEntity->setGuardianId($guardianId ?? null);
+
+        // Guardian info
+        // Request and set data for guardian
+        $guardianEntity->setName($validatedRequest['guardian_first_name']);
+        $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+        $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+        $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
+        $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
+        $guardianEntity->setStatus(1);
+        $guardianEntity->setUserId(5);
+
+        // Update student
+        $this->guardianService->update($guardianId, $guardianEntity, $modifiedBy);
+
+        // Update student
+        try {
+            $response = $this->studentService->update($studentId, $studentEntity, $modifiedBy);
+            return response($response);
+
+        } catch (Exception $ex) {
+
+            Log::info($ex->getMessage());   //Send error message to Log
+            return response("Error del interno del servidor", 500);
+        }
     }
 
     /**

@@ -82,20 +82,21 @@ class StudentService
         return $student;
     }
 
-    public function update($id, StudentEntity $studentEntity, $modifiedBy)
+    public function update($studentId, StudentEntity $studentEntity, $modifiedBy)
     {
-        $student = $this->findById($id);
+        $student = $this->findById($studentId);
 
         //TODO: Busca en la bd si ya existe un registro igual
 
         $student->school_id = $studentEntity->getSchoolId();
         $student->career_id = $studentEntity->getCareerId();
-        $student->agreement_id = $studentEntity->getAgreementId();
-        $student->guardian_id = $studentEntity->getGuardianId();
+//        $student->agreement_id = $studentEntity->getAgreementId();
+//        $student->guardian_id = $studentEntity->getGuardianId();
         $student->national_id = $studentEntity->getNationalId();
         $student->enrollment = $studentEntity->getEnrollment();
-        $student->admission_no = $studentEntity->getAdmissionNo();
-        $student->admission_date = $studentEntity->getAdmissionDate();
+        $student->payment_reference = $studentEntity->getPaymentReference();
+//        $student->admission_no = $studentEntity->getAdmissionNo();
+//        $student->admission_date = $studentEntity->getAdmissionDate();
         $student->first_name = $studentEntity->getFirstName();
         $student->paternal_surname = $studentEntity->getPaternalSurname();
         $student->maternal_surname = $studentEntity->getMaternalSurname();
@@ -112,13 +113,15 @@ class StudentService
         $student->blood_group = $studentEntity->getBloodGroup();
         $student->allergies = $studentEntity->getAllergies();
         $student->ailments = $studentEntity->getAilments();
-        $student->other_info = $studentEntity->getOtherInfo();
-        $student->health_condition = $studentEntity->getHealthCondition();
         $student->status = $studentEntity->getStatus();
         $student->modified_by = $modifiedBy;
         $student->updated_at = date_create();
 
-        $this->studentRepository->update($student);
+        if (!$this->studentRepository->update($student))
+        {
+            return ResponseAlias::HTTP_BAD_REQUEST;
+        }
+        return ResponseAlias::HTTP_OK;
     }
 
     /**
