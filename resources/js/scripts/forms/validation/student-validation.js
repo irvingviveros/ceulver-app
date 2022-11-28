@@ -61,24 +61,28 @@ const FormIsValid = (form) => {
             guardianEmail: {
                 email: true
             },
-            guardianPhone: "required",
-            studentUsername: {
-                required: function () {
-                    let schoolSelector = $("#schoolSelect option:checked").attr('educationalSystem');
-                    return  schoolSelector !== 'Maternal'
-                        && schoolSelector !== 'Kinder'
-                        && schoolSelector !== 'Primaria';
-                }
+            guardianPhone: {
+                required: true,
+                minlength:10,
+                maxlength:10
             },
-            studentPassword: {
-                required: function () {
-                    let schoolSelector = $("#schoolSelect option:checked").attr('educationalSystem');
-                    return  schoolSelector !== 'Maternal'
-                        && schoolSelector !== 'Kinder'
-                        && schoolSelector !== 'Primaria';
-                },
-                minlength: 6
-            }
+            // studentUsername: {
+            //     required: function () {
+            //         let schoolSelector = $("#schoolSelect option:checked").attr('educationalSystem');
+            //         return  schoolSelector !== 'Maternal'
+            //             && schoolSelector !== 'Kinder'
+            //             && schoolSelector !== 'Primaria';
+            //     }
+            // },
+            // studentPassword: {
+            //     required: function () {
+            //         let schoolSelector = $("#schoolSelect option:checked").attr('educationalSystem');
+            //         return  schoolSelector !== 'Maternal'
+            //             && schoolSelector !== 'Kinder'
+            //             && schoolSelector !== 'Primaria';
+            //     },
+            //     minlength: 6
+            // }
         },
         messages: {
             schoolSelect: "Seleccione una institución.",
@@ -109,11 +113,11 @@ const FormIsValid = (form) => {
             guardianRelationship: "Seleccione el parentesco.",
             guardianAddress: "Introduzca la dirección.",
             guardianPhone: "Introduzca un número de contacto.",
-            studentUsername: "El usuario no debe estar vacío.",
-            studentPassword: {
-                required: "Introduzca una contraseña o genere una.",
-                minlength: "Establezca una contraseña de al menos 5 dígitos o genere una.",
-            }
+            // studentUsername: "El usuario no debe estar vacío.",
+            // studentPassword: {
+            //     required: "Introduzca una contraseña o genere una.",
+            //     minlength: "Establezca una contraseña de al menos 5 dígitos o genere una.",
+            // }
         }
     })
 
