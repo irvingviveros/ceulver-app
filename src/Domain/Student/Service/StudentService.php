@@ -35,6 +35,7 @@ class StudentService
 //            'agreement_id' => $student->getAgreementId(),
             'guardian_id'           => $student->getGuardianId(),
             'national_id'           => $student->getNationalId(),
+            'nationality'           => $student->getNationality(),
             'enrollment'            => $student->getEnrollment(),
             'payment_reference'     => $student->getPaymentReference(),
 //            'admission_no' => $student->getAdmissionNo(),
@@ -107,13 +108,13 @@ class StudentService
         $student->personal_email = $studentEntity->getPersonalEmail();
         $student->personal_phone = $studentEntity->getPersonalPhone();
         $student->nationality = $studentEntity->getNationality();
-        $student->marial_status = $studentEntity->getMaritalStatus();
+        $student->marital_status = $studentEntity->getMaritalStatus();
         $student->sex = $studentEntity->getSex();
-        $student->gender = $studentEntity->getGender();
         $student->blood_group = $studentEntity->getBloodGroup();
         $student->allergies = $studentEntity->getAllergies();
         $student->ailments = $studentEntity->getAilments();
         $student->status = $studentEntity->getStatus();
+        $student->guardian_relationship = $studentEntity->getGuardianRelationship();
         $student->modified_by = $modifiedBy;
         $student->updated_at = date_create();
 
