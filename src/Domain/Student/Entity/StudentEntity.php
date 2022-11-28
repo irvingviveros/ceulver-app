@@ -23,7 +23,6 @@ class StudentEntity
     private ?string $nationality;
     private ?string $marital_status;
     private ?string $sex;
-    private ?string $gender;
     private ?string $payment_reference;
     // Health and other info
     private ?string $blood_group;
@@ -292,22 +291,6 @@ class StudentEntity
     public function setSex(?string $sex = null): void
     {
         $this->sex = $sex;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getGender(): ?string
-    {
-        return $this->gender;
-    }
-
-    /**
-     * @param string|null $gender
-     */
-    public function setGender(?string $gender = null): void
-    {
-        $this->gender = $gender;
     }
 
     /**
