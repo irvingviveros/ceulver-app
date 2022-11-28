@@ -116,6 +116,7 @@ class StudentController extends Controller
         $studentEntity->setFirstName($validatedRequest['first_name']);
         $studentEntity->setBirthDate($validatedRequest['birth_date']);
         $studentEntity->setNationalId($validatedRequest['national_id']);
+        $studentEntity->setNationality('Mexicana');
         $studentEntity->setAddress($validatedRequest['address']);
         $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
         $studentEntity->setSex($validatedRequest['sex']);
@@ -245,6 +246,7 @@ class StudentController extends Controller
         $studentEntity->setFirstName($validatedRequest['first_name']);
         $studentEntity->setBirthDate($validatedRequest['birth_date']);
         $studentEntity->setNationalId($validatedRequest['national_id']);
+        $studentEntity->setNationality();
         $studentEntity->setAddress($validatedRequest['address']);
         $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
         $studentEntity->setSex($validatedRequest['sex']);
@@ -260,10 +262,10 @@ class StudentController extends Controller
         $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
         $studentEntity->setStatus((int)$validatedRequest['student_status']);
         $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
-        $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
+//        $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
-        $studentEntity->setGuardianId($guardianId ?? null);
+//        $studentEntity->setGuardianId($guardianId ?? null);
 
         // Guardian info
         // Request and set data for guardian
@@ -273,7 +275,7 @@ class StudentController extends Controller
         $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
         $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
         $guardianEntity->setStatus(1);
-        $guardianEntity->setUserId(5);
+//        $guardianEntity->setUserId(5);
 
         // Update student
         $this->guardianService->update($guardianId, $guardianEntity, $modifiedBy);
