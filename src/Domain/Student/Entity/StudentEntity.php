@@ -29,8 +29,6 @@ class StudentEntity
     private ?string $blood_group;
     private ?string $allergies;
     private ?string $ailments;
-    private ?string $other_info;
-    private ?string $health_condition;
     private ?int $status;
     private string $guardian_relationship;
     // Foreign info
@@ -259,7 +257,7 @@ class StudentEntity
     /**
      * @param string|null $nationality
      */
-    public function setNationality(?string $nationality = null): void
+    public function setNationality(?string $nationality = 'Mexicana'): void
     {
         $this->nationality = $nationality;
     }
