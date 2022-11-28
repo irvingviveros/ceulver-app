@@ -26,13 +26,14 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules(): array
     {
+        error_log($this->student_id);
         return [
             'school_id'             => 'required',
             'paternal_surname'      => 'required|string|max:25',
             'maternal_surname'      => 'nullable|string|max:25',
             'first_name'            => 'required|string|max:35',
             'birth_date'            => 'required|date',
-            'national_id'           => 'required|string|unique:students,national_id|min:18|max:18,'.$this->national_id.'national_id',
+            'national_id'           => 'required|string|min:18|max:18|unique:students,national_id,'.$this->student_id,
             'address'               => 'required|string|max:250',
             'occupation'            => 'exclude_unless:educational_system,Universidad|string|max:100',
             'sex'                   => 'required|max:20',
@@ -47,14 +48,16 @@ class UpdateStudentRequest extends FormRequest
             'payment_reference'     => 'nullable|string',
             'guardian_last_name'    => 'required|string|max:100',
             'guardian_first_name'   => 'required|string|max:100',
-            'guardian_relationship' => 'required',
+            'guardian_relationship' => 'required|string',
             'guardian_address'      => 'required|string',
             'guardian_email'        => 'nullable|email',
-            'guardian_phone'        => 'nullable|max:10',
-            'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username'.$this->id,
-            'guardian_password'     => 'required_with:guardian_username',
-            'student_username'      => 'exclude_unless:educational_system,Universidad',
-            'student_password'      => 'required_with:student_username|unique:users,username'.$this->id,
+            'guardian_phone'        => 'required|min:10|max:10',
+//            'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username'.$this->student_id,
+//            'guardian_password'     => 'required_with:guardian_username',
+            'student_username' => 'nullable', //TODO: need to work on user and password creation
+            'student_password' => 'nullable', //TODO: need to work on user and password creation
+//            'student_username'      => 'exclude_unless:educational_system,Universidad',
+//            'student_password'      => 'required_with:student_username|unique:users,username'.$this->student_id,
             'student_status'        => 'required|boolean'
         ];
     }
