@@ -80,13 +80,13 @@
                     >
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{asset('app/user/view/security')}}">
+                    <a class="nav-link" href="#">
                         <i data-feather="lock" class="font-medium-3 me-50"></i>
                         <span class="fw-bold">Cuenta</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{asset('app/user/view/billing')}}">
+                    <a class="nav-link" href="#">
                         <i data-feather="bookmark" class="font-medium-3 me-50"></i>
                         <span class="fw-bold">Financiero</span>
                     </a>
