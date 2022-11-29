@@ -14,8 +14,6 @@ class CareerSeeder extends Seeder
      */
     public function run()
     {
-        $date = now();   //Get current date
-
         DB::table('careers')->insert([
             [
                 'name' => 'INGENIERIA MECÁNICA AUTOMOTRIZ',
@@ -24,8 +22,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'LICENCIATURA EN DERECHO',
@@ -34,8 +31,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'COMERCIO EXTERIOR Y ADUANAS',
@@ -44,8 +40,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'INGENIERA PETROLERA',
@@ -54,8 +49,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'GASTRONOMÍA',
@@ -64,8 +58,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'CRIMINOLOGÍA Y CRIMINALÍSTICA',
@@ -74,8 +67,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'EDUCACIÓN DEPORTIVA',
@@ -84,8 +76,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'DERECHO PROCESAL PENAL',
@@ -94,8 +85,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'GESTIÓN Y ADMINISTRACIÓN EDUCATIVA',
@@ -104,8 +94,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'CIENCIAS POLÍTICAS Y ADMINISTRACIÓN PÚBLICA',
@@ -114,8 +103,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'PEDAGOGÍA',
@@ -124,8 +112,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'MAESTRÍA EN CIENCIAS APLICADAS AL DEPORTE',
@@ -134,8 +121,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'ADMINISTRACIÓN EMPRESARIAL',
@@ -144,8 +130,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'INGENIERÍA MECATRÓNICA',
@@ -154,8 +139,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'INGENIERÍA INDUSTRIAL',
@@ -164,8 +148,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'CONTADURÍA FISCAL',
@@ -174,8 +157,7 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
             ],
             [
                 'name' => 'INGENIERÍA EN SISTEMAS COMPUTACIONALES',
@@ -184,9 +166,17 @@ class CareerSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
-            ]
+                'created_at' => date_create(),
+            ],
+            [
+                'name' => 'LICENCIATURA EN PSICOLOGÍA',
+                'enrollment' => 'PSI',
+                'opening_date' => '2022-09-03',
+                'status' => 1,
+                'created_by' => 1,
+                'modified_by' => 1,
+                'created_at' => date_create(),
+            ],
         ]);
     }
 }
