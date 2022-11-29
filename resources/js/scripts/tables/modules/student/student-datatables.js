@@ -113,7 +113,7 @@ const StudentDatatable = (function () {
             // JS validations before submit
             if (!FormIsValid(form)) {
                 AppNotification.show(
-                    'warning', 'Advertencia', 'Hubo un error al intentar crear el registro.'
+                    'warning', 'Hubo un error al intentar crear el registro.', 'Advertencia'
                 );
                 return;
             }
@@ -182,7 +182,7 @@ const StudentDatatable = (function () {
                 educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
             }).then(function () {
                 AppNotification.show(
-                    'success', 'Registro creado', 'El registro ha sido creado correctamente'
+                    'success', 'El registro ha sido creado correctamente', 'Registro creado'
                 );
 
                 Modal.close(modal.attr('id'));
@@ -207,8 +207,8 @@ const StudentDatatable = (function () {
             if (!FormIsValid(form)) {
                 AppNotification.show(
                     'warning',
-                    'Error',
-                    'Hubo un error al intentar actualizar el registro. Verifique la información.'
+                    'Hubo un error al intentar actualizar el registro. Verifique la información.',
+                    'Error'
                 );
                 return;
             }
@@ -283,8 +283,8 @@ const StudentDatatable = (function () {
             }).then(function () {
                 AppNotification.show(
                     'success',
-                    'Registro actualizado',
-                    'El registro ha sido actualizado correctamente.'
+                    'El registro ha sido actualizado correctamente.',
+                    'Registro actualizado'
                 );
 
                 Modal.close(modal.attr('id'));

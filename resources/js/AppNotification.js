@@ -3,8 +3,8 @@ const AppNotification = (function(toastr) {
     return {
         show: function(type, content, title) {
             toastr[type](
-                title
-                , content
+                content
+                , title
                 , {
                     closeButton: true
                     , tapToDismiss: false
