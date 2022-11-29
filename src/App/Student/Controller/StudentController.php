@@ -180,23 +180,23 @@ class StudentController extends Controller
         $student = $this->studentService->findById($id);
         // Get school data model from the student.
         $school = $this->schoolService->findById($student->school_id);
-
         // Get guardian data from the student
-        try {
-            $guardian = $this->guardianService->findById($student->guardian_id);
-        } catch (ModelNotFoundException $exception) {
+        $guardian = $this->guardianService->findById($student->guardian_id);
 
-            //Send error message to Log
-            Log::info($exception->getMessage());
+        if (is_null($guardian)) {
 
-            // Show warning to user about no parent info found.
-            Toastr::warning(
-                'No hay registros del padre o tutor',
-                'Advertencia',
-                ["positionClass" => "toast-top-right"]);
+            if ($school->educationalSystem->name === 'Universidad') {
+                Toastr::warning(
+                    'No hay datos de la referencia de contacto',
+                    'Advertencia',
+                    ["positionClass" => "toast-top-right"]) ;
+            } else {
+                Toastr::warning(
+                    'No hay registros del padre o tutor',
+                    'Advertencia',
+                    ["positionClass" => "toast-top-right"]);
+            }
 
-            // Set guardian model to null
-            $guardian = null;
         }
 
         return view('modules.student.actions.modal-show-student', compact(['school', 'student', 'guardian']));

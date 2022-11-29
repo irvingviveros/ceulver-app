@@ -6,6 +6,8 @@ namespace Domain\Guardian\Service;
 use Domain\Guardian\Entity\GuardianEntity;
 use Domain\Shared\Exception\ValueNotFoundException;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 use Infrastructure\Guardian\Repository\EloquentGuardianRepository;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
@@ -26,17 +28,16 @@ class GuardianService
     public function createGuardian(GuardianEntity $guardianEntity, $createdBy): int
     {
         $data = array(
-            'name'          => $guardianEntity->getName(),
-            'last_name'     => $guardianEntity->getLastName(),
-            'phone'         => $guardianEntity->getPhone(),
-            'email'         => $guardianEntity->getEmail(),
-            'address'       => $guardianEntity->getAddress(),
-            'status'        => $guardianEntity->getStatus(),
-            'created_by'    => $createdBy
+            'name' => $guardianEntity->getName(),
+            'last_name' => $guardianEntity->getLastName(),
+            'phone' => $guardianEntity->getPhone(),
+            'email' => $guardianEntity->getEmail(),
+            'address' => $guardianEntity->getAddress(),
+            'status' => $guardianEntity->getStatus(),
+            'created_by' => $createdBy
         );
 
-        if (!$this->guardianRepository->create($data))
-        {
+        if (!$this->guardianRepository->create($data)) {
             return ResponseAlias::HTTP_BAD_REQUEST;
         }
         return ResponseAlias::HTTP_OK;
@@ -45,33 +46,17 @@ class GuardianService
     public function createGetId(GuardianEntity $guardianEntity, $createdBy): int
     {
         $data = array(
-            'name'          => $guardianEntity->getName(),
-            'last_name'     => $guardianEntity->getLastName(),
-            'phone'         => $guardianEntity->getPhone(),
-            'email'         => $guardianEntity->getEmail(),
-            'address'       => $guardianEntity->getAddress(),
-            'status'        => $guardianEntity->getStatus(),
-            'created_at'    => date_create(),
-            'created_by'    => $createdBy
+            'name' => $guardianEntity->getName(),
+            'last_name' => $guardianEntity->getLastName(),
+            'phone' => $guardianEntity->getPhone(),
+            'email' => $guardianEntity->getEmail(),
+            'address' => $guardianEntity->getAddress(),
+            'status' => $guardianEntity->getStatus(),
+            'created_at' => date_create(),
+            'created_by' => $createdBy
         );
 
         return $this->guardianRepository->createGetId($data);
-    }
-
-    /**
-     * @throws ValueNotFoundException
-     */
-    public function findById($id)
-    {
-        $guardian = $this->guardianRepository->findById($id);
-
-        if ($guardian == null) {
-            throw new ValueNotFoundException(
-                "El padre o tutor no existe"
-            );
-        }
-
-        return $guardian;
     }
 
     public function update($id, GuardianEntity $guardianEntity, $modifiedBy)
@@ -89,6 +74,23 @@ class GuardianService
         $guardian->modified_by = $modifiedBy;
 
         $this->guardianRepository->update($guardian);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findById($id): mixed
+    {
+        // Get guardian data from the student
+        try {
+            return $this->guardianRepository->findById($id);
+        } catch (ModelNotFoundException $exception) {
+            //Send error message to Log
+            Log::info($exception->getMessage());
+            // Set guardian model to null
+            return null;
+        }
     }
 
     /**
