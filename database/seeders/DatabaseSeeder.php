@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             CareerSeeder::class,
             AgreementSeeder::class,
             ModalitySeeder::class,
-            StudentSeeder::class,
+//            StudentSeeder::class,
             GroupSeeder::class,
             SyllabusSeeder::class,
             CycleSeeder::class
