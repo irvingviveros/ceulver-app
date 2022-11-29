@@ -91,7 +91,8 @@ class StudentsImport implements ToModel, WithHeadingRow, WithValidation, SkipsOn
             'ailments'                  => $row['padecimientos'],
 //            'guardian_relationship'     => $row['tutor_relacion'],
             'status'                    => $row['estatus'],
-            'created_by'                => auth()->id()
+            'created_by'                => auth()->id(),
+            'updated_at'                => NULL
         ]);
     }
 
