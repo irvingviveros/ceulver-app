@@ -14,6 +14,7 @@ use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -179,8 +180,24 @@ class StudentController extends Controller
         $student = $this->studentService->findById($id);
         // Get school data model from the student.
         $school = $this->schoolService->findById($student->school_id);
+
         // Get guardian data from the student
-        $guardian = $this->guardianService->findById($student->guardian_id);
+        try {
+            $guardian = $this->guardianService->findById($student->guardian_id);
+        } catch (ModelNotFoundException $exception) {
+
+            //Send error message to Log
+            Log::info($exception->getMessage());
+
+            // Show warning to user about no parent info found.
+            Toastr::warning(
+                'No hay registros del padre o tutor',
+                'Advertencia',
+                ["positionClass" => "toast-top-right"]);
+
+            // Set guardian model to null
+            $guardian = null;
+        }
 
         return view('modules.student.actions.modal-show-student', compact(['school', 'student', 'guardian']));
     }

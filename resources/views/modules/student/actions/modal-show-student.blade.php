@@ -217,27 +217,27 @@
                     <div class="row">
                         <div class="col-3">
                             <label class="form-label" for="guardianLastName">Apellidos</label>
-                            <p id="guardianLastName">{{$guardian->name}}</p>
+                            <p id="guardianLastName">{{$guardian->name ?? ''}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianName">Apellidos</label>
-                            <p id="guardianName">{{$guardian->last_name}}</p>
+                            <p id="guardianName">{{$guardian->last_name  ?? ''}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianRelationship">Parentesco</label>
-                            <p id="guardianRelationship">{{$student->guardian_relationship}}</p>
+                            <p id="guardianRelationship">{{$student->guardian_relationship  ?? ''}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianAddress">Dirección</label>
-                            <p id="guardianAddress">{{$guardian->address}}</p>
+                            <p id="guardianAddress">{{$guardian->address  ?? ''}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianEmail">Email</label>
-                            <p id="guardianEmail">{{$guardian->email}}</p>
+                            <p id="guardianEmail">{{$guardian->email  ?? ''}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="guardianPhone">Teléfono personal</label>
-                            <p id="guardianPhone">{{$guardian->phone}}</p>
+                            <p id="guardianPhone">{{$guardian->phone  ?? ''}}</p>
                         </div>
                     </div>
                 </div>
@@ -249,4 +249,5 @@
 </section>
 
 {{-- Page scripts --}}
+{!! Toastr::message() !!}
 <script>feather.replace() //Icons</script>
