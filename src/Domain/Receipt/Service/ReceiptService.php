@@ -5,11 +5,15 @@ namespace Domain\Receipt\Service;
 
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Shared\Exception\ValueNotFoundException;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+
 use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
+
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
+use Luecano\NumeroALetras\NumeroALetras;
 
 class ReceiptService
 {
@@ -100,5 +104,11 @@ class ReceiptService
         $receipt = $this->findById($id);
 
         $this->receiptRepository->delete($receipt);
+    }
+
+    public function moneyToText(Int|Float $number, $decimals = 2, $currency = 'pesos', $cents = 'centavos'): string
+    {
+        $formatter = new NumeroALetras();
+        return $formatter->toMoney($number, $decimals, $currency, $cents);
     }
 }
