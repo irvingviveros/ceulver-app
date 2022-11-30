@@ -5,7 +5,6 @@ namespace App\Accounting\Controller;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class AccountingDashboard extends Controller
