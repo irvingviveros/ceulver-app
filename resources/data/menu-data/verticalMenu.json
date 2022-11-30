@@ -117,35 +117,35 @@
         },
         {
             "name": "Administrative Coordination",
-            "icon": "menu",
+            "icon": "dollar-sign",
             "slug": "administrative",
             "submenu": [
                 {
-                    "url": "admin/administrative/dashboard",
+                    "url": "admin/accounting/dashboard",
                     "name": "Main Dashboard",
                     "icon": "circle",
-                    "slug": "administrative-dashboard"
+                    "slug": "accounting-dashboard"
                 },
                 {
-                    "url": "admin/administrative/university",
+                    "url": "admin/accounting/university",
                     "name": "University",
                     "icon": "circle",
                     "slug": "university"
                 },
                 {
-                    "url": "admin/administrative/bachelor",
+                    "url": "admin/accounting/bachelor",
                     "name": "Bachelor",
                     "icon": "circle",
                     "slug": "bachelor"
                 },
                 {
-                    "url": "admin/administrative/high-school",
+                    "url": "admin/accounting/high-school",
                     "name": "High school",
                     "icon": "circle",
                     "slug": "high-school"
                 },
                 {
-                    "url": "admin/administrative/elementary-school",
+                    "url": "admin/accounting/elementary-school",
                     "name": "Elementary school",
                     "icon": "circle",
                     "slug": "elementary-school"

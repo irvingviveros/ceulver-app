@@ -88,7 +88,7 @@ $(window).on('load', function () {
     series: [
       {
         name: 'Subscribers',
-        data: [28, 40, 36, 52, 38, 60, 55]
+        data: [0, 40, 36, 52, 38, 60, 55, 60, 80, 90, 100]
       }
     ],
     xaxis: {

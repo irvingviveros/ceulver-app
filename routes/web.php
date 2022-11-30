@@ -1,6 +1,7 @@
 <?php
 
 use App\AcademicYear\Controller\AcademicYearController;
+use App\Accounting\Controller\AccountingDashboard;
 use App\Agreement\Controller\AgreementController;
 use App\Career\Controller\CareerController;
 use App\Cycle\Controller\CycleController;
@@ -80,6 +81,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //
 //    Route::get('manage-students/agreement/', [AgreementController::class, 'index']);
 //    Route::get('manage-students/agreement/{agreement}/edit', [AgreementController::class, 'edit']);
+
+    // Financial management
+    Route::group(['prefix' => 'accounting'], function() {
+        Route::get('dashboard', AccountingDashboard::class)->name('accounting.dashboard');
+    });
 
 
     // Careers management, route admin/manage-careers
