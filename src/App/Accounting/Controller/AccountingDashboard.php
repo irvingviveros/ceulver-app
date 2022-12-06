@@ -19,7 +19,7 @@ class AccountingDashboard extends Controller
     {
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
-            ['link' => route('accounting.dashboard'), 'name' => "Coordinación académica"],
+            ['link' => route('accounting.dashboard'), 'name' => "Coordinación administrativa"],
             ['name' => "Panel principal"]
         ];
 
