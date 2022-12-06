@@ -25,6 +25,11 @@ class StudentReceiptService
         return $this->studentReceiptRepository->all();
     }
 
+    public function getAllByEducationalSystem(string $educationalSystem)
+    {
+        return $this->studentReceiptRepository->allByEducationalSystem($educationalSystem);
+    }
+
     public function createReceipt(StudentReceiptEntity $studentReceiptEntity, $createdBy): int
     {
         $data = array(
