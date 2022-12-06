@@ -127,28 +127,40 @@
                     "slug": "accounting-dashboard"
                 },
                 {
-                    "url": "admin/accounting/university",
+                    "url": "admin/accounting/student-receipts/university",
                     "name": "University",
                     "icon": "circle",
                     "slug": "university"
                 },
                 {
-                    "url": "admin/accounting/bachelor",
+                    "url": "admin/accounting/student-receipts/bachelor",
                     "name": "Bachelor",
                     "icon": "circle",
                     "slug": "bachelor"
                 },
                 {
-                    "url": "admin/accounting/high-school",
+                    "url": "admin/accounting/student-receipts/high-school",
                     "name": "High school",
                     "icon": "circle",
                     "slug": "high-school"
                 },
                 {
-                    "url": "admin/accounting/elementary-school",
+                    "url": "admin/accounting/student-receipts/elementary-school",
                     "name": "Elementary school",
                     "icon": "circle",
                     "slug": "elementary-school"
+                },
+                {
+                    "url": "admin/accounting/student-receipts/kindergarten",
+                    "name": "Kindergarten",
+                    "icon": "circle",
+                    "slug": "kindergarten"
+                },
+                {
+                    "url": "admin/accounting/student-receipts/nursery-school",
+                    "name": "Nursery school",
+                    "icon": "circle",
+                    "slug": "nursery-school"
                 }
             ]
         }
