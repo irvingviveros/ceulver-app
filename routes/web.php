@@ -13,6 +13,7 @@ use App\Modality\Controller\ModalityController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
 use App\Student\Controller\StudentController;
+use App\StudentReceipt\Controller\StudentReceiptController;
 use App\Subject\Controller\SubjectController;
 use App\Syllabus\Controller\SyllabusController;
 use App\Teacher\Controller\TeacherController;
@@ -85,6 +86,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     // Financial management
     Route::group(['prefix' => 'accounting'], function() {
         Route::get('dashboard', AccountingDashboard::class)->name('accounting.dashboard');
+        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsByEducationalSystem'])->name('student-receipts-educational-system.show');
+        Route::resource('student-receipts', StudentReceiptController::class);
     });
 
 
