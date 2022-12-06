@@ -10,10 +10,11 @@ const Application = (function () {
         getDatatableConfiguration(DataTableObject) {
             return {
                 order: [],
-                columnDefs: [{
+                columnDefs: [
+                    {
                     targets: -1, // 'Actions' column (last column is always "-1").
                     orderable: false,
-                },
+                    },
                     {
                         targets: 0, // For checkboxes
                         orderable: false,
