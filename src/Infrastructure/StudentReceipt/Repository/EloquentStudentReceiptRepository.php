@@ -16,6 +16,18 @@ class EloquentStudentReceiptRepository implements GlobalRepository
         return StudentReceipt::findOrFail($id);
     }
 
+    public function allByEducationalSystem(string $educationalSystem)
+    {
+        return DB::table('receipts')
+            ->join('student_receipts', 'receipts.id', '=', 'student_receipts.receipt_id')
+            ->join('students', 'student_receipts.student_id', '=', 'students.id')
+            ->join('schools', 'students.school_id', '=', 'schools.id')
+            ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+            ->select('receipts.*', 'students.enrollment AS student_enrollment', 'students.id AS student_id')
+            ->where('educational_systems.name', '=', $educationalSystem)
+            ->orderBy('id')->latest()->get();
+    }
+
     public function checkIfNameExists($name): bool
     {
         return false;
