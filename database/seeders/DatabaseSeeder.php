@@ -27,7 +27,9 @@ class DatabaseSeeder extends Seeder
 //            StudentSeeder::class,
             GroupSeeder::class,
             SyllabusSeeder::class,
-            CycleSeeder::class
+            CycleSeeder::class,
+            ReceiptSeeder::class,
+            StudentReceiptSeeder::class,
         ]);
     }
 }
