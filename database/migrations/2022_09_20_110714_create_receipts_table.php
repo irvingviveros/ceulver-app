@@ -23,9 +23,9 @@ class CreateReceiptsTable extends Migration
             $table->string('amount_text')->nullable(false);
 //            $table->string('status')->nullable();
             $table->date('issued_date')->nullable();
-            $table->date('note')->nullable();
+            $table->text('note')->nullable();
             $table->integer('created_by');
-            $table->integer('modified_by');
+            $table->integer('modified_by')->nullable(true);
             $table->timestamps();
         });
     }
