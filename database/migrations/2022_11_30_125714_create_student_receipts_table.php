@@ -17,9 +17,9 @@ class CreateStudentReceiptsTable extends Migration
             $table->id();
             // Foreign id
             $table->foreignId('receipt_id')->constrained();
-            $table->foreignId('student_id')->constrained();
+            $table->foreignId('student_id');
             $table->integer('created_by');
-            $table->integer('modified_by');
+            $table->integer('modified_by')->nullable(true);
             $table->timestamps();
         });
     }

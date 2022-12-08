@@ -15,14 +15,14 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->string('reference')->nullable(false);
-            $table->string('sheet')->unique()->nullable(true); // Folio
+            $table->integer('reference')->unique()->nullable(false);
+            $table->integer('sheet')->unique()->nullable(true); // Folio
             $table->string('payment_method')->nullable(false);
             $table->string('payment_concept')->nullable(false);
             $table->decimal('amount', 10, 2)->nullable(false);
             $table->string('amount_text')->nullable(false);
 //            $table->string('status')->nullable();
-            $table->date('issued_date')->nullable();
+            $table->date('payment_date')->nullable();
             $table->text('note')->nullable();
             $table->integer('created_by');
             $table->integer('modified_by')->nullable(true);
