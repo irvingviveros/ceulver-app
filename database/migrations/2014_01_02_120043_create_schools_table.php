@@ -15,15 +15,15 @@ class CreateSchoolsTable extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('school_name', 255);
-            $table->string('school_code', 100)->nullable(true);
+            $table->string('name', 255);
+            $table->string('code', 100)->nullable(true);
             $table->string('registration_date', 50)->nullable(true);
             $table->string('address', 255);
             $table->string('phone', 10)->nullable(true);
             $table->string('email', 50);
             $table->text('footer')->nullable(true);
-            $table->string('logo', 120)->nullable(true);
-            $table->string('frontend_logo', 120)->nullable(true);
+            $table->string('logo')->nullable(true);
+            $table->string('frontend_logo')->nullable(true);
             $table->integer('academic_year_id')->nullable(true);
             $table->string('academic_year', 20)->nullable(true);
             $table->string('school_lat', 100)->nullable(true);
