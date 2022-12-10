@@ -18,7 +18,7 @@ class SchoolSeeder extends Seeder
 
         DB::table('schools')->insert([
             [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 1,
@@ -27,7 +27,7 @@ class SchoolSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date
             ], [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 2,
@@ -36,7 +36,7 @@ class SchoolSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date
             ], [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 3,
@@ -45,7 +45,7 @@ class SchoolSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date
             ], [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 4,
@@ -54,7 +54,7 @@ class SchoolSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date
             ], [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 5,
@@ -63,7 +63,7 @@ class SchoolSeeder extends Seeder
                 'created_at' => $date,
                 'updated_at' => $date
             ], [
-                'school_name' => 'Centro Universitario Latino Veracruz',
+                'name' => 'Centro Universitario Latino Veracruz',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'educational_system_id' => 6,
