@@ -20,7 +20,7 @@ class CreateSchoolsTable extends Migration
             $table->string('registration_date', 50)->nullable();
             $table->string('tax_id', 25)->nullable();
             $table->string('address', 255);
-            $table->string('phone', 10)->nullable();
+            $table->string('phone', 50)->nullable();
             $table->string('email', 50);
             $table->text('footer')->nullable();
             $table->string('logo')->nullable();
