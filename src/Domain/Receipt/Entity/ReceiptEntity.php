@@ -13,7 +13,7 @@ class ReceiptEntity
     private string $payment_concept;
     private float $amount;
     private string $amount_text;
-    private ?DateTime $issued_date;
+    private ?DateTime $payment_date;
     private ?string $note;
 
     /**
@@ -115,17 +115,17 @@ class ReceiptEntity
     /**
      * @return DateTime|null
      */
-    public function getIssuedDate(): ?DateTime
+    public function getPaymentDate(): ?DateTime
     {
-        return $this->issued_date;
+        return $this->payment_date;
     }
 
     /**
-     * @param DateTime|null $issued_date
+     * @param DateTime|null $payment_date
      */
-    public function setIssuedDate(?DateTime $issued_date = null): void
+    public function setPaymentDate(?DateTime $payment_date = null): void
     {
-        $this->issued_date = $issued_date;
+        $this->payment_date = $payment_date;
     }
 
     /**
