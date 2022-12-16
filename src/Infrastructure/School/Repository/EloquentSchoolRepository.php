@@ -70,6 +70,15 @@ class EloquentSchoolRepository implements GlobalRepository {
         return DB::table('schools')->where($column, $operator, $value, $boolean)->get();
     }
 
+    public function allByEducationalSystem(string $educationalSystem): \Illuminate\Support\Collection
+    {
+        return DB::table('schools')
+            ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+            ->select('schools.*')
+            ->where('educational_systems.name', '=', $educationalSystem)
+            ->orderBy('id')->latest()->get();
+    }
+
     public function detach(Model $model)
     {
         // TODO: Implement detach() method.

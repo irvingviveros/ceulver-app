@@ -65,6 +65,11 @@ class SchoolService
         return $this->schoolRepository->all($columns);
     }
 
+    public function getAllByEducationalSystem(string $educationalSystem): Collection
+    {
+        return $this->schoolRepository->allByEducationalSystem($educationalSystem);
+    }
+
     public function where($column, $operator = null, $value = null, string $boolean = 'and')
     {
         return $this->schoolRepository->where($column, $operator, $value, $boolean);
