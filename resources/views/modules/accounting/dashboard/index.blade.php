@@ -1,6 +1,6 @@
 @extends('layouts/contentLayoutMaster')
 
-@section('title', 'Coordinación académica')
+@section('title', 'Coordinación administrativa')
 
 @section('vendor-style')
     <!-- vendor css files -->
