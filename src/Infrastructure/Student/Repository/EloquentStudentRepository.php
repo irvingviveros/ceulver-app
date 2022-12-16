@@ -44,6 +44,16 @@ class EloquentStudentRepository implements GlobalRepository
         return Student::all($columns);
     }
 
+    public function allByEducationalSystem(string $educationalSystem): \Illuminate\Support\Collection
+    {
+        return DB::table('students')
+            ->join('schools', 'students.school_id', '=', 'schools.id')
+            ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+            ->select('students.*')
+            ->where('educational_systems.name', '=', $educationalSystem)
+            ->orderBy('id')->latest()->get();
+    }
+
     public function with($relation)
     {
         return Student::with($relation)->get();
@@ -52,5 +62,10 @@ class EloquentStudentRepository implements GlobalRepository
     public function detach(Model $model)
     {
         // TODO: Implement detach() method.
+    }
+
+    public function where(string $column, string $operator, string $value): \Illuminate\Support\Collection
+    {
+        return DB::table('students')->where($column, $operator, $value)->get();
     }
 }

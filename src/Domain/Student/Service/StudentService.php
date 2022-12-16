@@ -135,6 +135,16 @@ class StudentService
         $this->studentRepository->delete($student);
     }
 
+    public function where($column, $operator, $value): \Illuminate\Support\Collection
+    {
+        return $this->studentRepository->where($column, $operator, $value);
+    }
+
+    public function getAllByEducationalSystem(string $educationalSystem)
+    {
+        return $this->studentRepository->allByEducationalSystem($educationalSystem);
+    }
+
     public function calculateAge(Carbon $birth_date): int
     {
         return CalculateAge::execute($birth_date);
