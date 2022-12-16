@@ -38,7 +38,7 @@ class ReceiptService
             'payment_concept'   => $receiptEntity->getPaymentConcept(),
             'amount'            => $receiptEntity->getAmount(),
             'amount_text'       => $receiptEntity->getAmountText(),
-            'issued_date'       => $receiptEntity->getIssuedDate(),
+            'issued_date'       => $receiptEntity->getPaymentDate(),
             'note'              => $receiptEntity->getNote(),
             'created_by'        => $createdBy,
             'created_at'        => date_create(),
@@ -84,7 +84,7 @@ class ReceiptService
         $receipt->payment_concept   = $receiptEntity->getPaymentConcept();
         $receipt->amount            = $receiptEntity->getAmount();
         $receipt->amount_text       = $receiptEntity->getAmountText();
-        $receipt->issued_date       = $receiptEntity->getIssuedDate();
+        $receipt->issued_date       = $receiptEntity->getPaymentDate();
         $receipt->note              = $receiptEntity->getNote();
         $receipt->modified_by       = $modifiedBy;
         $receipt->updated_at        = date_create();
@@ -104,6 +104,10 @@ class ReceiptService
         $receipt = $this->findById($id);
 
         $this->receiptRepository->delete($receipt);
+    }
+
+    public function with($relation){
+        return $this->receiptRepository->with($relation);
     }
 
     public function moneyToText(Int|Float $number, $decimals = 2, $currency = 'pesos', $cents = 'centavos'): string
