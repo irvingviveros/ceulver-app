@@ -25,7 +25,7 @@ class StudentReceiptService
         return $this->studentReceiptRepository->all();
     }
 
-    public function getAllByEducationalSystem(string $educationalSystem)
+    public function getAllByEducationalSystem(string $educationalSystem): Collection
     {
         return $this->studentReceiptRepository->allByEducationalSystem($educationalSystem);
     }
@@ -83,6 +83,10 @@ class StudentReceiptService
             return ResponseAlias::HTTP_BAD_REQUEST;
         }
         return ResponseAlias::HTTP_OK;
+    }
+
+    public function with($relation){
+        return $this->studentReceiptRepository->with($relation);
     }
 
     /**
