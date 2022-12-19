@@ -2,6 +2,7 @@
 
 namespace Infrastructure\School\Model;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -72,30 +73,35 @@ class School extends Model
      * Get those careers associated with the School.
      *  $school -> studentType
      */
-    public function careers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function careers(): BelongsToMany
     {
         return $this->belongsToMany(Career::class, 'career_school')
             ->using(CareerSchool::class)
             ->withTimestamps();
     }
 
-    public function subjects(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function subjects(): HasMany
     {
         return $this->hasMany(Subject::class);
     }
 
-    public function academicYears(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function academicYears(): HasMany
     {
         return $this->hasMany(AcademicYear::class);
     }
 
-    public function teachers(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function teachers(): HasMany
     {
         return $this->hasMany(Teacher::class);
     }
 
-    public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function students(): HasMany
     {
         return $this->hasMany(Student::class);
+    }
+
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 }

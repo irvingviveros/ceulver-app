@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -50,5 +51,14 @@ class User extends Authenticatable
     public function student(): BelongsTo
     {
         return $this->belongsTo(Student::class);
+    }
+
+    /**
+     * Get the School associated with the user.
+     *  $user -> school
+     */
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class);
     }
 }
