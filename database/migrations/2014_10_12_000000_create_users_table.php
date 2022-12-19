@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('email')->nullable()->unique();
             $table->tinyInteger('status')->default(1);
             $table->string('password');
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_super_admin')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->integer('created_by')->default('0');
             $table->integer('modified_by')->default('0');
             $table->timestamp('email_verified_at')->nullable();
