@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Infrastructure\User\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

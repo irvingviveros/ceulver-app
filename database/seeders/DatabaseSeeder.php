@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             CycleSeeder::class,
             ReceiptSeeder::class,
             StudentReceiptSeeder::class,
+            AssignRolesAndPermissionsSeeder::class,
         ]);
     }
 }

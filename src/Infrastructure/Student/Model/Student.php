@@ -2,7 +2,6 @@
 
 namespace Infrastructure\Student\Model;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,6 +12,7 @@ use Infrastructure\Guardian\Model\Guardian;
 use Infrastructure\Scholarship\Model\Scholarship;
 use Infrastructure\School\Model\School;
 use Infrastructure\StudentReceipt\Model\StudentReceipt;
+use Infrastructure\User\Model\User;
 
 class Student extends Model
 {

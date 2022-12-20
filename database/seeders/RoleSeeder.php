@@ -5,37 +5,29 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class RoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Create the initial roles and permissions.
      *
      * @return void
      */
     public function run()
     {
-        $role1 = Role::create(['name' => 'admin']);
-        $role2 = Role::create(['name' => 'student']);
+        // Reset cached roles and permissions
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        Permission::create(['name' => 'home'])->syncRoles([$role1, $role2]);
+        $role1 = Role::create(['name' => 'super-admin']);
+        $role2 = Role::create(['name' => 'admin']);
+        $role3 = Role::create(['name' => 'student']);
 
-        Permission::create(['name' => 'manage-schools.index'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-schools.store'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-schools.edit'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-schools.update'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-schools.destroy'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'home'])->syncRoles([$role1, $role2, $role3]);
 
-        Permission::create(['name' => 'manage-careers.index'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-careers.store'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-careers.edit'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-careers.update'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-careers.destroy'])->syncRoles([$role1, $role2]);
-
-        Permission::create(['name' => 'manage-email-settings.index'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-email-settings.store'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-email-settings.edit'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-email-settings.update'])->syncRoles([$role1, $role2]);
-        Permission::create(['name' => 'manage-email-settings.destroy'])->syncRoles([$role1, $role2]);
+        Permission::create(['name' => 'accounting-dashboard'])->syncRoles([$role1]);
+        Permission::create(['name' => 'student-receipts-educational-system.index'])->syncRoles([$role1]);
+        Permission::create(['name' => 'student-receipts-educational-system.create'])->syncRoles([$role1]);
+        Permission::create(['name' => 'student-receipts-educational-system.show'])->syncRoles([$role1]);
     }
 }

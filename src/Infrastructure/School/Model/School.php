@@ -2,21 +2,21 @@
 
 namespace Infrastructure\School\Model;
 
-use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Infrastructure\EducationalSystem\Model\EducationalSystem;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\EducationalSystem\Model\EducationalSystem;
 use Infrastructure\Group\Model\Group;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Subject\Model\Subject;
 use Infrastructure\Syllabus\Model\Syllabus;
 use Infrastructure\Teacher\Model\Teacher;
+use Infrastructure\User\Model\User;
 
 class School extends Model
 {
