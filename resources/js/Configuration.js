@@ -96,8 +96,6 @@ const Configuration = (function(Modal){
         consume: function(pconfig) {
             let config = getInitialConfig();
             $.extend(config, (pconfig || {}));
-            console.log(config)
-            console.log(pconfig)
             return $.ajax(config).always(function(
                 data, status, error
             ) {
