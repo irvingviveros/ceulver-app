@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Infrastructure\User\Model\User;
 
 class UserSeeder extends Seeder
 {
@@ -14,8 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $date = now();   //Get current date
-
         DB::table('users')->insert([
             [
                 'school_id' => 1,
@@ -23,17 +22,17 @@ class UserSeeder extends Seeder
                 'email' => 'admin@mail.com',
                 'status' => 1,
                 'password' => bcrypt('admin'),
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
+                'updated_at' => date_create()
             ],
             [
                 'school_id' => 1,
                 'username' => 'sudo2',
                 'email' => 'admin2@mail.com',
                 'status' => 1,
-                'password' => bcrypt('admin2'),
-                'created_at' => $date,
-                'updated_at' => $date
+                'password' => bcrypt('admin'),
+                'created_at' => date_create(),
+                'updated_at' => date_create()
             ]
         ]);
     }
