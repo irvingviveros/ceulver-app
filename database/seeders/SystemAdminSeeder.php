@@ -14,8 +14,6 @@ class SystemAdminSeeder extends Seeder
      */
     public function run()
     {
-        $date = now();   //Get current date
-
         DB::table('system_admins')->insert([
             [
                 'is_default' => 1,
@@ -33,27 +31,27 @@ class SystemAdminSeeder extends Seeder
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
+                'updated_at' => null
             ],
             [
-                'is_default' => 1,
+                'is_default' => 0,
                 'user_id' => 2,
-                'name' => 'Super',
-                'last_name' => 'Admin 2',
-                'email' => 'super-admin@mail.com',
+                'name' => 'Admin',
+                'last_name' => '2',
+                'email' => 'admin@mail.com',
                 'phone' => '2222333333',
                 'address' => '',
                 'gender' => 'Masculino',
                 'birthday' => '1996-01-01',
                 'photo' => '',
                 'resume' => '',
-                'other_info' => 'Super administrador global, desarrollador.',
+                'other_info' => 'Administrador global, desarrollador.',
                 'status' => 1,
                 'created_by' => 1,
                 'modified_by' => 1,
-                'created_at' => $date,
-                'updated_at' => $date
+                'created_at' => date_create(),
+                'updated_at' => null
             ]
         ]);
     }
