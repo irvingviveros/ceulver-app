@@ -7,13 +7,16 @@ const Application = (function () {
         getToken: function () {
             return $('meta[name="csrf-token"]').attr('content');
         },
-        getDatatableConfiguration(DataTableObject) {
+        getDatatableConfiguration(DataTableEvents, DataTableConfig) {
             return {
-                order: [],
+                processing: true,
+                serverSide: true,
+                ajax: DataTableConfig.ajax,
+                order: DataTableConfig.order,
                 columnDefs: [
                     {
-                    targets: -1, // 'Actions' column (last column is always "-1").
-                    orderable: false,
+                        targets: -1, // 'Actions' column (last column is always "-1").
+                        orderable: false,
                     },
                     {
                         targets: 0, // For checkboxes
@@ -32,6 +35,7 @@ const Application = (function () {
                         }
                     }
                 ],
+                columns: DataTableConfig.columns,
                 dom: '<"card-header border-bottom p-1"<"head-label"><"dt-action-buttons text-end"B>><"d-flex justify-content-between align-items-center mx-0 row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"d-flex justify-content-between mx-0 row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
                 buttons: [
                     {
@@ -134,11 +138,17 @@ const Application = (function () {
                 displayLength: 10,
                 lengthMenu: [10, 25, 50, 75, 100],
                 language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json'
+                    url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json',
+                    processing: '<div class="d-flex justify-content-center"><div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div></div>',
+                    searchPlaceholder: 'Búsqueda rápida'
                 },
                 select: true,
+                fixedHeader: true,
                 initComplete: function (settings, json) {
-                    DataTableObject.loadEvents();
+                    DataTableEvents.loadEvents();
+                },
+                drawCallback: function () {
+                    $(document).find('[data-bs-toggle="tooltip"]').tooltip();
                 }
             }
         }
