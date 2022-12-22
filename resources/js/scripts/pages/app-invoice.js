@@ -10,47 +10,6 @@
 $(function () {
   'use strict';
 
-  var applyChangesBtn = $('.btn-apply-changes'),
-    discount,
-    tax1,
-    tax2,
-    discountInput,
-    tax1Input,
-    tax2Input,
-    sourceItem = $('.source-item'),
-    date = new Date(),
-    datepicker = $('.date-picker'),
-    dueDate = $('.due-date-picker'),
-    select2 = $('.invoiceto'),
-    countrySelect = $('#customer-country'),
-    btnAddNewItem = $('.btn-add-new '),
-    adminDetails = {
-      'App Design': 'Designed UI kit & app pages.',
-      'App Customization': 'Customization & Bug Fixes.',
-      'ABC Template': 'Bootstrap 4 admin template.',
-      'App Development': 'Native App Development.'
-    },
-    customerDetails = {
-      shelby: {
-        name: 'Thomas Shelby',
-        company: 'Shelby Company Limited',
-        address: 'Small Heath, Birmingham',
-        pincode: 'B10 0HF',
-        country: 'UK',
-        tel: 'Tel: 718-986-6062',
-        email: 'peakyFBlinders@gmail.com'
-      },
-      hunters: {
-        name: 'Dean Winchester',
-        company: 'Hunters Corp',
-        address: '951  Red Hawk Road Minnesota,',
-        pincode: '56222',
-        country: 'USA',
-        tel: 'Tel: 763-242-9206',
-        email: 'waywardSon@gmail.com'
-      }
-    };
-
   // init date picker
   if (datepicker.length) {
     datepicker.each(function () {
