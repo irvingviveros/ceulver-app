@@ -2,6 +2,7 @@
 
 use App\Models\EmailSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
@@ -11,6 +12,7 @@ use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
 use Infrastructure\Syllabus\Model\Syllabus;
 use Yajra\DataTables\DataTables;
+use Illuminate\Database\Eloquent\Builder;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +81,20 @@ Route::get('syllabi', function(){
 Route::get('cycle', function(){
     return datatables()
         ->eloquent(Cycle::query())
+        ->toJson();
+});
+
+Route::get('students/receipts', function(){
+
+    $query = DB::table('receipts')
+        ->join('student_receipts', 'receipts.id', '=', 'student_receipts.receipt_id')
+        ->join('students', 'student_receipts.student_id', '=', 'students.id')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->select('receipts.*', 'students.enrollment', 'students.id AS student_id')
+        ->where('educational_systems.name', '=', 'Universidad');
+
+    return datatables()
+        ->query($query)
         ->toJson();
 });
