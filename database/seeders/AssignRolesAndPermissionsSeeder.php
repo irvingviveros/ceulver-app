@@ -17,9 +17,11 @@ class AssignRolesAndPermissionsSeeder extends Seeder
         // Find default users
         $superAdminUser = User::find(1);
         $adminUser = User::find(2);
+        $accountingUser = User::find(3);
 
         // Assign roles
         $superAdminUser->assignRole('super-admin');
         $adminUser->assignRole('admin');
+        $accountingUser->assignRole('accounting');
     }
 }

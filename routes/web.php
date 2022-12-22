@@ -84,9 +84,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //    Route::get('manage-students/agreement/{agreement}/edit', [AgreementController::class, 'edit']);
 
     // Financial management
-    Route::group(['prefix' => 'accounting'], function() {
-        Route::get('dashboard', AccountingDashboard::class)->name('accounting.dashboard');
-        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsByEducationalSystem'])->name('student-receipts-educational-system.show');
+    Route::group(['prefix' => 'accounting', 'middleware' => ['can:student-receipts.educational-system.index']], function() {
+        Route::get('dashboard', AccountingDashboard::class)
+            ->name('accounting.dashboard')
+            ->middleware('can:accounting-dashboard.index');
+        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsByEducationalSystem'])
+            ->name('student-receipts-educational-system.index')
+            ->middleware('can:student-receipts.educational-system.index');
+        Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createByEducationalSystem'])
+            ->name('student-receipts-educational-system.create')
+            ->middleware('can:student-receipts.educational-system.create');
+        Route::get('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'showByEducationalSystem'])
+            ->name('student-receipts-educational-system.show')
+            ->middleware('can:student-receipts.educational-system.show');
         Route::resource('student-receipts', StudentReceiptController::class);
     });
 

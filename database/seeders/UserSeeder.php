@@ -18,7 +18,16 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'school_id' => 1,
-                'username' => 'sudo',
+                'username' => 'spadmin',
+                'email' => 'spadmin@mail.com',
+                'status' => 1,
+                'password' => bcrypt('admin'),
+                'created_at' => date_create(),
+                'updated_at' => date_create()
+            ],
+            [
+                'school_id' => 1,
+                'username' => 'admin',
                 'email' => 'admin@mail.com',
                 'status' => 1,
                 'password' => bcrypt('admin'),
@@ -27,13 +36,13 @@ class UserSeeder extends Seeder
             ],
             [
                 'school_id' => 1,
-                'username' => 'sudo2',
-                'email' => 'admin2@mail.com',
+                'username' => 'acc',
+                'email' => 'accounting@mail.com',
                 'status' => 1,
                 'password' => bcrypt('admin'),
                 'created_at' => date_create(),
                 'updated_at' => date_create()
-            ]
+            ],
         ]);
     }
 }

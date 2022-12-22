@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -14,20 +15,38 @@ class RoleSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $role1 = Role::create(['name' => 'super-admin']);
-        $role2 = Role::create(['name' => 'admin']);
-        $role3 = Role::create(['name' => 'student']);
+        // Accounting permission names
+        $accountingPermissionNames = [
+            'accounting-dashboard.index',
+            'student-receipts.educational-system.index',
+            'student-receipts.educational-system.create',
+            'student-receipts.educational-system.show',
+            'student-receipts.educational-system.edit',
+            'student-receipts.educational-system.softDelete'
+        ];
 
-        Permission::create(['name' => 'home'])->syncRoles([$role1, $role2, $role3]);
+        // Create roles
+        $roleSuperAdmin = Role::create(['name' => 'super-admin']);
+        $roleAdmin = Role::create(['name' => 'admin']);
+        $roleStudent = Role::create(['name' => 'student']);
+        $roleAccounting = Role::create(['name' => 'accounting']);
 
-        Permission::create(['name' => 'accounting-dashboard'])->syncRoles([$role1]);
-        Permission::create(['name' => 'student-receipts-educational-system.index'])->syncRoles([$role1]);
-        Permission::create(['name' => 'student-receipts-educational-system.create'])->syncRoles([$role1]);
-        Permission::create(['name' => 'student-receipts-educational-system.show'])->syncRoles([$role1]);
+        // Assign to 'accounting' role his permissions
+        foreach ($accountingPermissionNames as $accountingPermissionName)
+            Permission::create(['name' => $accountingPermissionName]);
+
+        // Assign 'home' permission
+        Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
+
+        // Assign 'accounting' permissions
+        $roleAccounting->syncPermissions($accountingPermissionNames);
+
+        // Test
+//        $roleAccounting->revokePermissionTo('student-receipts.educational-system.show');
     }
 }
