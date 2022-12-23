@@ -43,6 +43,9 @@ class RoleSeeder extends Seeder
         // Assign 'home' permission
         Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
 
+        // Permissions super admin
+        Permission::create(['name' => 'see super-admin panel'])->syncRoles($roleSuperAdmin);
+
         // Assign 'accounting' permissions
         $roleAccounting->syncPermissions($accountingPermissionNames);
 
