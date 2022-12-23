@@ -27,7 +27,8 @@ class RoleSeeder extends Seeder
             'student-receipts.educational-system.create',
             'student-receipts.educational-system.show',
             'student-receipts.educational-system.edit',
-            'student-receipts.educational-system.softDelete'
+            'student-receipts.educational-system.softDelete',
+            'see accounting panel',
         ];
 
         // Create roles
