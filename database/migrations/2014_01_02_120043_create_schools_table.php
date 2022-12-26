@@ -41,7 +41,7 @@ class CreateSchoolsTable extends Migration
             $table->tinyInteger('status')->default(1);
             // Foreign key
             $table->foreignId('educational_system_id')->nullable()->constrained();
-
+            $table->foreignId('company_id')->nullable(false);
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();
