@@ -16,6 +16,12 @@
             "slug": "admin",
             "submenu": [
                 {
+                    "url": "admin/companies",
+                    "name": "Manage companies",
+                    "icon": "corner-down-right",
+                    "slug": "admin.companies"
+                },
+                {
                     "url": "admin/manage-schools",
                     "name": "Manage Schools",
                     "icon": "circle",

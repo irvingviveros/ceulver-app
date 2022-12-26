@@ -1,6 +1,7 @@
 <?php
 
 return [
+    "Manage companies" => "Administrar compañías",
     "Nursery school" => "Maternal",
     "Kindergarten" => "Kinder",
     "Bulk upload" => "Carga masiva",
