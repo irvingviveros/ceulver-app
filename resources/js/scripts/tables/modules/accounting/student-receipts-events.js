@@ -4,6 +4,9 @@ const StudentReceiptsEvents = (function () {
     // Main route
     const urlController = Application.getUrl();
 
+    // Get educational system.
+    let educationalSystem = $("#educationalSystemName").val();
+
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
@@ -11,7 +14,7 @@ const StudentReceiptsEvents = (function () {
         // Apply Datatable default events and configuration
         table.DataTable(
             Application.getDatatableConfiguration(
-                StudentReceiptsEvents, StudentReceiptsDatatable
+                StudentReceiptsEvents, StudentReceiptsDatatable(educationalSystem)
             ))
         // Apply icons on all table pages
         feather.replace();

@@ -91,10 +91,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('dashboard', AccountingDashboard::class)
             ->name('accounting.dashboard')
             ->middleware('can:accounting-dashboard.index');
-        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsByEducationalSystem'])
+        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsWithEducationalSystem'])
             ->name('student-receipts-educational-system.index')
             ->middleware('can:student-receipts.educational-system.index');
-        Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createByEducationalSystem'])
+        Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
         Route::get('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'showByEducationalSystem'])

@@ -30,6 +30,11 @@ class StudentReceiptService
         return $this->studentReceiptRepository->allByEducationalSystem($educationalSystem);
     }
 
+    public function getAllBySchoolId(int $schoolId): Collection
+    {
+        return $this->studentReceiptRepository->allBySchoolId($schoolId);
+    }
+
     public function createReceipt(StudentReceiptEntity $studentReceiptEntity, $createdBy): int
     {
         $data = array(
@@ -97,5 +102,15 @@ class StudentReceiptService
         $studentReceipt = $this->findById($id);
 
         $this->studentReceiptRepository->delete($studentReceipt);
+    }
+
+    public function where($column, $operator, $value): \Illuminate\Support\Collection
+    {
+        return $this->studentReceiptRepository->where($column, $operator, $value);
+    }
+
+    public function lastReceiptId()
+    {
+        return $this->studentReceiptRepository->lastReceiptId();
     }
 }

@@ -176,6 +176,7 @@
     "/js/Configuration.js": "/js/Configuration.js",
     "/js/Delete.js": "/js/Delete.js",
     "/js/Modal.js": "/js/Modal.js",
+    "/data/datatables/student-receipts/student-receipts-columns.js": "/data/datatables/student-receipts/student-receipts-columns.js",
     "/data/datatables/student-receipts/student-receipts-datatable.js": "/data/datatables/student-receipts/student-receipts-datatable.js",
     "/js/utils/enrollment-generator.js": "/js/utils/enrollment-generator.js",
     "/js/utils/input-uppercase.js": "/js/utils/input-uppercase.js",
@@ -1457,6 +1458,7 @@
     "/images/svg/google.svg": "/images/svg/google.svg",
     "/data/ag-grid-data.json": "/data/ag-grid-data.json",
     "/data/ajax.php": "/data/ajax.php",
+    "/data/datatables/student-receipts/university-student-receipts-datatable.js": "/data/datatables/student-receipts/university-student-receipts-datatable.js",
     "/data/fullcalendar/json/events.json": "/data/fullcalendar/json/events.json",
     "/data/fullcalendar/php/get-events.php": "/data/fullcalendar/php/get-events.php",
     "/data/fullcalendar/php/get-timezones.php": "/data/fullcalendar/php/get-timezones.php",
@@ -1467,6 +1469,7 @@
     "/data/menu-data/horizontalMenu.json": "/data/menu-data/horizontalMenu.json",
     "/data/menu-data/verticalMenu.json": "/data/menu-data/verticalMenu.json",
     "/data/search.json": "/data/search.json",
+    "/data/select2/ajax-data.js": "/data/select2/ajax-data.js",
     "/data/table-datatable.json": "/data/table-datatable.json",
     "/data/user-list.json": "/data/user-list.json"
 }
