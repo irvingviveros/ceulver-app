@@ -35,11 +35,8 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
         ->join('students', 'student_receipts.student_id', '=', 'students.id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
-        ->select('receipts.*', 'students.id AS student_id')
+        ->select('receipts.*', 'students.id AS student_id', 'students.enrollment')
         ->where('educational_systems.name', '=', $educationalSystem);
-
-    if ($educationalSystem === 'Universidad')
-        $query->addSelect('students.enrollment');
 
     return datatables()
         ->query($query)
