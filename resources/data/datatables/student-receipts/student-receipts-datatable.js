@@ -8,7 +8,7 @@ let basicColumns = [
     {data: "payment_concept"},
     {
         data: "amount",
-        render: function (data) {
+        render: function (data, type, row) {
             return '$' + data
         }
     },
