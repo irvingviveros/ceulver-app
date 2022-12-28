@@ -42,3 +42,17 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
         ->query($query)
         ->toJson();
 });
+
+Route::get('school/{code}/students/', function ($code) {
+
+    $query = DB::table('students')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->select('students.id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
+        'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id')
+        ->where('schools.code', '=', $code);
+
+    return datatables()
+        ->query($query)
+        ->toJson();
+});
