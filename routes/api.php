@@ -1,17 +1,8 @@
 <?php
 
-use App\Models\EmailSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use Infrastructure\Agreement\Model\Agreement;
-use Infrastructure\Career\Model\Career;
-use Infrastructure\Cycle\Model\Cycle;
-use Infrastructure\Group\Model\Group;
-use Infrastructure\School\Model\School;
-use Infrastructure\Student\Model\Student;
-use Infrastructure\Syllabus\Model\Syllabus;
-use Yajra\DataTables\DataTables;
 
 /*
 |--------------------------------------------------------------------------
