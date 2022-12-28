@@ -15,9 +15,9 @@ class Receipt extends Model
 
     /**
      * Get the student receipt associated with the receipt.
-     *  $receipt -> studentReceipt
+     *  $receipt -> studentReceipts
      */
-    public function studentReceipt(): HasMany
+    public function studentReceipts(): HasMany
     {
         return $this->hasMany(StudentReceipt::class);
     }

@@ -16,6 +16,12 @@
             "slug": "admin",
             "submenu": [
                 {
+                    "url": "admin/companies",
+                    "name": "Manage companies",
+                    "icon": "corner-down-right",
+                    "slug": "admin.companies"
+                },
+                {
                     "url": "admin/manage-schools",
                     "name": "Manage Schools",
                     "icon": "circle",
@@ -117,50 +123,49 @@
         },
         {
             "name": "Administrative Coordination",
-            "icon": "dollar-sign",
-            "slug": "administrative",
+            "icon": "pie-chart",
+            "slug": "",
             "submenu": [
                 {
                     "url": "admin/accounting/dashboard",
                     "name": "Main Dashboard",
-                    "icon": "circle",
-                    "slug": "accounting-dashboard"
+                    "slug": "accounting.dashboard"
                 },
                 {
                     "url": "admin/accounting/student-receipts/university",
                     "name": "University",
-                    "icon": "circle",
-                    "slug": "university"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/bachelor",
                     "name": "Bachelor",
-                    "icon": "circle",
-                    "slug": "bachelor"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/high-school",
                     "name": "High school",
-                    "icon": "circle",
-                    "slug": "high-school"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/elementary-school",
                     "name": "Elementary school",
-                    "icon": "circle",
-                    "slug": "elementary-school"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/kindergarten",
                     "name": "Kindergarten",
-                    "icon": "circle",
-                    "slug": "kindergarten"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/nursery-school",
                     "name": "Nursery school",
-                    "icon": "circle",
-                    "slug": "nursery-school"
+                    "icon": "corner-down-right",
+                    "slug": "student-receipts-educational-system.index"
                 }
             ]
         }

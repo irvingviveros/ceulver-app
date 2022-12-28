@@ -27,7 +27,8 @@ class RoleSeeder extends Seeder
             'student-receipts.educational-system.create',
             'student-receipts.educational-system.show',
             'student-receipts.educational-system.edit',
-            'student-receipts.educational-system.softDelete'
+            'student-receipts.educational-system.softDelete',
+            'see accounting panel',
         ];
 
         // Create roles
@@ -42,6 +43,9 @@ class RoleSeeder extends Seeder
 
         // Assign 'home' permission
         Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
+
+        // Permissions super admin
+        Permission::create(['name' => 'see super-admin panel'])->syncRoles($roleSuperAdmin);
 
         // Assign 'accounting' permissions
         $roleAccounting->syncPermissions($accountingPermissionNames);

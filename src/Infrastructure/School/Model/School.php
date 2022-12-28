@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Infrastructure\AcademicYear\Model\AcademicYear;
 use Infrastructure\Agreement\Model\Agreement;
 use Infrastructure\Career\Model\Career;
+use Infrastructure\Company\Model\Company;
 use Infrastructure\EducationalSystem\Model\EducationalSystem;
 use Infrastructure\Group\Model\Group;
 use Infrastructure\Student\Model\Student;
@@ -103,5 +104,10 @@ class School extends Model
     public function users(): HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
     }
 }

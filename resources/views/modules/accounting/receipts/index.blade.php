@@ -30,17 +30,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="table-responsive">
-                        @if ($educationalSystemName === 'Universidad')
-                            @include('modules.accounting.receipts.list.university-list')
-                        @else
-                            @include('modules.accounting.receipts.list.list')
-                        @endif
+                        @include('modules.accounting.receipts.list.student-receipt-list')
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
+    <input
+        type="hidden"
+        name="educationalSystemName"
+        id="educationalSystemName"
+        value="@isset($educationalSystemName){{ $educationalSystemName }}@endisset"
+    />
     <!--/ Basic table -->
 @endsection
 
@@ -64,7 +65,6 @@
     <script src="{{ asset(mix('vendors/js/forms/validation/jquery.validate.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/pickers/flatpickr/flatpickr.min.js')) }}"></script>
     <script src="{{ asset(mix('vendors/js/extensions/moment.min.js')) }}"></script>
-
 @endsection
 @section('page-script')
     <!-- Page JS files, global -->
@@ -76,9 +76,8 @@
     <!-- Page JS files, global -->
 
     <!-- Local JS files -->
-
+    <script src="{{ asset(mix('js/scripts/forms/form-select2.js')) }}"></script>
     <!-- Datatable config, events and data -->
-
     <script src="{{ asset(mix('data/datatables/student-receipts/student-receipts-datatable.js')) }}"></script>
     <script
         src="{{ asset(mix('js/scripts/tables/modules/accounting/student-receipts-events.js')) }}"

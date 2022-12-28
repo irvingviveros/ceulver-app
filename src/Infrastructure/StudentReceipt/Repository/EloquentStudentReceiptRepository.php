@@ -28,6 +28,22 @@ class EloquentStudentReceiptRepository implements GlobalRepository
             ->orderBy('id')->latest()->get();
     }
 
+    public function allBySchoolId(int $schoolId)
+    {
+        return DB::table('receipts')
+            ->join('student_receipts', 'receipts.id', '=', 'student_receipts.receipt_id')
+            ->join('students', 'student_receipts.student_id', '=', 'students.id')
+            ->join('schools', 'students.school_id', '=', 'schools.id')
+            ->select('receipts.*', 'students.enrollment AS student_enrollment', 'students.id AS student_id')
+            ->where('schools.id', '=', $schoolId)
+            ->orderBy('id')->latest()->get();
+    }
+
+    public function lastReceiptId()
+    {
+        return StudentReceipt::pluck('id')->last();
+    }
+
     public function checkIfNameExists($name): bool
     {
         return false;
@@ -62,5 +78,10 @@ class EloquentStudentReceiptRepository implements GlobalRepository
     public function detach(Model $model)
     {
         // TODO: Implement detach() method.
+    }
+
+    public function where(string $column, string $operator, string $value): \Illuminate\Support\Collection
+    {
+        return DB::table('students')->where($column, $operator, $value)->get();
     }
 }

@@ -8,8 +8,9 @@
         <th>Concepto de pago</th>
         <th>Cantidad</th>
         <th>Fecha de pago</th>
-        <th>Matrícula</th>
-        <th>ID estudiante</th>
+        @if($educationalSystemName === 'Universidad')
+            <th>Matrícula</th>
+        @endif
         <th class="noVis">Acciones</th>
     </tr>
     </thead>
@@ -54,18 +55,14 @@
                        placeholder="Fecha pago" data-column="6">
             </label>
         </th>
-        <th>
-            <label>
-                <input type="text" class="form-control filter-input"
-                       placeholder="Matrícula" data-column="7">
-            </label>
-        </th>
-        <th>
-            <label>
-                <input type="text" class="form-control filter-input"
-                       placeholder="ID est." data-column="8">
-            </label>
-        </th>
+        @if($educationalSystemName === 'Universidad')
+            <th>
+                <label>
+                    <input type="text" class="form-control filter-input"
+                           placeholder="Matrícula" data-column="7">
+                </label>
+            </th>
+        @endif
         <th></th>
     </tr>
     </tfoot>

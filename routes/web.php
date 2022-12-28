@@ -44,30 +44,33 @@ Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middle
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //Route::group(['prefix' => 'admin'], function() {
     // Schools management, route admin/manage-schools
-    Route::resource('manage-schools', SchoolController::class)->except([
-        'create', 'show'
-    ]);
+    Route::resource('manage-schools', SchoolController::class)
+        ->except(['create', 'show'])
+        ->middleware('role:super-admin');
 
     // Email config, route admin/email-settings
-    Route::resource('email-settings', EmailSettingController::class)->except([
-        'create', 'show'
-    ]);
+    Route::resource('email-settings', EmailSettingController::class)
+        ->except(['create', 'show'])
+        ->middleware('role:super-admin');
 
     // Academic year config, route admin/academic-year
-    Route::resource('academic-years', AcademicYearController::class)->except([
-        'show'
-    ]);
-    Route::get('/academic-years/getList', [AcademicYearController::class, 'getList']);
+    Route::resource('academic-years', AcademicYearController::class)
+        ->except(['show'])
+        ->middleware('role:super-admin');
 
-    Route::resource('modalities', ModalityController::class)->except([
-        'show'
-    ]);
+    Route::get('/academic-years/getList', [AcademicYearController::class, 'getList'])
+        ->middleware('role:super-admin');
+
+    Route::resource('modalities', ModalityController::class)->except(['show'])
+        ->middleware('role:super-admin');
+
     Route::get('/modalities/getList', [ModalityController::class, 'getList']);
 
-    Route::resource('teachers', TeacherController::class)->except([
-       'show'
-    ]);
-    Route::get('/teachers/getList', [TeacherController::class, 'getList']);
+    Route::resource('teachers', TeacherController::class)->except(['show'])
+        ->middleware('role:super-admin');
+
+    Route::get('/teachers/getList', [TeacherController::class, 'getList'])
+        ->middleware('role:super-admin');
 
     // Students management
     Route::group(['prefix' => 'manage-students'], function() {
@@ -88,10 +91,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('dashboard', AccountingDashboard::class)
             ->name('accounting.dashboard')
             ->middleware('can:accounting-dashboard.index');
-        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsByEducationalSystem'])
+        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsWithEducationalSystem'])
             ->name('student-receipts-educational-system.index')
             ->middleware('can:student-receipts.educational-system.index');
-        Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createByEducationalSystem'])
+        Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
         Route::get('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'showByEducationalSystem'])

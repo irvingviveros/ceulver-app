@@ -143,24 +143,31 @@ class StudentReceiptController extends Controller
      *
      * @return View
      */
-    public function createByEducationalSystem(string $educationalSystem): View
+    public function createWithEducationalSystem(string $educationalSystem): View
     {
-
+        // Get educational system name from DB
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
-        // Get student by educational system
-        $students = $this->studentService->getAllByEducationalSystem($educationalSystemName);
-        // TODO: this is not dynamic, need refactor/fix
-        $schools = $this->schoolService->getAllByEducationalSystem($educationalSystemName);
 
-        return view('modules.accounting.receipts.actions.modal-add-student-receipt', compact(['students', 'schools']));
+        // Retrieve the currently authenticated user
+        $currentUser = auth()->user();
+        // Retrieve the school associated with the user
+        $school = $currentUser->school;
+        // Retrieve all students from current school
+        $students = $this->studentService->getAll();
+        // Retrieve last receipt sheet
+        $lastSheet = $this->studentReceiptService->lastReceiptId();
+
+        return view('modules.accounting.receipts.actions.modal-add-student-receipt', compact(['students', 'school', 'lastSheet']));
     }
 
-    public function receiptsByEducationalSystem(string $educationalSystem): View
+    public function receiptsWithEducationalSystem(string $educationalSystem): View
     {
+        // Retrieve the currently authenticated user
+        $currentUser = auth()->user();
+        // Retrieve current school receipts
+        $receipts = $this->studentReceiptService->getAllBySchoolId($currentUser->school->id);
+        // Retrieve the URL of the educational system
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
-
-        // Get receipts from students by educational system
-        $receipts = $this->studentReceiptService->getAllByEducationalSystem($educationalSystemName);
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
@@ -168,7 +175,7 @@ class StudentReceiptController extends Controller
             ['name' => "Administración de recibos - ".$educationalSystemName]
         ];
 
-        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'receipts', 'educationalSystemName']));
+        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName']));
     }
 
 

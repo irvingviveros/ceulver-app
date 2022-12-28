@@ -9,32 +9,30 @@
                     <div class="card-body invoice-padding pb-0">
                         <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                             <div>
-                                @foreach($schools as $school)
-                                    <div class="logo-wrapper" style="margin-bottom: 0">
-                                        <img src="{{ asset($school->logo) }}" alt="">
-                                    </div>
-                                    <p class="card-text mb-25">{{ $school->address }}</p>
-                                    <p class="card-text mb-25">{{ $school->phone }}</p>
-                                    <p class="card-text mb-0 ">{{ $school->tax_id }}</p>
-                                @endforeach
+                                <div class="logo-wrapper" style="margin-bottom: 0">
+                                    <img src="{{ asset($school->logo) }}" alt="">
+                                </div>
+                                <p class="card-text mb-25">{{ $school->address }}</p>
+                                <p class="card-text mb-25">{{ $school->phone }}</p>
+                                <p class="card-text mb-0 ">{{ $school->tax_id }}</p>
                             </div>
                             <div class="invoice-number-date mt-md-0 mt-2">
                                 <div class="d-flex align-items-center justify-content-md-end mb-1">
-                                    <h4 class="invoice-title">Folio</h4>
+                                    <span class="title"><b>Folio:</b></span>
                                     <div class="input-group input-group-merge invoice-edit-input-group">
-                                        <div class="input-group-text">
+                                        <div class="input-group-text" style="background-color: #efefef">
                                             <i data-feather="hash"></i>
                                         </div>
-                                        <input type="text" class="form-control invoice-edit-input" placeholder="53634"/>
+                                        <input
+                                            type="text"
+                                            class="form-control invoice-edit-input"
+                                            value="{{$lastSheet}}"
+                                            disabled/>
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center mb-1">
-                                    <span class="title">Date:</span>
+                                    <span class="title">Fecha creación:</span>
                                     <input type="text" class="form-control invoice-edit-input date-picker"/>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <span class="title">Due Date:</span>
-                                    <input type="text" class="form-control invoice-edit-input due-date-picker"/>
                                 </div>
                             </div>
                         </div>
@@ -47,12 +45,18 @@
                     <div class="card-body invoice-padding pt-0">
                         <div class="row invoice-spacing">
                             <div class="col-xl-8 p-0">
-                                <h6 class="mb-2">Invoice To:</h6>
-                                <h6 class="mb-25">Thomas shelby</h6>
-                                <p class="card-text mb-25">Shelby Company Limited</p>
-                                <p class="card-text mb-25">Small Heath, B10 0HF, UK</p>
-                                <p class="card-text mb-25">718-986-6062</p>
-                                <p class="card-text mb-0">peakyFBlinders@gmail.com</p>
+                                <h6 class="mb-2">
+                                    <B>ALUMNO</B>
+                                </h6>
+
+                                <!-- Select2 Remote Data -->
+                                <div class="col-md-6 mb-1">
+                                    <label class="form-label" for="select2-ajax">Remote Data</label>
+                                    <div class="mb-1">
+                                        <select class="select2-data-ajax form-select" id="select2-ajax"></select>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                 <h6 class="mb-2">Payment Details:</h6>
@@ -226,11 +230,6 @@
                     <div class="card-body invoice-padding">
                         <div class="row invoice-sales-total-wrapper">
                             <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-                                <div class="d-flex align-items-center mb-1">
-                                    <label for="salesperson" class="form-label">Salesperson:</label>
-                                    <input type="text" class="form-control ms-50" id="salesperson"
-                                           placeholder="Edward Crowley"/>
-                                </div>
                             </div>
                             <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                                 <div class="invoice-total-wrapper">
