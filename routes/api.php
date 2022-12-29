@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,21 +31,33 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
         ->select('receipts.*', 'students.id AS student_id', 'students.enrollment')
         ->where('educational_systems.name', '=', $educationalSystem);
 
-    return datatables()
-        ->query($query)
-        ->toJson();
+    return DataTables::of($query)->toJson();
 });
 
-Route::get('school/{code}/students/', function ($code) {
+/**
+ * This endpoint returns basic student data. It also contains
+ * two essential columns for select2 dropdown: 'id' and 'text'
+ * Example: api/school/xxx/student/search?name=xxx
+ * @param $code
+ * @return mixed
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+Route::get('school/{code}/student/search', function ($code) {
 
     $query = DB::table('students')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
-        ->select('students.id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
-        'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id')
-        ->where('schools.code', '=', $code);
+        ->select(
+            'students.id AS id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
+            'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id',
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
+        ->where('schools.code', '=', $code)
+        ->where(
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name)")), 'like', '%' . \request()->get('name') . '%');
 
-    return datatables()
-        ->query($query)
-        ->toJson();
+    // Order results by full name (text)
+    $query->orderBy('text');
+
+    return DataTables::of($query)->toJson();
 });
