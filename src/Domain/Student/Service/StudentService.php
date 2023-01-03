@@ -145,6 +145,11 @@ class StudentService
         return $this->studentRepository->allByEducationalSystem($educationalSystem);
     }
 
+    public function getAllBySchoolId(int $schoolId)
+    {
+        return $this->studentRepository->allBySchoolId($schoolId);
+    }
+
     public function calculateAge(Carbon $birth_date): int
     {
         return CalculateAge::execute($birth_date);
