@@ -180,6 +180,7 @@
     "/data/datatables/student-receipts/student-receipts-datatable.js": "/data/datatables/student-receipts/student-receipts-datatable.js",
     "/js/utils/enrollment-generator.js": "/js/utils/enrollment-generator.js",
     "/js/utils/input-uppercase.js": "/js/utils/input-uppercase.js",
+    "/js/utils/money-to-text.js": "/js/utils/money-to-text.js",
     "/js/utils/password-toggle.js": "/js/utils/password-toggle.js",
     "/js/utils/random-password-generator.js": "/js/utils/random-password-generator.js",
     "/js/utils/student-username-generator.js": "/js/utils/student-username-generator.js",
