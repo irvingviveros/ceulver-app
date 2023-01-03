@@ -54,6 +54,15 @@ class EloquentStudentRepository implements GlobalRepository
             ->orderBy('id')->latest()->get();
     }
 
+    public function allBySchoolId(int $schoolId): \Illuminate\Support\Collection
+    {
+        return DB::table('students')
+            ->join('schools', 'students.school_id', '=', 'schools.id')
+            ->select('students.*')
+            ->where('schools.id', '=', $schoolId)
+            ->orderBy('students.id')->latest()->get();
+    }
+
     public function with($relation)
     {
         return Student::with($relation)->get();
