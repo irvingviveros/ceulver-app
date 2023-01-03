@@ -147,17 +147,17 @@ class StudentReceiptController extends Controller
     {
         // Get educational system name from DB
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
-
         // Retrieve the currently authenticated user
         $currentUser = auth()->user();
         // Retrieve the school associated with the user
         $school = $currentUser->school;
         // Retrieve all students from current school
-        $students = $this->studentService->getAll();
+        $students = $this->studentService->getAllBySchoolId($school->id);
         // Retrieve last receipt sheet
         $lastSheet = $this->studentReceiptService->lastReceiptId();
 
-        return view('modules.accounting.receipts.actions.modal-add-student-receipt', compact(['students', 'school', 'lastSheet']));
+        return view('modules.accounting.receipts.actions.modal-add-student-receipt',
+            compact(['students', 'school', 'lastSheet', 'educationalSystemName']));
     }
 
     public function receiptsWithEducationalSystem(string $educationalSystem): View
