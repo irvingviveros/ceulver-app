@@ -46,11 +46,13 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
 Route::get('school/{code}/student/search', function ($code) {
 
     $query = DB::table('students')
+        ->join('careers', 'students.career_id', '=', 'careers.id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
         ->select(
             'students.id AS id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
             'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id',
+            'students.payment_reference', 'careers.name AS career_name',
             (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
         ->where('schools.code', '=', $code)
         ->where(
