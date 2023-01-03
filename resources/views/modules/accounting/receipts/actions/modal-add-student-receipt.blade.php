@@ -32,7 +32,12 @@
                                 </div>
                                 <div class="d-flex align-items-center mb-1">
                                     <span class="title">Fecha creación:</span>
-                                    <input type="text" class="form-control invoice-edit-input date-picker"/>
+                                    <input
+                                        type="text"
+                                        class="form-control invoice-edit-input date-picker flatpickr-basic"
+                                        placeholder="Seleccionar"
+                                        readonly
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -51,221 +56,101 @@
 
                                 <!-- Select2 Remote Data -->
                                 <div class="col-md-6 mb-1">
-                                    <label class="form-label" for="select2-ajax">Remote Data</label>
+                                    <label class="form-label" for="select2-ajax">Nombre del alumno</label>
                                     <div class="mb-1">
-                                        <select class="select2-data-ajax form-select" id="select2-ajax"></select>
+                                        <select class="select2-data-ajax form-select" id="select2-ajax" lang="es">
+                                            <option></option>
+                                        </select>
                                     </div>
                                 </div>
 
                             </div>
+                            <!-- Student additional information starts -->
                             <div class="col-xl-4 p-0 mt-xl-0 mt-2">
-                                <h6 class="mb-2">Payment Details:</h6>
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td class="pe-1">Total Due:</td>
-                                        <td><strong>$12,110.55</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">Bank name:</td>
-                                        <td>American Bank</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">Country:</td>
-                                        <td>United States</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">IBAN:</td>
-                                        <td>ETD95476213874685</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">SWIFT code:</td>
-                                        <td>BR91905</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <div id="additional-info"></div>
                             </div>
+                            <!-- Student additional information ends -->
                         </div>
                     </div>
                     <!-- Address and Contact ends -->
 
-                    <!-- Product Details starts -->
-                    <div class="card-body invoice-padding invoice-product-details">
-                        <form class="source-item">
-                            <div data-repeater-list="group-a">
-                                <div class="repeater-wrapper" data-repeater-item>
-                                    <div class="row">
-                                        <div class="col-12 d-flex product-details-border position-relative pe-0">
-                                            <div class="row w-100 pe-lg-0 pe-1 py-2">
-                                                <div class="col-lg-5 col-12 mb-lg-0 mb-2 mt-lg-0 mt-2">
-                                                    <p class="card-text col-title mb-md-50 mb-0">Item</p>
-                                                    <select class="form-select item-details">
-                                                        <option value="App Design">App Design</option>
-                                                        <option value="App Customization" selected>App Customization
-                                                        </option>
-                                                        <option value="ABC Template">ABC Template</option>
-                                                        <option value="App Development">App Development</option>
-                                                    </select>
-                                                    <textarea class="form-control mt-2" rows="1">Customization & Bug Fixes</textarea>
-                                                </div>
-                                                <div class="col-lg-3 col-12 my-lg-0 my-2">
-                                                    <p class="card-text col-title mb-md-2 mb-0">Cost</p>
-                                                    <input type="number" class="form-control" value="24"
-                                                           placeholder="24"/>
-                                                    <div class="mt-2">
-                                                        <span>Discount:</span>
-                                                        <span class="discount">0%</span>
-                                                        <span class="tax-1 ms-50" data-bs-toggle="tooltip"
-                                                              data-bs-placement="top" title="Tax 1"
-                                                        >0%</span
-                                                        >
-                                                        <span class="tax-2 ms-50" data-bs-toggle="tooltip"
-                                                              data-bs-placement="top" title="Tax 2"
-                                                        >0%</span
-                                                        >
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-12 my-lg-0 my-2">
-                                                    <p class="card-text col-title mb-md-2 mb-0">Qty</p>
-                                                    <input type="number" class="form-control" value="1"
-                                                           placeholder="1"/>
-                                                </div>
-                                                <div class="col-lg-2 col-12 mt-lg-0 mt-2">
-                                                    <p class="card-text col-title mb-md-50 mb-0">Price</p>
-                                                    <p class="card-text mb-0">$24.00</p>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="
-                        d-flex
-                        flex-column
-                        align-items-center
-                        justify-content-between
-                        border-start
-                        invoice-product-actions
-                        py-50
-                        px-25
-                      "
-                                            >
-                                                <i data-feather="x" class="cursor-pointer font-medium-3"
-                                                   data-repeater-delete></i>
-                                                <div class="dropdown">
-                                                    <i
-                                                        class="cursor-pointer more-options-dropdown me-0"
-                                                        data-feather="settings"
-                                                        role="button"
-                                                        id="dropdownMenuButton"
-                                                        data-bs-toggle="dropdown"
-                                                        aria-haspopup="true"
-                                                        aria-expanded="false"
-                                                    >
-                                                    </i>
-                                                    <div
-                                                        class="dropdown-menu dropdown-menu-end item-options-menu p-1"
-                                                        aria-labelledby="dropdownMenuButton"
-                                                    >
-                                                        <div class="mb-1">
-                                                            <label for="discount-input"
-                                                                   class="form-label">Discount(%)</label>
-                                                            <input type="number" class="form-control"
-                                                                   id="discount-input"/>
-                                                        </div>
-                                                        <div class="form-row mt-50">
-                                                            <div class="mb-1 col-md-6">
-                                                                <label for="tax-1-input" class="form-label">Tax
-                                                                    1</label>
-                                                                <select name="tax-1-input" id="tax-1-input"
-                                                                        class="form-select tax-select">
-                                                                    <option value="0%" selected>0%</option>
-                                                                    <option value="1%">1%</option>
-                                                                    <option value="10%">10%</option>
-                                                                    <option value="18%">18%</option>
-                                                                    <option value="40%">40%</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="mb-1 col-md-6">
-                                                                <label for="tax-2-input" class="form-label">Tax
-                                                                    2</label>
-                                                                <select name="tax-2-input" id="tax-2-input"
-                                                                        class="form-select tax-select">
-                                                                    <option value="0%" selected>0%</option>
-                                                                    <option value="1%">1%</option>
-                                                                    <option value="10%">10%</option>
-                                                                    <option value="18%">18%</option>
-                                                                    <option value="40%">40%</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="dropdown-divider my-1"></div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <button type="button"
-                                                                    class="btn btn-outline-primary btn-apply-changes">
-                                                                Apply
-                                                            </button>
-                                                            <button type="button" class="btn btn-outline-secondary">
-                                                                Cancel
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                    <!-- Invoice Description starts -->
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="py-1" style="width: 30%">CONCEPTO</th>
+                                <th class="py-1" style="width: 10%">IMPORTE</th>
+                                <th class="py-1" style="width: 0">FORMA DE PAGO</th>
+                                <th class="py-1" style="width: 40%">IMPORTE CON LETRA</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="py-1">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        name="payment_concept"
+                                        id="payment-concept"
+                                        placeholder="Concepto de pago"
+                                    />
+                                    <span for="payment-concept" class="text-danger"></span>
+                                </td>
+                                <td class="py-1">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text">$</span>
+                                        <input type="text"
+                                               id="payment-amount"
+                                               class="form-control"
+                                               placeholder="100"
+                                               aria-label="Cantidad">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row mt-1">
-                                <div class="col-12 px-0">
-                                    <button type="button" class="btn btn-primary btn-sm btn-add-new"
-                                            data-repeater-create>
-                                        <i data-feather="plus" class="me-25"></i>
-                                        <span class="align-middle">Add Item</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                                <td class="py-1">
+                                    <select class="form-control dropdown" name="payment_method" id="payment-method">
+                                        <option selected disabled>Seleccionar...</option>
+                                        <option value="money">Efectivo</option>
+                                        <option value="card">Pago con tarjeta</option>
+                                        <option value="transfer">Transferencia bancaria</option>
+                                    </select>
+                                    <span for="payment-method" class="text-danger"></span>
+                                </td>
+                                <td class="py-1">
+                                    <span class="fw-bold">
+                                        <input
+                                            type="text"
+                                            id="money-to-text"
+                                            class="form-control"
+                                            value=""
+                                            placeholder="Introduzca el importe"
+                                            disabled readonly>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- Product Details ends -->
+                    <!-- Invoice Description ends -->
 
-                    <!-- Invoice Total starts -->
-                    <div class="card-body invoice-padding">
-                        <div class="row invoice-sales-total-wrapper">
-                            <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-                            </div>
-                            <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
-                                <div class="invoice-total-wrapper">
-                                    <div class="invoice-total-item">
-                                        <p class="invoice-total-title">Subtotal:</p>
-                                        <p class="invoice-total-amount">$1800</p>
-                                    </div>
-                                    <div class="invoice-total-item">
-                                        <p class="invoice-total-title">Discount:</p>
-                                        <p class="invoice-total-amount">$28</p>
-                                    </div>
-                                    <div class="invoice-total-item">
-                                        <p class="invoice-total-title">Tax:</p>
-                                        <p class="invoice-total-amount">21%</p>
-                                    </div>
-                                    <hr class="my-50"/>
-                                    <div class="invoice-total-item">
-                                        <p class="invoice-total-title">Total:</p>
-                                        <p class="invoice-total-amount">$1690</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Invoice Total ends -->
-
-                    <hr class="invoice-spacing mt-0"/>
+                    <hr class="invoice-spacing my-1"/>
 
                     <div class="card-body invoice-padding py-0">
                         <!-- Invoice Note starts -->
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="mb-2">
-                                    <label for="note" class="form-label fw-bold">Note:</label>
-                                    <textarea class="form-control" rows="2" id="note">
-It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!</textarea
+                                    <label for="note" class="form-label fw-bold">
+                                        Nota interna - <i>(opcional)</i>:
+                                    </label>
+                                    <span data-bs-toggle="popover"
+                                          data-bs-content="La nota solo se verá reflejada para personal administrativo.
+                                          Es opcional."
+                                          data-bs-trigger="hover"
+                                          title data-bs-original-title="Nota interna">
+                                        <i type="button" data-feather='info'></i>
+                                    </span>
+                                    <textarea class="form-control" rows="2" id="note"
+                                              placeholder="Nota interna para fines administrativos."></textarea
                                     >
                                 </div>
                             </div>
@@ -285,4 +170,12 @@ It was a pleasure working with you and your team. We hope you will keep us in mi
 <script src="{{ asset(mix('vendors/js/feather-icons/feather-icons.min.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/pickers/customPickr.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/components/components-popovers.js'))}}"></script>
+<script src="{{ asset(mix('js/scripts/forms/select2/select2-students-ajax.js')) }}"></script>
+<script src=" {{ asset(mix('js/utils/money-to-text.js')) }}"></script>
+<script !src="">
+    $('#payment-amount').on("input", function () {
+        $('#money-to-text').val(numeroALetras($(this).val()));
+    });
+
+</script>
 <script>feather.replace() //Icons</script>
