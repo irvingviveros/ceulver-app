@@ -13,10 +13,12 @@
 
     if (basicPickr.length) {
         basicPickr.flatpickr({
-            static: true,
+            static: false,
+            allowInput: true,
             altInput: true,
             altFormat: 'j F, Y',
-            dateFormat: 'Y-m-d',
+            dateFormat: 'd-m-Y',
+            defaultDate: new Date(),
             locale: {
                 firstDayOfWeek: 1,
                 weekdays: {
