@@ -163,7 +163,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
-        Luecano\NumeroALetras\NumeroALetras::class,
         /*
          * Package Service Providers...
          */
