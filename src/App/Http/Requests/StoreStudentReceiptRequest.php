@@ -26,7 +26,7 @@ class StoreStudentReceiptRequest extends FormRequest
     public function rules()
     {
         return [
-            'reference'         => 'required|unique:receipts|max:255',
+            'reference'         => 'required|max:255',
             'sheet'             => 'nullable|unique:receipts',
             'payment_method'    => 'required|string|max:255',
             'payment_concept'   => 'required|string|max:255',

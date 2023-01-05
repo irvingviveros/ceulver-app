@@ -91,6 +91,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('dashboard', AccountingDashboard::class)
             ->name('accounting.dashboard')
             ->middleware('can:accounting-dashboard.index');
+        Route::get('/', function () {
+            return redirect()->route('accounting.dashboard');
+        })->middleware('can:accounting-dashboard.index');
         Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsWithEducationalSystem'])
             ->name('student-receipts-educational-system.index')
             ->middleware('can:student-receipts.educational-system.index');
