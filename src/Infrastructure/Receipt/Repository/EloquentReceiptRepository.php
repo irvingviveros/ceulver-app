@@ -52,4 +52,9 @@ class EloquentReceiptRepository implements GlobalRepository
     {
         // TODO: Implement detach() method.
     }
+
+    public function createGetId($data): int
+    {
+        return DB::table('receipts')->insertGetId($data);
+    }
 }

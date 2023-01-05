@@ -25,6 +25,8 @@
                                         </div>
                                         <input
                                             type="text"
+                                            id="payment-sheet"
+                                            name="payment_sheet"
                                             class="form-control invoice-edit-input"
                                             value="{{$lastSheet}}"
                                             disabled/>
@@ -34,9 +36,10 @@
                                     <span class="title">Fecha de pago:</span>
                                     <input
                                         type="text"
+                                        id="payment-date"
+                                        name="payment_date"
                                         class="form-control invoice-edit-input date-picker flatpickr-basic"
                                         placeholder="Seleccionar"
-                                        readonly
                                     />
                                 </div>
                             </div>
@@ -103,15 +106,16 @@
                                         <input type="text"
                                                id="payment-amount"
                                                class="form-control"
-                                               placeholder="100"
+                                               name="payment_amount"
+                                               placeholder="1200.50"
                                                aria-label="Cantidad">
                                     </div>
                                 <td class="py-1">
                                     <select class="form-control dropdown" name="payment_method" id="payment-method">
                                         <option selected disabled>Seleccionar...</option>
-                                        <option value="money">Efectivo</option>
-                                        <option value="card">Pago con tarjeta</option>
-                                        <option value="transfer">Transferencia bancaria</option>
+                                        <option value="Efectivo">Efectivo</option>
+                                        <option value="Pago con tarjeta">Pago con tarjeta</option>
+                                        <option value="Transferencia bancaria">Transferencia bancaria</option>
                                     </select>
                                     <span for="payment-method" class="text-danger"></span>
                                 </td>
@@ -163,7 +167,8 @@
         </div>
     </section>
 
-    {{--    <input type="hidden" name="studentId" id="studentId" value="@isset($student){{ $student->id }}@endisset"/>--}}
+    <input type="hidden" name="student_id" id="student-id" value=""/>
+    <input type="hidden" name="student_reference" id="student-reference" value=""/>
 </form>
 
 {{-- Page scripts --}}

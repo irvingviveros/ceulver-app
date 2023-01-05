@@ -50,6 +50,24 @@ class ReceiptService
         return ResponseAlias::HTTP_OK;
     }
 
+    public function createGetId(ReceiptEntity $receiptEntity, $createdBy): int
+    {
+        $data = array(
+            'reference'         => $receiptEntity->getReference(),
+            'sheet'             => $receiptEntity->getSheet(),
+            'payment_method'    => $receiptEntity->getPaymentMethod(),
+            'payment_concept'   => $receiptEntity->getPaymentConcept(),
+            'payment_date'      => $receiptEntity->getPaymentDate(),
+            'amount'            => $receiptEntity->getAmount(),
+            'amount_text'       => $receiptEntity->getAmountText(),
+            'note'              => $receiptEntity->getNote(),
+            'created_at'        => date_create(),
+            'created_by'        => $createdBy
+        );
+
+        return $this->receiptRepository->createGetId($data);
+    }
+
     /**
      * @throws ValueNotFoundException
      */

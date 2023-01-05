@@ -7,11 +7,11 @@
     Author: Pixinvent
     Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
+let selectAjax = $('.select2-data-ajax'), studentData;
+
 (function (window, document, $) {
     'use strict';
     $.fn.select2.defaults.set('language', 'es');
-
-    var selectAjax = $('.select2-data-ajax');
 
 // Loading remote data
     selectAjax.wrap('<div class="position-relative"></div>').select2({
@@ -46,9 +46,12 @@
 // Display additional student information on select
     selectAjax.on('select2:select', function (e) {
 
+        // Initialize data
         let data = e.params.data;
-        // Check if some
-        checkNullData(data);
+        // Check if data is empty/null
+        populateNullData(data);
+        // Set student data to div's
+         assignValues(data);
 
         // If child div for additional info exist, then remove it.
         if ($("#nd-info")) {
@@ -70,7 +73,19 @@
         }
     });
 
-    function checkNullData(data) {
+    function populateNullData(data) {
         data.payment_reference === null ? data.payment_reference = "SIN INFORMACIÓN" : data.payment_reference;
     }
+
 })(window, document, jQuery);
+
+function assignValues(data) {
+    // Declare local variables
+    let studentIDSelector = $('#student-id');
+    let studentReferenceSelector = $('#student-reference');
+
+    // Assign student id value to selector
+    studentIDSelector.val(data.id);
+    // Assign payment reference value to selector
+    studentReferenceSelector.val(data.payment_reference);
+}

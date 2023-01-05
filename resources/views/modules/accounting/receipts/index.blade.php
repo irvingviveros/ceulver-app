@@ -78,6 +78,8 @@
     <!-- Local JS files -->
     <script src="{{ asset(mix('vendors/js/forms/select/select2.full.min.js')) }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/i18n/es.js"></script>
+    <script src="{{ asset(mix('js/scripts/forms/validation/localization/messages_es.js')) }}"></script>
+    <script src="{{ asset(mix('js/scripts/forms/validation/student-receipt-validation.js')) }}"></script>
     <!-- Datatable config, events and data -->
     <script src="{{ asset(mix('data/datatables/student-receipts/student-receipts-datatable.js')) }}"></script>
     <script

@@ -19,6 +19,7 @@ class SchoolSeeder extends Seeder
         DB::table('schools')->insert([
             [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc01',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',
@@ -32,6 +33,7 @@ class SchoolSeeder extends Seeder
                 'updated_at' => $date
             ], [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc02',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',
@@ -45,6 +47,7 @@ class SchoolSeeder extends Seeder
                 'updated_at' => $date
             ], [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc03',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',
@@ -58,6 +61,7 @@ class SchoolSeeder extends Seeder
                 'updated_at' => $date
             ], [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc04',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',
@@ -71,6 +75,7 @@ class SchoolSeeder extends Seeder
                 'updated_at' => $date
             ], [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc05',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',
@@ -84,6 +89,7 @@ class SchoolSeeder extends Seeder
                 'updated_at' => $date
             ], [
                 'name' => 'Centro Universitario Latino Veracruz',
+                'code' => 'sc06',
                 'address' => 'Av. Valentín Gómez Farías 522, Faros, 91700 Veracruz, Ver.',
                 'email' => 'ceulver_excelenciaeducativa@live.com.mx',
                 'tax_id' => 'CUL-090321-MJ2',

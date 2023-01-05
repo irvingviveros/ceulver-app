@@ -3,17 +3,28 @@ declare(strict_types=1);
 
 namespace Domain\Receipt\Entity;
 
-use DateTime;
+use Domain\Receipt\Service\ReceiptService;
+use Illuminate\Support\Carbon;
+use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
 
 class ReceiptEntity
 {
+    public function __construct()
+    {
+        $this->receiptService = new ReceiptService(
+            new EloquentReceiptRepository()
+        );
+    }
+
+    private ReceiptService $receiptService;
+
     private string $reference;
     private ?int $sheet;
     private string $payment_method;
     private string $payment_concept;
     private float $amount;
     private string $amount_text;
-    private ?DateTime $payment_date;
+    private ?Carbon $payment_date;
     private ?string $note;
 
     /**
@@ -89,10 +100,13 @@ class ReceiptEntity
     }
 
     /**
-     * @param float $amount
+     * @param float|string $amount
      */
-    public function setAmount(float $amount): void
+    public function setAmount(float|string $amount): void
     {
+        if (is_string($amount))
+            $amount = (float)$amount;
+
         $this->amount = $amount;
     }
 
@@ -105,27 +119,30 @@ class ReceiptEntity
     }
 
     /**
-     * @param string $amount_text
+     * @param float|string $amount
      */
-    public function setAmountText(string $amount_text): void
+    public function setAmountText(float|string $amount): void
     {
-        $this->amount_text = $amount_text;
+        if (is_float($amount))
+            $this->amount_text = $this->receiptService->moneyToText($amount);
+        else
+            $this->amount_text = $amount;
     }
 
     /**
-     * @return DateTime|null
+     * @return Carbon|null
      */
-    public function getPaymentDate(): ?DateTime
+    public function getPaymentDate(): ?Carbon
     {
         return $this->payment_date;
     }
 
     /**
-     * @param DateTime|null $payment_date
+     * @param string|null $payment_date
      */
-    public function setPaymentDate(?DateTime $payment_date = null): void
+    public function setPaymentDate(string|null $payment_date = null): void
     {
-        $this->payment_date = $payment_date;
+        $this->payment_date = Carbon::parse($payment_date);
     }
 
     /**

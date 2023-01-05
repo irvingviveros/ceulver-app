@@ -107,6 +107,7 @@
     "/js/scripts/forms/pickers/form-pickers.js": "/js/scripts/forms/pickers/form-pickers.js",
     "/js/scripts/forms/select2/select2-students-ajax.js": "/js/scripts/forms/select2/select2-students-ajax.js",
     "/js/scripts/forms/validation/localization/messages_es.js": "/js/scripts/forms/validation/localization/messages_es.js",
+    "/js/scripts/forms/validation/student-receipt-validation.js": "/js/scripts/forms/validation/student-receipt-validation.js",
     "/js/scripts/forms/validation/student-validation.js": "/js/scripts/forms/validation/student-validation.js",
     "/js/scripts/maps/map-leaflet.js": "/js/scripts/maps/map-leaflet.js",
     "/js/scripts/pages/app-access-permission.js": "/js/scripts/pages/app-access-permission.js",

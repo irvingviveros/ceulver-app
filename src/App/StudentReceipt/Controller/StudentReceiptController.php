@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\StudentReceipt\Controller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreStudentReceiptRequest;
+use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
 use Domain\School\Service\SchoolService;
 use Domain\Shared\Exception\OperationNotPermittedCeulverException;
@@ -11,9 +13,11 @@ use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Actions\CreateFullName;
 use Domain\Student\Service\StudentService;
 use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
+use Domain\StudentReceipt\Entity\StudentReceiptEntity;
 use Domain\StudentReceipt\Service\StudentReceiptService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
@@ -221,5 +225,57 @@ class StudentReceiptController extends Controller
             'nursery-school' => 'Maternal'
         };
         return $educationalSystemName;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param StoreStudentReceiptRequest $request
+     * @param $educationalSystem
+     * @return Response
+     */
+    public function storeWithEducationalSystem(StoreStudentReceiptRequest $request, $educationalSystem)
+    {
+        // Declare entities
+        $receiptEntity = new ReceiptEntity();
+        $studentReceiptEntity = new StudentReceiptEntity();
+
+        // Request current user data
+        $user = auth()->user();
+        $createdBy = $user->id;
+
+        // Retrieve the validated input data...
+        $validatedRequest = $request->validated();
+
+        // Request and set data for student
+        $receiptEntity->setReference($validatedRequest['reference']);
+        $receiptEntity->setSheet((int)$validatedRequest['sheet']);
+        $receiptEntity->setPaymentMethod($validatedRequest['payment_method']);
+        $receiptEntity->setPaymentConcept($validatedRequest['payment_concept']);
+        $receiptEntity->setPaymentDate($validatedRequest['payment_date']);
+        $receiptEntity->setAmount($validatedRequest['amount']);
+        $receiptEntity->setAmountText($receiptEntity->getAmount());
+        $receiptEntity->setNote($validatedRequest['note'] ?? null);
+
+        // Request and set data for receipt
+        $receiptId = $this->receiptService->createGetId($receiptEntity, $createdBy);
+
+        // Student receipt
+        $studentReceiptEntity->setReceiptId($receiptId);
+        $studentReceiptEntity->setStudentId((int)$validatedRequest['student_id']);
+        $studentReceiptEntity->setCreatedBy($createdBy);
+
+        // Create new student receipt
+        try {
+            $response = $this->studentReceiptService->createReceipt(
+                $studentReceiptEntity, $studentReceiptEntity->getCreatedBy()
+            );
+            return response($response);
+
+        } catch (Exception $ex) {
+
+            Log::info($ex->getMessage());   //Send error message to Log
+            return response("Error del interno del servidor", 500);
+        }
     }
 }

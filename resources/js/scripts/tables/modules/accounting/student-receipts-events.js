@@ -135,67 +135,15 @@ const StudentReceiptsEvents = (function () {
             }
             // This is sent to the store request parameter
             StudentReceiptsEvents.save({
-                _token: Application.getToken()
-                ,
-                school_id: form.find('select[id="schoolSelect"]').val()
-                ,
-                paternal_surname: form.find('input[id="paternalSurname"]').val()
-                ,
-                maternal_surname: form.find('input[id="maternalSurname"]').val()
-                ,
-                first_name: form.find('input[id="firstName"]').val()
-                ,
-                birth_date: form.find('input[id="birthday"]').val()
-                ,
-                national_id: form.find('input[id="nationalId"]').val()
-                ,
-                address: form.find('input[id="address"]').val()
-                ,
-                occupation: form.find('input[id="occupation"]').val()
-                ,
-                sex: form.find('select[id="sexSelect"]').val()
-                ,
-                marital_status: form.find('select[id="maritalStatus"]').val()
-                ,
-                email: form.find('input[id="email"]').val()
-                ,
-                phone: form.find('input[id="phone"]').val()
-                ,
-                blood_group: form.find('select[id="bloodGroup"]').val()
-                ,
-                ailments: form.find('input[id="ailments"]').val()
-                ,
-                allergies: form.find('input[id="allergies"]').val()
-                ,
-                career: form.find('select[id="careerSelect"]').val()
-                ,
-                enrollment: form.find('input[id="enrollment"]').val()
-                ,
-                payment_reference: form.find('input[id="paymentReference"]').val()
-                ,
-                guardian_last_name: form.find('input[id="guardianLastName"]').val()
-                ,
-                guardian_first_name: form.find('input[id="guardianFirstName"]').val()
-                ,
-                guardian_relationship: form.find('select[id="guardianRelationship"]').val()
-                ,
-                guardian_address: form.find('input[id="guardianAddress"]').val()
-                ,
-                guardian_email: form.find('input[id="guardianEmail"]').val()
-                ,
-                guardian_phone: form.find('input[id="guardianPhone"]').val()
-                ,
-                guardian_username: form.find('input[id="guardianUsername"]').val()
-                ,
-                guardian_password: form.find('input[id="guardianPassword"]').val()
-                ,
-                student_username: form.find('input[id="studentUsername"]').val()
-                ,
-                student_password: form.find('input[id="studentPassword"]').val()
-                ,
-                student_status: form.find('select[id="studentStatus"]').val()
-                ,
-                educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
+                _token: Application.getToken(),
+                student_id: form.find('input[id="student-id"]').val(),
+                reference: form.find('input[id="student-reference"]').val(),
+                sheet: form.find('input[id="payment-sheet"]').val(),
+                payment_date: form.find('input[id="payment-date"]').val(),
+                payment_method: form.find('select[id="payment-method"]').val(),
+                payment_concept: form.find('input[id="payment-concept"]').val(),
+                amount: form.find('input[id="payment-amount"]').val(),
+                note: form.find('input[id="note"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -361,7 +309,7 @@ const StudentReceiptsEvents = (function () {
             console.log(data)
             // Return string without trailing slash
             let newUrl = urlController.substr(0, urlController.length - 1);
-
+            console.log(newUrl)
             return Configuration.consume({
                 url: newUrl
                 , method: 'POST'
