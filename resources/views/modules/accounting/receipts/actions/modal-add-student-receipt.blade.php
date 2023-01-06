@@ -169,6 +169,7 @@
 
     <input type="hidden" name="student_id" id="student-id" value=""/>
     <input type="hidden" name="student_reference" id="student-reference" value=""/>
+    <input type="hidden" name="school_code" id="school-code" value="{{$school->code}}"/>
 </form>
 
 {{-- Page scripts --}}

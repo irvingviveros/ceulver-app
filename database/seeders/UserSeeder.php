@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'school_id' => 1,
+                'school_id' => 6,
                 'username' => 'spadmin',
                 'email' => 'spadmin@mail.com',
                 'status' => 1,
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
                 'updated_at' => date_create()
             ],
             [
-                'school_id' => 1,
+                'school_id' => 6,
                 'username' => 'admin',
                 'email' => 'admin@mail.com',
                 'status' => 1,
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'updated_at' => date_create()
             ],
             [
-                'school_id' => 1,
+                'school_id' => 6,
                 'username' => 'acc',
                 'email' => 'accounting@mail.com',
                 'status' => 1,

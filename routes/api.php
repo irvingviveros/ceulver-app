@@ -43,7 +43,7 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
  * @throws ContainerExceptionInterface
  * @throws NotFoundExceptionInterface
  */
-Route::get('school/{code}/student/search', function ($code) {
+Route::get('school/{code}/students/search', function ($code) {
 
     $query = DB::table('students')
         ->join('careers', 'students.career_id', '=', 'careers.id')
