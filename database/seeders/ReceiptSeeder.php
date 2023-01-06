@@ -34,7 +34,6 @@ class ReceiptSeeder extends Seeder
 
             DB::table('receipts')->insert(
                 [
-                    'reference' => $faker->unique()->randomNumber(5),
                     'sheet' => $counter,
                     'payment_method' => $faker->randomElement(['Pago con tarjeta', 'Efectivo', 'Transferencia bancaria']),
                     'payment_concept' => $faker->sentence(4, true),
