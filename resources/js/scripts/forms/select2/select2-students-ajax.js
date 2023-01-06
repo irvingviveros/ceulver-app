@@ -7,9 +7,9 @@
     Author: Pixinvent
     Author URL: hhttp://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
-let selectAjax = $('.select2-data-ajax'), studentData;
+$(document).ready(function () {
+    let selectAjax = $('.select2-data-ajax');
 
-(function (window, document, $) {
     'use strict';
     $.fn.select2.defaults.set('language', 'es');
 
@@ -51,7 +51,7 @@ let selectAjax = $('.select2-data-ajax'), studentData;
         // Check if data is empty/null
         populateNullData(data);
         // Set student data to div's
-         assignValues(data);
+        assignValues(data);
 
         // If child div for additional info exist, then remove it.
         if ($("#nd-info")) {
@@ -76,8 +76,7 @@ let selectAjax = $('.select2-data-ajax'), studentData;
     function populateNullData(data) {
         data.payment_reference === null ? data.payment_reference = "SIN INFORMACIÓN" : data.payment_reference;
     }
-
-})(window, document, jQuery);
+});
 
 function assignValues(data) {
     // Declare local variables
