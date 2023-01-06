@@ -11,6 +11,12 @@
 
     var basicPickr = $('.flatpickr-basic');
 
+    // Check if the current wrapper is an edit form or not
+    if (!isEditForm()) {
+        // If it is not an edit form ID, then set default today's date
+        setTodayDate(basicPickr)
+    }
+
     if (basicPickr.length) {
         basicPickr.flatpickr({
             static: false,
@@ -19,7 +25,6 @@
             enableTime: true,
             altFormat: 'j F, Y',
             dateFormat: 'Y-m-d H:i',
-            defaultDate: new Date(),
             locale: {
                 firstDayOfWeek: 1,
                 weekdays: {
@@ -35,3 +40,14 @@
     }
 
 })(window, document, jQuery);
+
+// Search for a div edit form id and then if exists, return true
+function isEditForm() {
+    if ($('#editForm').length) return true;
+}
+
+function setTodayDate(customPickr) {
+    return customPickr.flatpickr({
+        defaultDate: new Date()
+    })
+}
