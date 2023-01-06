@@ -103,6 +103,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'showByEducationalSystem'])
             ->name('student-receipts-educational-system.show')
             ->middleware('can:student-receipts.educational-system.show');
+        Route::get('student-receipts/{educational_system}/{id}/edit', [StudentReceiptController::class, 'editReceipt'])
+            ->name('student-receipts-educational-system.show')
+            ->middleware('can:student-receipts.educational-system.edit');
         Route::post('student-receipts/{educational_system}', [StudentReceiptController::class, 'storeWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
