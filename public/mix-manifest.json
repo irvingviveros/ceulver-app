@@ -1460,7 +1460,6 @@
     "/images/svg/google.svg": "/images/svg/google.svg",
     "/data/ag-grid-data.json": "/data/ag-grid-data.json",
     "/data/ajax.php": "/data/ajax.php",
-    "/data/datatables/student-receipts/student-receipts-columns.js": "/data/datatables/student-receipts/student-receipts-columns.js",
     "/data/datatables/student-receipts/university-student-receipts-datatable.js": "/data/datatables/student-receipts/university-student-receipts-datatable.js",
     "/data/fullcalendar/json/events.json": "/data/fullcalendar/json/events.json",
     "/data/fullcalendar/php/get-events.php": "/data/fullcalendar/php/get-events.php",
