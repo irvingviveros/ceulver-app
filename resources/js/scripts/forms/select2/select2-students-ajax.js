@@ -32,7 +32,6 @@ $(document).ready(function () {
             },
             processResults: function (data, params) {
                 params.page = params.page || 1;
-                console.log(data.recordsFiltered)
                 return {
                     results: data.data,
                     pagination: {
