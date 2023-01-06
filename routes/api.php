@@ -28,7 +28,7 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
         ->join('students', 'student_receipts.student_id', '=', 'students.id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
-        ->select('receipts.*', 'students.id AS student_id', 'students.enrollment')
+        ->select('receipts.*', 'students.id AS student_id', 'students.enrollment', 'students.payment_reference')
         ->where('educational_systems.name', '=', $educationalSystem);
 
     return DataTables::of($query)->toJson();
@@ -56,7 +56,7 @@ Route::get('school/{code}/student/search', function ($code) {
             (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
         ->where('schools.code', '=', $code)
         ->where(
-            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name)")), 'like', '%' . \request()->get('name') . '%');
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name, '-', ' ', students.payment_reference)")), 'like', '%' . \request()->get('name') . '%');
 
     // Order results by full name (text)
     $query->orderBy('text');

@@ -1,5 +1,8 @@
-<form class="add-new-record row gy-2 gx-2" id="registerForm">
+<link rel="stylesheet" href="{{asset('vendors/css/pickers/flatpickr/flatpickr.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/base/plugins/forms/pickers/form-flat-pickr.css')}}">
+<link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">
 
+<form class="add-new-record row gy-2 gx-2" id="editForm">
     <section class="invoice-edit-wrapper">
         <div class="row invoice-edit">
             <!-- Invoice Edit Left starts -->
@@ -19,18 +22,7 @@
                             <div class="invoice-number-date mt-md-0 mt-2">
                                 <div class="d-flex align-items-center justify-content-md-end mb-1">
                                     <span class="title"><b>Folio:</b></span>
-                                    <div class="input-group input-group-merge invoice-edit-input-group">
-                                        <div class="input-group-text" style="background-color: #efefef">
-                                            <i data-feather="hash"></i>
-                                        </div>
-                                        <input
-                                            type="text"
-                                            id="payment-sheet"
-                                            name="payment_sheet"
-                                            class="form-control invoice-edit-input"
-                                            value="{{$lastSheet}}"
-                                            disabled/>
-                                    </div>
+                                    <span class="invoice-number">{{ $baseReceipt->sheet }}</span>
                                 </div>
                                 <div class="d-flex align-items-center mb-1">
                                     <span class="title">Fecha de pago:</span>
@@ -59,7 +51,7 @@
 
                                 <!-- Select2 Remote Data -->
                                 <div class="col-md-6 mb-1">
-                                    <label class="form-label" for="select2-ajax">Nombre de alumno | Referencia</label>
+                                    <label class="form-label" for="select2-ajax">Nombre del alumno | Referencia</label>
                                     <div class="mb-1">
                                         <select class="select2-data-ajax form-select" id="select2-ajax" lang="es">
                                             <option></option>
@@ -171,7 +163,7 @@
     <input type="hidden" name="student_reference" id="student-reference" value=""/>
 </form>
 
-{{-- Page scripts --}}
+<!-- Local JS -->
 <script src="{{ asset(mix('vendors/js/feather-icons/feather-icons.min.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/forms/pickers/customPickr.js')) }}"></script>
 <script src="{{ asset(mix('js/scripts/components/components-popovers.js'))}}"></script>
@@ -184,3 +176,5 @@
 
 </script>
 <script>feather.replace() //Icons</script>
+
+<!-- Local JS -->
