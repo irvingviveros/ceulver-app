@@ -29,7 +29,7 @@ class StoreStudentReceiptRequest extends FormRequest
             'sheet'             => 'nullable|unique:receipts',
             'payment_method'    => 'required|string|max:255',
             'payment_concept'   => 'required|string|max:255',
-            'payment_date'      => 'nullable|date',
+            'payment_date'      => 'required|date',
             'amount'            => 'required',
             'note'              => 'nullable|string',
             'student_id'        => 'required',
