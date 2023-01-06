@@ -26,7 +26,6 @@ class StoreStudentReceiptRequest extends FormRequest
     public function rules()
     {
         return [
-            'reference'         => 'required|max:255',
             'sheet'             => 'nullable|unique:receipts',
             'payment_method'    => 'required|string|max:255',
             'payment_concept'   => 'required|string|max:255',
@@ -46,7 +45,6 @@ class StoreStudentReceiptRequest extends FormRequest
     public function attributes()
     {
         return [
-            'reference'         => 'Referencia de pago',
             'sheet'             => 'Folio',
             'payment_method'    => 'Método de pago',
             'payment_concept'   => 'Concepto de pago',

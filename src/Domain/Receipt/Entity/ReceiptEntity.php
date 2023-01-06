@@ -18,7 +18,6 @@ class ReceiptEntity
 
     private ReceiptService $receiptService;
 
-    private string $reference;
     private ?int $sheet;
     private string $payment_method;
     private string $payment_concept;
@@ -26,22 +25,6 @@ class ReceiptEntity
     private string $amount_text;
     private ?Carbon $payment_date;
     private ?string $note;
-
-    /**
-     * @return string
-     */
-    public function getReference(): string
-    {
-        return $this->reference;
-    }
-
-    /**
-     * @param string $reference
-     */
-    public function setReference(string $reference): void
-    {
-        $this->reference = $reference;
-    }
 
     /**
      * @return int|null

@@ -53,7 +53,6 @@ class ReceiptService
     public function createGetId(ReceiptEntity $receiptEntity, $createdBy): int
     {
         $data = array(
-            'reference'         => $receiptEntity->getReference(),
             'sheet'             => $receiptEntity->getSheet(),
             'payment_method'    => $receiptEntity->getPaymentMethod(),
             'payment_concept'   => $receiptEntity->getPaymentConcept(),
@@ -96,7 +95,6 @@ class ReceiptService
             return null;
         }
 
-        $receipt->reference         = $receiptEntity->getReference();
         $receipt->sheet             = $receiptEntity->getSheet();
         $receipt->payment_method    = $receiptEntity->getPaymentMethod();
         $receipt->payment_concept   = $receiptEntity->getPaymentConcept();

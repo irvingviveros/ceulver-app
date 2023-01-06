@@ -268,7 +268,6 @@ class StudentReceiptController extends Controller
         $validatedRequest = $request->validated();
 
         // Request and set data for student
-        $receiptEntity->setReference($validatedRequest['reference']);
         $receiptEntity->setSheet((int)$validatedRequest['sheet']);
         $receiptEntity->setPaymentMethod($validatedRequest['payment_method']);
         $receiptEntity->setPaymentConcept($validatedRequest['payment_concept']);
