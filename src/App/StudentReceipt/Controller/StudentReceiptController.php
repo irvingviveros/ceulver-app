@@ -113,6 +113,26 @@ class StudentReceiptController extends Controller
         //
     }
 
+    public function editReceipt(string $educationalSystem, int $id): View
+    {
+        // Get receipt data model
+        $baseReceipt = $this->receiptService->findById($id);
+        // Receipt payment date formatted
+        $payment_date = DateToLatinAmericaFormat::execute($baseReceipt->payment_date);
+        // Get student-receipt data model with the receipt id
+        $studentReceipt = $this->studentReceiptService->findById($id);
+        // Get student data model related to the receipt
+        $student = $this->studentService->findById($studentReceipt->student_id);
+        // Get student full name by paternal surname
+        $student_name = CreateFullName::ByPaternalSurname(
+            $student->first_name, $student->paternal_surname, $student->maternal_surname);
+        // Get school data model related to the student
+        $school = $this->schoolService->findById($student->school_id);
+
+        return view('modules.accounting.receipts.actions.modal-edit-student-receipt',
+            compact(['baseReceipt', 'studentReceipt', 'student', 'school', 'payment_date', 'student_name']));
+    }
+
     /**
      * Update the specified resource in storage.
      *

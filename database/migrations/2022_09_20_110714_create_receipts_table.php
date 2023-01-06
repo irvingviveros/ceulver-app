@@ -22,7 +22,7 @@ class CreateReceiptsTable extends Migration
             $table->decimal('amount', 10, 2)->nullable(false);
             $table->string('amount_text')->nullable(false);
 //            $table->string('status')->nullable();
-            $table->date('payment_date')->nullable();
+            $table->dateTime('payment_date')->nullable();
             $table->text('note')->nullable();
             $table->integer('created_by');
             $table->integer('modified_by')->nullable(true);

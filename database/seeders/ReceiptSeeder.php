@@ -30,7 +30,7 @@ class ReceiptSeeder extends Seeder
         for ($counter = 0; $counter <= 1380; $counter++) {
 
             $dateTime = $faker->dateTimeBetween('-2 years');
-            $date = $dateTime->format('Y-m-d');
+            $date = $dateTime->format('Y-m-d H:i:s');
 
             DB::table('receipts')->insert(
                 [

@@ -18,7 +18,7 @@
             altInput: true,
             enableTime: true,
             altFormat: 'j F, Y',
-            dateFormat: 'Y-m-d',
+            dateFormat: 'Y-m-d H:i',
             defaultDate: new Date(),
             locale: {
                 firstDayOfWeek: 1,
