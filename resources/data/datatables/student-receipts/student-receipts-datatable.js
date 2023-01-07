@@ -3,7 +3,7 @@ let basicColumns = [
     // columns according to JSON
     {data: "id"},
     {data: "sheet"},
-    {data: "payment_reference"},
+    {data: "payment_reference", name: "students.payment_reference"},
     {data: "payment_method"},
     {data: "payment_concept"},
     {
