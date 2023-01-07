@@ -174,7 +174,17 @@ const StudentReceiptsEvents = (function () {
 
             // All this data goes to the update function controller
             StudentReceiptsEvents.update({
-                _token: Application.getToken()
+                _token: Application.getToken(),
+                receipt_id: form.find('input[id="receipt-id"]').val(),
+                student_id: form.find('input[id="student-id"]').val(),
+                student_receipt_id: form.find('input[id="student-receipt-id"]').val(),
+                reference: form.find('input[id="student-reference"]').val(),
+                sheet: form.find('input[id="payment-sheet"]').val(),
+                payment_date: form.find('input[id="payment-date"]').val(),
+                payment_method: form.find('select[id="payment-method"]').val(),
+                payment_concept: form.find('input[id="payment-concept"]').val(),
+                amount: form.find('input[id="payment-amount"]').val(),
+                note: form.find('textarea[id="note"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success',

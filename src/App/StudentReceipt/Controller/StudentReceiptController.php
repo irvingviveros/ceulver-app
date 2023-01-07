@@ -5,6 +5,7 @@ namespace App\StudentReceipt\Controller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentReceiptRequest;
+use App\Http\Requests\UpdateStudentReceiptRequest;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
 use Domain\School\Service\SchoolService;
@@ -289,6 +290,51 @@ class StudentReceiptController extends Controller
             $response = $this->studentReceiptService->createReceipt(
                 $studentReceiptEntity, $studentReceiptEntity->getCreatedBy()
             );
+            return response($response);
+
+        } catch (Exception $ex) {
+
+            Log::info($ex->getMessage());   //Send error message to Log
+            return response("Error del interno del servidor", 500);
+        }
+    }
+
+    public function updateReceipt(UpdateStudentReceiptRequest $request, string $educationalSystem, $id)
+    {
+        // Declare entities
+        $receiptEntity = new ReceiptEntity();
+        $studentReceiptEntity = new StudentReceiptEntity();
+
+        // Request current user data
+        $user = auth()->user();
+        $modifiedBy = $user->id;
+
+        // Retrieve the validated input data...
+        $validatedRequest = $request->validated();
+
+        $receiptId = (int)$request->input('receipt_id');
+        $studentId = (int)$request->input('student_id');
+        $studentReceiptId = (int)$request->input('student_receipt_id');
+        // Request and set data for receipt
+        $receiptEntity->setSheet((int)$validatedRequest['sheet']);
+        $receiptEntity->setPaymentMethod($validatedRequest['payment_method']);
+        $receiptEntity->setPaymentConcept($validatedRequest['payment_concept']);
+        $receiptEntity->setPaymentDate($validatedRequest['payment_date']);
+        $receiptEntity->setAmount($validatedRequest['amount']);
+        $receiptEntity->setAmountText($receiptEntity->getAmount());
+        $receiptEntity->setNote($validatedRequest['note'] ?? null);
+
+        // Student receipt info
+        $studentReceiptEntity->setReceiptId($receiptId);
+        $studentReceiptEntity->setStudentId($studentId);
+        $studentReceiptEntity->setModifiedBy($modifiedBy);
+
+        // Update student receipt
+        $this->studentReceiptService->update($studentReceiptId, $studentReceiptEntity, $modifiedBy);
+
+        // Update receipt
+        try {
+            $response = $this->receiptService->update($receiptId, $receiptEntity, $modifiedBy);
             return response($response);
 
         } catch (Exception $ex) {

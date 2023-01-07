@@ -22,7 +22,13 @@
                             <div class="invoice-number-date mt-md-0 mt-2">
                                 <div class="d-flex align-items-center justify-content-md-end mb-1">
                                     <span class="title"><b>Folio:</b></span>
-                                    <span class="invoice-number">{{ $baseReceipt->sheet }}</span>
+                                    <input
+                                        type="text"
+                                        id="payment-sheet"
+                                        name="payment_sheet"
+                                        class="form-control invoice-edit-input"
+                                        value="{{$baseReceipt->sheet}}"
+                                        disabled/>
                                 </div>
                                 <div class="d-flex align-items-center mb-1">
                                     <span class="title">Fecha de pago:</span>
@@ -32,6 +38,7 @@
                                         name="payment_date"
                                         class="form-control invoice-edit-input date-picker flatpickr-basic"
                                         placeholder="Seleccionar"
+                                        value=" {{ $baseReceipt -> payment_date }}"
                                     />
                                 </div>
                             </div>
@@ -54,7 +61,7 @@
                                     <label class="form-label" for="select2-ajax">Nombre del alumno | Referencia</label>
                                     <div class="mb-1">
                                         <select class="select2-data-ajax form-select" id="select2-ajax" lang="es">
-                                            <option></option>
+                                            <option value="{{ $student->id }}" selected="selected">{{ $student->paternal_surname }} {{ $student->maternal_surname }} {{ $student->first_name }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -89,6 +96,7 @@
                                         name="payment_concept"
                                         id="payment-concept"
                                         placeholder="Concepto de pago"
+                                        value="{{$baseReceipt->payment_concept}}"
                                     />
                                     <span for="payment-concept" class="text-danger"></span>
                                 </td>
@@ -100,14 +108,14 @@
                                                class="form-control"
                                                name="payment_amount"
                                                placeholder="1200.50"
+                                               value="{{ $baseReceipt->amount }}"
                                                aria-label="Cantidad">
                                     </div>
                                 <td class="py-1">
                                     <select class="form-control dropdown" name="payment_method" id="payment-method">
-                                        <option selected disabled>Seleccionar...</option>
-                                        <option value="Efectivo">Efectivo</option>
-                                        <option value="Pago con tarjeta">Pago con tarjeta</option>
-                                        <option value="Transferencia bancaria">Transferencia bancaria</option>
+                                        <option {{ $baseReceipt->payment_method === "Efectivo" ? 'selected' : ''}} value="Efectivo">Efectivo</option>
+                                        <option {{ $baseReceipt->payment_method === "Pago con tarjeta" ? 'selected' : ''}} value="Pago con tarjeta">Pago con tarjeta</option>
+                                        <option {{ $baseReceipt->payment_method === "Transferencia bancaria" ? 'selected' : ''}} value="Transferencia bancaria">Transferencia bancaria</option>
                                     </select>
                                     <span for="payment-method" class="text-danger"></span>
                                 </td>
@@ -117,7 +125,7 @@
                                             type="text"
                                             id="money-to-text"
                                             class="form-control"
-                                            value=""
+                                            value="{{ $baseReceipt->amount_text }}"
                                             placeholder="Introduzca el importe"
                                             disabled readonly>
                                     </span>
@@ -145,9 +153,11 @@
                                           title data-bs-original-title="Nota interna">
                                         <i type="button" data-feather='info'></i>
                                     </span>
-                                    <textarea class="form-control" rows="2" id="note"
-                                              placeholder="Nota interna para fines administrativos."></textarea
-                                    >
+                                    <textarea
+                                        class="form-control"
+                                        rows="2"
+                                        id="note"
+                                        placeholder="Nota interna para fines administrativos.">{{ $baseReceipt->note }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -159,8 +169,11 @@
         </div>
     </section>
 
-    <input type="hidden" name="student_id" id="student-id" value=""/>
-    <input type="hidden" name="student_reference" id="student-reference" value=""/>
+    <input type="hidden" name="student_id" id="student-id" value="{{ $student->id }}"/>
+    <input type="hidden" name="student_receipt_id" id="student-receipt-id" value="{{ $studentReceipt->id }}"/>
+    <input type="hidden" name="receipt_id" id="receipt-id" value="{{ $baseReceipt->id }}"/>
+    <input type="hidden" name="student_reference" id="student-reference" value="{{ $student->payment_reference }}"/>
+    <input type="hidden" name="school_code" id="school-code" value="{{$school->code}}"/>
 </form>
 
 <!-- Local JS -->

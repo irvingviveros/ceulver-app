@@ -42,7 +42,7 @@
                                 <b>ALUMNO</b>
                             </p>
                             <h6 class="mb-25">Nombre: {{ $student_name }}</h6>
-                            <p class="card-text mb-25">Referencia: {{ $baseReceipt->reference }}</p>
+                            <p class="card-text mb-25">Referencia: {{ $student->payment_reference }}</p>
                             <p class="card-text mb-0">Licenciatura: {{ $student->career->name }}</p>
                         </div>
                         <div class="col-xl-3 p-0 mt-xl-0 mt-2">

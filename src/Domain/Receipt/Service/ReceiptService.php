@@ -100,7 +100,7 @@ class ReceiptService
         $receipt->payment_concept   = $receiptEntity->getPaymentConcept();
         $receipt->amount            = $receiptEntity->getAmount();
         $receipt->amount_text       = $receiptEntity->getAmountText();
-        $receipt->issued_date       = $receiptEntity->getPaymentDate();
+        $receipt->payment_date      = $receiptEntity->getPaymentDate();
         $receipt->note              = $receiptEntity->getNote();
         $receipt->modified_by       = $modifiedBy;
         $receipt->updated_at        = date_create();
