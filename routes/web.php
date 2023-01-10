@@ -112,6 +112,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::post('student-receipts/{educational_system}', [StudentReceiptController::class, 'storeWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
+        Route::delete('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'softDelete'])
+            ->name('student-receipts-action-delete')
+            ->middleware('can:student-receipts.educational-system.softDelete');
         Route::resource('student-receipts', StudentReceiptController::class);
     });
 

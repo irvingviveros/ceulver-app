@@ -83,6 +83,19 @@ class ReceiptService
         return $receipt;
     }
 
+    public function findOrFailWithTrashed($id)
+    {
+        $receipt = $this->receiptRepository->findOrFailWithTrashed($id);
+
+        if ($receipt == null) {
+            throw new ValueNotFoundException(
+                "El recibo no existe"
+            );
+        }
+
+        return $receipt;
+    }
+
     public function update($receiptId, ReceiptEntity $receiptEntity, $modifiedBy)
     {
         // Get receipt model

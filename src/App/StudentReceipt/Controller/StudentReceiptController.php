@@ -176,13 +176,11 @@ class StudentReceiptController extends Controller
         $currentUser = auth()->user();
         // Retrieve the school associated with the user
         $school = $currentUser->school;
-        // Retrieve all students from current school
-        $students = $this->studentService->getAllBySchoolId($school->id);
-        // Retrieve last receipt sheet
-        $lastSheet = $this->studentReceiptService->lastReceiptId();
+        // Retrieve last receipt sheet and add + 1 for a new receipt
+        $lastSheet = $this->studentReceiptService->lastReceiptId() + 1;
 
         return view('modules.accounting.receipts.actions.modal-add-student-receipt',
-            compact(['students', 'school', 'lastSheet', 'educationalSystemName']));
+            compact(['school', 'lastSheet', 'educationalSystemName']));
     }
 
     public function receiptsWithEducationalSystem(string $educationalSystem): View
@@ -213,12 +211,12 @@ class StudentReceiptController extends Controller
      */
     public function showByEducationalSystem(string $educationalSystem, int $id): View
     {
-        // Get receipt data model
-        $baseReceipt = $this->receiptService->findById($id);
+        // Get student-receipt data model with the receipt id
+        $studentReceipt = $this->studentReceiptService->findOrFailWithTrashed($id);
+        // Get base receipt collection
+        $baseReceipt = $this->receiptService->findOrFailWithTrashed($studentReceipt->receipt_id);
         // Receipt payment date formatted
         $payment_date = DateToLatinAmericaFormat::execute($baseReceipt->payment_date);
-        // Get student-receipt data model with the receipt id
-        $studentReceipt = $this->studentReceiptService->findById($id);
         // Get student data model related to the receipt
         $student = $this->studentService->findById($studentReceipt->student_id);
         // Get student full name by paternal surname
@@ -341,6 +339,21 @@ class StudentReceiptController extends Controller
 
             Log::info($ex->getMessage());   //Send error message to Log
             return response("Error del interno del servidor", 500);
+        }
+    }
+
+    public function softDelete(string $educationalSystem, $studentReceiptId)
+    {
+        $studentReceiptCollection = $this->studentReceiptService->findById($studentReceiptId);
+        $baseReceiptCollection = $this->receiptService->findById($studentReceiptCollection->receipt_id);
+
+        try {
+            $this->receiptService->delete($baseReceiptCollection->id);
+            $this->studentReceiptService->delete($studentReceiptId);
+        } catch (OperationNotPermittedCeulverException $exception) {
+            return new Response($exception->getMessage(), 400);
+        } catch (Exception $exception) {
+            return new Response('Error interno en el servidor', 500);
         }
     }
 }

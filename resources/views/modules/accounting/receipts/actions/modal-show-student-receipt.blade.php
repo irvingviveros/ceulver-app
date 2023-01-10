@@ -21,7 +21,7 @@
                         <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
                                 Folio
-                                <span class="invoice-number">{{ $baseReceipt->sheet }}</span>
+                                <span class="invoice-number">{{ $studentReceipt->id }}</span>
                             </h4>
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Fecha pago:</p>
@@ -39,11 +39,46 @@
                     <div class="row invoice-spacing">
                         <div class="col-xl-9 p-0">
                             <p class="mb-2">
-                                <b>ALUMNO</b>
+                                <b>DATOS DEL ALUMNO</b>
                             </p>
-                            <h6 class="mb-25">Nombre: {{ $student_name }}</h6>
-                            <p class="card-text mb-25">Referencia: {{ $student->payment_reference }}</p>
-                            <p class="card-text mb-0">Licenciatura: {{ $student->career->name }}</p>
+                            <table>
+                                <tr>
+                                    <th style="width: 30%"></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h6 class="mb-25">Nombre: </h6>
+                                    </td>
+                                    <td>
+                                        {{ $student_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="card-text mb-25">Referencia: </p>
+                                    </td>
+                                    <td>
+                                        {{ $student->payment_reference }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="card-text mb-25">Matrícula: </p>
+                                    </td>
+                                    <td>
+                                        {{ $student->enrollment }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="card-text mb-0">Licenciatura: </p>
+                                    </td>
+                                    <td>
+                                        {{ $student->career->name }}
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                         <div class="col-xl-3 p-0 mt-xl-0 mt-2">
                             <p class="mb-2">

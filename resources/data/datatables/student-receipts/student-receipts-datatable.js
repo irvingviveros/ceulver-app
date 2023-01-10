@@ -2,7 +2,7 @@
 let basicColumns = [
     // columns according to JSON
     {data: "id"},
-    {data: "sheet"},
+    {data: "id"},
     {data: "payment_reference", name: "students.payment_reference"},
     {data: "payment_method"},
     {data: "payment_concept"},
@@ -13,6 +13,32 @@ let basicColumns = [
         }
     },
     {data: "payment_date"},
+    {
+        data: "deleted_at",
+        render: function (data, type, full, meta) {
+            var $status = {
+
+                1: { title: 'Pagado', class: ' badge-light-success' },
+                0: { title: 'Cancelado', class: 'badge-light-danger' },
+            };
+            if ((data == null)) {
+                return (
+                    '<span class="badge rounded-pill ' +
+                    $status[1].class +
+                    '">' +
+                    $status[1].title +
+                    '</span>'
+                )
+            }
+            return (
+                '<span class="badge rounded-pill ' +
+                $status[0].class +
+                '">' +
+                $status[0].title +
+                '</span>'
+            )
+        },
+    },
     {
         // Actions
         render: function (data, type, row) {
@@ -64,7 +90,7 @@ function isUniversityRequest(educationalSystemName) {
 
 function addUniversityColumns() {
     // Add columns before the last item on the list.
-    basicColumns.splice(-1, 0,
+    basicColumns.splice(-2, 0,
         {data: "enrollment", name: "students.enrollment"}
     )
 }

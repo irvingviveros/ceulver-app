@@ -17,6 +17,11 @@ class EloquentReceiptRepository implements GlobalRepository
         return Receipt::findOrFail($id);
     }
 
+    public function findOrFailWithTrashed($id)
+    {
+        return Receipt::withTrashed()->findOrFail($id);
+    }
+
     public function checkIfNameExists($name): bool
     {
         $row = DB::table('receipts')->where('reference', '=', $name)->get();
@@ -38,7 +43,7 @@ class EloquentReceiptRepository implements GlobalRepository
         $data->delete();
     }
 
-    public function all($columns = ['*']):Collection|array
+    public function all($columns = ['*']): Collection|array
     {
         return Receipt::all($columns);
     }

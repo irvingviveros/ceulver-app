@@ -28,7 +28,24 @@ Route::get('students/receipts/{educationalSystem}', function ($educationalSystem
         ->join('students', 'student_receipts.student_id', '=', 'students.id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
-        ->select('receipts.*', 'students.id AS student_id', 'students.enrollment', 'students.payment_reference')
+        ->select(
+            'receipts.id as base_receipt_id',
+            'student_receipts.id as id',
+            'receipts.sheet',
+            'receipts.payment_method',
+            'receipts.payment_concept',
+            'receipts.amount',
+            'receipts.amount_text',
+            'receipts.payment_date',
+            'receipts.note',
+            'receipts.created_by',
+            'receipts.modified_by',
+            'receipts.created_at',
+            'receipts.updated_at',
+            'receipts.deleted_at',
+            'students.id AS student_id',
+            'students.enrollment',
+            'students.payment_reference',)
         ->where('educational_systems.name', '=', $educationalSystem);
 
     return DataTables::of($query)->toJson();

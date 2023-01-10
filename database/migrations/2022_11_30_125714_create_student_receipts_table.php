@@ -21,6 +21,7 @@ class CreateStudentReceiptsTable extends Migration
             $table->integer('created_by');
             $table->integer('modified_by')->nullable(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,10 @@ class CreateStudentReceiptsTable extends Migration
      */
     public function down()
     {
+        Schema::table('student_receipts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
+
         Schema::dropIfExists('student_receipts');
     }
 }
