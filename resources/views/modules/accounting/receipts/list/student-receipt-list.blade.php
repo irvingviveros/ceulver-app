@@ -11,6 +11,7 @@
         @if($educationalSystemName === 'Universidad')
             <th>Matrícula</th>
         @endif
+        <th>Estatus</th>
         <th class="noVis">Acciones</th>
     </tr>
     </thead>
@@ -63,6 +64,12 @@
                 </label>
             </th>
         @endif
+        <th>
+            <label>
+                <input type="text" class="form-control filter-input"
+                       placeholder="Estatus" data-column="8">
+            </label>
+        </th>
         <th></th>
     </tr>
     </tfoot>

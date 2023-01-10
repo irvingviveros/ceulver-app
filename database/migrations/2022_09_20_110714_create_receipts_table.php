@@ -26,6 +26,7 @@ class CreateReceiptsTable extends Migration
             $table->integer('created_by');
             $table->integer('modified_by')->nullable(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

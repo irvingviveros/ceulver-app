@@ -66,6 +66,11 @@ class StudentReceiptService
         return $studentReceipt;
     }
 
+    public function findOrFailWithTrashed($id)
+    {
+        return $this->studentReceiptRepository->findOrFailWithTrashed($id);
+    }
+
     public function update($studentReceiptId, StudentReceiptEntity $studentReceiptEntity, $modifiedBy)
     {
         // Get student receipt model

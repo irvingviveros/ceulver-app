@@ -16,6 +16,11 @@ class EloquentStudentReceiptRepository implements GlobalRepository
         return StudentReceipt::findOrFail($id);
     }
 
+    public function findOrFailWithTrashed($id)
+    {
+        return StudentReceipt::withTrashed()->findOrFail($id);
+    }
+
     public function allByEducationalSystem(string $educationalSystem)
     {
         return DB::table('receipts')
@@ -41,7 +46,10 @@ class EloquentStudentReceiptRepository implements GlobalRepository
 
     public function lastReceiptId()
     {
-        return StudentReceipt::pluck('id')->last();
+        return StudentReceipt::withTrashed()
+            ->orderBy('id', 'desc')
+            ->first()
+            ->id;
     }
 
     public function checkIfNameExists($name): bool
