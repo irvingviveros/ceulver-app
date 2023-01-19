@@ -80,3 +80,24 @@ Route::get('school/{code}/students/search', function ($code) {
 
     return DataTables::of($query)->toJson();
 });
+
+Route::get('school/{code}/student-receipts/', function ($code) {
+
+    $query = DB::table('students')
+        ->join('careers', 'students.career_id', '=', 'careers.id')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->select(
+            'students.id AS id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
+            'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id',
+            'students.payment_reference', 'careers.name AS career_name',
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
+        ->where('schools.code', '=', $code)
+        ->where(
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name, '-', ' ', students.payment_reference)")), 'like', '%' . \request()->get('name') . '%');
+
+    // Order results by full name (text)
+    $query->orderBy('text');
+
+    return DataTables::of($query)->toJson();
+});

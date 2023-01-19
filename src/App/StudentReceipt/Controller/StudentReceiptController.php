@@ -60,58 +60,17 @@ class StudentReceiptController extends Controller
      */
     public function index(): View
     {
-        // Initialize variables
-
+        $educationalSystem = last(request()->segments());
+        // Retrieve the URL of the educational system
+        $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
+        // Breadcrumbs
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
-            ['link' => "javascript:void(0)", 'name' => "Coordinación académica"],
-            ['name' => "Administración de recibos"]
+            ['link' => route('accounting.dashboard'), 'name' => "Coordinación administrativa"],
+            ['name' => "Administración de recibos - ".$educationalSystemName]
         ];
 
-        return view('modules.accounting.receipts.index', compact('breadcrumbs'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return View
-     */
-    public function show(int $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param StudentReceipt $studentReceipt
-     * @return Response
-     */
-    public function edit(StudentReceipt $studentReceipt)
-    {
-        //
+        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName']));
     }
 
     public function editReceipt(string $educationalSystem, int $id): View
@@ -132,18 +91,6 @@ class StudentReceiptController extends Controller
 
         return view('modules.accounting.receipts.actions.modal-edit-student-receipt',
             compact(['baseReceipt', 'studentReceipt', 'student', 'school', 'payment_date', 'student_name']));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param StudentReceipt $studentReceipt
-     * @return Response
-     */
-    public function update(Request $request, StudentReceipt $studentReceipt)
-    {
-        //
     }
 
     /**

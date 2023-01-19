@@ -1,6 +1,8 @@
 <?php
 
 return [
+    "Unique exam" => "Examen único",
+    "Additional receipts" => "Recibos adicionales",
     "Manage companies" => "Administrar compañías",
     "Nursery school" => "Maternal",
     "Kindergarten" => "Kinder",

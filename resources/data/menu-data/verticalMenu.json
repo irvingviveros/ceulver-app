@@ -135,37 +135,47 @@
                     "url": "admin/accounting/student-receipts/university",
                     "name": "University",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.university.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/bachelor",
                     "name": "Bachelor",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.bachelor.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/high-school",
                     "name": "High school",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.high-school.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/elementary-school",
                     "name": "Elementary school",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.elementary-school.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/kindergarten",
                     "name": "Kindergarten",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.kindergarten.index"
                 },
                 {
                     "url": "admin/accounting/student-receipts/nursery-school",
                     "name": "Nursery school",
                     "icon": "corner-down-right",
-                    "slug": "student-receipts-educational-system.index"
+                    "slug": "student-receipts.nursery-school.index"
+                },
+                {
+                    "url": "admin/accounting/other-receipts",
+                    "name": "Additional receipts",
+                    "slug": "accounting.additional-receipts.index"
+                },
+                {
+                    "url": "admin/accounting/unique-exam",
+                    "name": "Unique exam",
+                    "slug": "accounting.additional-receipts.index"
                 }
             ]
         }

@@ -94,28 +94,64 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('/', function () {
             return redirect()->route('accounting.dashboard');
         })->middleware('can:accounting-dashboard.index');
-        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsWithEducationalSystem'])
-            ->name('student-receipts-educational-system.index')
-            ->middleware('can:student-receipts.educational-system.index');
+
+        // University receipts
+        Route::get('student-receipts/university', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.university.index')
+            ->middleware('can:student-receipts.university.index');
+
+        // Bachelor receipts
+        Route::get('student-receipts/bachelor', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.bachelor.index')
+            ->middleware('can:student-receipts.bachelor.index');
+
+        // High-school receipts
+        Route::get('student-receipts/high-school', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.high-school.index')
+            ->middleware('can:student-receipts.high-school.index');
+
+        // Elementary-school receipts
+        Route::get('student-receipts/elementary-school', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.elementary-school.index')
+            ->middleware('can:student-receipts.elementary-school.index');
+
+        // Kindergarten receipts
+        Route::get('student-receipts/kindergarten', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.kindergarten.index')
+            ->middleware('can:student-receipts.kindergarten.index');
+
+        // Kindergarten receipts
+        Route::get('student-receipts/nursery-school', [StudentReceiptController::class, 'index'])
+            ->name('student-receipts.nursery-school.index')
+            ->middleware('can:student-receipts.nursery-school.index');
+
+//        Route::get('student-receipts/{educational_system}', [StudentReceiptController::class, 'receiptsWithEducationalSystem'])
+//            ->name('student-receipts-educational-system.index')
+//            ->middleware('can:student-receipts.educational-system.index');
+
         Route::get('student-receipts/{educational_system}/create', [StudentReceiptController::class, 'createWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
+
         Route::get('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'showByEducationalSystem'])
             ->name('student-receipts-educational-system.show')
             ->middleware('can:student-receipts.educational-system.show');
+
         Route::get('student-receipts/{educational_system}/{id}/edit', [StudentReceiptController::class, 'editReceipt'])
             ->name('student-receipts-educational-system.show')
             ->middleware('can:student-receipts.educational-system.edit');
+
         Route::put('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'updateReceipt'])
             ->name('student-receipts-educational-system.update')
             ->middleware('can:student-receipts.educational-system.update');
+
         Route::post('student-receipts/{educational_system}', [StudentReceiptController::class, 'storeWithEducationalSystem'])
             ->name('student-receipts-educational-system.create')
             ->middleware('can:student-receipts.educational-system.create');
+
         Route::delete('student-receipts/{educational_system}/{id}', [StudentReceiptController::class, 'softDelete'])
             ->name('student-receipts-action-delete')
             ->middleware('can:student-receipts.educational-system.softDelete');
-        Route::resource('student-receipts', StudentReceiptController::class);
     });
 
 
