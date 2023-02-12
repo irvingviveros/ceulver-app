@@ -44,7 +44,7 @@ class StudentImportRules
          'estado_civil'          => ['required', 'string'],
 //         'email'                 => ['required', 'email', 'unique:students,personal_email'],
          'email'                 => ['nullable', 'email', 'unique:students,personal_email'], // bypass rule
-         'telefono_celular'      => ['required', 'numeric'],
+         'telefono_celular'      => ['nullable', 'numeric'],
 //         'student_username'      => 'required', 'string',
 //         'student_password'      => 'required_with:student_username|unique:users,username',
      ];
