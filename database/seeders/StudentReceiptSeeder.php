@@ -15,7 +15,7 @@ class StudentReceiptSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        $totalStudents = 114;
+        $totalStudents = 170;
         $totalReceipts = 1380;
 
         for ($counter = 0; $counter <= $totalReceipts; $counter++) {
