@@ -145,6 +145,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'import_file' => 'The imported file'
+    ],
 
 ];

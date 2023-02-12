@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace App\Student\Controller;
 
 use App\Http\Controllers\Controller;
-use Brian2694\Toastr\Facades\Toastr;
+
 use Domain\Career\Service\CareerService;
 use Domain\Guardian\Entity\GuardianEntity;
 use Domain\Guardian\Service\GuardianService;
@@ -14,12 +14,13 @@ use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Entity\StudentEntity;
 use Domain\Student\Imports\StudentsImport;
 use Domain\Student\Service\StudentService;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+
 use Infrastructure\Career\Repository\EloquentCareerRepository;
 use Infrastructure\Guardian\Repository\EloquentGuardianRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
@@ -27,8 +28,10 @@ use Infrastructure\Student\Model\Student;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
 use Infrastructure\Student\Request\StoreStudentRequest;
 use Infrastructure\Student\Request\UpdateStudentRequest;
+
 use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
 use Mockery\CountValidator\Exception;
+use Brian2694\Toastr\Facades\Toastr;
 
 class StudentController extends Controller
 {
@@ -355,9 +358,10 @@ class StudentController extends Controller
 
         // Validates if the user submitted a file
         try {
-            $import->import($request->file('import_file'));
             // Validate if the file is xlsx or csv
             $request->validate(['import_file' => ['mimes:xlsx,csv']]);
+            // Import and save
+            $import->import($request->file('import_file'));
         } catch (NoFilePathGivenException $e) {
             return back()->with('error', 'Error. No se ha seleccionado ningún archivo.');
         }

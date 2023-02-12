@@ -42,7 +42,8 @@ class StudentImportRules
          'matricula'             => ['required', 'string'],
          'ocupacion'             => ['required', 'string', 'max:100'],
          'estado_civil'          => ['required', 'string'],
-         'email'                 => ['required', 'email', 'unique:students,personal_email'],
+//         'email'                 => ['required', 'email', 'unique:students,personal_email'],
+         'email'                 => ['nullable', 'email', 'unique:students,personal_email'], // bypass rule
          'telefono_celular'      => ['required', 'numeric'],
 //         'student_username'      => 'required', 'string',
 //         'student_password'      => 'required_with:student_username|unique:users,username',
