@@ -63,6 +63,8 @@ class StudentReceiptController extends Controller
         $educationalSystem = last(request()->segments());
         // Retrieve the URL of the educational system
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
+        // Get user's school code associated
+        $companyId = auth()->user()->company()->id;
         // Breadcrumbs
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
@@ -70,7 +72,7 @@ class StudentReceiptController extends Controller
             ['name' => "Administración de recibos - ".$educationalSystemName]
         ];
 
-        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName']));
+        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName', 'companyId']));
     }
 
     public function editReceipt(string $educationalSystem, int $id): View
@@ -121,13 +123,15 @@ class StudentReceiptController extends Controller
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
         // Retrieve the currently authenticated user
         $currentUser = auth()->user();
+        // Get user's school code associated
+        $companyId = $currentUser->company()->id;
         // Retrieve the school associated with the user
-        $school = $currentUser->school;
+        $school = $this->schoolService->findByCompany($currentUser->company()->id, $educationalSystemName);
         // Retrieve last receipt sheet and add + 1 for a new receipt
         $lastSheet = $this->studentReceiptService->lastReceiptId() + 1;
 
         return view('modules.accounting.receipts.actions.modal-add-student-receipt',
-            compact(['school', 'lastSheet', 'educationalSystemName']));
+            compact(['school', 'lastSheet', 'educationalSystemName', 'companyId']));
     }
 
     public function receiptsWithEducationalSystem(string $educationalSystem): View
@@ -182,7 +186,7 @@ class StudentReceiptController extends Controller
      */
     public function getEducationalSystemName(string $educationalSystem): string
     {
-        $educationalSystemName = match ($educationalSystem) {
+        return match ($educationalSystem) {
             'university' => 'Universidad',
             'bachelor' => 'Bachillerato',
             'high-school' => 'Secundaria',
@@ -190,7 +194,6 @@ class StudentReceiptController extends Controller
             'kindergarten' => 'Jardín de niños',
             'nursery-school' => 'Maternal'
         };
-        return $educationalSystemName;
     }
 
     /**
@@ -302,5 +305,10 @@ class StudentReceiptController extends Controller
         } catch (Exception $exception) {
             return new Response('Error interno en el servidor', 500);
         }
+    }
+
+    public function getSchoolByEducationalSystem(string $educationalSystem)
+    {
+
     }
 }

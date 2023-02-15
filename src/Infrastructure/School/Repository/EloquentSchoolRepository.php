@@ -5,6 +5,7 @@ namespace Infrastructure\School\Repository;
 
 use Domain\Shared\Repository\GlobalRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\School\Model\School;
 
@@ -87,5 +88,16 @@ class EloquentSchoolRepository implements GlobalRepository {
     public function orderBy(string $column, ?string $direction = 'asc')
     {
         return School::orderBy($column, $direction)->get();
+    }
+
+    public function findByCompany(int $companyId, string $educationalSystem)
+    {
+        return DB::table('schools')
+            ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+            ->join('companies', 'schools.company_id', '=', 'companies.id')
+            ->select('schools.*')
+            ->where('companies.id', '=', $companyId)
+            ->where('educational_systems.name', '=', $educationalSystem)
+            ->first();
     }
 }

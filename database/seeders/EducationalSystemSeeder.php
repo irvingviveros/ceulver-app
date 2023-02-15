@@ -22,6 +22,7 @@ class EducationalSystemSeeder extends Seeder
         DB::table('educational_systems')->insert([
             [
                 'name' => 'Maternal',
+                'slug' => 'nursery-school',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,
@@ -29,6 +30,7 @@ class EducationalSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Kinder',
+                'slug' => 'kindergarten',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,
@@ -36,6 +38,7 @@ class EducationalSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Primaria',
+                'slug' => 'elementary-school',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,
@@ -43,6 +46,7 @@ class EducationalSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Secundaria',
+                'slug' => 'high-school',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,
@@ -50,6 +54,7 @@ class EducationalSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Bachillerato',
+                'slug' => 'bachelor',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,
@@ -57,6 +62,7 @@ class EducationalSystemSeeder extends Seeder
             ],
             [
                 'name' => 'Universidad',
+                'slug' => 'university',
                 'created_by' => 1,
                 'modified_by' => 1,
                 'created_at' => $date,

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use Domain\Permission\Accounting\AccountingPermissions;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -20,35 +21,26 @@ class RoleSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        // Accounting permission names
-        $accountingPermissionNames = [
-            'accounting-dashboard.index',
-            'student-receipts.educational-system.index',
-            'student-receipts.educational-system.create',
-            'student-receipts.educational-system.show',
-            'student-receipts.educational-system.edit',
-            'student-receipts.educational-system.softDelete',
-            'see accounting panel',
-        ];
-
         // Create roles
         $roleSuperAdmin = Role::create(['name' => 'super-admin']);
         $roleAdmin = Role::create(['name' => 'admin']);
-        $roleStudent = Role::create(['name' => 'student']);
         $roleAccounting = Role::create(['name' => 'accounting']);
 
+        // Accounting permission names, get values.
+        $accountingPermissions = array_values(AccountingPermissions::allPermissions());
+
         // Assign to 'accounting' role his permissions
-        foreach ($accountingPermissionNames as $accountingPermissionName)
-            Permission::create(['name' => $accountingPermissionName]);
+        foreach ($accountingPermissions as $permission)
+            Permission::create(['name' => $permission]);
+        // Assign 'accounting' permissions
+        $roleAccounting->syncPermissions($accountingPermissions);
 
         // Assign 'home' permission
         Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
-
         // Permissions super admin
         Permission::create(['name' => 'see super-admin panel'])->syncRoles($roleSuperAdmin);
-
-        // Assign 'accounting' permissions
-        $roleAccounting->syncPermissions($accountingPermissionNames);
+        // Permission to see company info (from User model)
+        Permission::create(['name' => 'see company info'])->syncRoles($roleSuperAdmin, $roleAdmin, $roleAccounting);
 
         // Test
 //        $roleAccounting->revokePermissionTo('student-receipts.educational-system.show');

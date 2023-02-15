@@ -7,7 +7,6 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
-use Random\Randomizer;
 
 class ReceiptSeeder extends Seeder
 {

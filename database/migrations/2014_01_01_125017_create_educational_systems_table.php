@@ -16,6 +16,7 @@ class CreateEducationalSystemsTable extends Migration
         Schema::create('educational_systems', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();

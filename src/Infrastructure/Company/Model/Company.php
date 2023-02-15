@@ -28,4 +28,15 @@ class Company extends Model
     {
         return $this->hasMany(School::class);
     }
+
+    // Get associated educational systems from schools
+    public function educationalSystems()
+    {
+        $educationalSystems = [];
+        $schools = $this->schools;
+        foreach ($schools as $school) {
+            $educationalSystems[] = $school->educationalSystem->name;
+        }
+        return $educationalSystems;
+    }
 }

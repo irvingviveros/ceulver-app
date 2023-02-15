@@ -38,9 +38,15 @@
     </section>
     <input
         type="hidden"
-        name="educationalSystemName"
-        id="educationalSystemName"
+        name="educational-system"
+        id="educational-system"
         value="@isset($educationalSystemName){{ $educationalSystemName }}@endisset"
+    />
+    <input
+        type="hidden"
+        name="company-id"
+        id="company-id"
+        value="@isset($companyId){{ $companyId }}@endisset"
     />
     <!--/ Basic table -->
 @endsection

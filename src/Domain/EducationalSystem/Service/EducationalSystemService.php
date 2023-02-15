@@ -41,7 +41,8 @@ class EducationalSystemService
         }
 
         $data = array(
-            'name' => $educationalSystem->getName()
+            'name' => $educationalSystem->getName(),
+            'slug' => $educationalSystem->getSlug()
         );
 
         $educationalSystem = $this->educationalSystemRepository->create($data);
