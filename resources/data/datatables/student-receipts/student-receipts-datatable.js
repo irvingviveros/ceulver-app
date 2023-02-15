@@ -73,13 +73,13 @@ let basicColumns = [
     }
 ]
 
-const StudentReceiptsDatatable = (educationalSystemName) => {
+const StudentReceiptsDatatable = (educationalSystemName, companyId) => {
 
     // If param is University, then add university columns to the array
     isUniversityRequest(educationalSystemName) === true ? addUniversityColumns() : false
     // Return data
     return {
-        ajax: '/api/students/receipts/' + educationalSystemName,
+        ajax: '/api/companies/' + companyId + '/' + educationalSystemName + /student-receipts/,
         order: [[1, 'desc']],
         columns: basicColumns
     }

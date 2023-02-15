@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Infrastructure\Company\Model\Company;
 use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
 use Spatie\Permission\Traits\HasRoles;
@@ -64,5 +65,18 @@ class User extends Authenticatable
     public function school(): BelongsTo
     {
         return $this->belongsTo(School::class);
+    }
+
+    /**
+     * Get the company where the user belongs to if the user has the right permission
+     * @return Company|mixed|null
+     */
+    public function company()
+    {
+        if ($this->hasPermissionTo('see company info')) {
+            return $this->school->company;
+        }
+
+        return null;
     }
 }

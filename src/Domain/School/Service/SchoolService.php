@@ -127,6 +127,11 @@ class SchoolService
     {
         return $this->schoolRepository->orderBy($name, $direction);
     }
+
+    public function findByCompany(int $companyId, string $educationalSystem)
+    {
+        return $this->schoolRepository->findByCompany($companyId, $educationalSystem);
+    }
 }
 
 // 200 - OK, 1, "peticion correcta"

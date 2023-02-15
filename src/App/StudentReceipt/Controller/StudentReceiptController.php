@@ -60,58 +60,19 @@ class StudentReceiptController extends Controller
      */
     public function index(): View
     {
-        // Initialize variables
-
+        $educationalSystem = last(request()->segments());
+        // Retrieve the URL of the educational system
+        $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
+        // Get user's school code associated
+        $companyId = auth()->user()->company()->id;
+        // Breadcrumbs
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
-            ['link' => "javascript:void(0)", 'name' => "Coordinación académica"],
-            ['name' => "Administración de recibos"]
+            ['link' => route('accounting.dashboard'), 'name' => "Coordinación administrativa"],
+            ['name' => "Administración de recibos - ".$educationalSystemName]
         ];
 
-        return view('modules.accounting.receipts.index', compact('breadcrumbs'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return View
-     */
-    public function show(int $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param StudentReceipt $studentReceipt
-     * @return Response
-     */
-    public function edit(StudentReceipt $studentReceipt)
-    {
-        //
+        return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName', 'companyId']));
     }
 
     public function editReceipt(string $educationalSystem, int $id): View
@@ -132,18 +93,6 @@ class StudentReceiptController extends Controller
 
         return view('modules.accounting.receipts.actions.modal-edit-student-receipt',
             compact(['baseReceipt', 'studentReceipt', 'student', 'school', 'payment_date', 'student_name']));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Request $request
-     * @param StudentReceipt $studentReceipt
-     * @return Response
-     */
-    public function update(Request $request, StudentReceipt $studentReceipt)
-    {
-        //
     }
 
     /**
@@ -174,13 +123,15 @@ class StudentReceiptController extends Controller
         $educationalSystemName = $this->getEducationalSystemName($educationalSystem);
         // Retrieve the currently authenticated user
         $currentUser = auth()->user();
+        // Get user's school code associated
+        $companyId = $currentUser->company()->id;
         // Retrieve the school associated with the user
-        $school = $currentUser->school;
+        $school = $this->schoolService->findByCompany($currentUser->company()->id, $educationalSystemName);
         // Retrieve last receipt sheet and add + 1 for a new receipt
         $lastSheet = $this->studentReceiptService->lastReceiptId() + 1;
 
         return view('modules.accounting.receipts.actions.modal-add-student-receipt',
-            compact(['school', 'lastSheet', 'educationalSystemName']));
+            compact(['school', 'lastSheet', 'educationalSystemName', 'companyId']));
     }
 
     public function receiptsWithEducationalSystem(string $educationalSystem): View
@@ -235,7 +186,7 @@ class StudentReceiptController extends Controller
      */
     public function getEducationalSystemName(string $educationalSystem): string
     {
-        $educationalSystemName = match ($educationalSystem) {
+        return match ($educationalSystem) {
             'university' => 'Universidad',
             'bachelor' => 'Bachillerato',
             'high-school' => 'Secundaria',
@@ -243,7 +194,6 @@ class StudentReceiptController extends Controller
             'kindergarten' => 'Jardín de niños',
             'nursery-school' => 'Maternal'
         };
-        return $educationalSystemName;
     }
 
     /**
@@ -355,5 +305,10 @@ class StudentReceiptController extends Controller
         } catch (Exception $exception) {
             return new Response('Error interno en el servidor', 500);
         }
+    }
+
+    public function getSchoolByEducationalSystem(string $educationalSystem)
+    {
+
     }
 }
