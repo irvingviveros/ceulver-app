@@ -26,6 +26,13 @@ class RoleSeeder extends Seeder
         $roleAdmin = Role::create(['name' => 'admin']);
         $roleAccounting = Role::create(['name' => 'accounting']);
 
+        // Assign 'home' permission
+        Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
+        // Permissions super admin
+        Permission::create(['name' => 'see super-admin panel'])->syncRoles($roleSuperAdmin);
+        // Permission to see company info (from User model)
+        Permission::create(['name' => 'see company info'])->syncRoles($roleSuperAdmin, $roleAdmin, $roleAccounting);
+
         // Accounting permission names, get values.
         $accountingPermissions = array_values(AccountingPermissions::allPermissions());
 
@@ -34,13 +41,6 @@ class RoleSeeder extends Seeder
             Permission::create(['name' => $permission]);
         // Assign 'accounting' permissions
         $roleAccounting->syncPermissions($accountingPermissions);
-
-        // Assign 'home' permission
-        Permission::create(['name' => 'home'])->syncRoles([$roleSuperAdmin, $roleAdmin, $roleAccounting]);
-        // Permissions super admin
-        Permission::create(['name' => 'see super-admin panel'])->syncRoles($roleSuperAdmin);
-        // Permission to see company info (from User model)
-        Permission::create(['name' => 'see company info'])->syncRoles($roleSuperAdmin, $roleAdmin, $roleAccounting);
 
         // Test
 //        $roleAccounting->revokePermissionTo('student-receipts.educational-system.show');

@@ -22,7 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('admission_no', 20)->nullable(true); // Número de admisión (registro en línea)
             $table->date('admission_date')->nullable(true); // Fecha de admisión (registro en línea)
             $table->string('payment_reference')->nullable(true); // Referencia de pago
-            $table->string('first_name', 35);  // Nombre(s)
+            $table->string('first_name', 50);  // Nombre(s)
             $table->string('paternal_surname', 25); // Apellido paterno
             $table->string('maternal_surname', 25)->nullable(true); // Apellido materno
             $table->date('birth_date')->nullable(false); // Fecha cumpleaños

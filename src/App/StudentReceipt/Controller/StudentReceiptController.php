@@ -191,7 +191,7 @@ class StudentReceiptController extends Controller
             'bachelor' => 'Bachillerato',
             'high-school' => 'Secundaria',
             'elementary-school' => 'Primaria',
-            'kindergarten' => 'Jardín de niños',
+            'kindergarten' => 'Kinder',
             'nursery-school' => 'Maternal'
         };
     }
