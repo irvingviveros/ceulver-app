@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Infrastructure\Career\Model\Career;
 use Infrastructure\Guardian\Model\Guardian;
+use Infrastructure\OtherReceipt\Model\OtherReceipt;
 use Infrastructure\Scholarship\Model\Scholarship;
 use Infrastructure\School\Model\School;
 use Infrastructure\StudentReceipt\Model\StudentReceipt;
@@ -50,6 +51,15 @@ class Student extends Model
     public function receipts(): HasMany
     {
         return $this->hasMany(StudentReceipt::class);
+    }
+
+    /**
+     * Get the receipts associated with the student.
+     *  $student -> receipts
+     */
+    public function otherReceipts(): HasMany
+    {
+        return $this->hasMany(OtherReceipt::class);
     }
 
     /**

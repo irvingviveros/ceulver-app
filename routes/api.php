@@ -114,10 +114,35 @@ Route::get('companies/{id}/{educationalSystem}/student-receipts/', function ($id
             'receipts.updated_at',
             'receipts.deleted_at',
             'students.id AS student_id',
-            'students.enrollment',
-            'students.payment_reference',)
+            'students.enrollment as enrollment',
+            'students.payment_reference AS payment_reference')
         ->where('companies.id', '=', $id)
-        ->where('educational_systems.name', '=', $educationalSystem)->get();
+        ->where('educational_systems.name', '=', $educationalSystem)
+        ->addSelect(DB::raw("(CASE WHEN receipts.deleted_at IS NULL THEN 'Pagado' ELSE 'Cancelado' END) as receipt_status"))
+        ->get();
+
+    return DataTables::of($query)->toJson();
+});
+
+/**
+ * This endpoint returns student receipts from a specific company by id
+ * two essential columns for select2 dropdown: 'id' and 'text'
+ * Example: api/school/xxx/student/search?name=xxx
+ * @param $code
+ * @return mixed
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+Route::get('companies/{companyId}/other-receipts', function ($companyId) {
+
+    $query = DB::table('other_receipts')
+        ->join('receipts', 'other_receipts.receipt_id', '=', 'receipts.id')
+        ->join('schools', 'other_receipts.school_id', '=', 'schools.id')
+        ->join('companies', 'schools.company_id', '=', 'companies.id')
+        ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->select(
+            'receipts.*', 'companies.id AS company_id', 'educational_systems.name AS educational_level')
+        ->where('companies.id', '=', $companyId);
 
     return DataTables::of($query)->toJson();
 });

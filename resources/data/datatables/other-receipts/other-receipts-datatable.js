@@ -3,7 +3,6 @@ let basicColumns = [
     // columns according to JSON
     {data: "id"},
     {data: "id"},
-    {data: "payment_reference"},
     {data: "payment_method"},
     {data: "payment_concept"},
     {
@@ -13,12 +12,13 @@ let basicColumns = [
         }
     },
     {data: "payment_date"},
+    {data: "educational_level", name: "educational_systems.name"},
     {
-        data: "receipt_status",
+        data: "deleted_at",
         render: function (data, type, full, meta) {
             var $status = {
-                1: { title: 'Pagado', class: ' badge-light-success' },
-                0: { title: 'Cancelado', class: 'badge-light-danger' },
+                1: {title: 'Pagado', class: ' badge-light-success'},
+                0: {title: 'Cancelado', class: 'badge-light-danger'},
             };
             if ((data === 'Pagado')) {
                 return (
@@ -72,24 +72,10 @@ let basicColumns = [
     }
 ]
 
-const StudentReceiptsDatatable = (educationalSystemName, companyId) => {
-
-    // If param is University, then add university columns to the array
-    isUniversityRequest(educationalSystemName) === true ? addUniversityColumns() : false
-    // Return data
+const OtherReceiptsDatatable = (companyId) => {
     return {
-        ajax: '/api/companies/' + companyId + '/' + educationalSystemName + /student-receipts/,
+        ajax: '/api/companies/' + companyId + /other-receipts/,
         order: [[1, 'desc']],
         columns: basicColumns
     }
-}
-function isUniversityRequest(educationalSystemName) {
-    return 'Universidad' === educationalSystemName
-}
-
-function addUniversityColumns() {
-    // Add columns before the last item on the list.
-    basicColumns.splice(-2, 0,
-        {data: "enrollment"}
-    )
 }
