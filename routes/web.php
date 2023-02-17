@@ -10,6 +10,7 @@ use App\Group\Controller\GroupController;
 use App\Http\Controllers\RoleController;
 use App\Language\Controller\LanguageController;
 use App\Modality\Controller\ModalityController;
+use App\OtherReceipt\Controller\OtherReceiptController;
 use App\School\Controller\SchoolController;
 use App\Staterkit\Controller\StaterkitController;
 use App\Student\Controller\StudentController;
@@ -280,6 +281,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::delete('student-receipts/{nursery-school}/{id}', [StudentReceiptController::class, 'softDelete'])
             ->name('student-receipts-action-delete')
             ->middleware('can:student-receipts.nursery-school.cancel');
+
+        // ============= Other receipts =============
+
+        Route::get('other-receipts', [OtherReceiptController::class, 'index'])
+            ->name('other-receipts.index')
+            ->middleware('can:student-receipts.other-receipts.index');
     });
 
     // Careers management, route admin/manage-careers
