@@ -140,7 +140,7 @@ Route::get('companies/{companyId}/other-receipts', function ($companyId) {
         ->join('companies', 'schools.company_id', '=', 'companies.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
         ->select(
-            'receipts.sheet',
+            'other_receipts.sheet',
             'receipts.payment_method',
             'receipts.payment_concept',
             'receipts.amount',

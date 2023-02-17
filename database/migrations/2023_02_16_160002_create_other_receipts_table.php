@@ -18,6 +18,7 @@ class CreateOtherReceiptsTable extends Migration
             // Foreign id
             $table->foreignId('school_id');
             $table->foreignId('receipt_id')->constrained();
+            $table->integer('sheet')->unique();
             $table->foreignId('student_id')->nullable();
             $table->integer('created_by');
             $table->integer('modified_by')->nullable();
