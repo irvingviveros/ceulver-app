@@ -15,7 +15,7 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->integer('sheet')->unique()->nullable(true); // Folio
+            $table->integer('sheet')->nullable(true); // Folio
             $table->string('payment_method')->nullable(false);
             $table->string('payment_concept')->nullable(false);
             $table->decimal('amount', 10, 2)->nullable(false);

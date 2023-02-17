@@ -1,8 +1,8 @@
 // Basic student columns. NO university columns are in this array.
 let basicColumns = [
     // columns according to JSON
-    {data: "id"},
-    {data: "id"},
+    {data: "sheet"},
+    {data: "sheet"},
     {data: "payment_method"},
     {data: "payment_concept"},
     {
@@ -12,9 +12,9 @@ let basicColumns = [
         }
     },
     {data: "payment_date"},
-    {data: "educational_level", name: "educational_systems.name"},
+    {data: "educational_level"},
     {
-        data: "deleted_at",
+        data: "receipt_status",
         render: function (data, type, full, meta) {
             var $status = {
                 1: {title: 'Pagado', class: ' badge-light-success'},
