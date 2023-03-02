@@ -3,6 +3,8 @@
     <tr>
         <th class="noVis"></th>
         <th>#Folio</th>
+        <th>Estudiante</th>
+        <th>Persona</th>
         <th>Método de pago</th>
         <th>Concepto de pago</th>
         <th>Cantidad</th>
@@ -26,37 +28,49 @@
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Método" data-column="3">
+                       placeholder="Estudiante" data-column="2">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Concepto de pago" data-column="4">
+                       placeholder="Persona" data-column="3">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Cantidad" data-column="5">
+                       placeholder="Método" data-column="4">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Fecha pago" data-column="6">
+                       placeholder="Concepto de pago" data-column="5">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Nivel educativo" data-column="7">
+                       placeholder="Cantidad" data-column="6">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Estatus" data-column="8">
+                       placeholder="Fecha pago" data-column="7">
+            </label>
+        </th>
+        <th>
+            <label>
+                <input type="text" class="form-control filter-input"
+                       placeholder="Nivel educativo" data-column="8">
+            </label>
+        </th>
+        <th>
+            <label>
+                <input type="text" class="form-control filter-input"
+                       placeholder="Estatus" data-column="9">
             </label>
         </th>
         <th></th>

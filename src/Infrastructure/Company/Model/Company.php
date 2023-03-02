@@ -30,7 +30,7 @@ class Company extends Model
     }
 
     // Get associated educational systems from schools
-    public function educationalSystems()
+    public function educationalSystems(): array
     {
         $educationalSystems = [];
         $schools = $this->schools;

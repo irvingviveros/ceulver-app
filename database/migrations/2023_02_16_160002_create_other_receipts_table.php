@@ -15,11 +15,13 @@ class CreateOtherReceiptsTable extends Migration
     {
         Schema::create('other_receipts', function (Blueprint $table) {
             $table->id();
+            $table->string('sheet_acronym')->nullable();
+            $table->integer('sheet_id')->unique();
+            $table->string('full_name')->nullable();
             // Foreign id
+            $table->foreignId('student_id')->nullable();
             $table->foreignId('school_id');
             $table->foreignId('receipt_id')->constrained();
-            $table->integer('sheet')->unique();
-            $table->foreignId('student_id')->nullable();
             $table->integer('created_by');
             $table->integer('modified_by')->nullable();
             $table->timestamps();

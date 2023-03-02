@@ -139,8 +139,11 @@ Route::get('companies/{companyId}/other-receipts', function ($companyId) {
         ->join('schools', 'other_receipts.school_id', '=', 'schools.id')
         ->join('companies', 'schools.company_id', '=', 'companies.id')
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->leftJoin('students', 'other_receipts.student_id', '=', 'students.id')
         ->select(
-            'other_receipts.sheet',
+            'other_receipts.sheet_id',
+            'other_receipts.sheet_acronym',
+            'other_receipts.full_name',
             'receipts.payment_method',
             'receipts.payment_concept',
             'receipts.amount',
@@ -156,7 +159,39 @@ Route::get('companies/{companyId}/other-receipts', function ($companyId) {
             'educational_systems.name AS educational_level')
         ->where('companies.id', '=', $companyId)
         ->addSelect(DB::raw("(CASE WHEN receipts.deleted_at IS NULL THEN 'Pagado' ELSE 'Cancelado' END) as receipt_status"))
+        ->addSelect(DB::raw("CONCAT(other_receipts.sheet_acronym, other_receipts.sheet_id) as full_sheet"))
+        ->addSelect(DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS student_name"))
         ->get();
+
+    return DataTables::of($query)->toJson();
+});
+
+/**
+ * This endpoint returns basic student data. It also contains
+ * two essential columns for select2 dropdown: 'id' and 'text'
+ * Example: api/school/xxx/student/search?name=xxx
+ * @param $code
+ * @return mixed
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+Route::get('companies/{companyId}/students/search', function ($companyId) {
+
+    $query = DB::table('students')
+        ->leftJoin('careers', 'students.career_id', '=', 'careers.id')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('companies', 'schools.company_id', '=', 'companies.id')
+        ->select(
+            'students.id AS id', 'students.national_id', 'students.first_name', 'students.paternal_surname',
+            'students.maternal_surname', 'students.enrollment', 'students.personal_email', 'students.personal_phone', 'students.user_id',
+            'students.payment_reference', 'careers.name AS career_name', 'companies.id AS company_id',
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
+        ->where('company_id', '=', $companyId)
+        ->where(
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name, '-', ' ', students.payment_reference)")), 'like', '%' . \request()->get('name') . '%');
+
+    // Order results by full name (text)
+    $query->orderBy('text');
 
     return DataTables::of($query)->toJson();
 });

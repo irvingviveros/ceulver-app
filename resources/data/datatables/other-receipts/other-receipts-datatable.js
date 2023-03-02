@@ -1,8 +1,20 @@
 // Basic student columns. NO university columns are in this array.
 let basicColumns = [
     // columns according to JSON
-    {data: "sheet"},
-    {data: "sheet"},
+    {data: "sheet_id"},
+    {data: "full_sheet"},
+    {
+        data: "student_name",
+        render: function (data, type, row) {
+            return data == null ? 'N/A' : data;
+        }
+    },
+    {
+        data: "full_name",
+        render: function (data, type, row) {
+            return data === '' ? 'N/A' : data;
+        }
+    },
     {data: "payment_method"},
     {data: "payment_concept"},
     {

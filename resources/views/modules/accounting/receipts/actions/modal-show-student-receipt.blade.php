@@ -5,7 +5,7 @@
 <section class="invoice-preview-wrapper">
     <div class="row invoice-preview">
         <!-- Invoice -->
-        <div class="col-xl-9 col-md-8 col-12">
+        <div class="col-xl-9 col-md-8 col-12" id="print">
             <div class="card invoice-preview-card">
                 <div class="card-body invoice-padding pb-0">
                     <!-- Header starts -->
@@ -298,6 +298,25 @@ We would appreciate payment of this invoice by 05/11/2019</textarea
 </div>
 <!-- /Add Payment Sidebar -->
 
+<div>
+    <button name="btn-print">Print me</button>
+</div>
+
 <!-- Local JS -->
 <script src="{{asset('js/scripts/pages/app-invoice.js')}}"></script>
+
+<script>
+    function printData()
+    {
+        var divToPrint=document.getElementById("print");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+    }
+
+    $("button[name='btn-print']").on('click',function(){
+        printData();
+    })
+</script>
 <!-- Local JS -->

@@ -11,7 +11,11 @@ $(document).ready(function () {
     let selectAjax = $('.select2-data-ajax');
 
     // Get school code to pass into the api url
-    let schoolCode = $('#school-code').val();
+    let schoolCode = $('#school-code').val() ?? null;
+    // Get company id to pass into the api URL
+    let companyId = $('#company-id').val() ?? null;
+    // Assign other receipt div
+    let otherReceipt = $('#other-receipt');
 
     'use strict';
     $.fn.select2.defaults.set('language', 'es');
@@ -23,7 +27,16 @@ $(document).ready(function () {
         minimumInputLength: 1, // only start searching when the user has input 3 or more characters
         language: "es",
         ajax: {
-            url: '/api/school/' + schoolCode + '/students/search',
+            url: function (data, params) {
+                console.log(data)
+                if (otherReceipt == null) {
+                    console.log('search by school code')
+                    return '/api/school/' + schoolCode + '/students/search'
+                } else {
+                    console.log('search by company id')
+                    return '/api/companies/' + companyId + '/students/search'
+                }
+            },
             dataType: 'json',
             // The number of milliseconds to wait for the user to stop typing before
             // issuing the ajax request.
