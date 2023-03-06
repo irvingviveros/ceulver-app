@@ -4,6 +4,7 @@
         <th class="noVis"></th>
         <th>#Folio</th>
         <th>Referencia</th>
+        <th>Nombre completo</th>
         <th>Método de pago</th>
         <th>Concepto de pago</th>
         <th>Cantidad</th>
@@ -35,39 +36,45 @@
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Método" data-column="3">
+                       placeholder="Nombre" data-column="3">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Concepto de pago" data-column="4">
+                       placeholder="Método" data-column="4">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Cantidad" data-column="5">
+                       placeholder="Concepto de pago" data-column="5">
             </label>
         </th>
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Fecha pago" data-column="6">
+                       placeholder="Cantidad" data-column="6">
+            </label>
+        </th>
+        <th>
+            <label>
+                <input type="text" class="form-control filter-input"
+                       placeholder="Fecha pago" data-column="7">
             </label>
         </th>
         @if($educationalSystemName === 'Universidad')
             <th>
                 <label>
                     <input type="text" class="form-control filter-input"
-                           placeholder="Matrícula" data-column="7">
+                           placeholder="Matrícula" data-column="8">
                 </label>
             </th>
         @endif
         <th>
             <label>
                 <input type="text" class="form-control filter-input"
-                       placeholder="Estatus" data-column="8">
+                       placeholder="Estatus" data-column="9">
             </label>
         </th>
         <th></th>

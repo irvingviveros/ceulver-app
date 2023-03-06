@@ -119,6 +119,7 @@ Route::get('companies/{id}/{educationalSystem}/student-receipts/', function ($id
         ->where('companies.id', '=', $id)
         ->where('educational_systems.name', '=', $educationalSystem)
         ->addSelect(DB::raw("(CASE WHEN receipts.deleted_at IS NULL THEN 'Pagado' ELSE 'Cancelado' END) as receipt_status"))
+        ->addSelect(DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS student_name"))
         ->get();
 
     return DataTables::of($query)->toJson();

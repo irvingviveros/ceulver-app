@@ -28,8 +28,8 @@ $(document).ready(function () {
         language: "es",
         ajax: {
             url: function (data, params) {
-                console.log(data)
-                if (otherReceipt == null) {
+                console.log(otherReceipt)
+                if (otherReceipt.val() == null) {
                     console.log('search by school code')
                     return '/api/school/' + schoolCode + '/students/search'
                 } else {

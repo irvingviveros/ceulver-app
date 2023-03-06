@@ -4,6 +4,7 @@ let basicColumns = [
     {data: "id"},
     {data: "id"},
     {data: "payment_reference"},
+    {data: "student_name"},
     {data: "payment_method"},
     {data: "payment_concept"},
     {
