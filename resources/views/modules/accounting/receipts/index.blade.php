@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-toastr.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/forms/form-validation.css')) }}">
     <link rel="stylesheet" href="{{ asset(mix('css/base/plugins/extensions/ext-component-sweet-alerts.css')) }}">
-    <link rel="stylesheet" href="{{asset('css/base/pages/app-invoice.css')}}">
+    <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-invoice.css'))}}">
 @endsection
 
 @section('content')

@@ -29,6 +29,7 @@
     "autoprefixer": "10.4.5",
     "bootstrap": "5.1.0",
     "gulp": "^4.0.2",
-    "jquery-filepond": "^1.0.0"
+    "jquery-filepond": "^1.0.0",
+    "print-js": "^1.6.0"
   }
 }
