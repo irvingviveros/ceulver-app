@@ -128,7 +128,7 @@ class StudentReceiptController extends Controller
         // Retrieve the school associated with the user
         $school = $this->schoolService->findByCompany($currentUser->company()->id, $educationalSystemName);
         // Retrieve last receipt sheet and add + 1 for a new receipt
-        $lastSheet = $this->studentReceiptService->lastReceiptId() + 1;
+        $lastSheet = $this->studentReceiptService->lastSheetId() + 1;
 
         return view('modules.accounting.receipts.actions.modal-add-student-receipt',
             compact(['school', 'lastSheet', 'educationalSystemName', 'companyId']));
@@ -230,6 +230,7 @@ class StudentReceiptController extends Controller
 
         // Student receipt
         $studentReceiptEntity->setReceiptId($receiptId);
+        $studentReceiptEntity->setSheetId((int)$validatedRequest['sheet']);
         $studentReceiptEntity->setStudentId((int)$validatedRequest['student_id']);
         $studentReceiptEntity->setCreatedBy($createdBy);
 

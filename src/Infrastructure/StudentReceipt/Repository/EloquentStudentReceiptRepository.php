@@ -92,4 +92,20 @@ class EloquentStudentReceiptRepository implements GlobalRepository
     {
         return DB::table('students')->where($column, $operator, $value)->get();
     }
+
+    public function lastSheetId(): int
+    {
+        // Initialize default value for the sheet
+        $sheetNumber = 0;
+
+        try {
+            $sheetNumber = StudentReceipt::withTrashed()
+                ->orderBy('sheet_id', 'desc')
+                ->first()
+                ->sheet_id;
+        } catch (Exception $exception) {
+        }
+
+        return $sheetNumber;
+    }
 }

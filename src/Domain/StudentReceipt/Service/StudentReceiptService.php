@@ -40,6 +40,7 @@ class StudentReceiptService
         $data = array(
             'receipt_id' => $studentReceiptEntity->getReceiptId(),
             'student_id' => $studentReceiptEntity->getStudentId(),
+            'sheet_id'   => $studentReceiptEntity->getSheetId(),
             'created_by' => $createdBy,
             'created_at' => date_create(),
         );
@@ -117,5 +118,10 @@ class StudentReceiptService
     public function lastReceiptId()
     {
         return $this->studentReceiptRepository->lastReceiptId();
+    }
+
+    public function lastSheetId()
+    {
+        return $this->studentReceiptRepository->lastSheetId();
     }
 }

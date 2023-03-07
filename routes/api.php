@@ -101,6 +101,7 @@ Route::get('companies/{id}/{educationalSystem}/student-receipts/', function ($id
         ->select(
             'receipts.id as base_receipt_id',
             'student_receipts.id as id',
+            'student_receipts.sheet_id as sheet_id',
             'receipts.sheet',
             'receipts.payment_method',
             'receipts.payment_concept',

@@ -2,7 +2,7 @@
 let basicColumns = [
     // columns according to JSON
     {data: "id"},
-    {data: "id"},
+    {data: "sheet_id"},
     {data: "payment_reference"},
     {data: "student_name"},
     {data: "payment_method"},

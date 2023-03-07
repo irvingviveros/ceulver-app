@@ -7,6 +7,7 @@ class StudentReceiptEntity
 {
     // Foreign data
     private int $receipt_id;
+    private int $sheet_id;
     private int $student_id;
     private int $created_by;
     private int $modified_by;
@@ -73,5 +74,21 @@ class StudentReceiptEntity
     public function setModifiedBy(int $modified_by): void
     {
         $this->modified_by = $modified_by;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSheetId(): int
+    {
+        return $this->sheet_id;
+    }
+
+    /**
+     * @param int $sheet_id
+     */
+    public function setSheetId(int $sheet_id): void
+    {
+        $this->sheet_id = $sheet_id;
     }
 }

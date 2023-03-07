@@ -22,6 +22,7 @@ class StudentReceiptSeeder extends Seeder
 
             DB::table('student_receipts')->insert(
                 [
+                    'sheet_id' => $counter + 1000,
                     'receipt_id' => $counter + 1,
                     'student_id' => $faker->numberBetween(1, $totalStudents),
                     'created_by' => 1,

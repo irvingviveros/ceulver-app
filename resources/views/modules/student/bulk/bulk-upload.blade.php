@@ -37,15 +37,19 @@
                                     <div class="col-6">
                                         <div class="mb-1">
                                             <label class="form-label" for="selectSchool">
-                                                Seleccione el nivel educativo</label>
+                                                Seleccione el nivel educativo
+                                                <span class="text-danger">*</span>
+                                            </label>
                                             <select class="form-select mb-1" name="selectSchool" id="selectSchool">
                                                 @foreach($schools as $school)
                                                     <option value="{{$school->id}}"
                                                             educationalSystem="{{$school->educationalSystem->name}}">{{$school->educationalSystem->name}}</option>
                                                 @endforeach
                                             </select>
-                                            <label class="col-form-label" for="import_file">Seleccione el archivo
-                                                plantilla válido</label>
+                                            <label class="col-form-label" for="import_file">
+                                                Seleccione el archivo plantilla válido
+                                                <span class="text-danger">*</span>
+                                            </label>
                                             <input
                                                 type="file"
                                                 id="import_file"

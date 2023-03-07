@@ -15,6 +15,7 @@ class CreateStudentReceiptsTable extends Migration
     {
         Schema::create('student_receipts', function (Blueprint $table) {
             $table->id();
+            $table->integer('sheet_id')->unique();
             // Foreign id
             $table->foreignId('receipt_id')->constrained();
             $table->foreignId('student_id');
