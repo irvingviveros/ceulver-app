@@ -63,22 +63,24 @@
                                         {{ $student->payment_reference }}
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <p class="card-text mb-25">Matrícula: </p>
-                                    </td>
-                                    <td>
-                                        {{ $student->enrollment }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="card-text mb-0">Licenciatura: </p>
-                                    </td>
-                                    <td>
-                                        {{ $student->career->name }}
-                                    </td>
-                                </tr>
+                                @if($school->educationalSystem->name == "Universidad")
+                                    <tr>
+                                        <td>
+                                            <p class="card-text mb-25">Matrícula: </p>
+                                        </td>
+                                        <td>
+                                            {{ $student->enrollment }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p class="card-text mb-0">Licenciatura: </p>
+                                        </td>
+                                        <td>
+                                            {{ $student->career->name }}
+                                        </td>
+                                    </tr>
+                                @endif
                             </table>
                         </div>
                         <div class="col-xl-3 p-0 mt-xl-0 mt-2">
