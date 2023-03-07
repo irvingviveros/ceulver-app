@@ -41,8 +41,7 @@
                                             <select class="form-select mb-1" name="selectSchool" id="selectSchool">
                                                 @foreach($schools as $school)
                                                     <option value="{{$school->id}}"
-                                                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->school_name}}
-                                                        - {{$school->educationalSystem->name}}</option>
+                                                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->educationalSystem->name}}</option>
                                                 @endforeach
                                             </select>
                                             <label class="col-form-label" for="import_file">Seleccione el archivo
