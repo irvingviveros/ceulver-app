@@ -96,6 +96,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
             return redirect()->route('accounting.dashboard');
         })->middleware('can:accounting-dashboard.index');
 
+        // ============= Bulk upload =====================
+
+        Route::get('student-receipts/{educationalSystem}/bulk-upload', [StudentReceiptController::class, 'createBulkImport'])
+            ->name('student-receipts.bulk-upload.create');
+        Route::post('student-receipts/bulk-upload', [StudentReceiptController::class, 'storeBulkImport'])
+            ->name('student-receipts.bulk-upload.store');
+
         // ============= University receipts =============
 
         // Index university receipt

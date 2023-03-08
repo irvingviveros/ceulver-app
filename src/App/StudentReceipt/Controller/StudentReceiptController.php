@@ -312,4 +312,22 @@ class StudentReceiptController extends Controller
     {
 
     }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return View
+     */
+    public function createBulkImport(string $educationalSystem): View
+    {
+        $schools = $this->schoolService->orderBy('id', 'desc');
+
+        $breadcrumbs = [
+            ['link' => 'home', 'name' => "Inicio"],
+            ['link' => "javascript:void(0)", 'name' => "Coordinación administrativa"],
+            ['name' => "Carga masiva de recibos"]
+        ];
+
+        return view('modules.accounting.bulk.bulk-upload',
+            ['breadcrumbs' => $breadcrumbs], compact('schools'));
+    }
 }
