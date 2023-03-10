@@ -32,7 +32,6 @@ class ReceiptService
     public function createReceipt(ReceiptEntity $receiptEntity, $createdBy): int
     {
         $data = array(
-            'reference'         => $receiptEntity->getReference(),
             'sheet'             => $receiptEntity->getSheet(),
             'payment_method'    => $receiptEntity->getPaymentMethod(),
             'payment_concept'   => $receiptEntity->getPaymentConcept(),
@@ -143,5 +142,10 @@ class ReceiptService
     {
         $formatter = new NumeroALetras();
         return $formatter->toMoney($number, $decimals, $currency, $cents);
+    }
+
+    public function getLastInsertId(): int
+    {
+        return $this->receiptRepository->lastInsertId();
     }
 }

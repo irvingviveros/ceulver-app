@@ -16,6 +16,13 @@ class Receipt extends Model
     use HasFactory, SoftDeletes;
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Get the student receipt associated with the receipt.
      *  $receipt -> studentReceipts
      */

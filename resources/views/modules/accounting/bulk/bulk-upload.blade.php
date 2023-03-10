@@ -18,7 +18,7 @@
     <section id="multiple-column-form">
         <div class="row col-md-12 col-xl-12">
             <form
-                action="{{route('manage-students.bulk-upload.store')}}"
+                action="{{route('student-receipts.bulk-upload.store')}}"
                 enctype="multipart/form-data"
                 method="post">
                 @csrf
@@ -30,9 +30,9 @@
                                 <h4>Carga masiva de recibos</h4>
                             </div>
                             <div class="card-body">
-                                <p>La carga masiva de estudiantes le permite importar mediante un archivo de
+                                <p>La carga masiva de recibos le permite importar mediante un archivo de
                                     Excel los datos
-                                    de los estudiantes que desea integrar a la plataforma.</p>
+                                    de los recibos que desea integrar a la plataforma.</p>
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="mb-1">

@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             SyllabusSeeder::class,
             CycleSeeder::class,
-            ReceiptSeeder::class,
-            StudentReceiptSeeder::class,
+//            ReceiptSeeder::class,
+//            StudentReceiptSeeder::class,
             AssignRolesAndPermissionsSeeder::class,
         ]);
     }

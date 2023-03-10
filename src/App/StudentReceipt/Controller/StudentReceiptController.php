@@ -6,6 +6,7 @@ namespace App\StudentReceipt\Controller;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentReceiptRequest;
 use App\Http\Requests\UpdateStudentReceiptRequest;
+use Brian2694\Toastr\Facades\Toastr;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
 use Domain\School\Service\SchoolService;
@@ -15,7 +16,9 @@ use Domain\Student\Actions\CreateFullName;
 use Domain\Student\Service\StudentService;
 use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
 use Domain\StudentReceipt\Entity\StudentReceiptEntity;
+use Domain\StudentReceipt\Imports\StudentReceiptImport;
 use Domain\StudentReceipt\Service\StudentReceiptService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
@@ -23,8 +26,8 @@ use Illuminate\View\View;
 use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
 use Infrastructure\School\Repository\EloquentSchoolRepository;
 use Infrastructure\Student\Repository\EloquentStudentRepository;
-use Infrastructure\StudentReceipt\Model\StudentReceipt;
 use Infrastructure\StudentReceipt\Repository\EloquentStudentReceiptRepository;
+use Maatwebsite\Excel\Exceptions\NoFilePathGivenException;
 use Mockery\CountValidator\Exception;
 
 class StudentReceiptController extends Controller
@@ -69,10 +72,26 @@ class StudentReceiptController extends Controller
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
             ['link' => route('accounting.dashboard'), 'name' => "Coordinación administrativa"],
-            ['name' => "Administración de recibos - ".$educationalSystemName]
+            ['name' => "Administración de recibos - " . $educationalSystemName]
         ];
 
         return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName', 'companyId']));
+    }
+
+    /**
+     * @param string $educationalSystem
+     * @return string
+     */
+    public function getEducationalSystemName(string $educationalSystem): string
+    {
+        return match ($educationalSystem) {
+            'university' => 'Universidad',
+            'bachelor' => 'Bachillerato',
+            'high-school' => 'Secundaria',
+            'elementary-school' => 'Primaria',
+            'kindergarten' => 'Kinder',
+            'nursery-school' => 'Maternal'
+        };
     }
 
     public function editReceipt(string $educationalSystem, int $id): View
@@ -146,12 +165,11 @@ class StudentReceiptController extends Controller
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
             ['link' => route('accounting.dashboard'), 'name' => "Coordinación administrativa"],
-            ['name' => "Administración de recibos - ".$educationalSystemName]
+            ['name' => "Administración de recibos - " . $educationalSystemName]
         ];
 
         return view('modules.accounting.receipts.index', compact(['breadcrumbs', 'educationalSystemName']));
     }
-
 
     /**
      * Display the specified resource.
@@ -178,22 +196,6 @@ class StudentReceiptController extends Controller
 
         return view('modules.accounting.receipts.actions.modal-show-student-receipt',
             compact(['baseReceipt', 'studentReceipt', 'student', 'school', 'payment_date', 'student_name']));
-    }
-
-    /**
-     * @param string $educationalSystem
-     * @return string
-     */
-    public function getEducationalSystemName(string $educationalSystem): string
-    {
-        return match ($educationalSystem) {
-            'university' => 'Universidad',
-            'bachelor' => 'Bachillerato',
-            'high-school' => 'Secundaria',
-            'elementary-school' => 'Primaria',
-            'kindergarten' => 'Kinder',
-            'nursery-school' => 'Maternal'
-        };
     }
 
     /**
@@ -329,5 +331,42 @@ class StudentReceiptController extends Controller
 
         return view('modules.accounting.bulk.bulk-upload',
             ['breadcrumbs' => $breadcrumbs], compact('schools'));
+    }
+
+    /**
+     * Store a newly created resource in storage from CSV/Excel.
+     *
+     * @param StoreStudentRequest $request
+     * @return RedirectResponse
+     * @throws ValueNotFoundException
+     */
+    public function storeBulkImport(Request $request): RedirectResponse
+    {
+        // Create new ReceiptImport object
+        $studentReceiptImport = new StudentReceiptImport();
+
+        // Validates if the user submitted a file
+        try {
+            // Validate if the file is xlsx or csv
+            $request->validate(['import_file' => ['mimes:xlsx,csv']]);
+            // Import and save
+            $studentReceiptImport->import($request->file('import_file'));
+        } catch (NoFilePathGivenException $e) {
+            return back()->with('error', 'Error. No se ha seleccionado ningún archivo.');
+        }
+
+        if ($studentReceiptImport->failures()->isNotEmpty()) {
+            Toastr::warning(
+                'Hubo un error al intentar cargar los registros.',
+                'Advertencia',
+                ["positionClass" => "toast-top-right"]);
+            return back()->with('failures', $studentReceiptImport->failures());
+        }
+
+        Toastr::success(
+            'Registros importados correctamente.',
+            'Éxito',
+            ["positionClass" => "toast-top-right"]);
+        return back()->with('success', 'Los registros se han importado correctamente.');
     }
 }

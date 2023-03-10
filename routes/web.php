@@ -100,7 +100,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
         Route::get('student-receipts/{educationalSystem}/bulk-upload', [StudentReceiptController::class, 'createBulkImport'])
             ->name('student-receipts.bulk-upload.create');
-        Route::post('student-receipts/bulk-upload', [StudentReceiptController::class, 'storeBulkImport'])
+        Route::post('student-receipts/university/bulk-upload', [StudentReceiptController::class, 'storeBulkImport'])
             ->name('student-receipts.bulk-upload.store');
 
         // ============= University receipts =============

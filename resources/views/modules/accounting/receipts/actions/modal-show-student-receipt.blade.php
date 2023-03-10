@@ -22,7 +22,7 @@
                         <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
                                 Folio
-                                <span class="invoice-number">{{ $studentReceipt->id }}</span>
+                                <span class="invoice-number">{{ $studentReceipt->sheet_id }}</span>
                             </h4>
                             <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">Fecha pago:</p>
