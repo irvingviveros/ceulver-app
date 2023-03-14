@@ -169,7 +169,6 @@
     "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js": "/js/scripts/tables/modules/admin/admin-email-settings-datatables.js",
     "/js/scripts/tables/modules/admin/admin-schools-datatables.js": "/js/scripts/tables/modules/admin/admin-schools-datatables.js",
     "/js/scripts/tables/modules/student/student-agreement-datatables.js": "/js/scripts/tables/modules/student/student-agreement-datatables.js",
-    "/js/scripts/tables/modules/student/student-datatables.js": "/js/scripts/tables/modules/student/student-datatables.js",
     "/js/scripts/tables/modules/student/student-events.js": "/js/scripts/tables/modules/student/student-events.js",
     "/js/scripts/tables/modules/teacher/teacher-datatables.js": "/js/scripts/tables/modules/teacher/teacher-datatables.js",
     "/js/scripts/tables/templates/table-datatables-advanced.js": "/js/scripts/tables/templates/table-datatables-advanced.js",
