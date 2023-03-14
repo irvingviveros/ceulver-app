@@ -66,7 +66,7 @@ class EloquentOtherReceiptRepository implements GlobalRepository
             $sheetNumber = OtherReceipt::withTrashed()
                 ->orderBy('sheet_id', 'desc')
                 ->first()
-                ->sheet_id;
+                ->sheet_id ?? 0;
         } catch (Exception $exception) {
         }
 

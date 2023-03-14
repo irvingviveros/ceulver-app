@@ -65,6 +65,6 @@ class EloquentReceiptRepository implements GlobalRepository
 
     public function lastInsertId(): int
     {
-        return DB::table('receipts')->latest('id')->first()->id;
+        return DB::table('receipts')->latest('id')->first()->id ?? 0;
     }
 }
