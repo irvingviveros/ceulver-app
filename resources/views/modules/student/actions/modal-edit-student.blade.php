@@ -7,13 +7,13 @@
     <div class="col-6">
         <div class="col-md-6 basic-select2">
             <label class="form-label" for="schoolSelect">Institución - Plantel</label>
-            <select class="form-select" name="schoolSelect" id="schoolSelect">
+            <select class="form-select" name="schoolSelect" id="schoolSelect" disabled>
                 <option
                     selected
                     educationalSystem="{{$school->educationalSystem->name}}"
                     value="{{$school->id}}"
                 >
-                    {{$school->school_name}} - {{$school->educationalSystem->name}}
+                    {{$school->educationalSystem->name}}
                 </option>
             </select>
         </div>
@@ -154,9 +154,13 @@
                 <span class="text-danger">*</span>
             </label>
             <select class="form-select" id="maritalStatus" name="maritalStatus">
-                <option value="Soltero(a)" {{$student->marital_status === 'Soltero(a)' ? 'selected' : ''}}>Soltero(a)</option>
-                <option value="Casado(a)" {{$student->marital_status === 'Casado(a)' ? 'selected' : ''}}>Casado(a)</option>
-                <option value="Divorciado(a)" {{$student->marital_status === 'Divorciado(a)' ? 'selected' : ''}}>Divorciado(a)</option>
+                <option value="Soltero(a)" {{$student->marital_status === 'Soltero(a)' ? 'selected' : ''}}>Soltero(a)
+                </option>
+                <option value="Casado(a)" {{$student->marital_status === 'Casado(a)' ? 'selected' : ''}}>Casado(a)
+                </option>
+                <option value="Divorciado(a)" {{$student->marital_status === 'Divorciado(a)' ? 'selected' : ''}}>
+                    Divorciado(a)
+                </option>
                 <option value="Viudo(a)" {{$student->marital_status === 'Viudo(a)' ? 'selected' : ''}}>Viudo(a)</option>
             </select>
             <span for="maritalStatus" class="text-danger"></span>
@@ -363,7 +367,7 @@
             name="guardianLastName"
             placeholder="Apellido(s)"
             aria-label="Apellido o apellidos"
-            value="{{$guardian->last_name}}"
+            value="{{$guardian->last_name ?? ''}}"
         />
         <span for="guardianLastName" class="text-danger"></span>
     </div>
@@ -380,7 +384,7 @@
             maxlength="50"
             placeholder="Nombre del padre o tutor"
             aria-label="Nombre del padre o tutor"
-            value="{{$guardian->name}}"
+            value="{{$guardian->name ?? ''}}"
         />
         <span for="guardianFirstName" class="text-danger"></span>
     </div>
@@ -392,13 +396,20 @@
         <select class="form-select" id="guardianRelationship" name="guardianRelationship">
             <option value="Madre" {{$student->guardian_relationship === 'Madre' ? 'selected' : ''}}>Madre</option>
             <option value="Padre" {{$student->guardian_relationship === 'Padre' ? 'selected' : ''}}>Padre</option>
-            <option value="Hermano(a)" {{$student->guardian_relationship === 'Hermano(a)' ? 'selected' : ''}}>Hermano(a)</option>
-            <option value="Abuelo(a)" {{$student->guardian_relationship === 'Abuelo(a)' ? 'selected' : ''}}>Abuelo(a)</option>
+            <option value="Hermano(a)" {{$student->guardian_relationship === 'Hermano(a)' ? 'selected' : ''}}>
+                Hermano(a)
+            </option>
+            <option value="Abuelo(a)" {{$student->guardian_relationship === 'Abuelo(a)' ? 'selected' : ''}}>Abuelo(a)
+            </option>
             <option value="Tío(a)" {{$student->guardian_relationship === 'Tío(a)' ? 'selected' : ''}}>Tío(a)</option>
-            <option value="Amistad de la familia" {{$student->guardian_relationship === 'Amistad de la familia' ? 'selected' : ''}}>Amistad de la
+            <option
+                value="Amistad de la familia" {{$student->guardian_relationship === 'Amistad de la familia' ? 'selected' : ''}}>
+                Amistad de la
                 familia
             </option>
-            <option value="Cuidador(a) social" {{$student->guardian_relationship === 'Cuidador(a) social' ? 'selected' : ''}}>Cuidador(a) social
+            <option
+                value="Cuidador(a) social" {{$student->guardian_relationship === 'Cuidador(a) social' ? 'selected' : ''}}>
+                Cuidador(a) social
             </option>
             <option value="Otro" {{$student->guardian_relationship === 'Otro' ? 'selected' : ''}}>Otro</option>
         </select>
@@ -418,7 +429,7 @@
             name="guardianAddress"
             placeholder="Domicilio"
             aria-label="Domicilio"
-            value="{{$guardian->address}}"
+            value="{{$guardian->address ?? ''}}"
         />
         <span for="guardianAddress" class="text-danger"></span>
     </div>
@@ -432,7 +443,7 @@
             name="guardianEmail"
             placeholder="Correo electrónico personal"
             aria-label="Correo electrónico personal"
-            value="{{$guardian->email}}"
+            value="{{$guardian->email ?? ''}}"
         />
         <span for="guardianEmail" class="text-danger"></span>
     </div>
@@ -448,7 +459,7 @@
             aria-label="Número telefónico (celular)"
             maxlength="10"
             oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-            value="{{$guardian->phone}}"
+            value="{{$guardian->phone ?? ''}}"
         />
         <span for="guardianPhone" class="text-danger"></span>
     </div>
