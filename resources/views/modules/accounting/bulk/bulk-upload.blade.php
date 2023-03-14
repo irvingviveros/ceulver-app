@@ -74,7 +74,7 @@
                             </div>
                         @endif
                         @if (session('failures'))
-                        <!-- Basic Tables start -->
+                            <!-- Basic Tables start -->
                             <div class="card bg-danger">
                                 <div class="card-body">
                                     <p class="card-text text-white">
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                         @endif
-                    <!-- Upload card end -->
+                        <!-- Upload card end -->
                     </div>
                     <div class="col-lg-4">
                         <!-- Instruction card start -->
@@ -153,18 +153,6 @@
                                 <ol>
                                     <li>
                                         Verifique el nivel educativo en el que se encuentra.
-                                        <ul>
-                                            <li>
-                                                Los encabezados de <b>color gris</b> son campos
-                                                obligatorios para todos los niveles educativos, mientras que los
-                                                encabezados de <b>color azul</b> solo son requeridos cuando el alumno es
-                                                universitario.
-                                            </li>
-                                            <li>
-                                                No mezcle en un mismo archivo los alumnos de distinto nivel educativo;
-                                                por ejemplo, incluir primaria, con universidad o bachillerato.
-                                            </li>
-                                        </ul>
                                     </li>
                                     <li>
                                         Descargue el archivo plantilla.
@@ -173,8 +161,7 @@
                                         Abra el archivo descargado e ingrese los datos correspondientes.
                                     </li>
                                     <li>
-                                        Guarde los cambios y suba el archivo (formato .xlsx por
-                                        default) a la plataforma.
+                                        Guarde los cambios y suba el archivo (formato .xlsx) a la plataforma.
                                     </li>
                                     <li>
                                         El sistema <u>almacenará las filas que no tuvieron errores del archivo.</u>
@@ -190,43 +177,49 @@
                                 </h4>
                                 <hr>
                                 <ul>
-                                    <li>Carrera:
+                                    <li>
+                                        <b>ID alumno:</b>
                                         <ul>
-                                            <li>Obtenga el ID (identificador) de carrera válido desde la
+                                            <li>Obtenga el ID (identificador) del alumno desde la
                                                 <a
-                                                    href="{{route('manage-careers.index')}}"
+                                                    href="#"
                                                     target="_blank">
-                                                    lista de carreras
+                                                    lista de alumnos
                                                 </a>
+                                                válidos permitidos.
                                             </li>
                                         </ul>
                                     </li>
-                                    <li>Estatus:
+                                    <li>
+                                        <b>Folio:</b>
                                         <ul>
-                                            <li>0: Sin acceso a la plataforma</li>
-                                            <li>1: Con acceso a la plataforma</li>
+                                            <li>Número de folio consiguiente.</li>
                                         </ul>
                                     </li>
-                                    <li>Formato fecha:
+                                    <li>
+                                        <b>Concepto:</b>
                                         <ul>
-                                            <li>DD/MM/AAAA</li>
+                                            Descripción del recibo de pago.
                                         </ul>
                                     </li>
-                                    <li>Género:
+                                    <li>
+                                        <b>Importe:</b>
                                         <ul>
-                                            <li>FEMENINO, MASCULINO</li>
+                                            <li>Cantidad pagada.</li>
                                         </ul>
                                     </li>
-                                    <li>Grupo sanguíneo:
+                                    <li>
+                                        <b>Fecha pago:</b>
                                         <ul>
-                                            <li>A+, A-, A desconocido, B+, B-, B desconocido, AB+,
-                                                AB-, AB desconocido, O+, O-, O desconocido, Desconocido
+                                            <li>Fecha en formato día, mes y año (DD/MM/AAAA)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <b>Nota interna:</b>
+                                        <ul>
+                                            <li>Comentarios que solo serán visibles para el administrador del
+                                                módulo de recibos de pago.
                                             </li>
-                                        </ul>
-                                    </li>
-                                    <li>Teléfono celular:
-                                        <ul>
-                                            <li>Número de teléfono a 10 dígitos</li>
                                         </ul>
                                     </li>
                                 </ul>
