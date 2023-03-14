@@ -41,6 +41,12 @@
             </div>
         </div>
     </section>
+    <input
+        type="hidden"
+        name="company-id"
+        id="company-id"
+        value="@isset($companyId){{ $companyId }}@endisset"
+    />
     <!--/ Basic table -->
 @endsection
 
@@ -67,7 +73,6 @@
 @endsection
 @section('page-script')
     {{-- Page JS files, global --}}
-
     <script src="{{ asset(mix('js/Application.js')) }}"></script>
     <script src="{{ asset(mix('js/Modal.js')) }}"></script>
     <script src="{{ asset(mix('js/Configuration.js')) }}"></script>
@@ -76,10 +81,13 @@
     {{-- Local JS files --}}
     <script src="{{ asset((mix('js/scripts/forms/validation/localization/messages_es.js'))) }}"></script>
     <script src="{{ asset(mix('js/scripts/forms/validation/student-validation.js')) }}"></script>
-    <script src="{{ asset(mix('js/scripts/tables/modules/student/student-datatables.js')) }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            StudentDatatable.load();
-        });
+    <!-- Datatable config, events and data -->
+    <script src="{{ asset(mix('data/datatables/students/students-datatable.js')) }}"></script>
+    <script
+        src="{{ asset(mix('js/scripts/tables/modules/student/student-events.js')) }}"
+        onload="StudentEvents.load()">
     </script>
+    <!-- Datatable config, events and data -->
+
+    <!-- Local JS files -->
 @endsection

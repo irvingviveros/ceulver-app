@@ -1,28 +1,33 @@
-const StudentDatatable = (function () {
+const StudentEvents = (function () {
     'use strict';
 
     // Main route
     const urlController = Application.getUrl();
+    // Get the school code
+    let companyId = $("#company-id").val();
 
     // Get and initializes the datatable
     function initializeTable() {
         // JQuery selector for table
         let table = $('#dataTable');
-        // Apply icons on all table pages
-        feather.replace();
         // Apply Datatable default configuration
         table.DataTable(
-            Application.getDatatableConfiguration(StudentDatatable)
-        )
+            Application.getDatatableConfiguration(
+                StudentEvents, StudentsDatatable(companyId)
+            ))
+        // Apply icons on all table pages
+        feather.replace();
     }
 
     // Initializes events from the datatable
     function initializeEvents() {
 
-        let table = $('#dataTable');
+        // Assign methods from DataTable object
+        let table = $('#dataTable').DataTable();
+
         // Create event
         $('.createEntry').on('click', function () {
-            StudentDatatable.getRegisterForm().then(function () {
+            StudentEvents.getRegisterForm().then(function () {
                 let modal = Modal.create({
                     id: 'registerForm'
                     , title: 'Registrar alumno' // TODO: Cambiar valor, plantilla
@@ -43,7 +48,7 @@ const StudentDatatable = (function () {
 
             let itemId = $(event.currentTarget).attr('data-id');
 
-            StudentDatatable.getShowForm(
+            StudentEvents.getShowForm(
                 itemId
             ).then(function () {
                 let modal = Modal.create({
@@ -66,7 +71,7 @@ const StudentDatatable = (function () {
 
             let itemId = $(event.currentTarget).attr('data-id');
 
-            StudentDatatable.getEditForm(
+            StudentEvents.getEditForm(
                 itemId
             ).then(function () {
                 let modal = Modal.create({
@@ -84,9 +89,6 @@ const StudentDatatable = (function () {
             });
         });
 
-        // Assign methods from DataTable object
-        table = $('#dataTable').DataTable();
-
         // Delete event
         $('#dataTable tbody').on('click', '.delete-record', function (event) {
 
@@ -94,7 +96,7 @@ const StudentDatatable = (function () {
             let row = $(this);
 
             // Show Swal component and delete
-            Delete.run(StudentDatatable, dataId, table, row);
+            Delete.run(StudentEvents, dataId, table, row);
         });
     }
 
@@ -118,7 +120,7 @@ const StudentDatatable = (function () {
                 return;
             }
             // This is sent to the store request parameter
-            StudentDatatable.save({
+            StudentEvents.save({
                 _token: Application.getToken()
                 ,
                 school_id: form.find('select[id="schoolSelect"]').val()
@@ -187,11 +189,8 @@ const StudentDatatable = (function () {
 
                 Modal.close(modal.attr('id'));
                 // Reload table
-                StudentDatatable.getList().then(function () {
-                    $('table[id="dataTable"]').DataTable().destroy;
-                    $('div[id="dataList"]').html(arguments[0]);
-                    initializeTable();
-                });
+                // Reload table
+                reloadTable($('table[id="dataTable"]'))
             });
 
         });
@@ -214,7 +213,7 @@ const StudentDatatable = (function () {
             }
 
             // All this data goes to the update function controller
-            StudentDatatable.update({
+            StudentEvents.update({
                 _token: Application.getToken()
                 ,
                 student_id: form.find('input[id="studentId"]').val()
@@ -290,15 +289,13 @@ const StudentDatatable = (function () {
                 Modal.close(modal.attr('id'));
 
                 // Reload table
-                StudentDatatable.getList().then(function () {
-                    $('table[id="dataTable"]').DataTable().destroy;
-
-                    $('div[id="dataList"]').html(arguments[0]);
-
-                    initializeTable();
-                });
+                reloadTable($('table[id="dataTable"]'))
             });
         });
+    }
+
+    function reloadTable(datatable) {
+        datatable.DataTable().ajax.reload();
     }
 
     return {
@@ -367,16 +364,6 @@ const StudentDatatable = (function () {
                 , data: {
                     _method: 'delete'
                     , _token: Application.getToken()
-                }
-            });
-        }
-        // Get entries from the database
-        , getList: function () {
-            return Configuration.consume({
-                url: urlController + 'getList'
-                , method: 'GET'
-                , data: {
-                    _token: Application.getToken()
                 }
             });
         }
