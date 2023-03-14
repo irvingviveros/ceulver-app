@@ -168,6 +168,12 @@
                     "slug": "student-receipts.nursery-school.index"
                 },
                 {
+                    "url": "admin/accounting/student-receipts/bulk-upload",
+                    "name": "Bulk upload",
+                    "icon": "box",
+                    "slug": "student-receipts.bulk-upload"
+                },
+                {
                     "url": "admin/accounting/other-receipts",
                     "name": "Additional receipts",
                     "slug": "accounting.additional-receipts.index"

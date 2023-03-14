@@ -40,7 +40,6 @@ class StudentReceiptImport implements ToCollection, WithHeadingRow, WithValidati
 
     public function collection(Collection $rows)
     {
-
         // First, create the receipt, then, create the student receipt
         foreach ($rows as $row)
         {
@@ -74,11 +73,6 @@ class StudentReceiptImport implements ToCollection, WithHeadingRow, WithValidati
                 ]
             );
         }
-    }
-
-    public function onFailure(Failure ...$failures)
-    {
-        // TODO: Implement onFailure() method.
     }
 
     public function rules(): array

@@ -319,7 +319,7 @@ class StudentReceiptController extends Controller
      * Show the form for creating a new resource.
      * @return View
      */
-    public function createBulkImport(string $educationalSystem): View
+    public function createBulkImport(): View
     {
         $schools = $this->schoolService->orderBy('id', 'desc');
 
@@ -348,7 +348,9 @@ class StudentReceiptController extends Controller
         // Validates if the user submitted a file
         try {
             // Validate if the file is xlsx or csv
-            $request->validate(['import_file' => ['mimes:xlsx,csv']]);
+            $request->validate(
+                ['import_file' => ['mimes:xlsx,csv']]
+            );
             // Import and save
             $studentReceiptImport->import($request->file('import_file'));
         } catch (NoFilePathGivenException $e) {
