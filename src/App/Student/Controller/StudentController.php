@@ -66,8 +66,8 @@ class StudentController extends Controller
      */
     public function index(): View
     {
-        // Initialize variables
-        $students = $this->studentService->getAll();
+        // Get user's school code associated
+        $companyId = auth()->user()->company()->id;
 
         $breadcrumbs = [
             ['link' => 'home', 'name' => "Inicio"],
@@ -76,7 +76,7 @@ class StudentController extends Controller
         ];
 
         return view('modules.student.index',
-            ['breadcrumbs' => $breadcrumbs], compact('students'));
+            compact(['breadcrumbs', 'companyId']));
     }
 
 

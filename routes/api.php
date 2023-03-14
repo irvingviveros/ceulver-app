@@ -197,3 +197,36 @@ Route::get('companies/{companyId}/students/search', function ($companyId) {
 
     return DataTables::of($query)->toJson();
 });
+
+/**
+ * This endpoint returns basic student data.
+ * Example: api/{companyId}/students
+ * @param $code
+ * @return mixed
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+Route::get('companies/{companyId}/students', function ($companyId) {
+
+    $query = DB::table('students')
+        ->leftJoin('careers', 'students.career_id', '=', 'careers.id')
+        ->join('schools', 'students.school_id', '=', 'schools.id')
+        ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
+        ->join('companies', 'schools.company_id', '=', 'companies.id')
+        ->select(
+            'students.id',
+            'educational_systems.name AS educational_system',
+            'students.national_id',
+            'students.enrollment',
+            'students.personal_email',
+            'students.personal_phone',
+            'students.payment_reference',
+            'careers.name AS career_name',
+            'companies.id AS company_id',)
+        ->where('company_id', '=', $companyId)
+        ->addSelect(DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS student_name"))
+        ->get();
+
+
+    return DataTables::of($query)->toJson();
+});
