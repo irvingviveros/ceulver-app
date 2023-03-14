@@ -190,7 +190,7 @@ Route::get('companies/{companyId}/students/search', function ($companyId) {
             (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name) AS text")))
         ->where('company_id', '=', $companyId)
         ->where(
-            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name, '-', ' ', students.payment_reference)")), 'like', '%' . \request()->get('name') . '%');
+            (DB::raw("CONCAT(students.paternal_surname, ' ', students.maternal_surname, ' ', students.first_name)")), 'like', '%' . \request()->get('name') . '%');
 
     // Order results by full name (text)
     $query->orderBy('text');
