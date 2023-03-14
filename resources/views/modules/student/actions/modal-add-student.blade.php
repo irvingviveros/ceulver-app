@@ -10,9 +10,11 @@
             <select class="form-select" name="schoolSelect" id="schoolSelect">
                 <option selected disabled>Seleccionar</option>
                 @foreach($schools as $school)
-                    <option value="{{$school->id}}"
-                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->school_name}}
-                        - {{$school->educationalSystem->name}}</option>
+                    <option
+                        value="{{$school->id}}"
+                        educationalSystem="{{$school->educationalSystem->name}}">
+                        {{$school->educationalSystem->name}}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -256,7 +258,8 @@
                     <select class="form-select" id="careerSelect" name="careerSelect">
                         <option selected value="" disabled>Seleccionar</option>
                         @foreach($careers as $career)
-                            <option value="{{$career->id}}" enrollment="{{$career->enrollment}}">{{$career->name}}</option>
+                            <option value="{{$career->id}}"
+                                    enrollment="{{$career->enrollment}}">{{$career->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -481,7 +484,8 @@
         </div>
     </div>
 
-    <div class="border d-flex align-items-center bg-light d-none" dynamic-toggle data-system="Universidad" style="height: 35px;">
+    <div class="border d-flex align-items-center bg-light d-none" dynamic-toggle data-system="Universidad"
+         style="height: 35px;">
         <b>Alumno - Acceso a la plataforma</b>
     </div>
 
