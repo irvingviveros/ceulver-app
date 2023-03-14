@@ -102,7 +102,7 @@ class EloquentStudentReceiptRepository implements GlobalRepository
             $sheetNumber = StudentReceipt::withTrashed()
                 ->orderBy('sheet_id', 'desc')
                 ->first()
-                ->sheet_id;
+                ->sheet_id ?? 0;    // If returned value is null (the table does not have any receipt) return 0.
         } catch (Exception $exception) {
         }
 
