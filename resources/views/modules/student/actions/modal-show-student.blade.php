@@ -9,7 +9,7 @@
                         <div class="d-flex align-items-center flex-column">
                             <img
                                 class="img-fluid rounded mt-3 mb-2"
-                                src="{{asset('images/portrait/small/avatar-s-4.jpg')}}"
+                                src="{{asset('images/profile/user-uploads/avatar.png')}}"
                                 height="110"
                                 width="110"
                                 alt="User avatar"
