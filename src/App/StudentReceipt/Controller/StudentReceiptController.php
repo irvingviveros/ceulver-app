@@ -349,7 +349,7 @@ class StudentReceiptController extends Controller
         try {
             // Validate if the file is xlsx or csv
             $request->validate(
-                ['import_file' => ['mimes:xlsx,csv']]
+                ['import_file' => ['mimes:xlsx']]
             );
             // Import and save
             $studentReceiptImport->import($request->file('import_file'));
