@@ -102,7 +102,6 @@
 
     <div class="col-3">
         <label class="form-label" for="address">Domicilio
-            <span class="text-danger">*</span>
         </label>
         <input
             type="text"
@@ -139,6 +138,7 @@
             <option selected value="" disabled>Seleccionar</option>
             <option>Masculino</option>
             <option>Femenino</option>
+            <option>N/A</option>
         </select>
         <span for="sexSelect" class="text-danger"></span>
     </div>
@@ -153,13 +153,13 @@
             <option>Casado(a)</option>
             <option>Divorciado(a)</option>
             <option>Viudo(a)</option>
+            <option>N/A</option>
         </select>
         <span for="maritalStatus" class="text-danger"></span>
     </div>
 
     <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="email">Correo electrónico personal
-            <span class="text-danger">*</span>
         </label>
         <input
             type="email"
@@ -174,7 +174,6 @@
 
     <div class="col-3 d-none" dynamic-toggle data-system="Universidad">
         <label class="form-label" for="phone">Número telefónico personal (celular)
-            <span class="text-danger">*</span>
         </label>
         <input
             type="tel"
@@ -214,6 +213,7 @@
             <option>O-</option>
             <option>O desconocido</option>
             <option>Desconocido</option>
+            <option>N/A</option>
         </select>
         <span for="bloodGroup" class="text-danger"></span>
     </div>
@@ -314,6 +314,7 @@
             <option selected value="" disabled>Seleccionar</option>
             <option value="0">Beca inicial</option>
             <option value="1">Beca 50% descuento</option>
+            <option value="2">N/A</option>
         </select>
         <span for="scholarship" class="text-danger"></span>
     </div>

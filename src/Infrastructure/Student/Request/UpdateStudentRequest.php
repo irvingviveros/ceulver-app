@@ -26,7 +26,6 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules(): array
     {
-        error_log($this->student_id);
         return [
             'school_id'             => 'required',
             'paternal_surname'      => 'required|string|max:25',
@@ -34,24 +33,24 @@ class UpdateStudentRequest extends FormRequest
             'first_name'            => 'required|string|max:35',
             'birth_date'            => 'required|date',
             'national_id'           => 'required|string|min:18|max:18|unique:students,national_id,'.$this->student_id,
-            'address'               => 'required|string|max:250',
+            'address'               => 'nullable|string|max:250',
             'occupation'            => 'exclude_unless:educational_system,Universidad|string|max:100',
             'sex'                   => 'required|max:20',
             'marital_status'        => 'exclude_unless:educational_system,Universidad',
-            'email'                 => 'exclude_unless:educational_system,Universidad|email',
-            'phone'                 => 'exclude_unless:educational_system,Universidad|max:10',
+            'email'                 => 'exclude_if:email,null|required|email|exclude_unless:educational_system,Universidad',
+            'phone'                 => 'sometimes|exclude_unless:educational_system,Universidad|max:10',
             'blood_group'           => 'required',
             'ailments'              => 'nullable|string|max:250',
             'allergies'             => 'nullable|string|max:250',
             'career'                => 'exclude_unless:educational_system,Universidad',
             'enrollment'            => 'exclude_unless:educational_system,Universidad|string',
             'payment_reference'     => 'nullable|string',
-            'guardian_last_name'    => 'required|string|max:100',
-            'guardian_first_name'   => 'required|string|max:100',
-            'guardian_relationship' => 'required|string',
-            'guardian_address'      => 'required|string',
+            'guardian_last_name'    => 'required_if:guardian_first_name,!=|nullable|string|max:100',
+            'guardian_first_name'   => 'required_if:guardian_last_name,!=|nullable|string|max:100',
+            'guardian_relationship' => 'nullable|string',
+            'guardian_address'      => 'nullable|string',
             'guardian_email'        => 'nullable|email',
-            'guardian_phone'        => 'required|min:10|max:10',
+            'guardian_phone'        => 'nullable|min:10|max:10',
 //            'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username'.$this->student_id,
 //            'guardian_password'     => 'required_with:guardian_username',
             'student_username' => 'nullable', //TODO: need to work on user and password creation

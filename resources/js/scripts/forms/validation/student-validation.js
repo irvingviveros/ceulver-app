@@ -25,23 +25,23 @@ const FormIsValid = (form) => {
                 }
             },
             sexSelect: "required",
-            address: "required",
+            // address: "required",
             maritalStatus: {
                 required: function () {
                     return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
                 }
             },
             email: {
-                required: function () {
-                    return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
-                },
+                // required: function () {
+                //     return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
+                // },
                 email: true
             },
-            phone: {
-                required: true,
-                minlength:10,
-                maxlength:10
-            },
+            // phone: {
+            //     required: true,
+            //     minlength:10,
+            //     maxlength:10
+            // },
             bloodGroup: "required",
             careerSelect: {
                 required: function () {
@@ -54,15 +54,15 @@ const FormIsValid = (form) => {
                     return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
                 },
             },
-            guardianLastName: "required",
-            guardianFirstName: "required",
-            guardianRelationship: "required",
-            guardianAddress: "required",
+            // guardianLastName: "required",
+            // guardianFirstName: "required",
+            // guardianRelationship: "required",
+            // guardianAddress: "required",
             guardianEmail: {
                 email: true
             },
             guardianPhone: {
-                required: true,
+                // required: true,
                 minlength:10,
                 maxlength:10
             },

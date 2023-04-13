@@ -6,11 +6,11 @@ namespace Domain\Guardian\Entity;
 class GuardianEntity
 {
     private string $name;
-    private string $last_name;
+    private ?string $last_name;
     private ?string $phone;
     private ?string $email;
     private ?string $address;
-    private int $status;
+    private ?int $status;
     private int $user_id;
 
     /**
@@ -24,7 +24,7 @@ class GuardianEntity
     /**
      * @param string $name
      */
-    public function setName(string $name): void
+    public function setName(string $name = "N/A"): void
     {
         $this->name = $name;
     }
@@ -38,9 +38,9 @@ class GuardianEntity
     }
 
     /**
-     * @param string $last_name
+     * @param string|null $last_name
      */
-    public function setLastName(string $last_name): void
+    public function setLastName(?string $last_name = "N/A"): void
     {
         $this->last_name = $last_name;
     }
@@ -104,7 +104,7 @@ class GuardianEntity
     /**
      * @param int $status
      */
-    public function setStatus(int $status): void
+    public function setStatus(?int $status = 1): void
     {
         $this->status = $status;
     }

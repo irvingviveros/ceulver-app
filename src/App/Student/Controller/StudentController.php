@@ -142,19 +142,24 @@ class StudentController extends Controller
 
         // Guardian info
         // Request and set data for guardian
-        $guardianEntity->setName($validatedRequest['guardian_first_name']);
-        $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
-        $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
-        $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
-        $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
-        $guardianEntity->setStatus(1);
-        $guardianEntity->setUserId(5);
 
-        // Request guardian id and save it
-        $guardianId = $this->guardianService->createGetId($guardianEntity, $createdBy);
+        // If guardian info is not empty, then create guardian.
+        if ($validatedRequest['guardian_first_name'] != null) {
 
-        // Set guardian ID into student entity
-        $studentEntity->setGuardianId($guardianId ?? null);
+            $guardianEntity->setName($validatedRequest['guardian_first_name']);
+            $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+            $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+            $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
+            $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
+            $guardianEntity->setStatus(1);
+            $guardianEntity->setUserId(5);
+
+            // Request guardian id and save it
+            $guardianId = $this->guardianService->createGetId($guardianEntity, $createdBy);
+
+            // Set guardian ID into student entity
+            $studentEntity->setGuardianId($guardianId ?? null);
+        }
 
         // Create new student
         try {
@@ -253,13 +258,14 @@ class StudentController extends Controller
         // Request current user data
         $user = auth()->user();
         $modifiedBy = $user->id;
+        $createdBy = $user->id;
 
         // Retrieve the validated input data...
         $validatedRequest = $request->validated();
 
         // Request and set data for student
         $studentId = $request->input('student_id');
-        $guardianId = $request->input('guardian_id');
+        $guardianId = $request->input('guardian_id') ?? null;
         $studentEntity->setSchoolId((int)$validatedRequest['school_id']);
         $studentEntity->setPaternalSurname($validatedRequest['paternal_surname']);
         $studentEntity->setMaternalSurname($validatedRequest['maternal_surname']);
@@ -289,17 +295,41 @@ class StudentController extends Controller
 
         // Guardian info
         // Request and set data for guardian
-        $guardianEntity->setName($validatedRequest['guardian_first_name']);
-        $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
-        $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
-        $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
-        $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
-        $guardianEntity->setStatus(1);
+
+        // Save if guardian info is present
+        // TODO: CREATE A GUARDIAN ID USER IF NOT EXIST
+
+        if (!is_null($guardianId)) {
+            if ($validatedRequest['guardian_first_name'] != null) {
+                $guardianEntity->setName($validatedRequest['guardian_first_name'] ?? null);
+                $guardianEntity->setLastName($validatedRequest['guardian_last_name'] ?? null);
+                $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+                $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
+                $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
+                $guardianEntity->setStatus(1);
 //        $guardianEntity->setUserId(5);
+                // Update guardian
+                $this->guardianService->update($guardianId, $guardianEntity, $modifiedBy);
+            }
+        } else {
+            // If guardian info is not empty, then create guardian.
+            if ($validatedRequest['guardian_first_name'] != null && $validatedRequest['guardian_last_name']  != null) {
 
-        // Update student
-        $this->guardianService->update($guardianId, $guardianEntity, $modifiedBy);
+                $guardianEntity->setName($validatedRequest['guardian_first_name']);
+                $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+                $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+                $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
+                $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
+                $guardianEntity->setStatus(1);
+                $guardianEntity->setUserId(5);
 
+                // Request guardian id and save it
+                $guardianId = $this->guardianService->createGetId($guardianEntity, $createdBy);
+                error_log("here!!!:".$guardianId);
+                // Set guardian ID into student entity
+                $studentEntity->setGuardianId($guardianId ?? null);
+            }
+        }
         // Update student
         try {
             $response = $this->studentService->update($studentId, $studentEntity, $modifiedBy);

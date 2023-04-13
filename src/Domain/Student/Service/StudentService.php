@@ -92,7 +92,7 @@ class StudentService
         $student->school_id = $studentEntity->getSchoolId();
         $student->career_id = $studentEntity->getCareerId();
 //        $student->agreement_id = $studentEntity->getAgreementId();
-//        $student->guardian_id = $studentEntity->getGuardianId();
+        $student->guardian_id = $studentEntity->getGuardianId();
         $student->national_id = $studentEntity->getNationalId();
         $student->enrollment = $studentEntity->getEnrollment();
         $student->payment_reference = $studentEntity->getPaymentReference();

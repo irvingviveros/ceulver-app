@@ -29,12 +29,12 @@ class StudentEntity
     private ?string $allergies;
     private ?string $ailments;
     private ?int $status;
-    private string $guardian_relationship;
+    private ?string $guardian_relationship;
     // Foreign info
     private int $school_id;
     private int $user_id;
     private ?int $agreement_id;
-    private ?int $guardian_id;
+    private ?int $guardian_id = null;
     private ?int $career_id;
 
     /**
@@ -390,17 +390,17 @@ class StudentEntity
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getGuardianRelationship(): string
+    public function getGuardianRelationship(): ?string
     {
         return $this->guardian_relationship;
     }
 
     /**
-     * @param string $guardian_relationship
+     * @param string|null $guardian_relationship
      */
-    public function setGuardianRelationship(string $guardian_relationship): void
+    public function setGuardianRelationship(?string $guardian_relationship = null): void
     {
         $this->guardian_relationship = $guardian_relationship;
     }
