@@ -89,9 +89,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     // Financial management
     Route::group(['prefix' => 'accounting', 'middleware' => ['can:see accounting panel']], function() {
+
         Route::get('dashboard', AccountingDashboard::class)
             ->name('accounting.dashboard')
             ->middleware('can:accounting-dashboard.index');
+
         Route::get('/', function () {
             return redirect()->route('accounting.dashboard');
         })->middleware('can:accounting-dashboard.index');

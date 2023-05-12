@@ -182,7 +182,7 @@
               <span class="user-status">Admin</span>
             </div>
             <span class="avatar">
-              <img class="round" src="{{asset('images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40">
+              <img class="round" src="{{asset('images/logo/ceulver_logo.jpg')}}" alt="avatar" height="40" width="40">
               <span class="avatar-status-online"></span>
             </span>
           </a>

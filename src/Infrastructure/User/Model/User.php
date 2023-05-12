@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Infrastructure\Company\Model\Company;
 use Infrastructure\School\Model\School;
 use Infrastructure\Student\Model\Student;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -73,10 +74,13 @@ class User extends Authenticatable
      */
     public function company()
     {
-        if ($this->hasPermissionTo('see company info')) {
-            return $this->school->company;
-        }
+//        if ($this->hasPermissionTo('see company info')) {
+//            return $this->school->company;
+//        }
+//
+//        return null;
+        //TODO: fix this.
 
-        return null;
+        return $this->school->company;
     }
 }

@@ -36,16 +36,16 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="mb-1">
-                                            <label class="form-label" for="selectSchool">
-                                                Seleccione el nivel educativo
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <select class="form-select mb-1" name="selectSchool" id="selectSchool">
-                                                @foreach($schools as $school)
-                                                    <option value="{{$school->id}}"
-                                                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->educationalSystem->name}}</option>
-                                                @endforeach
-                                            </select>
+{{--                                            <label class="form-label" for="selectSchool">--}}
+{{--                                                Seleccione el nivel educativo--}}
+{{--                                                <span class="text-danger">*</span>--}}
+{{--                                            </label>--}}
+{{--                                            <select class="form-select mb-1" name="selectSchool" id="selectSchool">--}}
+{{--                                                @foreach($schools as $school)--}}
+{{--                                                    <option value="{{$school->id}}"--}}
+{{--                                                            educationalSystem="{{$school->educationalSystem->name}}">{{$school->educationalSystem->name}}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
                                             <label class="col-form-label" for="import_file">
                                                 Seleccione el archivo plantilla válido
                                                 <span class="text-danger">*</span>
@@ -155,7 +155,12 @@
                                         Verifique el nivel educativo en el que se encuentra.
                                     </li>
                                     <li>
-                                        Descargue el archivo plantilla.
+                                        Descargue el archivo plantilla
+                                        <a
+                                            href="{{ Storage::url('documents/Plantilla - Carga de recibos de pago.xlsx') }}"
+                                            title="Plantilla - Carga de recibos de pago">
+                                            aquí
+                                        </a>.
                                     </li>
                                     <li>
                                         Abra el archivo descargado e ingrese los datos correspondientes.
@@ -182,7 +187,7 @@
                                         <ul>
                                             <li>Obtenga el ID (identificador) del alumno desde la
                                                 <a
-                                                    href="#"
+                                                    href="{{ route('students.index')}}"
                                                     target="_blank">
                                                     lista de alumnos
                                                 </a>

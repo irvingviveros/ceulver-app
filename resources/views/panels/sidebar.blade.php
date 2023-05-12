@@ -41,7 +41,11 @@
                             }
                         @endphp
 
-                        @if($menu->name === 'Administrative Coordination' && auth()->user()->hasAnyRole('accounting'))
+                        @if($menu->name === 'Administrative Coordination' && auth()->user()->hasAnyRole(
+                            [
+                                'accounting',
+                                'accounting-kinder-reader'
+                            ]))
                             <li
                                 class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
                                 <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}"
@@ -61,7 +65,7 @@
                             </li>
                         @endif
 
-                        @if($menu->name === 'Students' && auth()->user()->hasAnyRole('accounting'))
+                        @if($menu->name === 'Students' && auth()->user()->hasAnyPermission('see super-admin panel'))
                             <li
                                 class="nav-item {{ $custom_classes }} {{ Route::currentRouteName() === $menu->slug ? 'active' : '' }}">
                                 <a href="{{ isset($menu->url) ? url($menu->url) : 'javascript:void(0)' }}"

@@ -42,11 +42,11 @@ class AccountingPermissions
     );
 
     private static array $kindergartenPermissions = array(
-        'see receipts elementary school index'    => 'student-receipts.kindergarten.index',
-        'create elementary school receipt'        => 'student-receipts.kindergarten.create',
-        'show elementary school receipt'          => 'student-receipts.kindergarten.show',
-        'edit elementary school receipt'          => 'student-receipts.kindergarten.edit',
-        'cancel elementary school receipt'        => 'student-receipts.kindergarten.cancel'
+        'see kindergarten receipts index'    => 'student-receipts.kindergarten.index',
+        'create kindergarten receipt'        => 'student-receipts.kindergarten.create',
+        'show kindergarten receipt'          => 'student-receipts.kindergarten.show',
+        'edit kindergarten receipt'          => 'student-receipts.kindergarten.edit',
+        'cancel kindergarten receipt'        => 'student-receipts.kindergarten.cancel'
     );
 
     private static array $nurserySchoolPermissions = array(
