@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -56,8 +58,12 @@ class LoginController extends Controller
      *
      * @return mixed
      */
-    protected function authenticated()
+    protected function authenticated(Request $request, $user)
     {
-        \Auth::logoutOtherDevices(request('password'));
+        Auth::logoutOtherDevices(request('password'));
+
+        if ($user->hasRole(['accounting-kinder-reader'])) {
+            return redirect(route('student-receipts.kindergarten.index'));
+        }
     }
 }
