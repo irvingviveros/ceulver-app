@@ -101,9 +101,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         // ============= Bulk upload =====================
 
         Route::get('student-receipts/bulk-upload', [StudentReceiptController::class, 'createBulkImport'])
-            ->name('student-receipts.bulk-upload');
+            ->name('student-receipts.bulk-upload')
+            ->middleware('role:super-admin');
         Route::post('student-receipts/bulk-upload', [StudentReceiptController::class, 'storeBulkImport'])
-            ->name('student-receipts.bulk-upload.store');
+            ->name('student-receipts.bulk-upload.store')
+            ->middleware('role:super-admin');
 
         // ============= University receipts =============
 
