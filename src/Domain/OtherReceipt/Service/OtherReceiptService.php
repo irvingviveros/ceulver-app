@@ -24,6 +24,10 @@ class OtherReceiptService
     public function createReceipt(OtherReceiptEntity $otherReceiptEntity, $createdBy): int
     {
         $data = array(
+            'sheet_id'   => $otherReceiptEntity->getSheetId(),
+            'sheet_acronym' => $otherReceiptEntity->getSheetAcronym(),
+            'full_name' => $otherReceiptEntity->getFullName(),
+            'school_id' => $otherReceiptEntity->getSchoolId(),
             'receipt_id' => $otherReceiptEntity->getReceiptId(),
             'student_id' => $otherReceiptEntity->getStudentId(),
             'created_by' => $createdBy,

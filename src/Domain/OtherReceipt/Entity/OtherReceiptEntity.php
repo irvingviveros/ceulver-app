@@ -11,7 +11,7 @@ class OtherReceiptEntity
     // Foreign data
     private int $receipt_id;
     private ?int $student_id;
-    private int $school_id;
+    private ?int $school_id;
     private int $created_by;
     private int $modified_by;
 
@@ -99,7 +99,7 @@ class OtherReceiptEntity
     /**
      * @return int
      */
-    public function getSchoolId(): int
+    public function getSchoolId(): ?int
     {
         return $this->school_id;
     }
@@ -107,7 +107,7 @@ class OtherReceiptEntity
     /**
      * @param int $school_id
      */
-    public function setSchoolId(int $school_id): void
+    public function setSchoolId(?int $school_id = null): void
     {
         $this->school_id = $school_id;
     }

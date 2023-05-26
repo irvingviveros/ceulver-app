@@ -134,12 +134,14 @@ const OtherReceiptsEvents = (function () {
             // This is sent to the store request parameter
             OtherReceiptsEvents.save({
                 _token: Application.getToken(),
-                student_id: form.find('input[id="student-id"]').val(),
+                student_id: form.find('input[id="student-id"]').val() ?? null,
+                person_name: form.find('input[id="person-name"]').val() ?? null,
+                person_educational_level: form.find('select[id="educational-level"]').val() ?? null,
                 reference: form.find('input[id="student-reference"]').val(),
-                sheet: form.find('input[id="payment-sheet"]').val(),
+                sheet: form.find('input[id="last_sheet_id"]').val(),
                 payment_date: form.find('input[id="payment-date"]').val(),
                 payment_method: form.find('select[id="payment-method"]').val(),
-                payment_concept: form.find('input[id="payment-concept"]').val(),
+                payment_concept: form.find('input[id="selected_payment_concept"]').val(),
                 amount: form.find('input[id="payment-amount"]').val(),
                 note: form.find('input[id="note"]').val()
             }).then(function () {

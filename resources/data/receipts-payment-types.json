@@ -1,0 +1,50 @@
+[
+    {
+        "id": 0,
+        "text": "COLEGIATURA"
+    },
+    {
+        "id": 1,
+        "text": "CONSTANCIA ESPECIAL"
+    },
+    {
+        "id": 2,
+        "text": "CONSTANCIA SENCILLA"
+    },
+    {
+        "id": 3,
+        "text": "CREDENCIAL DE ESTUDIANTE"
+    },
+    {
+        "id": 4,
+        "text": "EXTRAORDINARIO"
+    },
+    {
+        "id": 5,
+        "text": "INSCRIPCIÓN"
+    },
+    {
+        "id": 6,
+        "text": "KIT DE SEGURIDAD"
+    },
+    {
+        "id": 7,
+        "text": "RECARGO"
+    },
+    {
+        "id": 8,
+        "text": "RECURSAMIENTO"
+    },
+    {
+        "id": 9,
+        "text": "SEGURO ESCOLAR"
+    },
+    {
+        "id": 10,
+        "text": "SERVICIOS EDUCATIVOS'"
+    },
+    {
+        "id": 11,
+        "text": "TÍTULO DE SUFICIENCIA"
+    }
+]

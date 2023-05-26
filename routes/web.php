@@ -302,6 +302,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('other-receipts/create', [OtherReceiptController::class, 'create'])
             ->name('other-receipts.create')
             ->middleware('can:student-receipts.other-receipts.create');
+        // Store university receipt
+
+        Route::post('other-receipts', [OtherReceiptController::class, 'store'])
+            ->name('other-receipts-create')
+            ->middleware('can:other-receipts-create');
     });
 
     // Careers management, route admin/manage-careers
