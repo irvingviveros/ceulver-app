@@ -16,8 +16,8 @@ class CreateUniqueExamCandidatesTable extends Migration
         Schema::create('unique_exam_candidates', function (Blueprint $table) {
             $table->id();
             $table->string('first_name', 25)->nullable(false);
-            $table->string('paternal_surname', 25)->nullable(true);
-            $table->string('maternal_surname', 25)->nullable(true);
+            $table->string('paternal_surname', 25)->nullable();
+            $table->string('maternal_surname', 25)->nullable();
             $table->string('rubric')->nullable(false);
             $table->timestamps();
         });

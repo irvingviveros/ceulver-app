@@ -4,32 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReceiptUniqueExamCandidatesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+return new class extends Migration {
+    public function up(): void
     {
-        Schema::create('receipt_unique_exam_candidates', function (Blueprint $table) {
+        Schema::create('unique_exam_receipts', function (Blueprint $table) {
             $table->id();
+            $table->integer('sheet_id')->unique();
             $table->foreignId('receipt_id');
             $table->foreignId('unique_exam_candidate_id');
             $table->integer('created_by');
             $table->integer('modified_by');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('receipt_unique_exam_candidates');
+        Schema::dropIfExists('unique_exam_receipts');
     }
-}
+};

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Infrastructure\OtherReceipt\Model\OtherReceipt;
 use Infrastructure\StudentReceipt\Model\StudentReceipt;
+use Infrastructure\UniqueExamReceipt\Model\UniqueExamReceipt;
 
 class Receipt extends Model
 {
@@ -23,7 +24,7 @@ class Receipt extends Model
     protected $guarded = [];
 
     /**
-     * Get the student receipt associated with the receipt.
+     * Get the student receipts associated with the receipt.
      *  $receipt -> studentReceipts
      */
     public function studentReceipts(): HasMany
@@ -32,11 +33,21 @@ class Receipt extends Model
     }
 
     /**
-     * Get the student receipt associated with the receipt.
+     * Get other receipts associated with the receipt.
      *  $receipt -> studentReceipts
      */
     public function otherReceipts(): HasMany
     {
         return $this->hasMany(OtherReceipt::class);
+    }
+
+    /**
+     * Get unique receipts associated with the receipt.
+     *  $receipt -> unique
+     */
+    public function uniqueExamReceipt(): HasMany
+    {
+        return $this->hasMany(UniqueExamReceipt::class);
+        //TODO: esto hay que revisarlo, no está bien la relación pero por el momento no le encuentro caso de uso.
     }
 }

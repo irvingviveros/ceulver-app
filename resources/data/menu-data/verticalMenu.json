@@ -176,12 +176,12 @@
                 {
                     "url": "admin/accounting/other-receipts",
                     "name": "Additional receipts",
-                    "slug": "accounting.additional-receipts.index"
+                    "slug": "other-receipts.index"
                 },
                 {
-                    "url": "admin/accounting/unique-exam",
+                    "url": "admin/accounting/exu-receipts",
                     "name": "Unique exam",
-                    "slug": "accounting.additional-receipts.index"
+                    "slug": "exu-receipts.index"
                 }
             ]
         }

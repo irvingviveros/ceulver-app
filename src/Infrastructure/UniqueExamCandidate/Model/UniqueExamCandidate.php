@@ -5,7 +5,7 @@ namespace Infrastructure\UniqueExamCandidate\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Infrastructure\ReceiptUniqueExamCandidate\Model\ReceiptUniqueExamCandidate;
+use Infrastructure\UniqueExamReceipt\Model\UniqueExamReceipt;
 
 class UniqueExamCandidate extends Model
 {
@@ -17,6 +17,6 @@ class UniqueExamCandidate extends Model
      */
     public function receipts(): HasMany
     {
-        return $this->hasMany(ReceiptUniqueExamCandidate::class);
+        return $this->hasMany(UniqueExamReceipt::class);
     }
 }

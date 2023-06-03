@@ -1,28 +1,25 @@
 <?php
 
-namespace Infrastructure\ReceiptUniqueExamCandidate\Model;
+namespace Infrastructure\UniqueExamReceipt\Model;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Infrastructure\Receipt\Model\Receipt;
+use Infrastructure\Student\Model\Student;
 use Infrastructure\UniqueExamCandidate\Model\UniqueExamCandidate;
 
-class ReceiptUniqueExamCandidate extends Model
+class UniqueExamReceipt extends Model
 {
-    use HasFactory;
+    use SoftDeletes;
 
-    /**
-     * Get the candidate associated with the receipt.
-     *  $receiptUniqueExamCandidate -> student
-     */
     public function uniqueExamCandidate(): BelongsTo
     {
         return $this->belongsTo(UniqueExamCandidate::class);
     }
 
     /**
-     * Get the receipt info associated with the student receipt.
+     * Get the receipt info associated with the receipt.
      *  $receiptUniqueExamCandidate -> $receipt
      */
     public function receipt(): BelongsTo

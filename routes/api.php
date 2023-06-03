@@ -230,3 +230,38 @@ Route::get('companies/{companyId}/students', function ($companyId) {
 
     return DataTables::of($query)->toJson();
 });
+
+/**
+ * This endpoint returns student receipts from a specific company by id
+ * Example: api/companies/x/other-receipts
+ * @param $code
+ * @return mixed
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+Route::get('companies/unique-exam-receipts', function () {
+    $query = DB::table('unique_exam_receipts')
+        ->join('receipts', 'unique_exam_receipts.receipt_id', '=', 'receipts.id')
+        ->join('unique_exam_candidates', 'unique_exam_receipts.unique_exam_candidate_id', '=', 'unique_exam_candidates.id')
+        ->select(
+            'unique_exam_receipts.sheet_id',
+            'receipts.payment_method',
+            'receipts.payment_concept',
+            'receipts.amount',
+            'receipts.amount_text',
+            'receipts.payment_date',
+            'receipts.note',
+            'receipts.created_by',
+            'receipts.modified_by',
+            'receipts.created_at',
+            'receipts.updated_at',
+            'receipts.deleted_at',
+            'unique_exam_candidates.rubric'
+        )
+        ->addSelect(DB::raw("(CASE WHEN receipts.deleted_at IS NULL THEN 'Pagado' ELSE 'Cancelado' END) as receipt_status"))
+        ->addSelect(DB::raw("CONCAT(unique_exam_candidates.paternal_surname, ' ', unique_exam_candidates.maternal_surname, ' ', unique_exam_candidates.first_name) AS candidate_name"))
+        ->get();
+
+    return DataTables::of($query)->toJson();
+});
+

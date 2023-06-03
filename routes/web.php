@@ -18,6 +18,7 @@ use App\StudentReceipt\Controller\StudentReceiptController;
 use App\Subject\Controller\SubjectController;
 use App\Syllabus\Controller\SyllabusController;
 use App\Teacher\Controller\TeacherController;
+use App\UniqueExamCandidate\Controller\UniqueExamReceiptController;
 use App\Upload\Controller\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Auth::routes();
 Route::get('/', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
 Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
 
+Route::view('/test', 'modules.student.actions.university-format');
 // Route Components
 
 // Admin
@@ -307,6 +309,37 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::post('other-receipts', [OtherReceiptController::class, 'store'])
             ->name('other-receipts-create')
             ->middleware('can:other-receipts-create');
+
+        // ============= EXU receipts =============
+
+        // Index unique exam receipt
+        Route::get('exu-receipts', [UniqueExamReceiptController::class, 'index'])
+            ->name('exu-receipts.index')
+            ->middleware('can:exu-receipts.index');
+        // Create unique exam receipt
+        Route::get('exu-receipts/create', [UniqueExamReceiptController::class, 'create'])
+            ->name('exu-receipts.create')
+            ->middleware('can:exu-receipts.create');
+        // Show unique exam receipt
+        Route::get('exu-receipts/{id}', [UniqueExamReceiptController::class, 'show'])
+            ->name('exu-receipts.show')
+            ->middleware('can:exu-receipts.show');
+        // Edit unique exam receipt
+        Route::get('exu-receipts/{id}/edit', [UniqueExamReceiptController::class, 'edit'])
+            ->name('exu-receipts.edit')
+            ->middleware('can:exu-receipts.edit');
+        // Update unique exam receipt
+        Route::put('exu-receipts/{id}', [UniqueExamReceiptController::class, 'update'])
+            ->name('exu-receipts.update')
+            ->middleware('can:exu-receipts.edit');
+        // Store unique exam receipt
+        Route::post('exu-receipts', [UniqueExamReceiptController::class, 'store'])
+            ->name('exu-receipts.store')
+            ->middleware('can:exu-receipts.edit');
+        // Soft delete unique exam receipt
+        Route::delete('exu-receipts/{id}', [UniqueExamReceiptController::class, 'softDelete'])
+            ->name('exu-receipts.delete')
+            ->middleware('can:exu-receipts.cancel');
     });
 
     // Careers management, route admin/manage-careers

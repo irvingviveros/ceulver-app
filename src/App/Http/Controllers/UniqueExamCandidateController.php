@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\UniqueExamCandidate;
+
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class UniqueExamCandidateController extends Controller
@@ -10,11 +11,11 @@ class UniqueExamCandidateController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function index()
     {
-        //
+        return 'hi';
     }
 
     /**
