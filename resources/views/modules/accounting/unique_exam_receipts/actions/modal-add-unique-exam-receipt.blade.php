@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card invoice-preview-card">
                     <!-- Header starts -->
-                    <div class="card-body invoice-padding pb-0">
+                    <div class="card-body pb-0">
                         <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                             <div>
                                 <div class="logo-wrapper pt-1" style="margin-bottom: 0;">
@@ -103,14 +103,9 @@
                                 <label class="form-label" for="rubric">Rubro
                                     <span class="text-danger">*</span>
                                 </label>
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    id="rubric"
-                                    name="rubric"
-                                    placeholder="Rubro"
-                                    aria-label="Rubro"
-                                />
+                                <select class="form-control" id="rubric">
+                                    <option></option>
+                                </select>
                                 <span for="rubric" class="text-danger"></span>
                             </div>
 
@@ -212,6 +207,7 @@
 
     <input type="hidden" name="unique_exam_receipt" id="unique-exam-receipt" value="">
     <input type="hidden" name="selected_payment_concept" id="selected_payment_concept" value="">
+    <input type="hidden" name="selected_rubric" id="selected_rubric" value="">
     <input type="hidden" name="last_sheet" id="last_sheet_id" value="{{$lastSheet}}">
 </form>
 
@@ -228,7 +224,16 @@
 </script>
 <script src="{{ asset(mix('js/utils/select2-json.js')) }}"></script>
 <script>
-    initializeSelect2Json('#payment-concept', "{{ asset('data/exu-receipts-payment-types.json') }}");
+    initializeSelect2Json(
+        '#payment-concept',
+        '#selected_payment_concept',
+        "Seleccione o escriba un concepto",
+        "{{ asset('data/exu-receipts-payment-types.json') }}");
+    initializeSelect2Json(
+        '#rubric',
+        '#selected_rubric',
+        'Seleccione o escriba un rubro',
+        "{{ asset('data/exu-receipts-rubrics.json') }}");
 </script>
 
 <script>feather.replace() //Icons</script>

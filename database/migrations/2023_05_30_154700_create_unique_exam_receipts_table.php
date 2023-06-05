@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('unique_exam_receipts', function (Blueprint $table) {
-            $table->id();
+            $table->id()->default(847); // Petición de CEULVER.
             $table->integer('sheet_id')->unique();
             $table->foreignId('receipt_id');
             $table->foreignId('unique_exam_candidate_id');

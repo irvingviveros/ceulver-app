@@ -1478,6 +1478,7 @@
     "/data/ajax.php": "/data/ajax.php",
     "/data/datatables/other-receipts/student-receipts-datatable.js": "/data/datatables/other-receipts/student-receipts-datatable.js",
     "/data/exu-receipts-payment-types.json": "/data/exu-receipts-payment-types.json",
+    "/data/exu-receipts-rubrics.json": "/data/exu-receipts-rubrics.json",
     "/data/fullcalendar/json/events.json": "/data/fullcalendar/json/events.json",
     "/data/fullcalendar/php/get-events.php": "/data/fullcalendar/php/get-events.php",
     "/data/fullcalendar/php/get-timezones.php": "/data/fullcalendar/php/get-timezones.php",

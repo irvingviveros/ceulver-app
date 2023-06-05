@@ -1,25 +1,22 @@
-function initializeSelect2Json(selectId, dataUrl, enableTags = true) {
-    console.log("initialized")
-    $(selectId).select2({
-        dropdownParent: $(selectId).parent(),
+function initializeSelect2Json(selectElementId, outputElementId, placeholderText, dataUrl, enableTags = true) {
+    $(selectElementId).select2({
+        dropdownParent: $(selectElementId).parent(),
         ajax: {
             url: dataUrl,
             dataType: 'json',
-            processResults: function(data) {
+            processResults: function(responseData) {
                 return {
-                    results: data
+                    results: responseData
                 };
             }
         },
-        placeholder: "Seleccione o escriba un concepto",
+        placeholder: placeholderText,
         language: "es",
         tags: enableTags
-    }).on('select2:select', function (e) {
-        let paymentConcept = e.params.data.text;
-        let selectedPaymentConceptID = $('#selected_payment_concept');
-        // Assign the payment concept value to selector
-        selectedPaymentConceptID.val(paymentConcept)
+    }).on('select2:select', function (event) {
+        let selectedText = event.params.data.text;
+        let outputElement = $(outputElementId);
+        // Assign the selected value to the output element
+        outputElement.val(selectedText);
     });
 }
-
-

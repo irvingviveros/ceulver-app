@@ -194,7 +194,11 @@
 </script>
 <script src="{{ asset(mix('js/utils/select2-json.js')) }}"></script>
 <script>
-    initializeSelect2Json('#payment-concept', "{{ asset('data/receipts-payment-types.json') }}");
+    initializeSelect2Json(
+        '#payment-concept',
+        '#selected_payment_concept',
+        "Seleccione o escriba un concepto",
+        "{{ asset('data/exu-receipts-payment-types.json') }}");
 </script>
 
 <script>

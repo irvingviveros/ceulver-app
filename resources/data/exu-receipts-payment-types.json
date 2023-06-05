@@ -1,14 +1,18 @@
 [
     {
         "id": 0,
-        "text": "PRIMARIA"
+        "text": "EXAMEN ÚNICO DE SECUNDARIA"
     },
     {
         "id": 1,
-        "text": "SECUNDARIA"
+        "text": "EXAMEN ÚNICO DE BACHILLERATO"
     },
     {
         "id": 2,
-        "text": "BACHILLERATO"
+        "text": "EXAMEN ÚNICO DE LICENCIATURA"
+    },
+    {
+        "id": 3,
+        "text": "SERVICIOS EDUCATIVOS"
     }
 ]
