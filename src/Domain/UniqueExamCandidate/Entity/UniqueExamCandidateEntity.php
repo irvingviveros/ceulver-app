@@ -10,7 +10,7 @@ class UniqueExamCandidateEntity
     private string $maternal_surname;
     private string $rubric;
     private int $created_by;
-    private int $modified_by;
+    private ?int $modified_by;
 
     /**
      * @return string
@@ -93,17 +93,17 @@ class UniqueExamCandidateEntity
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getModifiedBy(): int
+    public function getModifiedBy(): ?int
     {
         return $this->modified_by;
     }
 
     /**
-     * @param int $modified_by
+     * @param int|null $modified_by
      */
-    public function setModifiedBy(int $modified_by): void
+    public function setModifiedBy(?int $modified_by = null): void
     {
         $this->modified_by = $modified_by;
     }

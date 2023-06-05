@@ -132,10 +132,10 @@ const UniqueExamReceiptsEvents = (function () {
             // This is sent to the store request parameter
             UniqueExamReceiptsEvents.save({
                 _token: Application.getToken(),
-                student_id: form.find('input[id="student-id"]').val() ?? null,
-                person_name: form.find('input[id="person-name"]').val() ?? null,
-                person_educational_level: form.find('select[id="educational-level"]').val() ?? null,
-                reference: form.find('input[id="student-reference"]').val(),
+                first_name: form.find('input[id="firstName"]').val() ?? null,
+                paternal_surname: form.find('input[id="paternalSurname"]').val() ?? null,
+                maternal_surname: form.find('input[id="maternalSurname"]').val() ?? null,
+                rubric: form.find('input[id="rubric"]').val(),
                 sheet: form.find('input[id="last_sheet_id"]').val(),
                 payment_date: form.find('input[id="payment-date"]').val(),
                 payment_method: form.find('select[id="payment-method"]').val(),

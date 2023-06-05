@@ -23,13 +23,13 @@ class UniqueExamReceiptService
         return $this->uniqueExamReceiptRepository->all();
     }
 
-    public function createReceipt(UniqueExamReceiptEntity $uniqueExamReceiptEntity, $createdBy): int
+    public function createReceipt(UniqueExamReceiptEntity $uniqueExamReceiptEntity): int
     {
         $data = array(
             'receipt_id'                => $uniqueExamReceiptEntity->getReceiptId(),
             'sheet_id'                  => $uniqueExamReceiptEntity->getSheetId(),
             'unique_exam_candidate_id'  => $uniqueExamReceiptEntity->getCandidateId(),
-            'created_by'                => $createdBy,
+            'created_by'                => $uniqueExamReceiptEntity->getCreatedBy(),
             'created_at'                => date_create(),
         );
 

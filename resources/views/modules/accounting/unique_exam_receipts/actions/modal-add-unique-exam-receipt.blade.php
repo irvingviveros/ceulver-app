@@ -8,7 +8,11 @@
                     <!-- Header starts -->
                     <div class="card-body invoice-padding pb-0">
                         <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
-                            <div class="width-300"></div>
+                            <div>
+                                <div class="logo-wrapper pt-1" style="margin-bottom: 0;">
+                                    <img src="{{ asset('images/logo/institución_evaluadora.png') }}" alt="" style="max-width: 300px">
+                                </div>
+                            </div>
                             <div class="invoice-number-date mt-md-0 mt-2">
                                 <div class="d-flex align-items-center justify-content-md-end mb-1">
                                     <span class="title"><b>Folio:</b></span>
@@ -21,7 +25,7 @@
                                             id="payment-sheet"
                                             name="payment_sheet"
                                             class="form-control invoice-edit-input"
-                                            value="{{$lastSheetWithAcronym}}"
+                                            value="{{$lastSheet}}"
                                             disabled/>
                                     </div>
                                 </div>
@@ -45,45 +49,77 @@
                     <!-- Address and Contact starts -->
                     <div class="card-body invoice-padding pt-0">
                         <div class="row invoice-spacing">
-                            <div class="col-xl-8 p-0">
-                                <h6 class="mb-2">
-                                    <B>DATOS DEL ALUMNO | PERSONA</B>
-                                </h6>
-                                <!-- Select2 Remote Data -->
-                                <div class="col-md-6 mb-1">
-                                    <label class="form-label" for="select2-ajax">Nombre del alumno</label>
-                                    <div class="mb-1">
-                                        <select class="select2-data-ajax form-select" id="select2-ajax" lang="es">
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                    <div class="divider">
-                                        <div class="divider-text">Ó</div>
-                                    </div>
-                                    <div>
-                                        <label class="form-label" for="person-name">Nombre de la persona</label>
-                                        <div class="mb-1">
-                                            <input type="text" id="person-name" class="form-control" autocapitalize="characters" oninput="this.value = this.value.toUpperCase()">
-                                        </div>
-                                        <label for="educational-level" class="form-label fw-bold">
-                                            Selecciona el nivel educativo
-                                        </label>
-                                        <select class="form-control dropdown" name="educational_level" id="educational-level">
-                                            <option selected disabled>Seleccionar...</option>
-                                            @foreach($schools as $school)
-                                                <option value="{{ $school->educationalSystem->name }}">{{$school->educationalSystem->name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+                            <h6 class="mb-2">
+                                <B>DATOS DEL ASPIRANTE</B>
+                            </h6>
+                            <div class="col-3">
+                                <label class="form-label" for="firstName">Nombre(s)
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="Nombre(s)"
+                                    aria-label="Nombre o nombres"
+                                />
+                                <span for="firstName" class="text-danger"></span>
+                            </div>
 
+                            <div class="col-3">
+                                <label class="form-label" for="paternalSurname">Apellido paterno
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="paternalSurname"
+                                    name="paternalSurname"
+                                    placeholder="Apellido paterno"
+                                    aria-label="Apellido paterno"
+                                />
+                                <span for="paternalSurname" class="text-danger"></span>
                             </div>
-                            <!-- Student additional information starts -->
-                            <div class="col-xl-4 p-0 mt-xl-0 mt-2">
-                                <div id="additional-info"></div>
+
+                            <div class="col-3">
+                                <label class="form-label" for="maternalSurname">Apellido materno
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="maternalSurname"
+                                    name="maternalSurname"
+                                    placeholder="Apellido materno"
+                                    aria-label="Apellido materno"
+                                />
+                                <span for="maternalSurname" class="text-danger"></span>
                             </div>
-                            <!-- Student additional information ends -->
+
+                            <div class="col-3"></div>
+
+                            <div class="col-3 pt-1">
+                                <label class="form-label" for="rubric">Rubro
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="rubric"
+                                    name="rubric"
+                                    placeholder="Rubro"
+                                    aria-label="Rubro"
+                                />
+                                <span for="rubric" class="text-danger"></span>
+                            </div>
+
                         </div>
+                        <!-- Student additional information starts -->
+                        <div class="col-xl-4 p-0 mt-xl-0 mt-2">
+                            <div id="additional-info"></div>
+                        </div>
+                        <!-- Student additional information ends -->
                     </div>
                     <!-- Address and Contact ends -->
 
@@ -174,9 +210,7 @@
         </div>
     </section>
 
-    <input type="hidden" name="student_id" id="student-id" value=""/>
-    <input type="hidden" name="student_reference" id="student-reference" value=""/>
-    <input type="hidden" name="other_receipt" id="other-receipt" value="">
+    <input type="hidden" name="unique_exam_receipt" id="unique-exam-receipt" value="">
     <input type="hidden" name="selected_payment_concept" id="selected_payment_concept" value="">
     <input type="hidden" name="last_sheet" id="last_sheet_id" value="{{$lastSheet}}">
 </form>
@@ -194,56 +228,7 @@
 </script>
 <script src="{{ asset(mix('js/utils/select2-json.js')) }}"></script>
 <script>
-    initializeSelect2Json('#payment-concept', "{{ asset('data/receipts-payment-types.json') }}");
+    initializeSelect2Json('#payment-concept', "{{ asset('data/exu-receipts-payment-types.json') }}");
 </script>
 
-<script>
-    // Al cambiar el valor del select #select2-ajax
-    $('#select2-ajax').change(function() {
-        var selectedValue = $(this).val();
-
-        // Si el valor seleccionado es diferente de vacío ("")
-        if (selectedValue !== "") {
-            // Eliminar el valor y deshabilitar el input #person-name
-            $('#person-name').val('').prop('disabled', true);
-
-            // Deshabilitar y borrar el valor seleccionado del select #educational-level
-            $('#educational-level').val('').prop('disabled', true).trigger('change.select2');
-        } else {
-            // Habilitar el input #person-name
-            $('#person-name').prop('disabled', false);
-
-            // Habilitar el select #educational-level y restablecer su valor
-            $('#educational-level').prop('disabled', false).val('').trigger('change.select2');
-        }
-    });
-
-    // Al ingresar información en el input #person-name
-    $('#person-name').on('input', function() {
-        var inputVal = $(this).val();
-
-        // Si el input contiene información
-        if (inputVal !== "") {
-            // Deshabilitar y borrar el valor seleccionado del select #select2-ajax
-            $('#select2-ajax').val('').prop('disabled', true).trigger('change.select2');
-        } else {
-            // Habilitar el select #select2-ajax
-            $('#select2-ajax').prop('disabled', false);
-        }
-    });
-
-    // Al cambiar el valor del select #educational-level
-    $('#educational-level').change(function() {
-        var selectedValue = $(this).val();
-
-        // Si el valor seleccionado es diferente de vacío ("")
-        if (selectedValue !== "") {
-            // Deshabilitar y borrar el valor seleccionado del select #select2-ajax
-            $('#select2-ajax').val('').prop('disabled', true).trigger('change.select2');
-        } else {
-            // Habilitar el select #select2-ajax
-            $('#select2-ajax').prop('disabled', false);
-        }
-    });
-</script>
 <script>feather.replace() //Icons</script>

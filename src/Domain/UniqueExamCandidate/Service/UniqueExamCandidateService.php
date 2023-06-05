@@ -42,6 +42,22 @@ class UniqueExamCandidateService
         return ResponseAlias::HTTP_OK;
     }
 
+    public function createGetId(UniqueExamCandidateEntity $uniqueExamCandidateEntity): int
+    {
+
+        $data = array(
+            'first_name'        => $uniqueExamCandidateEntity->getFirstName(),
+            'paternal_surname'  => $uniqueExamCandidateEntity->getPaternalSurname(),
+            'maternal_surname'  => $uniqueExamCandidateEntity->getMaternalSurname(),
+            'rubric'            => $uniqueExamCandidateEntity->getRubric(),
+            'created_by'        => $uniqueExamCandidateEntity->getCreatedBy(),
+            'created_at'        => date_create(),
+        );
+
+        return $this->candidateRepository->createGetId($data);
+
+    }
+
     /**
      * @throws ValueNotFoundException
      */

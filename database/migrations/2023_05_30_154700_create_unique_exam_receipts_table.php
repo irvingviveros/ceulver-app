@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->foreignId('receipt_id');
             $table->foreignId('unique_exam_candidate_id');
             $table->integer('created_by');
-            $table->integer('modified_by');
+            $table->integer('modified_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

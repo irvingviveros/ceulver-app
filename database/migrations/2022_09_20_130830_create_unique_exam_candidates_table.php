@@ -19,6 +19,8 @@ class CreateUniqueExamCandidatesTable extends Migration
             $table->string('paternal_surname', 25)->nullable();
             $table->string('maternal_surname', 25)->nullable();
             $table->string('rubric')->nullable(false);
+            $table->integer('created_by');
+            $table->integer('modified_by')->nullable(true);
             $table->timestamps();
         });
     }

@@ -70,4 +70,9 @@ class EloquentUniqueExamCandidateRepository implements GlobalRepository
 
         return $sheetNumber;
     }
+
+    public function createGetId($data): int
+    {
+        return DB::table('unique_exam_candidates')->insertGetId($data);
+    }
 }

@@ -36,6 +36,7 @@
                     longhand: ['Enero', 'Febrero', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                 }
             },
+            defaultDate: new Date(),
         });
     }
 
