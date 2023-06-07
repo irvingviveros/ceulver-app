@@ -10,7 +10,8 @@
                         <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                             <div>
                                 <div class="logo-wrapper pt-1" style="margin-bottom: 0;">
-                                    <img src="{{ asset('images/logo/institución_evaluadora.png') }}" alt="" style="max-width: 300px">
+                                    <img src="{{ asset('images/logo/ceulver_ceen.png') }}" alt="" style="max-width: 100px; padding-left: 20px">
+                                    <p></p>
                                 </div>
                             </div>
                             <div class="invoice-number-date mt-md-0 mt-2">
