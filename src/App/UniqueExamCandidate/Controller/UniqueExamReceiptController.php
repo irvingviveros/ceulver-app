@@ -5,6 +5,8 @@ namespace App\UniqueExamCandidate\Controller;
 use App\Http\Controllers\Controller;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
+use Domain\Student\Actions\CreateFullName;
+use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
 use Domain\UniqueExamCandidate\Entity\UniqueExamCandidateEntity;
 use Domain\UniqueExamCandidate\Service\UniqueExamCandidateService;
 use Domain\UniqueExamReceipt\Entity\UniqueExamReceiptEntity;
@@ -132,11 +134,24 @@ class UniqueExamReceiptController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return View
      */
-    public function show($id)
+    public function show(int $id): View
     {
-        //
+        // Get unique-exam receipt data model with the receipt id
+        $uniqueExamReceipt = $this->examReceiptService->findOrFailWithTrashed($id);
+        // Get base receipt collection
+        $baseReceipt = $this->receiptService->findOrFailWithTrashed($uniqueExamReceipt->receipt_id);
+        // Receipt payment date formatted
+        $payment_date = DateToLatinAmericaFormat::execute($baseReceipt->payment_date);
+        // Get the candidate data model related to the receipt
+        $candidate = $this->candidateService->findById($uniqueExamReceipt->unique_exam_candidate_id);
+        // Get student full name by paternal surname
+        $candidateFullName = CreateFullName::ByPaternalSurname(
+            $candidate->first_name, $candidate->paternal_surname, $candidate->maternal_surname);
+
+        return view('modules.accounting.unique_exam_receipts.actions.modal-show-unique-exam-receipt',
+            compact(['baseReceipt', 'uniqueExamReceipt', 'candidate', 'candidateFullName', 'payment_date']));
     }
 
     /**

@@ -36,12 +36,6 @@
             </div>
         </div>
     </section>
-    <input
-        type="hidden"
-        name="company-id"
-        id="company-id"
-        value="@isset($companyId){{ $companyId }}@endisset"
-    />
     <!--/ Basic table -->
 @endsection
 

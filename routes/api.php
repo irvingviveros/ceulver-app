@@ -143,6 +143,7 @@ Route::get('companies/{companyId}/other-receipts', function ($companyId) {
         ->join('educational_systems', 'schools.educational_system_id', '=', 'educational_systems.id')
         ->leftJoin('students', 'other_receipts.student_id', '=', 'students.id')
         ->select(
+            'other_receipts.id as id',
             'other_receipts.sheet_id',
             'other_receipts.sheet_acronym',
             'other_receipts.full_name',
@@ -244,6 +245,7 @@ Route::get('companies/unique-exam-receipts', function () {
         ->join('receipts', 'unique_exam_receipts.receipt_id', '=', 'receipts.id')
         ->join('unique_exam_candidates', 'unique_exam_receipts.unique_exam_candidate_id', '=', 'unique_exam_candidates.id')
         ->select(
+            'unique_exam_receipts.id as id',
             'unique_exam_receipts.sheet_id',
             'receipts.payment_method',
             'receipts.payment_concept',

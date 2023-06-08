@@ -1,7 +1,7 @@
 // Basic candidate columns
 let basicColumns = [
     // columns according to JSON
-    {data: "sheet_id"},
+    {data: "id"},
     {data: "sheet_id"},
     {
         data: "candidate_name",

@@ -49,7 +49,7 @@ const UniqueExamReceiptsEvents = (function () {
             ).then(function () {
                 let modal = Modal.create({
                     id: 'showData'
-                    , title: 'Información del registro'
+                    , title: 'Información del recibo de pago'
                     , content: arguments[0]
                     , okButtonText: 'Editar'
                     , cancelButtonText: 'Cerrar'

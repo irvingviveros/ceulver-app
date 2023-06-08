@@ -78,4 +78,9 @@ class UniqueExamReceiptService
     {
         return $this->uniqueExamReceiptRepository->lastSheetId();
     }
+
+    public function findOrFailWithTrashed(int $id)
+    {
+        return $this->uniqueExamReceiptRepository->findOrFailWithTrashed($id);
+    }
 }

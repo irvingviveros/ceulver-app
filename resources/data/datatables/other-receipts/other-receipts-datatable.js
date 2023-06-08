@@ -1,7 +1,7 @@
 // Basic student columns. NO university columns are in this array.
 let basicColumns = [
     // columns according to JSON
-    {data: "sheet_id"},
+    {data: "id"},
     {data: "full_sheet"},
     {
         data: "student_name",
