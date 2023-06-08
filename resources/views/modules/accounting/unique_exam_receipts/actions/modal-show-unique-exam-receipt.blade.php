@@ -12,9 +12,14 @@
                     <!-- Header starts -->
                     <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                         <div>
-                            <div class="logo-wrapper" style="margin-bottom: 0">
-                                <img src="{{ asset('images/logo/ceulver_ceen.png') }}" alt="" style="max-width: 100px; padding-left: 20px">
+                            <div class="logo-wrapper" style="margin-bottom: 25px">
+                                <img src="{{ asset('images/logo/ceulver_ceen.png') }}" alt="" style="max-width: 100px;">
                             </div>
+                            <p class="card-text mb-25">COMISIÓN EVALUADORA EDUCATIVA NACIONAL A. C.</p>
+                            <p class="card-text mb-25">Av. Gral. Miguel Aleman No. 170</p>
+                            <p class="card-text mb-25">Fracc. Moderno, Veracruz, Ver. C. P. 91918</p>
+                            <p class="card-text mb-25">Tel. 2291590031</p>
+                            <p class="card-text mb-0">RFC: CEE170530382</p>
                         </div>
                         <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
