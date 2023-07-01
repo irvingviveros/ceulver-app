@@ -1,10 +1,11 @@
 <?php
 
-namespace App\UniqueExamCandidate\Controller;
+namespace App\UniqueExamReceipt\Controller;
 
 use App\Http\Controllers\Controller;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
+use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Student\Actions\CreateFullName;
 use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
 use Domain\UniqueExamCandidate\Entity\UniqueExamCandidateEntity;
@@ -12,13 +13,13 @@ use Domain\UniqueExamCandidate\Service\UniqueExamCandidateService;
 use Domain\UniqueExamReceipt\Entity\UniqueExamReceiptEntity;
 use Domain\UniqueExamReceipt\Service\UniqueExamReceiptService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Infrastructure\Receipt\Repository\EloquentReceiptRepository;
 use Infrastructure\UniqueExamCandidate\Repository\EloquentUniqueExamCandidateRepository;
 use Infrastructure\UniqueExamReceipt\Repository\EloquentUniqueExamReceiptRepository;
 use Mockery\CountValidator\Exception;
-use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 class UniqueExamReceiptController extends Controller
 {
@@ -182,8 +183,18 @@ class UniqueExamReceiptController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function softDelete($id)
     {
-        //
+        $uniqueExamReceiptCollection = $this->examReceiptService->findById($id);
+        $baseReceiptCollection = $this->receiptService->findById($uniqueExamReceiptCollection->receipt_id);
+
+        try {
+            $this->receiptService->delete($baseReceiptCollection->id);
+            $this->examReceiptService->delete($id);
+        } catch (OperationNotPermittedCeulverException $exception) {
+            return new Response($exception->getMessage(), 400);
+        } catch (Exception $exception) {
+            return new Response('Error interno en el servidor', 500);
+        }
     }
 }
