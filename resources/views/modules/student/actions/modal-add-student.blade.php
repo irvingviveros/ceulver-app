@@ -100,18 +100,123 @@
         <span for="nationalId" class="text-danger"></span>
     </div>
 
+{{--    <div class="col-3">--}}
+{{--        <label class="form-label" for="address">Domicilio--}}
+{{--        </label>--}}
+{{--        <input--}}
+{{--            type="text"--}}
+{{--            class="form-control"--}}
+{{--            id="address"--}}
+{{--            name="address"--}}
+{{--            placeholder="Domicilio"--}}
+{{--            aria-label="Domicilio"--}}
+{{--        />--}}
+{{--        <span for="address" class="text-danger"></span>--}}
+{{--    </div>--}}
+
     <div class="col-3">
-        <label class="form-label" for="address">Domicilio
+        <label class="form-label" for="streetName">Calle
+            <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
-            id="address"
-            name="address"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            id="streetName"
+            name="streetName"
+            placeholder="Calle"
+            aria-label="Calle"
         />
-        <span for="address" class="text-danger"></span>
+        <span for="streetName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="streetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="streetNumber"
+            name="streetNumber"
+            placeholder="No."
+            aria-label="No."
+        />
+        <span for="streetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="betweenStreets">Entre calles
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="betweenStreets"
+            name="betweenStreets"
+            placeholder="Entre calles"
+            aria-label="Entre calles"
+        />
+        <span for="betweenStreets" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="neighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="neighborhood"
+            name="neighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+        />
+        <span for="neighborhood" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="zip">C&oacute;digo Postal
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="zip"
+            name="zip"
+            placeholder="C&oacute;digo Postal"
+            aria-label="C&oacute;digo Postal"
+        />
+        <span for="zip" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="city">Ciudad
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            placeholder="Ciudad"
+            aria-label="Ciudad"
+        />
+        <span for="city" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="state">Estado
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="state"
+            name="state"
+            placeholder="Estado"
+            aria-label="Estado"
+        />
+        <span for="state" class="text-danger"></span>
     </div>
 
     <div class="col-3 d-none" dynamic-toggle>
@@ -339,6 +444,36 @@
     </div>
 
     <div class="col-3">
+        <label class="form-label" for="guardianPaternalSurname">Apellido Paterno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianPaternalSurname"
+            name="guardianPaternalSurname"
+            placeholder="Apellido Paterno"
+            aria-label="Apellido Paterno"
+        />
+        <span for="guardianPaternalSurname" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianMaternalSurname">Apellido Materno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianMaternalSurname"
+            name="guardianMaternalSurname"
+            placeholder="Apellido Materno"
+            aria-label="Apellido Materno"
+        />
+        <span for="guardianMaternalSurname" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
         <label class="form-label" for="guardianLastName">Apellido(s)
             <span class="text-danger">*</span>
         </label>
@@ -402,6 +537,51 @@
             aria-label="Domicilio"
         />
         <span for="guardianAddress" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetName">Calle
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetName"
+            name="guardianStreetName"
+            placeholder="Calle"
+            aria-label="Calle"
+        />
+        <span for="guardianStreetName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetNumber"
+            name="guardianStreetNumber"
+            placeholder="No."
+            aria-label="No."
+        />
+        <span for="guardianStreetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianNeighborhood"
+            name="guardianNeighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+        />
+        <span for="guardianNeighborhood" class="text-danger"></span>
     </div>
 
     <div class="col-3">

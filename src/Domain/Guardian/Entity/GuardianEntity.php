@@ -13,6 +13,12 @@ class GuardianEntity
     private ?int $status;
     private int $user_id;
 
+    private ?string $paternal_surname;
+    private ?string $maternal_surname;
+    private ?string $street_name;
+    private ?string $street_number;
+    private ?string $neighborhood;
+
     /**
      * @return string
      */
@@ -123,5 +129,85 @@ class GuardianEntity
     public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getPaternalSurname(): ?string
+    {
+        return $this->paternal_surname;
+    }
+
+    /**
+     * @param string|null $paternal_surname
+     */
+    public function setPaternalSurname(?string $paternal_surname): void
+    {
+        $this->paternal_surname = $paternal_surname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMaternalSurname(): ?string
+    {
+        return $this->maternal_surname;
+    }
+
+    /**
+     * @param string|null $maternal_surname
+     */
+    public function setMaternalSurname(?string $maternal_surname): void
+    {
+        $this->maternal_surname = $maternal_surname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreetName(): ?string
+    {
+        return $this->street_name;
+    }
+
+    /**
+     * @param string|null $street_name
+     */
+    public function setStreetName(?string $street_name): void
+    {
+        $this->street_name = $street_name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreetNumber(): ?string
+    {
+        return $this->street_number;
+    }
+
+    /**
+     * @param string|null $street_number
+     */
+    public function setStreetNumber(?string $street_number): void
+    {
+        $this->street_number = $street_number;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNeighborhood(): ?string
+    {
+        return $this->neighborhood;
+    }
+
+    /**
+     * @param string|null $neighborhood
+     */
+    public function setNeighborhood(?string $neighborhood): void
+    {
+        $this->neighborhood = $neighborhood;
     }
 }

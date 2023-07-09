@@ -102,20 +102,132 @@
         <span for="nationalId" class="text-danger"></span>
     </div>
 
+{{--    <div class="col-3">--}}
+{{--        <label class="form-label" for="address">Domicilio--}}
+{{--            <span class="text-danger">*</span>--}}
+{{--        </label>--}}
+{{--        <input--}}
+{{--            type="text"--}}
+{{--            class="form-control"--}}
+{{--            id="address"--}}
+{{--            name="address"--}}
+{{--            placeholder="Domicilio"--}}
+{{--            aria-label="Domicilio"--}}
+{{--            value="{{$student->address}}"--}}
+{{--        />--}}
+{{--        <span for="address" class="text-danger"></span>--}}
+{{--    </div>--}}
+
     <div class="col-3">
-        <label class="form-label" for="address">Domicilio
+        <label class="form-label" for="streetName">Calle
             <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
-            id="address"
-            name="address"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
-            value="{{$student->address}}"
+            id="streetName"
+            name="streetName"
+            placeholder="Calle"
+            aria-label="Calle"
+            value="{{$student->street_name}}"
         />
-        <span for="address" class="text-danger"></span>
+        <span for="streetName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="streetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="streetNumber"
+            name="streetNumber"
+            placeholder="No."
+            aria-label="No."
+            value="{{$student->street_number}}"
+        />
+        <span for="streetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="betweenStreets">Entre calles
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="betweenStreets"
+            name="betweenStreets"
+            placeholder="Entre calles"
+            aria-label="Entre calles"
+            value="{{$student->between_streets}}"
+        />
+        <span for="betweenStreets" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="neighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="neighborhood"
+            name="neighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+            value="{{$student->neighborhood}}"
+        />
+        <span for="neighborhood" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="zip">C&oacute;digo Postal
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="zip"
+            name="zip"
+            placeholder="C&oacute;digo Postal"
+            aria-label="C&oacute;digo Postal"
+            value="{{$student->zip}}"
+        />
+        <span for="zip" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="city">Ciudad
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            placeholder="Ciudad"
+            aria-label="Ciudad"
+            value="{{$student->city}}"
+        />
+        <span for="city" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="state">Estado
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="state"
+            name="state"
+            placeholder="Estado"
+            aria-label="Estado"
+            value="{{$student->state}}"
+        />
+        <span for="state" class="text-danger"></span>
     </div>
 
     @if ($student->school->educationalSystem->name === 'Universidad')
@@ -357,6 +469,38 @@
     @endif
 
     <div class="col-3">
+        <label class="form-label" for="guardianPaternalSurname">Apellido Paterno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianPaternalSurname"
+            name="guardianPaternalSurname"
+            placeholder="Apellido Paterno"
+            aria-label="Apellido Paterno"
+            value="{{$guardian->paternal_surname ?? ''}}"
+        />
+        <span for="guardianPaternalSurname" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianMaternalSurname">Apellido Materno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianMaternalSurname"
+            name="guardianMaternalSurname"
+            placeholder="Apellido Materno"
+            aria-label="Apellido materno"
+            value="{{$guardian->maternal_surname ?? ''}}"
+        />
+        <span for="guardianMaternalSurname" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
         <label class="form-label" for="guardianLastName">Apellido(s)
             <span class="text-danger">*</span>
         </label>
@@ -432,6 +576,54 @@
             value="{{$guardian->address ?? ''}}"
         />
         <span for="guardianAddress" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetName">Calle
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetName"
+            name="guardianStreetName"
+            placeholder="Calle"
+            aria-label="Calle"
+            value="{{$guardian->street_name ?? ''}}"
+        />
+        <span for="guardianStreetName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetNumber"
+            name="guardianStreetNumber"
+            placeholder="No."
+            aria-label="No."
+            value="{{$guardian->street_number ?? ''}}"
+        />
+        <span for="guardianStreetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianNeighborhood"
+            name="guardianNeighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+            value="{{$guardian->neighborhood ?? ''}}"
+        />
+        <span for="guardianNeighborhood" class="text-danger"></span>
     </div>
 
     <div class="col-3">

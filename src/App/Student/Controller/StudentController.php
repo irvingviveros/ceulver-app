@@ -121,7 +121,7 @@ class StudentController extends Controller
         $studentEntity->setBirthDate($validatedRequest['birth_date']);
         $studentEntity->setNationalId($validatedRequest['national_id']);
         $studentEntity->setNationality('Mexicana');
-        $studentEntity->setAddress($validatedRequest['address']);
+        $studentEntity->setAddress($validatedRequest['address'] ?? null);
         $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
         $studentEntity->setSex($validatedRequest['sex']);
         $studentEntity->setMaritalStatus($validatedRequest['marital_status'] ?? null);
@@ -139,6 +139,13 @@ class StudentController extends Controller
         $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
+        $studentEntity->setStreetName($validatedRequest['street_name']);
+        $studentEntity->setStreetNumber($validatedRequest['street_number']);
+        $studentEntity->setNeighborhood($validatedRequest['neighborhood']);
+        $studentEntity->setBetweenStreets($validatedRequest['between_streets']);
+        $studentEntity->setZip($validatedRequest['zip']);
+        $studentEntity->setCity($validatedRequest['city']);
+        $studentEntity->setState($validatedRequest['state']);
 
         // Guardian info
         // Request and set data for guardian
@@ -148,7 +155,12 @@ class StudentController extends Controller
 
             $guardianEntity->setName($validatedRequest['guardian_first_name']);
             $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+            $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname']);
+            $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname']);
             $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+            $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
+            $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
+            $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
             $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
             $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
             $guardianEntity->setStatus(1);
@@ -273,7 +285,7 @@ class StudentController extends Controller
         $studentEntity->setBirthDate($validatedRequest['birth_date']);
         $studentEntity->setNationalId($validatedRequest['national_id']);
         $studentEntity->setNationality();
-        $studentEntity->setAddress($validatedRequest['address']);
+        $studentEntity->setAddress($validatedRequest['address'] ?? null);
         $studentEntity->setOccupation($validatedRequest['occupation'] ?? null);
         $studentEntity->setSex($validatedRequest['sex']);
         $studentEntity->setMaritalStatus($validatedRequest['marital_status'] ?? null);
@@ -288,6 +300,13 @@ class StudentController extends Controller
         $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
         $studentEntity->setStatus((int)$validatedRequest['student_status']);
         $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
+        $studentEntity->setStreetName($validatedRequest['street_name']);
+        $studentEntity->setStreetNumber($validatedRequest['street_number']);
+        $studentEntity->setNeighborhood($validatedRequest['neighborhood']);
+        $studentEntity->setBetweenStreets($validatedRequest['between_streets']);
+        $studentEntity->setZip($validatedRequest['zip']);
+        $studentEntity->setCity($validatedRequest['city']);
+        $studentEntity->setState($validatedRequest['state']);
 //        $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
@@ -303,21 +322,33 @@ class StudentController extends Controller
             if ($validatedRequest['guardian_first_name'] != null) {
                 $guardianEntity->setName($validatedRequest['guardian_first_name'] ?? null);
                 $guardianEntity->setLastName($validatedRequest['guardian_last_name'] ?? null);
+                $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
+                $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+                $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
+                $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
+                $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
                 $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
                 $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
                 $guardianEntity->setStatus(1);
 //        $guardianEntity->setUserId(5);
+
                 // Update guardian
                 $this->guardianService->update($guardianId, $guardianEntity, $modifiedBy);
+
+                $studentEntity->setGuardianId((int) $guardianId);
             }
         } else {
             // If guardian info is not empty, then create guardian.
-            if ($validatedRequest['guardian_first_name'] != null && $validatedRequest['guardian_last_name']  != null) {
-
+            if ($validatedRequest['guardian_first_name'] != null) {
                 $guardianEntity->setName($validatedRequest['guardian_first_name']);
                 $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
+                $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
+                $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
+                $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
+                $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
+                $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
                 $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
                 $guardianEntity->setPhone($validatedRequest['guardian_phone'] ?? null);
                 $guardianEntity->setStatus(1);
@@ -368,6 +399,37 @@ class StudentController extends Controller
         $students = $this->studentService->getAll();
 
         return view('modules.student.list.list', compact('students'));
+    }
+
+    public function getPrintedRegistrationForm(int $id): View
+    {
+        $student = $this->studentService->findById($id);
+        $school = $this->schoolService->findById($student->school_id);
+        $guardian = $this->guardianService->findById($student->guardian_id);
+
+        $career = $this->careerService->findById($student->career_id);
+
+        if (is_null($guardian)) {
+            if ($school->educationalSystem->name === 'Universidad') {
+                Toastr::warning(
+                    'No hay datos de la referencia de contacto',
+                    'Advertencia',
+                    ["positionClass" => "toast-top-right"]
+                );
+            } else {
+                Toastr::warning(
+                    'No hay registros del padre o tutor',
+                    'Advertencia',
+                    ["positionClass" => "toast-top-right"]
+                );
+            }
+
+        }
+
+        return view(
+            'modules.student.format.format-university',
+            compact(['school', 'student', 'guardian', 'career'])
+        );
     }
 
     /**

@@ -37,6 +37,14 @@ class StudentEntity
     private ?int $guardian_id = null;
     private ?int $career_id;
 
+    private ?string $street_name;
+    private ?string $street_number;
+    private ?string $neighborhood;
+    private ?string $between_streets;
+    private ?string $zip;
+    private ?string $city;
+    private ?string $state;
+
     /**
      * @return string
      */
@@ -499,5 +507,117 @@ class StudentEntity
     public function setCareerId(?int $career_id = null): void
     {
         $this->career_id = $career_id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreetName(): ?string
+    {
+        return $this->street_name;
+    }
+
+    /**
+     * @param string|null $street_name
+     */
+    public function setStreetName(?string $street_name): void
+    {
+        $this->street_name = $street_name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStreetNumber(): ?string
+    {
+        return $this->street_number;
+    }
+
+    /**
+     * @param string|null $street_number
+     */
+    public function setStreetNumber(?string $street_number): void
+    {
+        $this->street_number = $street_number;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNeighborhood(): ?string
+    {
+        return $this->neighborhood;
+    }
+
+    /**
+     * @param string|null $neighborhood
+     */
+    public function setNeighborhood(?string $neighborhood): void
+    {
+        $this->neighborhood = $neighborhood;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getBetweenStreets(): ?string
+    {
+        return $this->between_streets;
+    }
+
+    /**
+     * @param string|null $between_streets
+     */
+    public function setBetweenStreets(?string $between_streets): void
+    {
+        $this->between_streets = $between_streets;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getZip(): ?string
+    {
+        return $this->zip;
+    }
+
+    /**
+     * @param string|null $zip
+     */
+    public function setZip(?string $zip): void
+    {
+        $this->zip = $zip;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string|null $city
+     */
+    public function setCity(?string $city): void
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string|null $state
+     */
+    public function setState(?string $state): void
+    {
+        $this->state = $state;
     }
 }

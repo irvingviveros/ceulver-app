@@ -37,6 +37,9 @@ let basicColumns = [
                 '<a href="javascript:void(0)" class="dropdown-item item-edit" data-id="' + row['id'] + '">' +
                 feather.icons['download'].toSvg({class: 'font-small-4 me-50'}) +
                 'Descargar</a>' +
+                '<a href="javascript:void(0)" class="dropdown-item item-printed-registration-form" data-id="' + row['id'] + '">' +
+                feather.icons['download'].toSvg({class: 'font-small-4 me-50'}) +
+                'Descargar Ficha Inscripción</a>' +
                 '<a href="javascript:void(0)" class="dropdown-item item-edit" data-id="' + row['id'] + '">' +
                 feather.icons['edit'].toSvg({class: 'font-small-4 me-50'}) +
                 'Editar</a>'

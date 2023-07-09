@@ -216,13 +216,25 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="guardianLastName">Apellidos</label>
-                            <p id="guardianLastName">{{$guardian->name ?? ''}}</p>
+                            <label class="form-label" for="guardianName">Nombre</label>
+                            <p id="guardianName">{{$guardian->name ?? ''}}</p>
                         </div>
+
                         <div class="col-3">
-                            <label class="form-label" for="guardianName">Apellidos</label>
-                            <p id="guardianName">{{$guardian->last_name  ?? ''}}</p>
+                            <label class="form-label" for="guardianLastName">Apellidos</label>
+                            <p id="guardianLastName">{{$guardian->last_name ?? ''}}</p>
                         </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianPaternalSurname">Apellido Paterno</label>
+                            <p id="guardianPaternalSurname">{{$guardian->paternal_surname  ?? ''}}</p>
+                        </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianMaternalSurname">Apellido Materno</label>
+                            <p id="guardianMaternalSurname">{{$guardian->maternal_surname  ?? ''}}</p>
+                        </div>
+
                         <div class="col-3">
                             <label class="form-label" for="guardianRelationship">Parentesco</label>
                             <p id="guardianRelationship">{{$student->guardian_relationship  ?? ''}}</p>
@@ -231,6 +243,22 @@
                             <label class="form-label" for="guardianAddress">Dirección</label>
                             <p id="guardianAddress">{{$guardian->address  ?? ''}}</p>
                         </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianStreetName">Calle</label>
+                            <p id="guardianStreetName">{{$guardian->street_name  ?? ''}}</p>
+                        </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianStreetNumber">No.</label>
+                            <p id="guardianStreetNumber">{{$guardian->street_number  ?? ''}}</p>
+                        </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento</label>
+                            <p id="guardianNeighborhood">{{$guardian->neighborhood  ?? ''}}</p>
+                        </div>
+
                         <div class="col-3">
                             <label class="form-label" for="guardianEmail">Email</label>
                             <p id="guardianEmail">{{$guardian->email  ?? ''}}</p>
