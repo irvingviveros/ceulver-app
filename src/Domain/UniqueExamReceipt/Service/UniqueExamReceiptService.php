@@ -83,4 +83,14 @@ class UniqueExamReceiptService
     {
         return $this->uniqueExamReceiptRepository->findOrFailWithTrashed($id);
     }
+
+    /**
+     * @throws ValueNotFoundException
+     */
+    public function delete($id)
+    {
+        $uniqueExamReceipt = $this->findById($id);
+
+        $this->uniqueExamReceiptRepository->delete($uniqueExamReceipt);
+    }
 }

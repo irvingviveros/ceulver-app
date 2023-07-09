@@ -18,7 +18,7 @@ use App\StudentReceipt\Controller\StudentReceiptController;
 use App\Subject\Controller\SubjectController;
 use App\Syllabus\Controller\SyllabusController;
 use App\Teacher\Controller\TeacherController;
-use App\UniqueExamCandidate\Controller\UniqueExamReceiptController;
+use App\UniqueExamReceipt\Controller\UniqueExamReceiptController;
 use App\Upload\Controller\UploadController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
