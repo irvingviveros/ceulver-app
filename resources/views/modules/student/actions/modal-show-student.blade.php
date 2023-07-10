@@ -126,8 +126,32 @@
                             <p id="nationalId">{{$student->nationality}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Dirección</label>
+                            <label class="form-label" for="address">Calle</label>
                             <p id="address">{{$student->address}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">No.</label>
+                            <p id="address">{{$student->street_number}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Entre Calles</label>
+                            <p id="address">{{$student->between_streets}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Colonia o Fraccionamiento</label>
+                            <p id="address">{{$student->neighborhood}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">C&oacute;digo Postal</label>
+                            <p id="address">{{$student->zip}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Ciudad</label>
+                            <p id="address">{{$student->city}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Estado</label>
+                            <p id="address">{{$student->state}}</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="sex">Sexo</label>
@@ -240,13 +264,8 @@
                             <p id="guardianRelationship">{{$student->guardian_relationship  ?? ''}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="guardianAddress">Dirección</label>
+                            <label class="form-label" for="guardianAddress">Calle</label>
                             <p id="guardianAddress">{{$guardian->address  ?? ''}}</p>
-                        </div>
-
-                        <div class="col-3">
-                            <label class="form-label" for="guardianStreetName">Calle</label>
-                            <p id="guardianStreetName">{{$guardian->street_name  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">

@@ -102,36 +102,20 @@
         <span for="nationalId" class="text-danger"></span>
     </div>
 
-{{--    <div class="col-3">--}}
-{{--        <label class="form-label" for="address">Domicilio--}}
-{{--            <span class="text-danger">*</span>--}}
-{{--        </label>--}}
-{{--        <input--}}
-{{--            type="text"--}}
-{{--            class="form-control"--}}
-{{--            id="address"--}}
-{{--            name="address"--}}
-{{--            placeholder="Domicilio"--}}
-{{--            aria-label="Domicilio"--}}
-{{--            value="{{$student->address}}"--}}
-{{--        />--}}
-{{--        <span for="address" class="text-danger"></span>--}}
-{{--    </div>--}}
-
     <div class="col-3">
-        <label class="form-label" for="streetName">Calle
+        <label class="form-label" for="address">Calle
             <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
-            id="streetName"
-            name="streetName"
+            id="address"
+            name="address"
             placeholder="Calle"
             aria-label="Calle"
-            value="{{$student->street_name}}"
+            value="{{$student->address}}"
         />
-        <span for="streetName" class="text-danger"></span>
+        <span for="address" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -560,10 +544,8 @@
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
 
-    <div class="col-3"></div>
-
     <div class="col-3">
-        <label class="form-label" for="guardianAddress">Domicilio
+        <label class="form-label" for="guardianAddress">Calle
             <span class="text-danger">*</span>
         </label>
         <input
@@ -571,27 +553,11 @@
             class="form-control"
             id="guardianAddress"
             name="guardianAddress"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            placeholder="Calle"
+            aria-label="Calle"
             value="{{$guardian->address ?? ''}}"
         />
         <span for="guardianAddress" class="text-danger"></span>
-    </div>
-
-    <div class="col-3">
-        <label class="form-label" for="guardianStreetName">Calle
-            <span class="text-danger">*</span>
-        </label>
-        <input
-            type="text"
-            class="form-control"
-            id="guardianStreetName"
-            name="guardianStreetName"
-            placeholder="Calle"
-            aria-label="Calle"
-            value="{{$guardian->street_name ?? ''}}"
-        />
-        <span for="guardianStreetName" class="text-danger"></span>
     </div>
 
     <div class="col-3">

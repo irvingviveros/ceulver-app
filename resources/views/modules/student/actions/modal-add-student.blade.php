@@ -100,33 +100,19 @@
         <span for="nationalId" class="text-danger"></span>
     </div>
 
-{{--    <div class="col-3">--}}
-{{--        <label class="form-label" for="address">Domicilio--}}
-{{--        </label>--}}
-{{--        <input--}}
-{{--            type="text"--}}
-{{--            class="form-control"--}}
-{{--            id="address"--}}
-{{--            name="address"--}}
-{{--            placeholder="Domicilio"--}}
-{{--            aria-label="Domicilio"--}}
-{{--        />--}}
-{{--        <span for="address" class="text-danger"></span>--}}
-{{--    </div>--}}
-
     <div class="col-3">
-        <label class="form-label" for="streetName">Calle
+        <label class="form-label" for="address">Calle
             <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
-            id="streetName"
-            name="streetName"
+            id="address"
+            name="address"
             placeholder="Calle"
             aria-label="Calle"
         />
-        <span for="streetName" class="text-danger"></span>
+        <span for="address" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -522,10 +508,8 @@
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
 
-    <div class="col-3"></div>
-
     <div class="col-3">
-        <label class="form-label" for="guardianAddress">Domicilio
+        <label class="form-label" for="guardianAddress">Calle
             <span class="text-danger">*</span>
         </label>
         <input
@@ -533,25 +517,10 @@
             class="form-control"
             id="guardianAddress"
             name="guardianAddress"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
-        />
-        <span for="guardianAddress" class="text-danger"></span>
-    </div>
-
-    <div class="col-3">
-        <label class="form-label" for="guardianStreetName">Calle
-            <span class="text-danger">*</span>
-        </label>
-        <input
-            type="text"
-            class="form-control"
-            id="guardianStreetName"
-            name="guardianStreetName"
             placeholder="Calle"
             aria-label="Calle"
         />
-        <span for="guardianStreetName" class="text-danger"></span>
+        <span for="guardianAddress" class="text-danger"></span>
     </div>
 
     <div class="col-3">

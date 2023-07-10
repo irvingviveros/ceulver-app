@@ -139,7 +139,6 @@ class StudentController extends Controller
         $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
-        $studentEntity->setStreetName($validatedRequest['street_name']);
         $studentEntity->setStreetNumber($validatedRequest['street_number']);
         $studentEntity->setNeighborhood($validatedRequest['neighborhood']);
         $studentEntity->setBetweenStreets($validatedRequest['between_streets']);
@@ -158,7 +157,6 @@ class StudentController extends Controller
             $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname']);
             $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname']);
             $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
-            $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
             $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
             $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
             $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
@@ -300,7 +298,6 @@ class StudentController extends Controller
         $studentEntity->setGuardianRelationship($validatedRequest['guardian_relationship']);
         $studentEntity->setStatus((int)$validatedRequest['student_status']);
         $studentEntity->setAge($this->studentService->calculateAge($studentEntity->getBirthDate()));
-        $studentEntity->setStreetName($validatedRequest['street_name']);
         $studentEntity->setStreetNumber($validatedRequest['street_number']);
         $studentEntity->setNeighborhood($validatedRequest['neighborhood']);
         $studentEntity->setBetweenStreets($validatedRequest['between_streets']);
@@ -325,7 +322,6 @@ class StudentController extends Controller
                 $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
                 $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
-                $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
                 $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
                 $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
                 $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);
@@ -346,7 +342,6 @@ class StudentController extends Controller
                 $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
                 $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
-                $guardianEntity->setStreetName($validatedRequest['guardian_street_name'] ?? null);
                 $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
                 $guardianEntity->setNeighborhood($validatedRequest['guardian_neighborhood'] ?? null);
                 $guardianEntity->setEmail($validatedRequest['guardian_email'] ?? null);

@@ -15,7 +15,6 @@ class GuardianEntity
 
     private ?string $paternal_surname;
     private ?string $maternal_surname;
-    private ?string $street_name;
     private ?string $street_number;
     private ?string $neighborhood;
 
@@ -161,22 +160,6 @@ class GuardianEntity
     public function setMaternalSurname(?string $maternal_surname): void
     {
         $this->maternal_surname = $maternal_surname;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getStreetName(): ?string
-    {
-        return $this->street_name;
-    }
-
-    /**
-     * @param string|null $street_name
-     */
-    public function setStreetName(?string $street_name): void
-    {
-        $this->street_name = $street_name;
     }
 
     /**

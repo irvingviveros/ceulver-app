@@ -192,8 +192,6 @@ const StudentEvents = (function () {
                 ,
                 guardian_address: form.find('input[id="guardianAddress"]').val()
                 ,
-                guardian_street_name: form.find('input[id="guardianStreetName"]').val()
-                ,
                 guardian_street_number: form.find('input[id="guardianStreetNumber"]').val()
                 ,
                 guardian_neighborhood: form.find('input[id="guardianNeighborhood"]').val()
@@ -213,8 +211,6 @@ const StudentEvents = (function () {
                 student_status: form.find('select[id="studentStatus"]').val()
                 ,
                 educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
-                ,
-                street_name: form.find('input[id="streetName"]').val()
                 ,
                 street_number: form.find('input[id="streetNumber"]').val()
                 ,
@@ -313,8 +309,6 @@ const StudentEvents = (function () {
                 ,
                 guardian_address: form.find('input[id="guardianAddress"]').val()
                 ,
-                guardian_street_name: form.find('input[id="guardianStreetName"]').val()
-                ,
                 guardian_street_number: form.find('input[id="guardianStreetNumber"]').val()
                 ,
                 guardian_neighborhood: form.find('input[id="guardianNeighborhood"]').val()
@@ -334,8 +328,6 @@ const StudentEvents = (function () {
                 student_status: form.find('select[id="studentStatus"]').val()
                 ,
                 educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
-                ,
-                street_name: form.find('input[id="streetName"]').val()
                 ,
                 street_number: form.find('input[id="streetNumber"]').val()
                 ,

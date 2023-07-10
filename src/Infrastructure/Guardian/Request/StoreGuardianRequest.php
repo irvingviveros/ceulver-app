@@ -34,7 +34,6 @@ class StoreGuardianRequest extends FormRequest
             'phone' => 'nullable|string|max:10',
             'email' => 'nullable|email',
             'address' => 'nullable|string|max:255',
-            'street_name' => 'nullable|string|max:255',
             'street_number' => 'nullable|string|max:255',
             'neighborhood' => 'nullable|string|max:255',
             'status' => 'required|boolean'
@@ -55,8 +54,7 @@ class StoreGuardianRequest extends FormRequest
             'maternal_surname' => 'Apellido Materno',
             'phone' => 'Teléfono celular',
             'email' => 'Correo electrónico',
-            'address' => 'Dirección',
-            'street_name' => 'Calle',
+            'address' => 'Calle',
             'street_number' => 'No.',
             'neighborhood' => 'Colonia o fraccionamiento'
         ];

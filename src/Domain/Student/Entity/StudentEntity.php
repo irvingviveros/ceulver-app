@@ -36,8 +36,6 @@ class StudentEntity
     private ?int $agreement_id;
     private ?int $guardian_id = null;
     private ?int $career_id;
-
-    private ?string $street_name;
     private ?string $street_number;
     private ?string $neighborhood;
     private ?string $between_streets;
@@ -507,22 +505,6 @@ class StudentEntity
     public function setCareerId(?int $career_id = null): void
     {
         $this->career_id = $career_id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getStreetName(): ?string
-    {
-        return $this->street_name;
-    }
-
-    /**
-     * @param string|null $street_name
-     */
-    public function setStreetName(?string $street_name): void
-    {
-        $this->street_name = $street_name;
     }
 
     /**

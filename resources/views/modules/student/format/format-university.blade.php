@@ -3,32 +3,6 @@
 <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
 <link rel="stylesheet" href="{{ asset(mix('css/base/pages/app-invoice.css'))}}">
 
-<style>
-    .grid-container-rectangle-format {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-gap: 10px;
-      justify-items: center;
-    }
-
-    .rectangle {
-      position: relative;
-      width: 100px;
-      height: 30px;
-      /*background-color: #f0f0f0;*/
-      border: 1px solid #000000;
-      display: flex;
-      align-items: center;
-    }
-
-    .text-rectangle-format {
-      position: absolute;
-      left: -162px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-</style>
-
 <section>
     <div class="row invoice-preview" id="print">
         <div class="col-xl-9 col-md-8 col-12">
@@ -191,7 +165,7 @@
 
                                         <tr>
                                             <td align="left">Domicilio:</td>
-                                            <td align="center" colspan="5" style="border-bottom: 1px solid #000;">{{ $student->street_name }}</td>
+                                            <td align="center" colspan="5" style="border-bottom: 1px solid #000;">{{ $student->address }}</td>
                                             <td align="center" colspan="2" style="border-bottom: 1px solid #000;">{{ $student->street_number }}</td>
                                             <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $student->neighborhood }}</td>
                                         </tr>
@@ -314,7 +288,7 @@
 
                                             <tr>
                                                 <td align="left">Domicilio:</td>
-                                                <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->street_name }}</td>
+                                                <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->address }}</td>
                                                 <td align="center" colspan="3" style="border-bottom: 1px solid #000;">{{ $guardian->street_number }}</td>
                                                 <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->neighborhood }}</td>
                                             </tr>

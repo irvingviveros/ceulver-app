@@ -35,7 +35,6 @@ class GuardianService
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
             'address' => $guardianEntity->getAddress(),
-            'street_name' => $guardianEntity->getStreetName(),
             'street_number' => $guardianEntity->getStreetNumber(),
             'neighborhood' => $guardianEntity->getNeighborhood(),
             'status' => $guardianEntity->getStatus(),
@@ -58,7 +57,6 @@ class GuardianService
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
             'address' => $guardianEntity->getAddress(),
-            'street_name' => $guardianEntity->getStreetName(),
             'street_number' => $guardianEntity->getStreetNumber(),
             'neighborhood' => $guardianEntity->getNeighborhood(),
             'status' => $guardianEntity->getStatus(),
@@ -82,7 +80,6 @@ class GuardianService
         $guardian->phone = $guardianEntity->getPhone();
         $guardian->email = $guardianEntity->getEmail();
         $guardian->address = $guardianEntity->getAddress();
-        $guardian->street_name = $guardianEntity->getStreetName();
         $guardian->street_number = $guardianEntity->getStreetNumber();
         $guardian->neighborhood = $guardianEntity->getNeighborhood();
         $guardian->status = $guardianEntity->getStatus();

@@ -58,7 +58,6 @@ class StudentService
             'status'                => $student->getStatus(),
             'created_by'            => $createdBy,
             'created_at'            => date_create(),
-            'street_name'           => $student->getStreetName(),
             'street_number'         => $student->getStreetNumber(),
             'neighborhood'          => $student->getNeighborhood(),
             'between_streets'       => $student->getBetweenStreets(),
@@ -125,7 +124,6 @@ class StudentService
         $student->guardian_relationship = $studentEntity->getGuardianRelationship();
         $student->modified_by = $modifiedBy;
         $student->updated_at = date_create();
-        $student->street_name = $studentEntity->getStreetName();
         $student->street_number = $studentEntity->getStreetNumber();
         $student->neighborhood = $studentEntity->getNeighborhood();
         $student->between_streets = $studentEntity->getBetweenStreets();

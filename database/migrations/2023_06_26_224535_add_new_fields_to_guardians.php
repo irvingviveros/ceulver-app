@@ -14,11 +14,10 @@ class AddNewFieldsToGuardians extends Migration
     public function up()
     {
         Schema::table('guardians', function (Blueprint $table) {
-            $table->string('paternal_surname', 75); // apellido paterno
-            $table->string('maternal_surname', 75); // apellido materno
-            $table->string('street_name', 100);     // calle
-            $table->string('street_number', 10);    // numero
-            $table->string('neighborhood', 75);     // colonia
+            $table->string('paternal_surname', 75)->nullable(); // apellido paterno
+            $table->string('maternal_surname', 75)->nullable(); // apellido materno
+            $table->string('street_number', 10)->nullable();    // numero
+            $table->string('neighborhood', 75)->nullable();     // colonia
         });
     }
 
@@ -32,7 +31,6 @@ class AddNewFieldsToGuardians extends Migration
         Schema::table('guardians', function (Blueprint $table) {
             $table->dropColumn('paternal_surname'); // apellido paterno
             $table->dropColumn('maternal_surname'); // apellido materno
-            $table->dropColumn('street_name');      // calle
             $table->dropColumn('street_number');    // numero
             $table->dropColumn('neighborhood');     // colonia
         });
