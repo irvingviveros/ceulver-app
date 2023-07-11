@@ -194,14 +194,42 @@
         <label class="form-label" for="state">Estado
             <span class="text-danger">*</span>
         </label>
-        <input
-            type="text"
-            class="form-control"
-            id="state"
-            name="state"
-            placeholder="Estado"
-            aria-label="Estado"
-        />
+        <select class="form-select" name="state" id="state">
+            <option selected value="" disabled  >Seleccionar</option>
+            <option value="AGU">Aguascalientes</option>
+            <option value="BCN">Baja California</option>
+            <option value="BCS">Baja California Sur</option>
+            <option value="CAM">Campeche</option>
+            <option value="CHP">Chiapas</option>
+            <option value="CHH">Chihuahua</option>
+            <option value="CMX">Ciudad de México</option>
+            <option value="COA">Coahuila</option>
+            <option value="COL">Colima</option>
+            <option value="DUR">Durango</option>
+            <option value="GUA">Guanajuato</option>
+            <option value="GRO">Guerrero</option>
+            <option value="HID">Hidalgo</option>
+            <option value="JAL">Jalisco</option>
+            <option value="MEX">México</option>
+            <option value="MIC">Michoacán</option>
+            <option value="MOR">Morelos</option>
+            <option value="NAY">Nayarit</option>
+            <option value="NLE">Nuevo León</option>
+            <option value="OAX">Oaxaca</option>
+            <option value="PUE">Puebla</option>
+            <option value="QUE">Querétaro</option>
+            <option value="ROO">Quintana Roo</option>
+            <option value="SLP">San Luis Potosí</option>
+            <option value="SIN">Sinaloa</option>
+            <option value="SON">Sonora</option>
+            <option value="TAB">Tabasco</option>
+            <option value="TAM">Tamaulipas</option>
+            <option value="TLA">Tlaxcala</option>
+            <option value="VER">Veracruz</option>
+            <option value="YUC">Yucatán</option>
+            <option value="ZAC">Zacatecas</option>
+        </select>
+
         <span for="state" class="text-danger"></span>
     </div>
 

@@ -202,15 +202,41 @@
         <label class="form-label" for="state">Estado
             <span class="text-danger">*</span>
         </label>
-        <input
-            type="text"
-            class="form-control"
-            id="state"
-            name="state"
-            placeholder="Estado"
-            aria-label="Estado"
-            value="{{$student->state}}"
-        />
+        <select class="form-select" name="state" id="state">
+            <option value="" selected disabled>Seleccionar</option>
+            <option value="AGU" @if($student->state == "AGU") selected @endif>Aguascalientes</option>
+            <option value="BCN" @if($student->state == "BCN") selected @endif>Baja California</option>
+            <option value="BCS" @if($student->state == "BCS") selected @endif>Baja California Sur</option>
+            <option value="CAM" @if($student->state == "CAM") selected @endif>Campeche</option>
+            <option value="CHP" @if($student->state == "CHP") selected @endif>Chiapas</option>
+            <option value="CHH" @if($student->state == "CHH") selected @endif>Chihuahua</option>
+            <option value="CMX" @if($student->state == "CMX") selected @endif>Ciudad de México</option>
+            <option value="COA" @if($student->state == "COA") selected @endif>Coahuila</option>
+            <option value="COL" @if($student->state == "COL") selected @endif>Colima</option>
+            <option value="DUR" @if($student->state == "DUR") selected @endif>Durango</option>
+            <option value="GUA" @if($student->state == "GUA") selected @endif>Guanajuato</option>
+            <option value="GRO" @if($student->state == "GRO") selected @endif>Guerrero</option>
+            <option value="HID" @if($student->state == "HID") selected @endif>Hidalgo</option>
+            <option value="JAL" @if($student->state == "JAL") selected @endif>Jalisco</option>
+            <option value="MEX" @if($student->state == "MEX") selected @endif>México</option>
+            <option value="MIC" @if($student->state == "MIC") selected @endif>Michoacán</option>
+            <option value="MOR" @if($student->state == "MOR") selected @endif>Morelos</option>
+            <option value="NAY" @if($student->state == "NAY") selected @endif>Nayarit</option>
+            <option value="NLE" @if($student->state == "NLE") selected @endif>Nuevo León</option>
+            <option value="OAX" @if($student->state == "OAX") selected @endif>Oaxaca</option>
+            <option value="PUE" @if($student->state == "PUE") selected @endif>Puebla</option>
+            <option value="QUE" @if($student->state == "QUE") selected @endif>Querétaro</option>
+            <option value="ROO" @if($student->state == "ROO") selected @endif>Quintana Roo</option>
+            <option value="SLP" @if($student->state == "SLP") selected @endif>San Luis Potosí</option>
+            <option value="SIN" @if($student->state == "SIN") selected @endif>Sinaloa</option>
+            <option value="SON" @if($student->state == "SON") selected @endif>Sonora</option>
+            <option value="TAB" @if($student->state == "TAB") selected @endif>Tabasco</option>
+            <option value="TAM" @if($student->state == "TAM") selected @endif>Tamaulipas</option>
+            <option value="TLA" @if($student->state == "TLA") selected @endif>Tlaxcala</option>
+            <option value="VER" @if($student->state == "VER") selected @endif>Veracruz</option>
+            <option value="YUC" @if($student->state == "YUC") selected @endif>Yucatán</option>
+            <option value="ZAC" @if($student->state == "ZAC") selected @endif>Zacatecas</option>
+        </select>
         <span for="state" class="text-danger"></span>
     </div>
 

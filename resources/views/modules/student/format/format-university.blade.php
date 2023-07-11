@@ -188,7 +188,41 @@
                                             <td align="left">Ciudad:</td>
                                             <td colspan="3" align="center" style="border-bottom: 1px solid #000;">{{ $student->city }}</td>
                                             <td align="right">Estado:</td>
-                                            <td colspan="3" align="center" style="border-bottom: 1px solid #000;">{{ $student->state }}</td>
+
+                                            @if($student->state == "") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">NA</td> @endif
+                                            @if($student->state == "AGU") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Aguascalientes</td> @endif
+                                            @if($student->state == "BCN") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Baja California</td> @endif
+                                            @if($student->state == "BCS") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Baja California Sur</td> @endif
+                                            @if($student->state == "CAM") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Campeche</td> @endif
+                                            @if($student->state == "CHP") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Chiapas</td> @endif
+                                            @if($student->state == "CHH") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Chihuahua</td> @endif
+                                            @if($student->state == "CMX") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Ciudad de México</td> @endif
+                                            @if($student->state == "COA") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Coahuila</td> @endif
+                                            @if($student->state == "COL") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Colima</td> @endif
+                                            @if($student->state == "DUR") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Durango</td> @endif
+                                            @if($student->state == "GUA") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Guanajuato</td> @endif
+                                            @if($student->state == "GRO") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Guerrero</td> @endif
+                                            @if($student->state == "HID") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Hidalgo</td> @endif
+                                            @if($student->state == "JAL") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Jalisco</td> @endif
+                                            @if($student->state == "MEX") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">México</td> @endif
+                                            @if($student->state == "MIC") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Michoacán</td> @endif
+                                            @if($student->state == "MOR") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Morelos</td> @endif
+                                            @if($student->state == "NAY") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Nayarit</td> @endif
+                                            @if($student->state == "NLE") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Nuevo León</td> @endif
+                                            @if($student->state == "OAX") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Oaxaca</td> @endif
+                                            @if($student->state == "PUE") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Puebla</td> @endif
+                                            @if($student->state == "QUE") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Querétaro</td> @endif
+                                            @if($student->state == "ROO") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Quintana Roo</td> @endif
+                                            @if($student->state == "SLP") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">San Luis Potosí</td> @endif
+                                            @if($student->state == "SIN") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Sinaloa</td> @endif
+                                            @if($student->state == "SON") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Sonora</td> @endif
+                                            @if($student->state == "TAB") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Tabasco</td> @endif
+                                            @if($student->state == "TAM") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Tamaulipas</td> @endif
+                                            @if($student->state == "TLA") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Tlaxcala</td> @endif
+                                            @if($student->state == "VER") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Veracruz</td> @endif
+                                            @if($student->state == "YUC") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Yucatán</td> @endif
+                                            @if($student->state == "ZAC") <td colspan="3" align="center" style="border-bottom: 1px solid #000;">Zacatecas</td> @endif
+
                                             <td align="right" colspan="2">Estado Civil:</td>
                                             <td colspan="2" align="center" style="border-bottom: 1px solid #000;">{{ $student->marital_status }}</td>
                                         </tr>

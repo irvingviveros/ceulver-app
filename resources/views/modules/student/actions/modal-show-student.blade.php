@@ -151,7 +151,39 @@
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="address">Estado</label>
-                            <p id="address">{{$student->state}}</p>
+                            <p @if($student->state != "") style="display: none;" @endif>NA</p>
+                            <p @if($student->state != "AGU") style="display: none;" @endif>Aguascalientes</p>
+                            <p @if($student->state != "BCN") style="display: none;" @endif>Baja California</p>
+                            <p @if($student->state != "BCS") style="display: none;" @endif>Baja California Sur</p>
+                            <p @if($student->state != "CAM") style="display: none;" @endif>Campeche</p>
+                            <p @if($student->state != "CHP") style="display: none;" @endif>Chiapas</p>
+                            <p @if($student->state != "CHH") style="display: none;" @endif>Chihuahua</p>
+                            <p @if($student->state != "CMX") style="display: none;" @endif>Ciudad de México</p>
+                            <p @if($student->state != "COA") style="display: none;" @endif>Coahuila</p>
+                            <p @if($student->state != "COL") style="display: none;" @endif>Colima</p>
+                            <p @if($student->state != "DUR") style="display: none;" @endif>Durango</p>
+                            <p @if($student->state != "GUA") style="display: none;" @endif>Guanajuato</p>
+                            <p @if($student->state != "GRO") style="display: none;" @endif>Guerrero</p>
+                            <p @if($student->state != "HID") style="display: none;" @endif>Hidalgo</p>
+                            <p @if($student->state != "JAL") style="display: none;" @endif>Jalisco</p>
+                            <p @if($student->state != "MEX") style="display: none;" @endif>México</p>
+                            <p @if($student->state != "MIC") style="display: none;" @endif>Michoacán</p>
+                            <p @if($student->state != "MOR") style="display: none;" @endif>Morelos</p>
+                            <p @if($student->state != "NAY") style="display: none;" @endif>Nayarit</p>
+                            <p @if($student->state != "NLE") style="display: none;" @endif>Nuevo León</p>
+                            <p @if($student->state != "OAX") style="display: none;" @endif>Oaxaca</p>
+                            <p @if($student->state != "PUE") style="display: none;" @endif>Puebla</p>
+                            <p @if($student->state != "QUE") style="display: none;" @endif>Querétaro</p>
+                            <p @if($student->state != "ROO") style="display: none;" @endif>Quintana Roo</p>
+                            <p @if($student->state != "SLP") style="display: none;" @endif>San Luis Potosí</p>
+                            <p @if($student->state != "SIN") style="display: none;" @endif>Sinaloa</p>
+                            <p @if($student->state != "SON") style="display: none;" @endif>Sonora</p>
+                            <p @if($student->state != "TAB") style="display: none;" @endif>Tabasco</p>
+                            <p @if($student->state != "TAM") style="display: none;" @endif>Tamaulipas</p>
+                            <p @if($student->state != "TLA") style="display: none;" @endif>Tlaxcala</p>
+                            <p @if($student->state != "VER") style="display: none;" @endif>Veracruz</p>
+                            <p @if($student->state != "YUC") style="display: none;" @endif>Yucatán</p>
+                            <p @if($student->state != "ZAC") style="display: none;" @endif>Zacatecas</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="sex">Sexo</label>
