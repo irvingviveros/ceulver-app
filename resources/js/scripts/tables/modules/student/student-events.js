@@ -182,8 +182,6 @@ const StudentEvents = (function () {
                 ,
                 guardian_last_name: form.find('input[id="guardianLastName"]').val()
                 ,
-                guardian_paternal_surname: form.find('input[id="guardianPaternalSurname"]').val()
-                ,
                 guardian_maternal_surname: form.find('input[id="guardianMaternalSurname"]').val()
                 ,
                 guardian_first_name: form.find('input[id="guardianFirstName"]').val()
@@ -298,8 +296,6 @@ const StudentEvents = (function () {
                 payment_reference: form.find('input[id="paymentReference"]').val()
                 ,
                 guardian_last_name: form.find('input[id="guardianLastName"]').val()
-                ,
-                guardian_paternal_surname: form.find('input[id="guardianPaternalSurname"]').val()
                 ,
                 guardian_maternal_surname: form.find('input[id="guardianMaternalSurname"]').val()
                 ,

@@ -154,7 +154,6 @@ class StudentController extends Controller
 
             $guardianEntity->setName($validatedRequest['guardian_first_name']);
             $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
-            $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname']);
             $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname']);
             $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
             $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
@@ -319,7 +318,6 @@ class StudentController extends Controller
             if ($validatedRequest['guardian_first_name'] != null) {
                 $guardianEntity->setName($validatedRequest['guardian_first_name'] ?? null);
                 $guardianEntity->setLastName($validatedRequest['guardian_last_name'] ?? null);
-                $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
                 $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
                 $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);
@@ -339,7 +337,6 @@ class StudentController extends Controller
             if ($validatedRequest['guardian_first_name'] != null) {
                 $guardianEntity->setName($validatedRequest['guardian_first_name']);
                 $guardianEntity->setLastName($validatedRequest['guardian_last_name']);
-                $guardianEntity->setPaternalSurname($validatedRequest['guardian_paternal_surname'] ?? null);
                 $guardianEntity->setMaternalSurname($validatedRequest['guardian_maternal_surname'] ?? null);
                 $guardianEntity->setAddress($validatedRequest['guardian_address'] ?? null);
                 $guardianEntity->setStreetNumber($validatedRequest['guardian_street_number'] ?? null);

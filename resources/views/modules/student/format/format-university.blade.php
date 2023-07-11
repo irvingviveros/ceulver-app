@@ -308,7 +308,7 @@
                                         <tbody>
                                             <tr>
                                                 <td align="left">Nombre:</td>
-                                                <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->paternal_surname }}</td>
+                                                <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->last_name }}</td>
                                                 <td align="center" colspan="4" style="border-bottom: 1px solid #000;">{{ $guardian->maternal_surname }}</td>
                                                 <td align="center" colspan="3" style="border-bottom: 1px solid #000;">{{ $guardian->name }}</td>
                                             </tr>

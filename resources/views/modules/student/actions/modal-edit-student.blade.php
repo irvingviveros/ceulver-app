@@ -479,19 +479,19 @@
     @endif
 
     <div class="col-3">
-        <label class="form-label" for="guardianPaternalSurname">Apellido Paterno
+        <label class="form-label" for="guardianLastName">Apellido Paterno
             <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
-            id="guardianPaternalSurname"
-            name="guardianPaternalSurname"
+            id="guardianLastName"
+            name="guardianLastName"
             placeholder="Apellido Paterno"
             aria-label="Apellido Paterno"
-            value="{{$guardian->paternal_surname ?? ''}}"
+            value="{{$guardian->last_name ?? ''}}"
         />
-        <span for="guardianPaternalSurname" class="text-danger"></span>
+        <span for="guardianLastName" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -508,22 +508,6 @@
             value="{{$guardian->maternal_surname ?? ''}}"
         />
         <span for="guardianMaternalSurname" class="text-danger"></span>
-    </div>
-
-    <div class="col-3">
-        <label class="form-label" for="guardianLastName">Apellido(s)
-            <span class="text-danger">*</span>
-        </label>
-        <input
-            type="text"
-            class="form-control"
-            id="guardianLastName"
-            name="guardianLastName"
-            placeholder="Apellido(s)"
-            aria-label="Apellido o apellidos"
-            value="{{$guardian->last_name ?? ''}}"
-        />
-        <span for="guardianLastName" class="text-danger"></span>
     </div>
 
     <div class="col-3">

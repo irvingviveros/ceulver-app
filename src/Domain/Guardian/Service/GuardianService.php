@@ -30,7 +30,6 @@ class GuardianService
         $data = array(
             'name' => $guardianEntity->getName(),
             'last_name' => $guardianEntity->getLastName(),
-            'paternal_surname' => $guardianEntity->getPaternalSurname(),
             'maternal_surname' => $guardianEntity->getMaternalSurname(),
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
@@ -52,7 +51,6 @@ class GuardianService
         $data = array(
             'name' => $guardianEntity->getName(),
             'last_name' => $guardianEntity->getLastName(),
-            'paternal_surname' => $guardianEntity->getPaternalSurname(),
             'maternal_surname' => $guardianEntity->getMaternalSurname(),
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
@@ -75,7 +73,6 @@ class GuardianService
 
         $guardian->name = $guardianEntity->getName();
         $guardian->last_name = $guardianEntity->getLastName();
-        $guardian->paternal_surname = $guardianEntity->getPaternalSurname();
         $guardian->maternal_surname = $guardianEntity->getMaternalSurname();
         $guardian->phone = $guardianEntity->getPhone();
         $guardian->email = $guardianEntity->getEmail();

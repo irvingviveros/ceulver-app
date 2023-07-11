@@ -12,8 +12,6 @@ class GuardianEntity
     private ?string $address;
     private ?int $status;
     private int $user_id;
-
-    private ?string $paternal_surname;
     private ?string $maternal_surname;
     private ?string $street_number;
     private ?string $neighborhood;
@@ -128,22 +126,6 @@ class GuardianEntity
     public function setUserId(int $user_id): void
     {
         $this->user_id = $user_id;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getPaternalSurname(): ?string
-    {
-        return $this->paternal_surname;
-    }
-
-    /**
-     * @param string|null $paternal_surname
-     */
-    public function setPaternalSurname(?string $paternal_surname): void
-    {
-        $this->paternal_surname = $paternal_surname;
     }
 
     /**

@@ -272,23 +272,18 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="guardianName">Nombre</label>
-                            <p id="guardianName">{{$guardian->name ?? ''}}</p>
-                        </div>
-
-                        <div class="col-3">
-                            <label class="form-label" for="guardianLastName">Apellidos</label>
+                            <label class="form-label" for="guardianLastName">Apellido Paterno</label>
                             <p id="guardianLastName">{{$guardian->last_name ?? ''}}</p>
-                        </div>
-
-                        <div class="col-3">
-                            <label class="form-label" for="guardianPaternalSurname">Apellido Paterno</label>
-                            <p id="guardianPaternalSurname">{{$guardian->paternal_surname  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
                             <label class="form-label" for="guardianMaternalSurname">Apellido Materno</label>
                             <p id="guardianMaternalSurname">{{$guardian->maternal_surname  ?? ''}}</p>
+                        </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianName">Nombre</label>
+                            <p id="guardianName">{{$guardian->name ?? ''}}</p>
                         </div>
 
                         <div class="col-3">

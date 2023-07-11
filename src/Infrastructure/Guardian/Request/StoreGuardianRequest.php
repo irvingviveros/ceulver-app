@@ -29,7 +29,6 @@ class StoreGuardianRequest extends FormRequest
         return [
             'name' => 'required|string|max:25',
             'last_name' => 'string|max:25',
-            'paternal_surname' => 'nullable|string|max:25',
             'maternal_surname' => 'nullable|string|max:25',
             'phone' => 'nullable|string|max:10',
             'email' => 'nullable|email',
@@ -49,8 +48,7 @@ class StoreGuardianRequest extends FormRequest
     {
         return [
             'name' => 'Nombre(s)',
-            'last_name' => 'Apellido(s)',
-            'paternal_surname' => 'Apellido Paterno',
+            'last_name' => 'Apellido Paterno',
             'maternal_surname' => 'Apellido Materno',
             'phone' => 'Teléfono celular',
             'email' => 'Correo electrónico',
