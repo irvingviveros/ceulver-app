@@ -64,6 +64,7 @@ class StudentService
             'zip'                   => $student->getZip(),
             'city'                  => $student->getCity(),
             'state'                 => $student->getState(),
+            'inscription_date'      => $student->getInscriptionDate(),
         );
 
         if (!$this->studentRepository->create($data))
@@ -130,6 +131,7 @@ class StudentService
         $student->zip = $studentEntity->getZip();
         $student->city = $studentEntity->getCity();
         $student->state = $studentEntity->getState();
+        $student->inscription_date = $studentEntity->getInscriptionDate();
 
         if (!$this->studentRepository->update($student))
         {
@@ -151,16 +153,6 @@ class StudentService
     public function where($column, $operator, $value): \Illuminate\Support\Collection
     {
         return $this->studentRepository->where($column, $operator, $value);
-    }
-
-    public function getAllByEducationalSystem(string $educationalSystem)
-    {
-        return $this->studentRepository->allByEducationalSystem($educationalSystem);
-    }
-
-    public function getAllBySchoolId(int $schoolId)
-    {
-        return $this->studentRepository->allBySchoolId($schoolId);
     }
 
     public function calculateAge(Carbon $birth_date): int

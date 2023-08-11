@@ -34,9 +34,6 @@ let basicColumns = [
                 feather.icons['more-vertical'].toSvg({class: 'font-medium-2 text-body'}) +
                 '</a>' +
                 '<div class="dropdown-menu dropdown-menu-end">' +
-                '<a href="javascript:void(0)" class="dropdown-item item-edit" data-id="' + row['id'] + '">' +
-                feather.icons['download'].toSvg({class: 'font-small-4 me-50'}) +
-                'Descargar</a>' +
                 '<a href="javascript:void(0)" class="dropdown-item item-printed-registration-form" data-id="' + row['id'] + '">' +
                 feather.icons['download'].toSvg({class: 'font-small-4 me-50'}) +
                 'Descargar Ficha Inscripción</a>' +

@@ -100,57 +100,57 @@
                 <div class="card-body container">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="paternalSurname">Apellido paterno</label>
+                            <label class="form-label text-muted" for="paternalSurname">Apellido paterno</label>
                             <p id="paternalSurname">{{$student->paternal_surname}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="maternalSurname">Apellido materno</label>
+                            <label class="form-label text-muted" for="maternalSurname">Apellido materno</label>
                             <p id="maternalSurname">{{$student->maternal_surname}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="firstName">Nombre(s)</label>
+                            <label class="form-label text-muted" for="firstName">Nombre(s)</label>
                             <p id="firstName">{{$student->first_name}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="birthday">Fecha de nacimiento</label>
+                            <label class="form-label text-muted" for="birthday">Fecha de nacimiento</label>
                             <p id="firstName">{{$student->birth_date}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="nationalId">CURP</label>
+                            <label class="form-label text-muted" for="nationalId">CURP</label>
                             <p id="nationalId">{{$student->national_id}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="nationalId">Nacionalidad</label>
+                            <label class="form-label text-muted" for="nationalId">Nacionalidad</label>
                             <p id="nationalId">{{$student->nationality}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Calle</label>
+                            <label class="form-label text-muted" for="address">Calle</label>
                             <p id="address">{{$student->address}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">No.</label>
+                            <label class="form-label text-muted" for="address">No.</label>
                             <p id="address">{{$student->street_number}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Entre Calles</label>
+                            <label class="form-label text-muted" for="address">Entre Calles</label>
                             <p id="address">{{$student->between_streets}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Colonia o Fraccionamiento</label>
+                            <label class="form-label text-muted" for="address">Colonia o Fraccionamiento</label>
                             <p id="address">{{$student->neighborhood}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">C&oacute;digo Postal</label>
+                            <label class="form-label text-muted" for="address">C&oacute;digo Postal</label>
                             <p id="address">{{$student->zip}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Ciudad</label>
+                            <label class="form-label text-muted" for="address">Ciudad</label>
                             <p id="address">{{$student->city}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Estado</label>
+                            <label class="form-label text-muted" for="address">Estado</label>
                             <p @if($student->state != "") style="display: none;" @endif>NA</p>
                             <p @if($student->state != "AGU") style="display: none;" @endif>Aguascalientes</p>
                             <p @if($student->state != "BCN") style="display: none;" @endif>Baja California</p>
@@ -186,24 +186,24 @@
                             <p @if($student->state != "ZAC") style="display: none;" @endif>Zacatecas</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="sex">Sexo</label>
+                            <label class="form-label text-muted" for="sex">Sexo</label>
                             <p id="sex">{{$student->sex}}</p>
                         </div>
                         @if($school->educationalSystem->name === 'Universidad')
                             <div class="col-3">
-                                <label class="form-label" for="occupation">Ocupación</label>
+                                <label class="form-label text-muted" for="occupation">Ocupación</label>
                                 <p id="occupation">{{$student->occupation}}</p>
                             </div>
                             <div class="col-3">
-                                <label class="form-label" for="maritalStatus">Estado civil</label>
+                                <label class="form-label text-muted" for="maritalStatus">Estado civil</label>
                                 <p id="maritalStatus">{{$student->marital_status}}</p>
                             </div>
                             <div class="col-3">
-                                <label class="form-label" for="personalEmail">Email personal</label>
+                                <label class="form-label text-muted" for="personalEmail">Email personal</label>
                                 <p id="personalEmail">{{$student->personal_email}}</p>
                             </div>
                             <div class="col-3">
-                                <label class="form-label" for="personalPhone">Teléfono personal</label>
+                                <label class="form-label text-muted" for="personalPhone">Teléfono personal</label>
                                 <p id="personalPhone">{{$student->personal_phone}}</p>
                             </div>
                         @endif
@@ -219,22 +219,26 @@
                     <div class="row">
                         @if($school->educationalSystem->name === 'Universidad')
                             <div class="col-3">
-                                <label class="form-label" for="career">Carrera</label>
+                                <label class="form-label text-muted" for="career">Carrera</label>
                                 <p id="career">{{$student->career->name}}</p>
                             </div>
                             <div class="col-3">
-                                <label class="form-label" for="enrollment">Matrícula</label>
+                                <label class="form-label text-muted" for="enrollment">Matrícula</label>
                                 <p id="enrollment">{{$student->enrollment}}</p>
                             </div>
                         @endif
                         <div class="col-3">
-                            <label class="form-label" for="paymentReference">Referencia de pago</label>
+                            <label class="form-label text-muted" for="paymentReference">Referencia de pago</label>
                             <p id="paymentReference">{{$student->payment_reference}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="discount">Descuento (beca)</label>
+                            <label class="form-label text-muted" for="discount">Descuento (beca)</label>
                             <p id="discount"></p>
                         </div>
+                            <div class="col-3">
+                                <label class="form-label text-muted" for="inscriptionDate">Fecha de inscripción</label>
+                                <p id="inscriptionDate">{{$student->inscription_date === null ? 'N/A' : $student->inscription_date->format('d-m-Y')}}</p>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -246,15 +250,15 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="bloodGroup">Grupo sanguíneo</label>
+                            <label class="form-label text-muted" for="bloodGroup">Grupo sanguíneo</label>
                             <p id="bloodGroup">{{$student->blood_group}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="ailments">Padecimientos</label>
+                            <label class="form-label text-muted" for="ailments">Padecimientos</label>
                             <p id="bloodGroup">{{$student->ailments}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="allergies">Alergias</label>
+                            <label class="form-label text-muted" for="allergies">Alergias</label>
                             <p id="allergies">{{$student->allergies}}</p>
                         </div>
                     </div>
@@ -272,45 +276,45 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="guardianLastName">Apellido Paterno</label>
+                            <label class="form-label text-muted" for="guardianLastName">Apellido Paterno</label>
                             <p id="guardianLastName">{{$guardian->last_name ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianMaternalSurname">Apellido Materno</label>
+                            <label class="form-label text-muted" for="guardianMaternalSurname">Apellido Materno</label>
                             <p id="guardianMaternalSurname">{{$guardian->maternal_surname  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianName">Nombre</label>
+                            <label class="form-label text-muted" for="guardianName">Nombre</label>
                             <p id="guardianName">{{$guardian->name ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianRelationship">Parentesco</label>
+                            <label class="form-label text-muted" for="guardianRelationship">Parentesco</label>
                             <p id="guardianRelationship">{{$student->guardian_relationship  ?? ''}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="guardianAddress">Calle</label>
+                            <label class="form-label text-muted" for="guardianAddress">Calle</label>
                             <p id="guardianAddress">{{$guardian->address  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianStreetNumber">No.</label>
+                            <label class="form-label text-muted" for="guardianStreetNumber">No.</label>
                             <p id="guardianStreetNumber">{{$guardian->street_number  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento</label>
+                            <label class="form-label text-muted" for="guardianNeighborhood">Colonia o Fraccionamiento</label>
                             <p id="guardianNeighborhood">{{$guardian->neighborhood  ?? ''}}</p>
                         </div>
 
                         <div class="col-3">
-                            <label class="form-label" for="guardianEmail">Email</label>
+                            <label class="form-label text-muted" for="guardianEmail">Email</label>
                             <p id="guardianEmail">{{$guardian->email  ?? ''}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="guardianPhone">Teléfono personal</label>
+                            <label class="form-label text-muted" for="guardianPhone">Teléfono personal</label>
                             <p id="guardianPhone">{{$guardian->phone  ?? ''}}</p>
                         </div>
                     </div>

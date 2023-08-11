@@ -221,6 +221,9 @@ const StudentEvents = (function () {
                 city: form.find('input[id="city"]').val()
                 ,
                 state: form.find('select[id="state"]').val()
+                ,
+                inscription_date: form.find('input[id="inscriptionDate"]').val()
+            ,
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -336,6 +339,9 @@ const StudentEvents = (function () {
                 city: form.find('input[id="city"]').val()
                 ,
                 state: form.find('select[id="state"]').val()
+                ,
+                inscription_date: form.find('input[id="inscriptionDate"]').val()
+                ,
             }).then(function () {
                 AppNotification.show(
                     'success',

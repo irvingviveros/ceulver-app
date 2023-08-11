@@ -72,6 +72,7 @@ class StoreStudentRequest extends FormRequest
             'zip'                   => 'nullable|string|max:10',
             'city'                  => 'nullable|string|max:100',
             'state'                 => 'nullable|string|max:100',
+            'inscription_date'      => 'nullable|date'  // Si no se asigna una fecha, se pondrá en automático la del día en curso
         ];
     }
 
@@ -122,6 +123,7 @@ class StoreStudentRequest extends FormRequest
             'zip'                   => 'C.P.',
             'city'                  => 'Ciudad',
             'state'                 => 'Estado',
+            'inscription_date'      => 'Fecha de inscripción'
         ];
     }
 

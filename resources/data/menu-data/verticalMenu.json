@@ -55,13 +55,13 @@
                 {
                     "url": "admin/manage-students/students",
                     "name": "Manage Students",
-                    "icon": "circle",
+                    "icon": "corner-down-right",
                     "slug": "manage-students"
                 },
                 {
                     "url": "admin/manage-students/agreements",
                     "name": "Students Convention",
-                    "icon": "circle",
+                    "icon": "corner-down-right",
                     "slug": "students-convention"
                 },
                 {

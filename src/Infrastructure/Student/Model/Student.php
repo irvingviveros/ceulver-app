@@ -25,6 +25,7 @@ class Student extends Model
      * @var array
      */
     protected $guarded = [];
+    protected $dates = ['inscription_date'];
 
     /**
      * Get the user associated with the student.

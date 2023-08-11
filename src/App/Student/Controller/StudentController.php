@@ -145,6 +145,7 @@ class StudentController extends Controller
         $studentEntity->setZip($validatedRequest['zip']);
         $studentEntity->setCity($validatedRequest['city']);
         $studentEntity->setState($validatedRequest['state']);
+        $studentEntity->setInscriptionDate($validatedRequest['inscription_date']);
 
         // Guardian info
         // Request and set data for guardian
@@ -303,6 +304,7 @@ class StudentController extends Controller
         $studentEntity->setZip($validatedRequest['zip']);
         $studentEntity->setCity($validatedRequest['city']);
         $studentEntity->setState($validatedRequest['state']);
+        $studentEntity->setInscriptionDate($validatedRequest['inscription_date']);
 //        $studentEntity->setUserId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setAgreementId(1); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno
 //        $studentEntity->setEnrollment('TEST'); // TODO: Cambiar esto, es de prueba. Se debe crear un usuario al crear alumno

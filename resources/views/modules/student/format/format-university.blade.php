@@ -29,7 +29,7 @@
                                 </div>
 
                                 <div class="col-3 text-end">
-                                    Fecha: ________
+                                    Fecha: {{ $student->inscription_date === null ? 'N/A' : $student->inscription_date->format('d-m-Y') }}
                                 </div>
                             </div>
                         </div>

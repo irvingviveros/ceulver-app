@@ -19,6 +19,19 @@
         </div>
     </div>
 
+    <div class="col-3">
+        <label class="form-label" for="inscriptionDate">Fecha de inscripción</label>
+        <br>
+        <input
+            type="text"
+            id="inscriptionDate"
+            name="inscriptionDate"
+            class="form-control flatpickr-basic"
+            placeholder="Seleccionar"
+            value="{{$student->inscription_date}}"
+            readonly>
+    </div>
+
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
         <b>Información personal</b>
     </div>

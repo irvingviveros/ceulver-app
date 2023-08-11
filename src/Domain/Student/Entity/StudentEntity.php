@@ -42,6 +42,7 @@ class StudentEntity
     private ?string $zip;
     private ?string $city;
     private ?string $state;
+    private ?Carbon $inscription_date;
 
     /**
      * @return string
@@ -601,5 +602,20 @@ class StudentEntity
     public function setState(?string $state): void
     {
         $this->state = $state;
+    }
+
+    /**
+     * @return Carbon
+     */
+    public function getInscriptionDate(): Carbon
+    {
+        return $this->inscription_date;
+    }
+
+    public function setInscriptionDate(string $inscription_date = null): void
+    {
+        if ($inscription_date != null) {
+            $this->inscription_date = Carbon::parse($inscription_date);
+        } else $this->inscription_date = null;
     }
 }

@@ -68,6 +68,7 @@ class UpdateStudentRequest extends FormRequest
             'zip'                   => 'nullable|string|max:10',
             'city'                  => 'nullable|string|max:100',
             'state'                 => 'nullable|string|max:100',
+            'inscription_date'      => 'nullable|date'
         ];
     }
 
@@ -119,6 +120,7 @@ class UpdateStudentRequest extends FormRequest
             'zip'                   => 'C.P.',
             'city'                  => 'Ciudad',
             'state'                 => 'Estado',
+            'inscription_date'      => 'Fecha de inscripción'
         ];
     }
 

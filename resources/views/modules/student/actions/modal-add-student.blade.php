@@ -6,7 +6,9 @@
 
     <div class="col-6">
         <div class="col-md-6 basic-select2">
-            <label class="form-label" for="schoolSelect">Institución - Plantel</label>
+            <label class="form-label" for="schoolSelect">Institución - Plantel
+                <span class="text-danger">*</span>
+            </label>
             <select class="form-select" name="schoolSelect" id="schoolSelect">
                 <option selected disabled>Seleccionar</option>
                 @foreach($schools as $school)
@@ -18,6 +20,20 @@
                 @endforeach
             </select>
         </div>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="inscriptionDate">Fecha de inscripción
+            <span class="text-danger">*</span>
+        </label>
+        <br>
+        <input
+            type="text"
+            id="inscriptionDate"
+            name="inscriptionDate"
+            class="form-control flatpickr-basic"
+            placeholder="Seleccionar"
+            readonly>
     </div>
 
     <div class="border d-flex align-items-center bg-light" style="height: 35px;">
@@ -424,7 +440,7 @@
     <div class="col-3">
         <label class="form-label" for="scholarship">Descuento (beca)<i> - Opcional</i></label>
         <span data-bs-toggle="popover"
-              data-bs-content="Puede asignar una beca o descuento en este momento o en otro momento."
+              data-bs-content="Puede asignar una beca o descuento en este momento o después, editando el registro."
               data-bs-trigger="hover"
               title data-bs-original-title="Descuento (beca)">
             <i type="button" data-feather='info'></i>
@@ -485,21 +501,6 @@
             aria-label="Apellido Materno"
         />
         <span for="guardianMaternalSurname" class="text-danger"></span>
-    </div>
-
-    <div class="col-3">
-        <label class="form-label" for="guardianLastName">Apellido(s)
-            <span class="text-danger">*</span>
-        </label>
-        <input
-            type="text"
-            class="form-control"
-            id="guardianLastName"
-            name="guardianLastName"
-            placeholder="Apellido(s)"
-            aria-label="Apellido o apellidos"
-        />
-        <span for="guardianLastName" class="text-danger"></span>
     </div>
 
     <div class="col-3">

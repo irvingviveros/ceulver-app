@@ -39,8 +39,6 @@ Auth::routes();
 
 Route::get('/', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
 Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
-
-Route::view('/test', 'modules.student.actions.university-format');
 // Route Components
 
 // Admin
