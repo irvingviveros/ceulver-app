@@ -101,17 +101,136 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="address">Domicilio
+        <label class="form-label" for="address">Calle
+            <span class="text-danger">*</span>
         </label>
         <input
             type="text"
             class="form-control"
             id="address"
             name="address"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            placeholder="Calle"
+            aria-label="Calle"
         />
         <span for="address" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="streetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="streetNumber"
+            name="streetNumber"
+            placeholder="No."
+            aria-label="No."
+        />
+        <span for="streetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="betweenStreets">Entre calles
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="betweenStreets"
+            name="betweenStreets"
+            placeholder="Entre calles"
+            aria-label="Entre calles"
+        />
+        <span for="betweenStreets" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="neighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="neighborhood"
+            name="neighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+        />
+        <span for="neighborhood" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="zip">C&oacute;digo Postal
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="zip"
+            name="zip"
+            placeholder="C&oacute;digo Postal"
+            aria-label="C&oacute;digo Postal"
+        />
+        <span for="zip" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="city">Ciudad
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            placeholder="Ciudad"
+            aria-label="Ciudad"
+        />
+        <span for="city" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="state">Estado
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-select" name="state" id="state">
+            <option selected value="" disabled  >Seleccionar</option>
+            <option value="AGU">Aguascalientes</option>
+            <option value="BCN">Baja California</option>
+            <option value="BCS">Baja California Sur</option>
+            <option value="CAM">Campeche</option>
+            <option value="CHP">Chiapas</option>
+            <option value="CHH">Chihuahua</option>
+            <option value="CMX">Ciudad de México</option>
+            <option value="COA">Coahuila</option>
+            <option value="COL">Colima</option>
+            <option value="DUR">Durango</option>
+            <option value="GUA">Guanajuato</option>
+            <option value="GRO">Guerrero</option>
+            <option value="HID">Hidalgo</option>
+            <option value="JAL">Jalisco</option>
+            <option value="MEX">México</option>
+            <option value="MIC">Michoacán</option>
+            <option value="MOR">Morelos</option>
+            <option value="NAY">Nayarit</option>
+            <option value="NLE">Nuevo León</option>
+            <option value="OAX">Oaxaca</option>
+            <option value="PUE">Puebla</option>
+            <option value="QUE">Querétaro</option>
+            <option value="ROO">Quintana Roo</option>
+            <option value="SLP">San Luis Potosí</option>
+            <option value="SIN">Sinaloa</option>
+            <option value="SON">Sonora</option>
+            <option value="TAB">Tabasco</option>
+            <option value="TAM">Tamaulipas</option>
+            <option value="TLA">Tlaxcala</option>
+            <option value="VER">Veracruz</option>
+            <option value="YUC">Yucatán</option>
+            <option value="ZAC">Zacatecas</option>
+        </select>
+
+        <span for="state" class="text-danger"></span>
     </div>
 
     <div class="col-3 d-none" dynamic-toggle>
@@ -339,6 +458,36 @@
     </div>
 
     <div class="col-3">
+        <label class="form-label" for="guardianLastName">Apellido Paterno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianLastName"
+            name="guardianLastName"
+            placeholder="Apellido Paterno"
+            aria-label="Apellido Paterno"
+        />
+        <span for="guardianLastName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianMaternalSurname">Apellido Materno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianMaternalSurname"
+            name="guardianMaternalSurname"
+            placeholder="Apellido Materno"
+            aria-label="Apellido Materno"
+        />
+        <span for="guardianMaternalSurname" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
         <label class="form-label" for="guardianLastName">Apellido(s)
             <span class="text-danger">*</span>
         </label>
@@ -387,10 +536,8 @@
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
 
-    <div class="col-3"></div>
-
     <div class="col-3">
-        <label class="form-label" for="guardianAddress">Domicilio
+        <label class="form-label" for="guardianAddress">Calle
             <span class="text-danger">*</span>
         </label>
         <input
@@ -398,10 +545,40 @@
             class="form-control"
             id="guardianAddress"
             name="guardianAddress"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            placeholder="Calle"
+            aria-label="Calle"
         />
         <span for="guardianAddress" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetNumber"
+            name="guardianStreetNumber"
+            placeholder="No."
+            aria-label="No."
+        />
+        <span for="guardianStreetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianNeighborhood"
+            name="guardianNeighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+        />
+        <span for="guardianNeighborhood" class="text-danger"></span>
     </div>
 
     <div class="col-3">

@@ -51,17 +51,27 @@ class StoreStudentRequest extends FormRequest
             'guardian_last_name'    => 'nullable|string|max:100',
 //            'guardian_first_name'   => 'required|string|max:100',
             'guardian_first_name'   => 'nullable|string|max:100',
+            'guardian_paternal_surname' => 'nullable|string|max:100',
+            'guardian_maternal_surname' => 'nullable|string|max:100',
 //            'guardian_relationship' => 'required',
             'guardian_relationship' => 'nullable',
 //            'guardian_address'      => 'required|string',
             'guardian_address'      => 'nullable|string',
+            'guardian_street_number' => 'nullable|string|max:255',
+            'guardian_neighborhood' => 'nullable|string|max:255',
             'guardian_email'        => 'nullable|email',
             'guardian_phone'        => 'nullable|max:10',
             'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username',
             'guardian_password'     => 'required_with:guardian_username',
             'student_username'      => 'exclude_unless:educational_system,Universidad',
             'student_password'      => 'required_with:student_username|unique:users,username',
-            'student_status'        => 'required|boolean'
+            'student_status'        => 'required|boolean',
+            'street_number'         => 'nullable|string|max:10',
+            'neighborhood'          => 'nullable|string|max:75',
+            'between_streets'       => 'nullable|string|max:200',
+            'zip'                   => 'nullable|string|max:10',
+            'city'                  => 'nullable|string|max:100',
+            'state'                 => 'nullable|string|max:100',
         ];
     }
 
@@ -92,8 +102,12 @@ class StoreStudentRequest extends FormRequest
             'payment_reference'     => 'Referencia de pago',
             'guardian_last_name'    => 'Apellido padre o tutor',
             'guardian_first_name'   => 'Nombre padre o tutor',
+            'guardian_paternal_surname' => 'Apellido Paterno',
+            'guardian_maternal_surname' => 'Apellido Materno',
             'guardian_relationship' => 'Relación con padre o tutor',
-            'guardian_address'      => 'Dirección padre o tutor',
+            'guardian_address'      => 'Calle padre o tutor',
+            'guardian_street_number' => 'No.',
+            'guardian_neighborhood' => 'Colonia o Fraccionamiento',
             'guardian_email'        => 'Correo electrónico de padre o tutor',
             'guardian_phone'        => 'Teléfono de padre o tutor',
             'guardian_username'     => 'Usuario de padre o tutor',
@@ -101,7 +115,13 @@ class StoreStudentRequest extends FormRequest
             'student_username'      => 'Usuario del alumno',
             'student_password'      => 'Contraseña del alumno',
             'student_status'        => 'Estatus del alumno',
-            'educational_system'    => 'Sistema educacional'
+            'educational_system'    => 'Sistema educacional',
+            'street_number'         => 'No.',
+            'neighborhood'          => 'Colonia o fraccionamiento',
+            'between_streets'       => 'Entre',
+            'zip'                   => 'C.P.',
+            'city'                  => 'Ciudad',
+            'state'                 => 'Estado',
         ];
     }
 

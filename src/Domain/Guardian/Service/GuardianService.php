@@ -30,9 +30,12 @@ class GuardianService
         $data = array(
             'name' => $guardianEntity->getName(),
             'last_name' => $guardianEntity->getLastName(),
+            'maternal_surname' => $guardianEntity->getMaternalSurname(),
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
             'address' => $guardianEntity->getAddress(),
+            'street_number' => $guardianEntity->getStreetNumber(),
+            'neighborhood' => $guardianEntity->getNeighborhood(),
             'status' => $guardianEntity->getStatus(),
             'created_by' => $createdBy
         );
@@ -48,9 +51,12 @@ class GuardianService
         $data = array(
             'name' => $guardianEntity->getName(),
             'last_name' => $guardianEntity->getLastName(),
+            'maternal_surname' => $guardianEntity->getMaternalSurname(),
             'phone' => $guardianEntity->getPhone(),
             'email' => $guardianEntity->getEmail(),
             'address' => $guardianEntity->getAddress(),
+            'street_number' => $guardianEntity->getStreetNumber(),
+            'neighborhood' => $guardianEntity->getNeighborhood(),
             'status' => $guardianEntity->getStatus(),
             'created_at' => date_create(),
             'created_by' => $createdBy
@@ -67,9 +73,12 @@ class GuardianService
 
         $guardian->name = $guardianEntity->getName();
         $guardian->last_name = $guardianEntity->getLastName();
+        $guardian->maternal_surname = $guardianEntity->getMaternalSurname();
         $guardian->phone = $guardianEntity->getPhone();
         $guardian->email = $guardianEntity->getEmail();
         $guardian->address = $guardianEntity->getAddress();
+        $guardian->street_number = $guardianEntity->getStreetNumber();
+        $guardian->neighborhood = $guardianEntity->getNeighborhood();
         $guardian->status = $guardianEntity->getStatus();
         $guardian->modified_by = $modifiedBy;
 

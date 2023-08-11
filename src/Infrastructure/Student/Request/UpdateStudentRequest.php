@@ -45,10 +45,14 @@ class UpdateStudentRequest extends FormRequest
             'career'                => 'exclude_unless:educational_system,Universidad',
             'enrollment'            => 'exclude_unless:educational_system,Universidad|string',
             'payment_reference'     => 'nullable|string',
-            'guardian_last_name'    => 'required_if:guardian_first_name,!=|nullable|string|max:100',
+            'guardian_last_name'    => 'nullable|string|max:100',
             'guardian_first_name'   => 'required_if:guardian_last_name,!=|nullable|string|max:100',
+            'guardian_paternal_surname' => 'required_if:guardian_first_name,!=|nullable|string|max:100',
+            'guardian_maternal_surname' => 'required_if:guardian_first_name,!=|nullable|string|max:100',
             'guardian_relationship' => 'nullable|string',
             'guardian_address'      => 'nullable|string',
+            'guardian_street_number' => 'nullable|string|max:255',
+            'guardian_neighborhood' => 'nullable|string|max:255',
             'guardian_email'        => 'nullable|email',
             'guardian_phone'        => 'nullable|min:10|max:10',
 //            'guardian_username'     => 'required_unless:educational_system,Universidad|unique:users,username'.$this->student_id,
@@ -57,7 +61,13 @@ class UpdateStudentRequest extends FormRequest
             'student_password' => 'nullable', //TODO: need to work on user and password creation
 //            'student_username'      => 'exclude_unless:educational_system,Universidad',
 //            'student_password'      => 'required_with:student_username|unique:users,username'.$this->student_id,
-            'student_status'        => 'required|boolean'
+            'student_status'        => 'required|boolean',
+            'street_number'         => 'nullable|string|max:10',
+            'neighborhood'          => 'nullable|string|max:75',
+            'between_streets'       => 'nullable|string|max:200',
+            'zip'                   => 'nullable|string|max:10',
+            'city'                  => 'nullable|string|max:100',
+            'state'                 => 'nullable|string|max:100',
         ];
     }
 
@@ -88,8 +98,12 @@ class UpdateStudentRequest extends FormRequest
             'payment_reference'     => 'Referencia de pago',
             'guardian_last_name'    => 'Apellido padre o tutor',
             'guardian_first_name'   => 'Nombre padre o tutor',
+            'guardian_paternal_surname' => 'Apellido Paterno',
+            'guardian_maternal_surname' => 'Apellido Materno',
             'guardian_relationship' => 'Relación con padre o tutor',
             'guardian_address'      => 'Dirección padre o tutor',
+            'guardian_street_number' => 'No.',
+            'guardian_neighborhood' => 'Colonia o Fraccionamiento',
             'guardian_email'        => 'Correo electrónico de padre o tutor',
             'guardian_phone'        => 'Teléfono de padre o tutor',
             'guardian_username'     => 'Usuario de padre o tutor',
@@ -97,7 +111,14 @@ class UpdateStudentRequest extends FormRequest
             'student_username'      => 'Usuario del alumno',
             'student_password'      => 'Contraseña del alumno',
             'student_status'        => 'Estatus del alumno',
-            'educational_system'    => 'Sistema educacional'
+            'educational_system'    => 'Sistema educacional',
+            'street_name'           => 'Calle',
+            'street_number'         => 'No.',
+            'neighborhood'          => 'Colonia o fraccionamiento',
+            'between_streets'       => 'Entre',
+            'zip'                   => 'C.P.',
+            'city'                  => 'Ciudad',
+            'state'                 => 'Estado',
         ];
     }
 

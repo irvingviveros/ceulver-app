@@ -28,10 +28,13 @@ class StoreGuardianRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:25',
-            'last_name' => 'required|string|max:25',
+            'last_name' => 'string|max:25',
+            'maternal_surname' => 'nullable|string|max:25',
             'phone' => 'nullable|string|max:10',
             'email' => 'nullable|email',
             'address' => 'nullable|string|max:255',
+            'street_number' => 'nullable|string|max:255',
+            'neighborhood' => 'nullable|string|max:255',
             'status' => 'required|boolean'
         ];
     }
@@ -45,10 +48,13 @@ class StoreGuardianRequest extends FormRequest
     {
         return [
             'name' => 'Nombre(s)',
-            'last_name' => 'Apellido(s)',
+            'last_name' => 'Apellido Paterno',
+            'maternal_surname' => 'Apellido Materno',
             'phone' => 'Teléfono celular',
             'email' => 'Correo electrónico',
-            'address' => 'Dirección'
+            'address' => 'Calle',
+            'street_number' => 'No.',
+            'neighborhood' => 'Colonia o fraccionamiento'
         ];
     }
 

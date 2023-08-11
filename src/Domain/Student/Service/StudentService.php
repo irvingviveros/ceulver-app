@@ -58,6 +58,12 @@ class StudentService
             'status'                => $student->getStatus(),
             'created_by'            => $createdBy,
             'created_at'            => date_create(),
+            'street_number'         => $student->getStreetNumber(),
+            'neighborhood'          => $student->getNeighborhood(),
+            'between_streets'       => $student->getBetweenStreets(),
+            'zip'                   => $student->getZip(),
+            'city'                  => $student->getCity(),
+            'state'                 => $student->getState(),
         );
 
         if (!$this->studentRepository->create($data))
@@ -92,6 +98,7 @@ class StudentService
         $student->school_id = $studentEntity->getSchoolId();
         $student->career_id = $studentEntity->getCareerId();
 //        $student->agreement_id = $studentEntity->getAgreementId();
+//        TODO AL ACTUALIZAR UN ALUMNO SE ESTA BORRANDO EL ID DEL GUARDIAN EN LA RELACION
         $student->guardian_id = $studentEntity->getGuardianId();
         $student->national_id = $studentEntity->getNationalId();
         $student->enrollment = $studentEntity->getEnrollment();
@@ -117,6 +124,12 @@ class StudentService
         $student->guardian_relationship = $studentEntity->getGuardianRelationship();
         $student->modified_by = $modifiedBy;
         $student->updated_at = date_create();
+        $student->street_number = $studentEntity->getStreetNumber();
+        $student->neighborhood = $studentEntity->getNeighborhood();
+        $student->between_streets = $studentEntity->getBetweenStreets();
+        $student->zip = $studentEntity->getZip();
+        $student->city = $studentEntity->getCity();
+        $student->state = $studentEntity->getState();
 
         if (!$this->studentRepository->update($student))
         {

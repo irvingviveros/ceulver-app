@@ -103,7 +103,7 @@
     </div>
 
     <div class="col-3">
-        <label class="form-label" for="address">Domicilio
+        <label class="form-label" for="address">Calle
             <span class="text-danger">*</span>
         </label>
         <input
@@ -111,11 +111,133 @@
             class="form-control"
             id="address"
             name="address"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            placeholder="Calle"
+            aria-label="Calle"
             value="{{$student->address}}"
         />
         <span for="address" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="streetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="streetNumber"
+            name="streetNumber"
+            placeholder="No."
+            aria-label="No."
+            value="{{$student->street_number}}"
+        />
+        <span for="streetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="betweenStreets">Entre calles
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="betweenStreets"
+            name="betweenStreets"
+            placeholder="Entre calles"
+            aria-label="Entre calles"
+            value="{{$student->between_streets}}"
+        />
+        <span for="betweenStreets" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="neighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="neighborhood"
+            name="neighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+            value="{{$student->neighborhood}}"
+        />
+        <span for="neighborhood" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="zip">C&oacute;digo Postal
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="zip"
+            name="zip"
+            placeholder="C&oacute;digo Postal"
+            aria-label="C&oacute;digo Postal"
+            value="{{$student->zip}}"
+        />
+        <span for="zip" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="city">Ciudad
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            placeholder="Ciudad"
+            aria-label="Ciudad"
+            value="{{$student->city}}"
+        />
+        <span for="city" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="state">Estado
+            <span class="text-danger">*</span>
+        </label>
+        <select class="form-select" name="state" id="state">
+            <option value="" selected disabled>Seleccionar</option>
+            <option value="AGU" @if($student->state == "AGU") selected @endif>Aguascalientes</option>
+            <option value="BCN" @if($student->state == "BCN") selected @endif>Baja California</option>
+            <option value="BCS" @if($student->state == "BCS") selected @endif>Baja California Sur</option>
+            <option value="CAM" @if($student->state == "CAM") selected @endif>Campeche</option>
+            <option value="CHP" @if($student->state == "CHP") selected @endif>Chiapas</option>
+            <option value="CHH" @if($student->state == "CHH") selected @endif>Chihuahua</option>
+            <option value="CMX" @if($student->state == "CMX") selected @endif>Ciudad de México</option>
+            <option value="COA" @if($student->state == "COA") selected @endif>Coahuila</option>
+            <option value="COL" @if($student->state == "COL") selected @endif>Colima</option>
+            <option value="DUR" @if($student->state == "DUR") selected @endif>Durango</option>
+            <option value="GUA" @if($student->state == "GUA") selected @endif>Guanajuato</option>
+            <option value="GRO" @if($student->state == "GRO") selected @endif>Guerrero</option>
+            <option value="HID" @if($student->state == "HID") selected @endif>Hidalgo</option>
+            <option value="JAL" @if($student->state == "JAL") selected @endif>Jalisco</option>
+            <option value="MEX" @if($student->state == "MEX") selected @endif>México</option>
+            <option value="MIC" @if($student->state == "MIC") selected @endif>Michoacán</option>
+            <option value="MOR" @if($student->state == "MOR") selected @endif>Morelos</option>
+            <option value="NAY" @if($student->state == "NAY") selected @endif>Nayarit</option>
+            <option value="NLE" @if($student->state == "NLE") selected @endif>Nuevo León</option>
+            <option value="OAX" @if($student->state == "OAX") selected @endif>Oaxaca</option>
+            <option value="PUE" @if($student->state == "PUE") selected @endif>Puebla</option>
+            <option value="QUE" @if($student->state == "QUE") selected @endif>Querétaro</option>
+            <option value="ROO" @if($student->state == "ROO") selected @endif>Quintana Roo</option>
+            <option value="SLP" @if($student->state == "SLP") selected @endif>San Luis Potosí</option>
+            <option value="SIN" @if($student->state == "SIN") selected @endif>Sinaloa</option>
+            <option value="SON" @if($student->state == "SON") selected @endif>Sonora</option>
+            <option value="TAB" @if($student->state == "TAB") selected @endif>Tabasco</option>
+            <option value="TAM" @if($student->state == "TAM") selected @endif>Tamaulipas</option>
+            <option value="TLA" @if($student->state == "TLA") selected @endif>Tlaxcala</option>
+            <option value="VER" @if($student->state == "VER") selected @endif>Veracruz</option>
+            <option value="YUC" @if($student->state == "YUC") selected @endif>Yucatán</option>
+            <option value="ZAC" @if($student->state == "ZAC") selected @endif>Zacatecas</option>
+        </select>
+        <span for="state" class="text-danger"></span>
     </div>
 
     @if ($student->school->educationalSystem->name === 'Universidad')
@@ -357,7 +479,7 @@
     @endif
 
     <div class="col-3">
-        <label class="form-label" for="guardianLastName">Apellido(s)
+        <label class="form-label" for="guardianLastName">Apellido Paterno
             <span class="text-danger">*</span>
         </label>
         <input
@@ -365,11 +487,27 @@
             class="form-control"
             id="guardianLastName"
             name="guardianLastName"
-            placeholder="Apellido(s)"
-            aria-label="Apellido o apellidos"
+            placeholder="Apellido Paterno"
+            aria-label="Apellido Paterno"
             value="{{$guardian->last_name ?? ''}}"
         />
         <span for="guardianLastName" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianMaternalSurname">Apellido Materno
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianMaternalSurname"
+            name="guardianMaternalSurname"
+            placeholder="Apellido Materno"
+            aria-label="Apellido materno"
+            value="{{$guardian->maternal_surname ?? ''}}"
+        />
+        <span for="guardianMaternalSurname" class="text-danger"></span>
     </div>
 
     <div class="col-3">
@@ -416,10 +554,8 @@
         <span for="guardianRelationship" class="text-danger"></span>
     </div>
 
-    <div class="col-3"></div>
-
     <div class="col-3">
-        <label class="form-label" for="guardianAddress">Domicilio
+        <label class="form-label" for="guardianAddress">Calle
             <span class="text-danger">*</span>
         </label>
         <input
@@ -427,11 +563,43 @@
             class="form-control"
             id="guardianAddress"
             name="guardianAddress"
-            placeholder="Domicilio"
-            aria-label="Domicilio"
+            placeholder="Calle"
+            aria-label="Calle"
             value="{{$guardian->address ?? ''}}"
         />
         <span for="guardianAddress" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianStreetNumber">No.
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianStreetNumber"
+            name="guardianStreetNumber"
+            placeholder="No."
+            aria-label="No."
+            value="{{$guardian->street_number ?? ''}}"
+        />
+        <span for="guardianStreetNumber" class="text-danger"></span>
+    </div>
+
+    <div class="col-3">
+        <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento
+            <span class="text-danger">*</span>
+        </label>
+        <input
+            type="text"
+            class="form-control"
+            id="guardianNeighborhood"
+            name="guardianNeighborhood"
+            placeholder="Colonia o Fraccionamiento"
+            aria-label="Colonia o Fraccionamiento"
+            value="{{$guardian->neighborhood ?? ''}}"
+        />
+        <span for="guardianNeighborhood" class="text-danger"></span>
     </div>
 
     <div class="col-3">

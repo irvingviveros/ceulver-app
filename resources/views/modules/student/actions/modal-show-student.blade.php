@@ -126,8 +126,64 @@
                             <p id="nationalId">{{$student->nationality}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="address">Dirección</label>
+                            <label class="form-label" for="address">Calle</label>
                             <p id="address">{{$student->address}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">No.</label>
+                            <p id="address">{{$student->street_number}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Entre Calles</label>
+                            <p id="address">{{$student->between_streets}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Colonia o Fraccionamiento</label>
+                            <p id="address">{{$student->neighborhood}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">C&oacute;digo Postal</label>
+                            <p id="address">{{$student->zip}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Ciudad</label>
+                            <p id="address">{{$student->city}}</p>
+                        </div>
+                        <div class="col-3">
+                            <label class="form-label" for="address">Estado</label>
+                            <p @if($student->state != "") style="display: none;" @endif>NA</p>
+                            <p @if($student->state != "AGU") style="display: none;" @endif>Aguascalientes</p>
+                            <p @if($student->state != "BCN") style="display: none;" @endif>Baja California</p>
+                            <p @if($student->state != "BCS") style="display: none;" @endif>Baja California Sur</p>
+                            <p @if($student->state != "CAM") style="display: none;" @endif>Campeche</p>
+                            <p @if($student->state != "CHP") style="display: none;" @endif>Chiapas</p>
+                            <p @if($student->state != "CHH") style="display: none;" @endif>Chihuahua</p>
+                            <p @if($student->state != "CMX") style="display: none;" @endif>Ciudad de México</p>
+                            <p @if($student->state != "COA") style="display: none;" @endif>Coahuila</p>
+                            <p @if($student->state != "COL") style="display: none;" @endif>Colima</p>
+                            <p @if($student->state != "DUR") style="display: none;" @endif>Durango</p>
+                            <p @if($student->state != "GUA") style="display: none;" @endif>Guanajuato</p>
+                            <p @if($student->state != "GRO") style="display: none;" @endif>Guerrero</p>
+                            <p @if($student->state != "HID") style="display: none;" @endif>Hidalgo</p>
+                            <p @if($student->state != "JAL") style="display: none;" @endif>Jalisco</p>
+                            <p @if($student->state != "MEX") style="display: none;" @endif>México</p>
+                            <p @if($student->state != "MIC") style="display: none;" @endif>Michoacán</p>
+                            <p @if($student->state != "MOR") style="display: none;" @endif>Morelos</p>
+                            <p @if($student->state != "NAY") style="display: none;" @endif>Nayarit</p>
+                            <p @if($student->state != "NLE") style="display: none;" @endif>Nuevo León</p>
+                            <p @if($student->state != "OAX") style="display: none;" @endif>Oaxaca</p>
+                            <p @if($student->state != "PUE") style="display: none;" @endif>Puebla</p>
+                            <p @if($student->state != "QUE") style="display: none;" @endif>Querétaro</p>
+                            <p @if($student->state != "ROO") style="display: none;" @endif>Quintana Roo</p>
+                            <p @if($student->state != "SLP") style="display: none;" @endif>San Luis Potosí</p>
+                            <p @if($student->state != "SIN") style="display: none;" @endif>Sinaloa</p>
+                            <p @if($student->state != "SON") style="display: none;" @endif>Sonora</p>
+                            <p @if($student->state != "TAB") style="display: none;" @endif>Tabasco</p>
+                            <p @if($student->state != "TAM") style="display: none;" @endif>Tamaulipas</p>
+                            <p @if($student->state != "TLA") style="display: none;" @endif>Tlaxcala</p>
+                            <p @if($student->state != "VER") style="display: none;" @endif>Veracruz</p>
+                            <p @if($student->state != "YUC") style="display: none;" @endif>Yucatán</p>
+                            <p @if($student->state != "ZAC") style="display: none;" @endif>Zacatecas</p>
                         </div>
                         <div class="col-3">
                             <label class="form-label" for="sex">Sexo</label>
@@ -216,21 +272,39 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-3">
-                            <label class="form-label" for="guardianLastName">Apellidos</label>
-                            <p id="guardianLastName">{{$guardian->name ?? ''}}</p>
+                            <label class="form-label" for="guardianLastName">Apellido Paterno</label>
+                            <p id="guardianLastName">{{$guardian->last_name ?? ''}}</p>
                         </div>
+
                         <div class="col-3">
-                            <label class="form-label" for="guardianName">Apellidos</label>
-                            <p id="guardianName">{{$guardian->last_name  ?? ''}}</p>
+                            <label class="form-label" for="guardianMaternalSurname">Apellido Materno</label>
+                            <p id="guardianMaternalSurname">{{$guardian->maternal_surname  ?? ''}}</p>
                         </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianName">Nombre</label>
+                            <p id="guardianName">{{$guardian->name ?? ''}}</p>
+                        </div>
+
                         <div class="col-3">
                             <label class="form-label" for="guardianRelationship">Parentesco</label>
                             <p id="guardianRelationship">{{$student->guardian_relationship  ?? ''}}</p>
                         </div>
                         <div class="col-3">
-                            <label class="form-label" for="guardianAddress">Dirección</label>
+                            <label class="form-label" for="guardianAddress">Calle</label>
                             <p id="guardianAddress">{{$guardian->address  ?? ''}}</p>
                         </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianStreetNumber">No.</label>
+                            <p id="guardianStreetNumber">{{$guardian->street_number  ?? ''}}</p>
+                        </div>
+
+                        <div class="col-3">
+                            <label class="form-label" for="guardianNeighborhood">Colonia o Fraccionamiento</label>
+                            <p id="guardianNeighborhood">{{$guardian->neighborhood  ?? ''}}</p>
+                        </div>
+
                         <div class="col-3">
                             <label class="form-label" for="guardianEmail">Email</label>
                             <p id="guardianEmail">{{$guardian->email  ?? ''}}</p>

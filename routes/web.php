@@ -80,6 +80,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::get('students/bulk-upload', [StudentController::class, 'createBulkImport'])->name('manage-students.bulk-upload.create');
         Route::post('students/bulk-upload', [StudentController::class, 'storeBulkImport'])->name('manage-students.bulk-upload.store');
         Route::get('students/getList', [StudentController::class, 'getList']);
+        Route::get('students/getPrintedRegistrationForm/{id}', [StudentController::class, 'getPrintedRegistrationForm']);
         Route::resource('students', StudentController::class);
         // Student agreement types, route admin/manage-students/agreement
         Route::get('agreements/getList', [AgreementController::class, 'getList']);

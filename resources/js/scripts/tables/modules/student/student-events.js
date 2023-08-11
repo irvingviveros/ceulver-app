@@ -98,6 +98,27 @@ const StudentEvents = (function () {
             // Show Swal component and delete
             Delete.run(StudentEvents, dataId, table, row);
         });
+
+        $('#dataTable tbody').on('click', '.item-printed-registration-form', function (event) {
+            let itemId = $(event.currentTarget).attr('data-id');
+
+            StudentEvents.getPrintedRegistrationForm(itemId).then(
+                function () {
+                    let modal = Modal.create({
+                        id: 'showData'
+                        , title: 'Ficha de inscripción'
+                        , content: arguments[0]
+                        , okButtonText: 'Editar'
+                        , cancelButtonText: 'Cerrar'
+                        , size: 'xl'
+                    }
+                );
+
+                modal.modal('show').on('shown.bs.modal', function () {
+                    showModal(modal)
+                });
+            });
+        });
     }
 
     function showModal(modal) {
@@ -161,11 +182,17 @@ const StudentEvents = (function () {
                 ,
                 guardian_last_name: form.find('input[id="guardianLastName"]').val()
                 ,
+                guardian_maternal_surname: form.find('input[id="guardianMaternalSurname"]').val()
+                ,
                 guardian_first_name: form.find('input[id="guardianFirstName"]').val()
                 ,
                 guardian_relationship: form.find('select[id="guardianRelationship"]').val()
                 ,
                 guardian_address: form.find('input[id="guardianAddress"]').val()
+                ,
+                guardian_street_number: form.find('input[id="guardianStreetNumber"]').val()
+                ,
+                guardian_neighborhood: form.find('input[id="guardianNeighborhood"]').val()
                 ,
                 guardian_email: form.find('input[id="guardianEmail"]').val()
                 ,
@@ -182,6 +209,18 @@ const StudentEvents = (function () {
                 student_status: form.find('select[id="studentStatus"]').val()
                 ,
                 educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
+                ,
+                street_number: form.find('input[id="streetNumber"]').val()
+                ,
+                neighborhood: form.find('input[id="neighborhood"]').val()
+                ,
+                between_streets: form.find('input[id="betweenStreets"]').val()
+                ,
+                zip: form.find('input[id="zip"]').val()
+                ,
+                city: form.find('input[id="city"]').val()
+                ,
+                state: form.find('select[id="state"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success', 'El registro ha sido creado correctamente', 'Registro creado'
@@ -258,11 +297,17 @@ const StudentEvents = (function () {
                 ,
                 guardian_last_name: form.find('input[id="guardianLastName"]').val()
                 ,
+                guardian_maternal_surname: form.find('input[id="guardianMaternalSurname"]').val()
+                ,
                 guardian_first_name: form.find('input[id="guardianFirstName"]').val()
                 ,
                 guardian_relationship: form.find('select[id="guardianRelationship"]').val()
                 ,
                 guardian_address: form.find('input[id="guardianAddress"]').val()
+                ,
+                guardian_street_number: form.find('input[id="guardianStreetNumber"]').val()
+                ,
+                guardian_neighborhood: form.find('input[id="guardianNeighborhood"]').val()
                 ,
                 guardian_email: form.find('input[id="guardianEmail"]').val()
                 ,
@@ -279,6 +324,18 @@ const StudentEvents = (function () {
                 student_status: form.find('select[id="studentStatus"]').val()
                 ,
                 educational_system: $('option:checked', form.find('select[id="schoolSelect"]')).attr('educationalSystem')
+                ,
+                street_number: form.find('input[id="streetNumber"]').val()
+                ,
+                neighborhood: form.find('input[id="neighborhood"]').val()
+                ,
+                between_streets: form.find('input[id="betweenStreets"]').val()
+                ,
+                zip: form.find('input[id="zip"]').val()
+                ,
+                city: form.find('input[id="city"]').val()
+                ,
+                state: form.find('select[id="state"]').val()
             }).then(function () {
                 AppNotification.show(
                     'success',
@@ -331,6 +388,15 @@ const StudentEvents = (function () {
         , getShowForm: function (id) {
             return Configuration.consume({
                 url: urlController + `${id}`
+                , method: 'GET'
+                , data: {
+                    _token: Application.getToken()
+                }
+            })
+        }
+        , getPrintedRegistrationForm: function (id) {
+            return Configuration.consume({
+                url: urlController + `getPrintedRegistrationForm/${id}`
                 , method: 'GET'
                 , data: {
                     _token: Application.getToken()
