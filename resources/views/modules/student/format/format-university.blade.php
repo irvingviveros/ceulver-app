@@ -114,6 +114,8 @@
                                 </table>
                             </div>
 
+                            <br>
+
                             {{-- DATOS DEL ALUMNO --}}
                             <div class="row" class="invoice-spacing">
                                 <div class="col-3"></div>
@@ -278,7 +280,7 @@
                                     <div class="col-6">
                                         <p class="fw-bolder fs-5 text-center">
                                             <span class="text-decoration-underline">
-                                                DATOS DEL PADRE O TUTOR
+                                                DATOS DEL CONTACTO
                                             </span>
                                         </p>
                                     </div>
@@ -344,6 +346,9 @@
                                     </table>
                                 </div>
                             @endif
+
+                            <br>
+                            <br>
 
                             <div class="row invoice-spacing">
                                 <div class="col-3"></div>
@@ -436,6 +441,7 @@
                                     posteriormente se verificará su autenticidad, se le explica al alumno que en caso de que la misma
                                     resulte FALSA o APOCRIFA, se anulará de manera automática el trámite de inscripción sin
                                     responsabilidad alguna para este centro universitario y se dará parte a las autoridades.
+                                    <br>
                                     <b>Se procede a entregarle extracto de REGLAMENTO que rige a este Centro Universitario</b>, en los
                                     puntos que hablan lo relativo a los estudiantes, comprometiéndose el alumno a leerlo en todas y
                                     cada una de sus partes para conocer sus <b>derechos y obligaciones como alumno (a)</b> de este Centro
@@ -595,9 +601,6 @@
                                     </thead>
                                 </table>
                             </div>
-
-                            <br>
-                            <br>
 
                             <div class="row invoice-spacing">
                                 <table>
