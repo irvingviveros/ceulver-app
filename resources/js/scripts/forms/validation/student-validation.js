@@ -21,14 +21,14 @@ const FormIsValid = (form) => {
             },
             occupation: {
                 required: function () {
-                    return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
+                    return $("#schoolSelect option:checked").attr('educationalsystem') === 'Universidad';
                 }
             },
             sexSelect: "required",
             // address: "required",
             maritalStatus: {
                 required: function () {
-                    return $("#schoolSelect option:checked").attr('educationalSystem') === 'Universidad';
+                    return $("#schoolSelect option:checked").attr('educationalsystem') === 'Universidad';
                 }
             },
             email: {
