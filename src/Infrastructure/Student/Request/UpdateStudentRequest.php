@@ -37,7 +37,7 @@ class UpdateStudentRequest extends FormRequest
             'occupation'            => 'exclude_unless:educational_system,Universidad|string|max:100',
             'sex'                   => 'required|max:20',
             'marital_status'        => 'exclude_unless:educational_system,Universidad',
-            'email'                 => 'exclude_if:email,null|required|email|exclude_unless:educational_system,Universidad',
+            'email'                 => 'exclude_if:email,null|email|exclude_unless:educational_system,Universidad',
             'phone'                 => 'sometimes|exclude_unless:educational_system,Universidad|max:10',
             'blood_group'           => 'required',
             'ailments'              => 'nullable|string|max:250',

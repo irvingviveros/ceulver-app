@@ -605,9 +605,9 @@ class StudentEntity
     }
 
     /**
-     * @return Carbon
+     * @return Carbon|null
      */
-    public function getInscriptionDate(): Carbon
+    public function getInscriptionDate(): ?Carbon
     {
         return $this->inscription_date;
     }
