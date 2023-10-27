@@ -441,7 +441,8 @@
                                     posteriormente se verificará su autenticidad, se le explica al alumno que en caso de que la misma
                                     resulte FALSA o APOCRIFA, se anulará de manera automática el trámite de inscripción sin
                                     responsabilidad alguna para este centro universitario y se dará parte a las autoridades.
-                                    <br>
+                                </p>
+                                <p style="text-indent: 30px; text-align: justify;">
                                     <b>Se procede a entregarle extracto de REGLAMENTO que rige a este Centro Universitario</b>, en los
                                     puntos que hablan lo relativo a los estudiantes, comprometiéndose el alumno a leerlo en todas y
                                     cada una de sus partes para conocer sus <b>derechos y obligaciones como alumno (a)</b> de este Centro
