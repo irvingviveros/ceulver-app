@@ -39,6 +39,7 @@ Auth::routes();
 
 Route::get('/', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
 Route::get('home', [StaterkitController::class, 'home'])->name('home') -> middleware('auth');
+Route::get('test', [\App\Playground\PlaygroundController::class, 'index'])->name('playground.home') -> middleware('auth');
 // Route Components
 
 // Admin

@@ -14,6 +14,8 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "koolreport/core": "^6.1",
+        "koolreport/laravel": "^2.0",
         "laravel-lang/lang": "~7.0",
         "laravel/framework": "^8.40",
         "laravel/passport": "^10.0",
