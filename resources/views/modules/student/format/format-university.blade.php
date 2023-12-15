@@ -280,7 +280,11 @@
                                     <div class="col-6">
                                         <p class="fw-bolder fs-5 text-center">
                                             <span class="text-decoration-underline">
-                                                DATOS DEL CONTACTO
+                                                @if($student->age < 18)
+                                                    DATOS DEL PADRE O TUTOR
+                                                @else
+                                                    AVISO EN CASO DE EMERGENCIA
+                                                @endif
                                             </span>
                                         </p>
                                     </div>
