@@ -8,7 +8,10 @@ use Domain\OtherReceipt\Service\OtherReceiptService;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
 use Domain\School\Service\SchoolService;
+use Domain\Shared\Exception\ValueNotFoundException;
+use Domain\Student\Actions\CreateFullName;
 use Domain\Student\Service\StudentService;
+use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
@@ -155,12 +158,38 @@ class OtherReceiptController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Infrastructure\OtherReceipt\Model\OtherReceipt  $otherReceipt
+     * @param \Infrastructure\OtherReceipt\Model\OtherReceipt $otherReceipt
      * @return \Illuminate\Http\Response
+     * @throws ValueNotFoundException
      */
-    public function show(OtherReceipt $otherReceipt)
+    public function show(int $id): View
     {
-        //
+        // Get other-receipt data model with the receipt id
+        $otherReceipt = $this->otherReceiptService->findOrFailWithTrashed($id);
+        // Get base receipt collection
+        $baseReceipt = $this->receiptService->findOrFailWithTrashed($otherReceipt->receipt_id);
+        // Receipt payment date formatted
+        $payment_date = DateToLatinAmericaFormat::execute($baseReceipt->payment_date); //TODO: convert this to a global execution
+        // Get the student data model
+        if ($otherReceipt->student_id != null && $otherReceipt->student_id != 0) {
+            // Get student data model related to the receipt
+            $student = $this->studentService->findById($otherReceipt->student_id);
+            // Get student full name by paternal surname
+            $student_name = CreateFullName::ByPaternalSurname(
+                $student->first_name, $student->paternal_surname, $student->maternal_surname);
+            // Get school data model related to the student
+            $school = $this->schoolService->findById($student->school_id);
+            // Return the view
+            return view('modules.accounting.other_receipts.actions.modal-show-other-receipt',
+                compact(['baseReceipt', 'otherReceipt', 'student', 'school', 'payment_date', 'student_name']));
+        } else {
+            $person_name = $otherReceipt->full_name;
+            $school = $this->schoolService->findById($otherReceipt->school_id);
+            // Return the view
+            return view('modules.accounting.other_receipts.actions.modal-show-other-receipt',
+                compact(['baseReceipt', 'otherReceipt', 'school', 'payment_date', 'person_name']));
+        }
+
     }
 
     /**
@@ -195,5 +224,20 @@ class OtherReceiptController extends Controller
     public function destroy(OtherReceipt $otherReceipt)
     {
         //
+    }
+
+    private function isStudent($id): bool
+    {
+        $otherReceipt = $this->otherReceiptService->findOrFailWithTrashed($id);
+        return $otherReceipt->studentId != null && $otherReceipt->studentId != 0;
+    }
+
+    private function getPersonData($id, $receipt)
+    {
+        if ($this->isStudent($id)) {
+            return $this->studentService->findById($receipt->student_id);
+        } else {
+            return $receipt;
+        }
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Domain\OtherReceipt\Service;
 
 use Domain\OtherReceipt\Entity\OtherReceiptEntity;
+use Domain\Shared\Exception\ValueNotFoundException;
 use Illuminate\Support\Collection;
 use Infrastructure\OtherReceipt\Repository\EloquentOtherReceiptRepository;
 use Symfony\Component\HttpFoundation\Response as ResponseAlias;
@@ -19,6 +20,19 @@ class OtherReceiptService
     public function getAll(): Collection|array
     {
         return $this->otherReceiptRepository->all();
+    }
+
+    public function findOrFailWithTrashed($id)
+    {
+        $receipt = $this->otherReceiptRepository->findOrFailWithTrashed($id);
+
+        if ($receipt == null) {
+            throw new ValueNotFoundException(
+                "El recibo no existe"
+            );
+        }
+
+        return $receipt;
     }
 
     public function createReceipt(OtherReceiptEntity $otherReceiptEntity, $createdBy): int

@@ -297,15 +297,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
         // ============= Other receipts =============
 
+        // Index other-receipts
         Route::get('other-receipts', [OtherReceiptController::class, 'index'])
             ->name('other-receipts.index')
             ->middleware('can:student-receipts.other-receipts.index');
 
+        // Create other-receipt
         Route::get('other-receipts/create', [OtherReceiptController::class, 'create'])
             ->name('other-receipts.create')
             ->middleware('can:student-receipts.other-receipts.create');
-        // Store university receipt
 
+        // Show nursery-school receipt
+        Route::get('other-receipts/{id}', [OtherReceiptController::class, 'show'])
+            ->name('other-receipts.show')
+            ->middleware('can:other-receipts.show');
+
+        // Store university receipt
         Route::post('other-receipts', [OtherReceiptController::class, 'store'])
             ->name('other-receipts-create')
             ->middleware('can:other-receipts-create');
