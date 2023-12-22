@@ -300,22 +300,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         // Index other-receipts
         Route::get('other-receipts', [OtherReceiptController::class, 'index'])
             ->name('other-receipts.index')
-            ->middleware('can:student-receipts.other-receipts.index');
+            ->middleware('can:other-receipts.index');
 
         // Create other-receipt
         Route::get('other-receipts/create', [OtherReceiptController::class, 'create'])
             ->name('other-receipts.create')
-            ->middleware('can:student-receipts.other-receipts.create');
+            ->middleware('can:other-receipts.create');
 
-        // Show nursery-school receipt
+        // Show other-receipt
         Route::get('other-receipts/{id}', [OtherReceiptController::class, 'show'])
             ->name('other-receipts.show')
             ->middleware('can:other-receipts.show');
 
-        // Store university receipt
+        // Store other-receipt
         Route::post('other-receipts', [OtherReceiptController::class, 'store'])
             ->name('other-receipts-create')
             ->middleware('can:other-receipts-create');
+
+        // Soft delete other-receipt
+        Route::delete('other-receipts/{id}', [OtherReceiptController::class, 'softDelete'])
+            ->name('other-receipts-action-delete')
+            ->middleware('can:other-receipts.cancel');
 
         // ============= EXU receipts =============
 

@@ -8,11 +8,13 @@ use Domain\OtherReceipt\Service\OtherReceiptService;
 use Domain\Receipt\Entity\ReceiptEntity;
 use Domain\Receipt\Service\ReceiptService;
 use Domain\School\Service\SchoolService;
+use Domain\Shared\Exception\OperationNotPermittedCeulverException;
 use Domain\Shared\Exception\ValueNotFoundException;
 use Domain\Student\Actions\CreateFullName;
 use Domain\Student\Service\StudentService;
 use Domain\StudentReceipt\Actions\DateToLatinAmericaFormat;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use Infrastructure\OtherReceipt\Model\OtherReceipt;
@@ -226,18 +228,19 @@ class OtherReceiptController extends Controller
         //
     }
 
-    private function isStudent($id): bool
+    public function softDelete($id)
     {
-        $otherReceipt = $this->otherReceiptService->findOrFailWithTrashed($id);
-        return $otherReceipt->studentId != null && $otherReceipt->studentId != 0;
-    }
+        $otherReceipt = $this->otherReceiptService->findById($id);
+        $baseReceipt = $this->receiptService->findById($otherReceipt->receipt_id);
 
-    private function getPersonData($id, $receipt)
-    {
-        if ($this->isStudent($id)) {
-            return $this->studentService->findById($receipt->student_id);
-        } else {
-            return $receipt;
+        try {
+            $this->receiptService->delete($baseReceipt->id);
+            $this->otherReceiptService->delete($id);
+        } catch (OperationNotPermittedCeulverException $exception) {
+            return new Response($exception->getMessage(), 400);
+        } catch (Exception $exception) {
+            return new Response('Error interno en el servidor', 500);
         }
     }
+
 }

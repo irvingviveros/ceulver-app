@@ -17,6 +17,22 @@ class OtherReceiptService
         $this->otherReceiptRepository = $studentReceiptRepository;
     }
 
+    /**
+     * @throws ValueNotFoundException
+     */
+    public function findById($id)
+    {
+        $studentReceipt = $this->otherReceiptRepository->findById($id);
+
+        if ($studentReceipt == null) {
+            throw new ValueNotFoundException(
+                "El recibo no existe"
+            );
+        }
+
+        return $studentReceipt;
+    }
+
     public function getAll(): Collection|array
     {
         return $this->otherReceiptRepository->all();
@@ -73,5 +89,12 @@ class OtherReceiptService
         $newSheetId = $this->lastSheetId() + 1; // Converts the int id to string
 
         return $acronym . $newSheetId;
+    }
+
+    public function delete($id)
+    {
+        $otherReceipt = $this->findById($id);
+
+        $this->otherReceiptRepository->delete($otherReceipt);
     }
 }
