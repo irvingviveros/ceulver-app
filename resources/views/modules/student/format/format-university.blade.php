@@ -597,28 +597,35 @@
                                                 ________________________________
                                                 <br>Nombre y firma del alumno(a)
                                             </th>
-
-                                            <th style="text-align: center;">
-                                                ________________________________
-                                                <br>Nombre y firma del padre o tutor
-                                            </th>
+                                            @if($student->age < 18)
+                                                <th style="text-align: center;">
+                                                    ________________________________
+                                                    <br>Nombre y firma del padre o tutor
+                                                </th>
+                                            @else
+                                                <th style="text-align: center;">
+                                                    ________________________________
+                                                    <br>Control Escolar
+                                                </th>
+                                            @endif
                                         </tr>
                                     </thead>
                                 </table>
                             </div>
-
-                            <div class="row invoice-spacing">
-                                <table>
-                                    <thead>
+                            @if($student->age < 18)
+                                <div class="row invoice-spacing">
+                                    <table>
+                                        <thead>
                                         <tr>
                                             <th style="text-align: center;">
                                                 ________________________________
                                                 <br>Control Escolar
                                             </th>
                                         </tr>
-                                    </thead>
-                                </table>
-                            </div>
+                                        </thead>
+                                    </table>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
